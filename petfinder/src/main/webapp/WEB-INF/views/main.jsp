@@ -24,7 +24,5 @@
 	<p>This is another paragraph.</p>
 	<button>Click me</button>
 	<P>The time on the server is ${serverTime}.</P>
-	
-
 </body>
 </html>
