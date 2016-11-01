@@ -4,7 +4,7 @@
 <%@ page session="false" %>
 <html>
 <head>
-	<title>signup</title>
+	<title>sign up</title>
 </head>
 <body>
 <h1>
