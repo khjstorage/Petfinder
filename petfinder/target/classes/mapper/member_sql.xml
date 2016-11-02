@@ -6,7 +6,7 @@
 	<insert id="insertmember" parameterType="com.petfinder.dao.MemberDao">
 	    <![CDATA[
 		INSERT INTO MEMBER (ID, PASSWORD, NAME, PHONE, FILE_NO, REGION, DOG, SIZE, COLOR, GENDER)
-		VALUES ( #{ID}, #{PASSWORD}, #{NAME}, #{PHONE}, #{FILE_NO}, #{REGION}, #{DOG}, #{SIZE}, #{COLOR}, #{GENDER} )
+		VALUES (#{ID}, #{PASSWORD}, #{NAME}, #{PHONE}, #{FILE_NO}, #{REGION}, #{DOG}, #{SIZE}, #{COLOR}, #{GENDER}) 
 		]]>
 	</insert>
 

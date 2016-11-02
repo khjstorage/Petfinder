@@ -57,7 +57,7 @@
 							<input type="radio" id="" name="gender" value="m" checked> 남자 &nbsp; 
 							<input type="radio" id="" name="gender"	value="f"> 여자
 				</div>
-				<input type="submit" value="회원가입"> <a href="/project">취소</a>
+				<input type="submit" value="회원가입"> <a href="main">취소</a>
 			</form>
 		</div>
 		<%@include file="../views/layout/footer.jsp"%>

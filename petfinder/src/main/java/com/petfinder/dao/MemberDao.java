@@ -13,6 +13,7 @@ public class MemberDao {
 	private SqlSession sqlSession;
 	
 	public void insertMember(Model model) {
+		System.out.println("µé¾î°¨?");
 		sqlSession.insert("com.petfinder.dao.MemberDao.insertmember", model);
 	}
 	
