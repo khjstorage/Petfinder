@@ -4,9 +4,13 @@
 <%@ page session="false" %>
 <html>
 <head>
-	<title>Home</title>
+	<title>footer</title>
 </head>
 <body>
-<P> 쀼터 </P>
+<footer>
+	<div>
+		<p>이 것은 푸터. 푸터다요</p>
+	</div>
+</footer>
 </body>
 </html>

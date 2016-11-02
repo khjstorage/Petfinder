@@ -2,6 +2,7 @@ package com.petfinder.project.dto;
 
 public class MemberDto {
 	private String id;
+	private String password;
 	private String name;
 	private String phone;
 	private String file_no;
@@ -14,10 +15,11 @@ public class MemberDto {
 	public MemberDto(){
 		
 	}
-	public MemberDto(String id, String name, String phone, String file_no,
+	public MemberDto(String id, String password, String name, String phone, String file_no,
 			String region, String dog, String size, String color, String gender) {
 		super();
 		this.id = id;
+		this.password = password;
 		this.name = name;
 		this.phone = phone;
 		this.file_no = file_no;
@@ -32,6 +34,12 @@ public class MemberDto {
 	}
 	public void setId(String id) {
 		this.id = id;
+	}
+	public String getPassword() {
+		return password;
+	}
+	public void setPassword(String password) {
+		this.password = password;
 	}
 	public String getName() {
 		return name;

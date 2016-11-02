@@ -4,9 +4,22 @@
 <%@ page session="false" %>
 <html>
 <head>
-	<title>Home</title>
+	<title>header-aside</title>
 </head>
 <body>
-<P> 헤더 </P>
+<div class="asideHeader">
+	<div class="headerHome">PET-FINDER</div>
+	<div class="headerNav">
+		<a href="/project">홈</a>
+		<a href="signup_form">회원가입</a>
+		<a>실종신고</a>
+		<a>제보</a>
+		<a>지랄</a>
+		<a>조</a>
+		<a>까고</a>
+		<a>있다</a>
+		<a>잡년이</a>
+	</div>
+</div>
 </body>
 </html>
