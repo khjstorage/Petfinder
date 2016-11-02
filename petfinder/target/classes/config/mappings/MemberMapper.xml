@@ -3,17 +3,15 @@
     PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
-<mapper namespace="com.petfinder.project.dao.IDao">
+<mapper namespace="com.petfinder.project.dao.MemberMapper">
+
 	<!-- 회원가입sql -->
-	<insert id="signupDao ">
+	<insert id="signupDao" parameterType="com.petfinder.project.dto.MemberDto">
 	    <![CDATA[
 		INSERT INTO MEMBER (ID, PASSWORD, NAME, PHONE, FILE_NO, REGION, DOG, SIZE, COLOR, GENDER)
 		VALUES ( #{ID}, #{PASSWORD}, #{NAME}, #{PHONE}, #{FILE_NO}, #{REGION}, #{DOG}, #{SIZE}, #{COLOR}, #{GENDER} )
 		]]>
 	</insert>
 
-	<!-- 로그인sql -->
-
-	<!-- 회원정보수정, 글수정은 기존에있던 데이터를 일부 가져옴, 따라서 resultMap -->
 
 </mapper>
