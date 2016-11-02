@@ -1,4 +1,4 @@
-package com.petfinder.project.dto;
+package com.petfinder.dto;
 
 public class DisappearanceDto {
 	private String disappr_id;

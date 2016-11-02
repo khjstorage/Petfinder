@@ -1,9 +1,10 @@
-package com.petfinder.project;
+package com.petfinder.controller;
 
 import java.text.DateFormat;
 import java.util.Date;
 import java.util.Locale;
 
+import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.ibatis.session.SqlSession;
@@ -15,25 +16,36 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
-import com.petfinder.project.dto.MemberDto;
-
+import com.petfinder.service.MemberService;
 
 @Controller
 public class HomeController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(HomeController.class);
 
+    @Resource(name="memberService")
+    private MemberService memberService;
+	
 	@Autowired
 	private SqlSession sqlSession;	
 	
 	@RequestMapping(value = "/", method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
 		logger.info("Welcome home! The client locale is {}.", locale);
+		
 		Date date = new Date();
 		DateFormat dateFormat = DateFormat.getDateTimeInstance(DateFormat.LONG, DateFormat.LONG, locale);
+		
 		String formattedDate = dateFormat.format(date);
+		
 		model.addAttribute("serverTime", formattedDate );
-		return "main";
+		
+		return "home";
+	}
+	
+	@RequestMapping("/main")
+	public String main() {
+		return "/main";
 	}
 	
 	@RequestMapping("/signup_form")
@@ -42,9 +54,9 @@ public class HomeController {
 	}
 	
 	@RequestMapping("/signup")
-	public String signup(MemberDto MemberDto) {
-/*		IDao dao = sqlSession.getMapper(IDao.class);
-		dao.signupDao(MemberDto);*/
+	public String signup(HttpServletRequest request, Model model) {
+		model.addAttribute("request", request);
+		memberService.insertMember(model);
 		return "redirect:main";
 	}	
 

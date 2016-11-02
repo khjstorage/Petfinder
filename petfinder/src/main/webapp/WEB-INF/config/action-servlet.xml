@@ -24,7 +24,11 @@
 		<beans:property name="suffix" value=".jsp" />
 	</beans:bean>
 
-	<context:component-scan base-package="com.petfinder.project" />
-
-
+	<context:component-scan base-package="com.petfinder" />
+	<!--
+	 	<context:component-scan base-package="com.petfinder.controller" />
+		<context:component-scan base-package="com.petfinder.service" />
+		<context:component-scan base-package="com.petfinder.dto" />
+		<context:component-scan base-package="com.petfinder.dao" /> 
+	-->
 </beans:beans>

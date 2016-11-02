@@ -1,4 +1,4 @@
-package com.petfinder.project.dto;
+package com.petfinder.dto;
 
 public class FindsDto {
 	private String find_id;

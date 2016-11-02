@@ -10,7 +10,7 @@
 <div class="asideHeader">
 	<div class="headerHome">PET-FINDER</div>
 	<div class="headerNav">
-		<a href="/project">홈</a>
+		<a href="main">홈</a>
 		<a href="signup_form">회원가입</a>
 		<a>실종신고</a>
 		<a>제보</a>
