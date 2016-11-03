@@ -1,6 +1,6 @@
-package com.petfinder.dto;
+package com.petfinder.vo;
 
-public class DisappearanceDto {
+public class DisappearanceVO {
 	private String disappr_id;
 	private String id;
 	private String file_no;
@@ -14,7 +14,7 @@ public class DisappearanceDto {
 	private String disappr_region;
 	private String detail;
 	private String complete;
-	public DisappearanceDto() {
+	public DisappearanceVO() {
 	}
 	public String getDisappr_id() {
 		return disappr_id;
@@ -94,7 +94,7 @@ public class DisappearanceDto {
 	public void setComplete(String complete) {
 		this.complete = complete;
 	}
-	public DisappearanceDto(String disappr_id, String id, String file_no,
+	public DisappearanceVO(String disappr_id, String id, String file_no,
 			String dog, String size, String color, String gender, String phone,
 			String emergency_phone, String disappr_date, String disappr_region,
 			String detail, String complete) {

@@ -14,10 +14,11 @@
 		<%@include file="../views/layout/header.jsp"%>
 		<div class="mainContents">
 			<P align="center"> <FONT size="6"><B>회원 가입서</B></FONT> </P>
-			<form action="signup" method="post">
+			<form action="signup" method="post" enctype="multipart/form-data">
 				<div class="signUpSection">
 					<br />아이디 <input type="text" id="" name="id" placeholder="아이디" /> 
-					<br />비번 <input type="password" id="" name="password;" placeholder="비밀번호" /> 
+					<br />비번 <input type="password" id="pwd" name="pwd" placeholder="비밀번호" />
+					<br />이름 <input type="text" id="" name="name" placeholder="이름"> 
 					<br />연락처
 								<input type="text" id="" name="phone" size="11" maxlength="11">
 						<!--	<input type="text" id="" name="" size="4" maxlength="3"> -

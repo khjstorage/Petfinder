@@ -1,13 +1,13 @@
-package com.petfinder.dto;
+package com.petfinder.vo;
 
-public class PictureDto {
+public class PictureVO {
 	private String file_no;
 	private String file_name;
 	private String file_extention;
 	private String file_path;
-	public PictureDto() {
+	public PictureVO() {
 	}
-	public PictureDto(String file_no, String file_name, String file_extention,
+	public PictureVO(String file_no, String file_name, String file_extention,
 			String file_path) {
 		super();
 		this.file_no = file_no;

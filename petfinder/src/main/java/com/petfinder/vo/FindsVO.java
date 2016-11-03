@@ -1,6 +1,6 @@
-package com.petfinder.dto;
+package com.petfinder.vo;
 
-public class FindsDto {
+public class FindsVO {
 	private String find_id;
 	private String id;
 	private int file_no;
@@ -14,9 +14,9 @@ public class FindsDto {
 	private String find_region;
 	private String detail;
 	private String complete;
-	public FindsDto() {
+	public FindsVO() {
 	}
-	public FindsDto(String find_id, String id, int file_no, String password,
+	public FindsVO(String find_id, String id, int file_no, String password,
 			String dog, String size, String color, String gender, String phone,
 			String find_date, String find_region, String detail, String complete) {
 		super();

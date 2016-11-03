@@ -20,7 +20,6 @@
 <div class="containor">
 <%@include file="../views/layout/header.jsp"%>
 	<div class="mainContents">
-	
 		<p>This is a paragraph.</p>
 		<h1>메인화면입니다.</h1>
 		<h2>This is a heading</h2>

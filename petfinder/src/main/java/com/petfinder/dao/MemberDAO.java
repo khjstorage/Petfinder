@@ -3,20 +3,17 @@ package com.petfinder.dao;
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
-import org.springframework.ui.Model;
 
+import com.petfinder.vo.MemberVO;
 
 @Repository("memberDao")
-public class MemberDao {
+public class MemberDAO {
 	
 	@Autowired
 	private SqlSession sqlSession;
 	
-	public void insertMember(Model model) {
-		System.out.println("µé¾î°¨?");
-		sqlSession.insert("com.petfinder.dao.MemberDao.insertmember", model);
+	public void insertMember(MemberVO memberVO) {
+		sqlSession.insert("sample.insertmember", memberVO);
 	}
 	
-	
-
 }

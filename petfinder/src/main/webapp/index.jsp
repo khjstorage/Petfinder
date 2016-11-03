@@ -8,6 +8,6 @@
 </head>
 <body>
 <jsp:forward page="main"/>
-<%-- <%response.sendRedirect("main"); %> --%>
+<%-- <%response.sendRedirect("main"); %>  --%>
 </body>
 </html>

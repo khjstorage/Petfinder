@@ -2,13 +2,14 @@ package com.petfinder.service;
 
 import java.util.ArrayList;
 
-import org.springframework.ui.Model;
+import javax.servlet.http.HttpServletRequest;
 
-import com.petfinder.dto.MemberDto;
+import com.petfinder.vo.MemberVO;
 
 public interface MemberService {
-    ArrayList<MemberDto> getMembers();
-    void insertMember(Model model);	
-    void updateMember(String name);
-    void deleteMember(String name);
+	public void updateMember(String name);
+	public void deleteMember(String name);
+	public ArrayList<MemberVO> getMembers();
+	public void insertMember(MemberVO memberVO);
 }
+

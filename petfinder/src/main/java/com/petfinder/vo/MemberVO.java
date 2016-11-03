@@ -1,45 +1,28 @@
-package com.petfinder.dto;
+package com.petfinder.vo;
 
-public class MemberDto {
+public class MemberVO {
 	private String id;
-	private String password;
+	private String pwd;
 	private String name;
 	private String phone;
-	private String file_no;
 	private String region;
 	private String dog;
 	private String size;
 	private String color;
 	private String gender;
-	
-	public MemberDto(){
-		
-	}
-	public MemberDto(String id, String password, String name, String phone, String file_no,
-			String region, String dog, String size, String color, String gender) {
-		super();
-		this.id = id;
-		this.password = password;
-		this.name = name;
-		this.phone = phone;
-		this.file_no = file_no;
-		this.region = region;
-		this.dog = dog;
-		this.size = size;
-		this.color = color;
-		this.gender = gender;
-	}
+	private String picturefile_no;
+
 	public String getId() {
 		return id;
 	}
 	public void setId(String id) {
 		this.id = id;
 	}
-	public String getPassword() {
-		return password;
+	public String getPwd() {
+		return pwd;
 	}
-	public void setPassword(String password) {
-		this.password = password;
+	public void setPwd(String pwd) {
+		this.pwd = pwd;
 	}
 	public String getName() {
 		return name;
@@ -52,12 +35,6 @@ public class MemberDto {
 	}
 	public void setPhone(String phone) {
 		this.phone = phone;
-	}
-	public String getFile_no() {
-		return file_no;
-	}
-	public void setFile_no(String file_no) {
-		this.file_no = file_no;
 	}
 	public String getRegion() {
 		return region;
@@ -89,6 +66,11 @@ public class MemberDto {
 	public void setGender(String gender) {
 		this.gender = gender;
 	}
-	
-	
+	public String getPicturefile_no() {
+		return picturefile_no;
+	}
+	public void setPicturefile_no(String picturefile_no) {
+		this.picturefile_no = picturefile_no;
+	}
+
 }
