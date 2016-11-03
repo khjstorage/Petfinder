@@ -14,7 +14,7 @@
 		<%@include file="../views/layout/header.jsp"%>
 		<div class="mainContents">
 			<P align="center"> <FONT size="6"><B>회원 가입서</B></FONT> </P>
-			<form action="signup" method="post" enctype="multipart/form-data">
+			<form action="signup.do" method="post" enctype="multipart/form-data">
 				<div class="signUpSection">
 					<br />아이디 <input type="text" id="" name="id" placeholder="아이디" /> 
 					<br />비번 <input type="password" id="pwd" name="pwd" placeholder="비밀번호" />
@@ -58,7 +58,7 @@
 							<input type="radio" id="" name="gender" value="m" checked> 남자 &nbsp; 
 							<input type="radio" id="" name="gender"	value="f"> 여자
 				</div>
-				<input type="submit" value="회원가입"> <a href="main">취소</a>
+				<input type="submit" value="회원가입"> <a href="main.do">취소</a>
 			</form>
 		</div>
 		<%@include file="../views/layout/footer.jsp"%>

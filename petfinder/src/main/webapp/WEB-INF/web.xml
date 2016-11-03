@@ -29,7 +29,7 @@
 	</servlet>
 	<servlet-mapping>
 	        <servlet-name>action</servlet-name>
-	        <url-pattern>/</url-pattern>
+	        <url-pattern>*.do</url-pattern>
 	</servlet-mapping>
 	
 	<!-- CharacterEncodingFilter UTF-8 -->
@@ -43,7 +43,7 @@
 	</filter>
 	<filter-mapping>
 		<filter-name>encodingFilter</filter-name>
-		<url-pattern>/*</url-pattern>
+		<url-pattern>*.do</url-pattern>
 	</filter-mapping>
 
 </web-app>
