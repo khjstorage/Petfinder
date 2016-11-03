@@ -24,7 +24,7 @@ public class MemberController {
 	@RequestMapping("/signup")
 	public String signup(@ModelAttribute("memberVO")MemberVO memberVO, HttpServletRequest request) {
 		memberService.insertMember(memberVO);
-		return "redirect:main";
+		return "redirect:main.do";
 	}
 
 }

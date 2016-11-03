@@ -10,7 +10,7 @@ public class MemberVO {
 	private String size;
 	private String color;
 	private String gender;
-	private String picturefile_no;
+/*	private String file_no;*/
 
 	public String getId() {
 		return id;
@@ -66,11 +66,12 @@ public class MemberVO {
 	public void setGender(String gender) {
 		this.gender = gender;
 	}
-	public String getPicturefile_no() {
-		return picturefile_no;
+/*	public String getFile_no() {
+		return file_no;
 	}
-	public void setPicturefile_no(String picturefile_no) {
-		this.picturefile_no = picturefile_no;
-	}
+	public void setFile_no(String file_no) {
+		this.file_no = file_no;
+	}*/
+
 
 }
