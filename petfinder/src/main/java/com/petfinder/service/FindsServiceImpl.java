@@ -1,7 +1,10 @@
 package com.petfinder.service;
 
+import org.springframework.stereotype.Service;
 import org.springframework.ui.Model;
 
+
+@Service("findsService")
 public class FindsServiceImpl implements FindsService{
 
 	@Override
@@ -21,5 +24,7 @@ public class FindsServiceImpl implements FindsService{
 		// TODO Auto-generated method stub
 		
 	}
+
+
 
 }

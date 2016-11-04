@@ -2,57 +2,26 @@
 	pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ page session="false"%>
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Home</title>
-<link rel="stylesheet" type="text/css" media="screen and (min-device-width: 480px)" href="<c:url value="/resources/css/Desk.css" />" />
-<link rel="stylesheet" type="text/css" media="screen and (max-device-width: 480px)" href="<c:url value="/resources/css/Mobile.css"/>" />
-<script type="text/javascript" src="<c:url value="/resources/js/jquery-3.1.0.min.js"/>"></script>
-<script>
-	$(document).ready(function() {
-		$("button").click(function() {
-			$("p").hide();
-		});
-	});
-</script>
+<link rel="stylesheet" type="text/css" href="style.css" />
 </head>
 <body>
-<div class="containor">
-<%@include file="../views/layout/header.jsp"%>
-	<div class="mainContents">
-		<p>This is a paragraph.</p>
-		<h1>메인화면입니다.</h1>
-		<h2>This is a heading</h2>
-		<p>This is a paragraph.</p>
-		<p>This is another paragraph.</p>
-		<button>Click me</button>
-		<P>The time on the server is ${serverTime}.</P>
-		<h1>메인화면입니다.</h1>
-		<h2>This is a heading</h2>
-		<p>This is a paragraph.</p>
-		<p>This is another paragraph.</p>
-		<button>Click me</button>
-		<P>The time on the server is ${serverTime}.</P>
-		<h1>메인화면입니다.</h1>
-		<h2>This is a heading</h2>
-		<p>This is a paragraph.</p>
-		<p>This is another paragraph.</p>
-		<button>Click me</button>
-		<P>The time on the server is ${serverTime}.</P>
-		<h1>메인화면입니다.</h1>
-		<h2>This is a heading</h2>
-		<p>This is a paragraph.</p>
-		<p>This is another paragraph.</p>
-		<button>Click me</button>
-		<P>The time on the server is ${serverTime}.</P>
-		<h1>메인화면입니다.</h1>
-		<h2>This is a heading</h2>
-		<p>This is a paragraph.</p>
-		<p>This is another paragraph.</p>
-		<button>Click me</button>
-		<P>The time on the server is ${serverTime}.</P>
+	<div class="containor">
+		<%@include file="../views/layout/header.jsp"%>
+		<div class="mainContents">
+			<h2>여러분의 제보를 기다립니다.</h2>
+			<div class="main_disappear">
+				<h4>분실게시판</h4>
+			</div>
+			<div class="main_finds">
+				<h4>제보게시판</h4>
+			</div>
+			<%@include file="../views/layout/footer.jsp"%>
+		</div>
 	</div>
-<%@include file="../views/layout/footer.jsp"%>
-</div>
 </body>
 </html>

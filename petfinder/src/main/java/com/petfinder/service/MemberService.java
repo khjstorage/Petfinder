@@ -10,6 +10,6 @@ public interface MemberService {
 	public void updateMember(String name);
 	public void deleteMember(String name);
 	public ArrayList<MemberVO> getMembers();
-	public void insertMember(MemberVO memberVO);
+	public void insertMember(MemberVO memberVO, HttpServletRequest request) throws Exception;
 }
 

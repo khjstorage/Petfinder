@@ -2,13 +2,17 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="sample">
-   <!-- 회원가입sql -->
-   <insert id="insertmember" parameterType="com.petfinder.dao.MemberDAO">
-       <![CDATA[INSERT INTO MEMBER(M_ID, M_PASSWORD, M_NAME, M_PHONE, M_REGION, M_DOG,
-                               M_SIZE, M_COLOR, M_GENDER)
-               VALUES(#{id}, #{pwd}, #{name}, #{phone}, #{region}, #{dog},
-                     #{size}, #{color}, #{gender})
+	<!-- 회원가입sql -->
+	<insert id="insertmember" parameterType="com.petfinder.dao.MemberDAO">
+       <![CDATA[
+		INSERT INTO MEMBER(M_ID, M_PASSWORD, M_NAME, M_PHONE, M_REGION1, M_REGION2, M_REGION3, M_DOG, M_SIZE, M_COLOR, M_GENDER) VALUES (#{id}, #{pwd}, #{name}, #{phone}, #{region1}, #{region2}, #{region3}, #{dog}, #{size}, #{color}, #{gender})
        ]]>
-   </insert>
+	</insert>
+	
+	<insert id="insertfile" parameterType="com.petfinder.dao.MemberDAO">
+       <![CDATA[
+		
+       ]]>
+	</insert>
 
 </mapper>

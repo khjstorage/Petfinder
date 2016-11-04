@@ -12,6 +12,7 @@
                         http://www.springframework.org/schema/cache http://www.springframework.org/schema/cache/spring-cache.xsd">
                          
     <!-- MultipartResolver 설정 -->
+    <!-- 첨부파일 최대크기 10,000,000byte = 10mb  , 해당 크기 이상의 파일이 전송되면 에러 발생처리 요망-->
     <bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
         <property name="maxUploadSize" value="100000000" />
         <property name="maxInMemorySize" value="100000000" />

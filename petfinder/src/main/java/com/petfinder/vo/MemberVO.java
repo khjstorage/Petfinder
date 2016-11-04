@@ -5,12 +5,14 @@ public class MemberVO {
 	private String pwd;
 	private String name;
 	private String phone;
-	private String region;
+	private String region1;
+	private String region2;
+	private String region3;
 	private String dog;
 	private String size;
 	private String color;
 	private String gender;
-/*	private String file_no;*/
+	private String picturefile_no;
 
 	public String getId() {
 		return id;
@@ -36,11 +38,24 @@ public class MemberVO {
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
-	public String getRegion() {
-		return region;
+	
+	public String getRegion1() {
+		return region1;
 	}
-	public void setRegion(String region) {
-		this.region = region;
+	public void setRegion1(String region1) {
+		this.region1 = region1;
+	}
+	public String getRegion2() {
+		return region2;
+	}
+	public void setRegion2(String region2) {
+		this.region2 = region2;
+	}
+	public String getRegion3() {
+		return region3;
+	}
+	public void setRegion3(String region3) {
+		this.region3 = region3;
 	}
 	public String getDog() {
 		return dog;
@@ -66,12 +81,11 @@ public class MemberVO {
 	public void setGender(String gender) {
 		this.gender = gender;
 	}
-/*	public String getFile_no() {
-		return file_no;
+	public String getPicturefile_no() {
+		return picturefile_no;
 	}
-	public void setFile_no(String file_no) {
-		this.file_no = file_no;
-	}*/
-
+	public void setPicturefile_no(String picturefile_no) {
+		this.picturefile_no = picturefile_no;
+	}
 
 }

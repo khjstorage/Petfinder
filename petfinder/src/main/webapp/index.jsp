@@ -7,7 +7,7 @@
 <title>Insert title here</title>
 </head>
 <body>
-<%-- <jsp:forward page="main.do"/> --%>
-<%response.sendRedirect("main.do"); %>
+<jsp:forward page="main.do"/>
+<%-- <%response.sendRedirect("main.do"); %>  --%>
 </body>
 </html>
