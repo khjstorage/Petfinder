@@ -17,24 +17,24 @@
      
     <!-- Application Loggers -->
     <logger name="first" additivity="false">
-        <level value="debug" />
+        <level value="WARN" />
         <appender-ref ref="console"/>
     </logger>
          
     <!-- Query Loggers -->
     <logger name="jdbc.sqlonly" additivity="false">  
         <level value="debug"/>  
-        <appender-ref ref="console-infolog"/>  
+        <appender-ref ref="console"/>  
     </logger>
      
     <logger name="jdbc.resultsettable" additivity="false">  
         <level value="debug"/>  
-        <appender-ref ref="console-infolog"/>  
+        <appender-ref ref="console"/>  
     </logger>  
  
     <!-- Root Logger -->
     <root>
-        <level value="debug"/>
+        <level value="WARN"/>
         <appender-ref ref="console" />
     </root>
      
