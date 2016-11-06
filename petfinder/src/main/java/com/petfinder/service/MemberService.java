@@ -7,11 +7,9 @@ import javax.servlet.http.HttpServletRequest;
 import com.petfinder.vo.MemberVO;
 
 public interface MemberService {
-	public ArrayList<MemberVO> getMember();
+	public ArrayList<MemberVO> getMember(MemberVO memberVO) throws Exception;
 	public void insertMember(MemberVO memberVO, HttpServletRequest request) throws Exception;
-	public void updateMember(String name);
-	public void deleteMember(String name);
-	
-	
+	public void updateMember(String id);
+	public void deleteMember(String id);
 }
 

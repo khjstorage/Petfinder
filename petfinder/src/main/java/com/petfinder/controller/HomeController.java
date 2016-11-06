@@ -30,10 +30,7 @@ public class HomeController {
 		return "/signup_form";
 	}
 
-	@RequestMapping("/mypage.do")
-	public String mypage() {
-		return "/mypage";
-	}
+
 
 	@RequestMapping("/about.do")
 	public String about() {

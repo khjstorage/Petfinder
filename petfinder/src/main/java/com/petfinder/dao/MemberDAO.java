@@ -1,5 +1,6 @@
 package com.petfinder.dao;
 
+import java.util.List;
 import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
@@ -15,13 +16,18 @@ public class MemberDAO {
 	private SqlSession sqlSession;
 	
 	public void insertMember(MemberVO memberVO) {
-		System.out.println("inserMember찍혔니");
 		sqlSession.insert("sample.insertmember", memberVO);
+		System.out.println("insertMember");
 	}
 	
 	public void insertFile(Map<String,Object> mapFile) {
-		System.out.println("insertFile찍혔니");
-		//sqlSession.insert("sample.insertfile", mapFile);
+		//sqlSession.insert("smaple.insertfile", mapFile);
+		System.out.println("insertFile");
+	}
+
+	public List<MemberVO> getMember(MemberVO memberVO) {
+		System.out.println("getMember");
+		return sqlSession.selectList("sample.getmember", memberVO);
 	}
 	
 }
