@@ -6,7 +6,6 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
 
 import com.petfinder.service.MemberService;
 import com.petfinder.vo.MemberVO;
@@ -19,10 +18,12 @@ public class MemberController {
 
 	
 	@RequestMapping("/signup")
-	public String signup(@ModelAttribute("memberVO")MemberVO memberVO, @RequestParam String region1, HttpServletRequest request) throws Exception{
+	public String signup(@ModelAttribute("memberVO")MemberVO memberVO, HttpServletRequest request) throws Exception{
 		memberService.insertMember(memberVO, request);
 		return "redirect:main.do";
 	}
+	
+
 
 
 	

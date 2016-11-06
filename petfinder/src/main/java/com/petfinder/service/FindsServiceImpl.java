@@ -1,30 +1,37 @@
 package com.petfinder.service;
 
+import java.util.ArrayList;
+
 import org.springframework.stereotype.Service;
-import org.springframework.ui.Model;
+
+import com.petfinder.vo.FindsVO;
 
 
 @Service("findsService")
 public class FindsServiceImpl implements FindsService{
 
 	@Override
-	public void insert(Model model) {
+	public ArrayList<FindsVO> getFinds() {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+	@Override
+	public void insertFinds(FindsVO FindsVO) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void update(String name) {
+	public void updateFinds(String name) {
 		// TODO Auto-generated method stub
 		
 	}
 
 	@Override
-	public void delete(String name) {
+	public void deleteFinds(String name) {
 		// TODO Auto-generated method stub
 		
 	}
-
-
 
 }

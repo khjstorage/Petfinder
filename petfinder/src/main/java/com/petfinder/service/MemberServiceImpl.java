@@ -46,7 +46,7 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public ArrayList<MemberVO> getMembers() {
+	public ArrayList<MemberVO> getMember() {
 		// TODO Auto-generated method stub
 		return null;
 	}

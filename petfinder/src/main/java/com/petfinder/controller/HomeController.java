@@ -9,46 +9,35 @@ import org.springframework.web.bind.annotation.RequestParam;
 @Controller
 public class HomeController {
 
-	//메인화면 이동
-	@RequestMapping("/main")
+	@RequestMapping("/main.do")
 	public String main() {
 		return "/main";
 	}
 
-	//로그인 이동
-	@RequestMapping("/login")
+	@RequestMapping("/login.do")
 	public String login() {
 		return "/login";
 	}
 	
-	@RequestMapping("/login_pro")
+	@RequestMapping("/login_process.do")
 	public String login_pro(@RequestParam("id") String id, @RequestParam("pwd") String pwd, HttpSession session) {
 		System.out.println(id + pwd);
 		return "redirect:main.do";
 	}
 
-	//발견게시물 이동
-	@RequestMapping("/finds_list")
-	public String finds_list() {
-		return "/finds_list";
-	}
-
-	//가입게시판
-	@RequestMapping("/signup_form")
+	@RequestMapping("/signup_form.do")
 	public String signup_write() {
 		return "/signup_form";
 	}
 
-	//마이페이지 이동
-	@RequestMapping("/mypage")
+	@RequestMapping("/mypage.do")
 	public String mypage() {
 		return "/mypage";
 	}
 
-	//어바웃페이지 이동
-	@RequestMapping("/about")
+	@RequestMapping("/about.do")
 	public String about() {
-		return "/about";
+		return "etc/about";
 	}
 
 

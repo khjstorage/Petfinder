@@ -12,7 +12,6 @@ public class MemberVO {
 	private String size;
 	private String color;
 	private String gender;
-	private String picturefile_no;
 
 	public String getId() {
 		return id;
@@ -38,7 +37,6 @@ public class MemberVO {
 	public void setPhone(String phone) {
 		this.phone = phone;
 	}
-	
 	public String getRegion1() {
 		return region1;
 	}
@@ -80,12 +78,6 @@ public class MemberVO {
 	}
 	public void setGender(String gender) {
 		this.gender = gender;
-	}
-	public String getPicturefile_no() {
-		return picturefile_no;
-	}
-	public void setPicturefile_no(String picturefile_no) {
-		this.picturefile_no = picturefile_no;
 	}
 
 }

@@ -16,7 +16,7 @@ public class DisapperanceController {
 	@RequestMapping("/disappearance_list")
 	public String disappearance_list() {
 		System.out.println("Controller test");
-		disappearanceService.getDisappr();
-		return "/disappearance_list";
+		disappearanceService.getDisapprance();
+		return "disappearance/disappearance_list";
 	}
 }

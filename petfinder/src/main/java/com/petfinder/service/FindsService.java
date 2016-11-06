@@ -1,9 +1,13 @@
 package com.petfinder.service;
 
-import org.springframework.ui.Model;
+import java.util.ArrayList;
+
+import com.petfinder.vo.FindsVO;
 
 public interface FindsService {
-	public void insert(Model model);	
-	public void update(String name);
-	public void delete(String name);
+	public ArrayList<FindsVO> getFinds();
+	public void insertFinds(FindsVO FindsVO);
+	public void updateFinds(String name);
+	public void deleteFinds(String name);
+	
 }
