@@ -11,10 +11,10 @@
 </head>
 <body>
 	<div class="containor">
-		<%@include file="../views/layout/header.jsp"%>
+		<%@include file="../../views/layout/nav.jsp"%>
 		<div class="mainContents">
 			<h2>발견게시판 글쓰기</h2>
-			<%@include file="../views/layout/footer.jsp"%>
+			<%@include file="../../views/layout/footer.jsp"%>
 		</div>
 	</div>
 </body>
