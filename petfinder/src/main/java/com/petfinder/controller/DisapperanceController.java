@@ -19,4 +19,9 @@ public class DisapperanceController {
 		disappearanceService.getDisapprance();
 		return "disappearance/disappearance_list";
 	}
+	
+	@RequestMapping("/disappearance_form")
+	public String disappearance_form() {
+		return "disappearance/disappearance_form";
+	}
 }

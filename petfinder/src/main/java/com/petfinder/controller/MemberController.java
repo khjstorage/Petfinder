@@ -1,6 +1,6 @@
 package com.petfinder.controller;
 
-import java.util.ArrayList;
+import java.util.List;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -27,9 +27,9 @@ public class MemberController {
 	}
 	
 	@RequestMapping("/mypage.do")
-	public ModelAndView mypage(MemberVO memberVO) throws Exception {
+	public ModelAndView mypage(@ModelAttribute("memberVO")MemberVO memberVO) throws Exception {
 		ModelAndView mv = new ModelAndView();
-		ArrayList<MemberVO> list = memberService.getMember(memberVO);
+		List<MemberVO> list = memberService.getMember(memberVO);
 		mv.addObject("list", list);
 		mv.setViewName("/mypage");
 		return mv;

@@ -12,13 +12,14 @@ public class MemberVO {
 	private String size;
 	private String color;
 	private String gender;
-
+	
 	public String getId() {
 		return id;
 	}
 	public void setId(String id) {
 		this.id = id;
 	}
+		
 	public String getPwd() {
 		return pwd;
 	}
@@ -80,4 +81,7 @@ public class MemberVO {
 		this.gender = gender;
 	}
 
+
+
+	
 }

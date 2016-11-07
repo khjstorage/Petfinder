@@ -7,8 +7,11 @@
 	<!-- SqlSessionFactoryBean 설정 -->
 	<bean id="sqlSession" class="org.mybatis.spring.SqlSessionFactoryBean">
 		<property name="dataSource" ref="dataSourceLog4j" />
-		<property name="mapperLocations" value="classpath:/mapper/**/*_sql.xml" />		
+		<property name="configLocation" value="classpath:sqlmap/config/sql-mapper-config.xml" />
+	<!-- <property name="mapperLocations" value="classpath:/sqlmap/mappers/*.xml" /> -->
 	</bean>
+	
+	
 
 	<!-- SqlSessionTemplate 설정 -->
 	<bean id="sqlSessionTemplate" class="org.mybatis.spring.SqlSessionTemplate">

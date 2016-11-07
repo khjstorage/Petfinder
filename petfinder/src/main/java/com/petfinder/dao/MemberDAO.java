@@ -17,16 +17,13 @@ public class MemberDAO {
 	
 	public void insertMember(MemberVO memberVO) {
 		sqlSession.insert("sample.insertmember", memberVO);
-		System.out.println("insertMember");
 	}
 	
 	public void insertFile(Map<String,Object> mapFile) {
-		//sqlSession.insert("smaple.insertfile", mapFile);
-		System.out.println("insertFile");
+		sqlSession.insert("sample.insertfile", mapFile);
 	}
 
 	public List<MemberVO> getMember(MemberVO memberVO) {
-		System.out.println("getMember");
 		return sqlSession.selectList("sample.getmember", memberVO);
 	}
 	

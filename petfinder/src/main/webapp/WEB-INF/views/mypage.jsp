@@ -35,18 +35,17 @@
 						<c:when test="${fn:length(list) > 0}">
 							<c:forEach items="${list}" var="member">
 								<tr>
-									<td>${member.M_ID}</td>
-									<td>${member.M_PASSWORD }</td>
-									<td>${member.M_NAME }</td>
-									<td>${member.M_PHONE }</td>
-									<td>${member.M_REGION1 }</td>
-									<td>${member.M_REGION2 }</td>
-									<td>${member.M_REGION3 }</td>
-									<td>${member.M_DOG }</td>
-									<td>${member.M_SIZE }</td>
-									<td>${member.M_COLOR }</td>
-									<td>${member.M_GENDER }</td>
-									<td>??</td>
+									<td>${member.id}</td>
+									<td>${member.pwd}</td>
+ 									<td>${member.name}</td>
+									<td>${member.phone}</td>
+									<td>${member.region1}</td>
+									<td>${member.region2}</td>
+									<td>${member.region3}</td>
+									<td>${member.dog}</td>
+									<td>${member.size}</td>
+									<td>${member.color}</td>
+									<td>${member.gender}</td>
 								</tr>
 							</c:forEach>
 						</c:when>
@@ -58,6 +57,8 @@
 					</c:choose>
 				</tbody>
 			</table>
+				<button>수정</button>
+				<button>탈퇴</button>
 			<%@include file="../views/layout/footer.jsp"%>
 		</div>
 	</div>

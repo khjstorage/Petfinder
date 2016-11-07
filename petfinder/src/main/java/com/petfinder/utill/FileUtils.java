@@ -52,6 +52,9 @@ public class FileUtils {
 				mapFile.put("ORIGINAL_FILE_NAME", originalFileName);
 				mapFile.put("STORED_FILE_NAME", storedFileName);
 				mapFile.put("FILE_SIZE", multipartFile.getSize());
+
+			}else{
+				
 			}
 		}
 		return mapFile;

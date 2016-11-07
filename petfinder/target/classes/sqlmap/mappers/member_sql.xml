@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="sample">
+    
+	<resultMap id="memberResultMap" type="com.petfinder.vo.MemberVO">
+		<id property="id" column="M_ID" />
+		<id property="pwd" column="M_PASSWORD" />
+		<id property="name" column="M_NAME" />
+		<id property="phone" column="M_PHONE" />
+		<id property="region1" column="M_REGION1" />
+		<id property="region2" column="M_REGION2" />
+		<id property="region3" column="M_REGION3" />
+		<id property="dog" column="M_DOG" />
+		<id property="size" column="M_SIZE" />
+		<id property="color" column="M_COLOR" />
+		<id property="gender" column="M_GENDER" />
+	</resultMap>
+
+	<insert id="insertmember" parameterType="memberVO">
+       <![CDATA[
+		INSERT INTO MEMBER(M_ID, M_PASSWORD, M_NAME, M_PHONE, M_REGION1, M_REGION2, M_REGION3, M_DOG, M_SIZE, M_COLOR, M_GENDER) 
+		VALUES (#{id}, #{pwd}, #{name}, #{phone}, #{region1}, #{region2}, #{region3}, #{dog}, #{size}, #{color}, #{gender})
+       ]]>
+	</insert>
+	
+	<insert id="insertfile" parameterType="hashmap">
+       <![CDATA[
+         INSERT INTO TB_FILE(IDX, M_ID, ORIGINAL_FILE_NAME, STORED_FILE_NAME, FILE_SIZE) 
+         VALUES (SEQ_TB_FILE_IDX.NEXTVAL, #{M_ID}, #{ORIGINAL_FILE_NAME}, #{STORED_FILE_NAME}, #{FILE_SIZE})
+       ]]>
+	</insert>
+
+	<select id="getmember" parameterType="memberVO" resultMap="memberResultMap">
+		<![CDATA[
+		SELECT * FROM MEMBER
+		]]>
+	</select>
+</mapper>
+
+

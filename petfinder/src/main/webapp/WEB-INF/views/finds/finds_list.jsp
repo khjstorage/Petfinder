@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
 	pageEncoding="UTF-8"%>
-<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <%@ page session="false"%>
 <!DOCTYPE html>
 <html>
@@ -10,10 +11,32 @@
 <title>발견게시판</title>
 </head>
 <body>
-	<div class="containor">
+<div class="containor">
 		<%@include file="../../views/layout/nav.jsp"%>
 		<div class="mainContents">
-			<h2>발견게시판 리스트</h2>
+			<h2>발견 게시판</h2>
+			<div class="page">
+				<div class="card">
+					<c:choose>
+						<c:when test="${fn:length(list) > 0}">
+							<c:forEach items="${list}" var="dog">
+								<div class="card">
+									<a target="_blank" href="사진.jpg"> <img src="사진.jpg">
+									</a>
+									<div class="card_info">
+										견종 : ${list.dog} <br /> 지역 : ${list.region}
+									</div>
+								</div>
+							</c:forEach>
+						</c:when>
+						<c:otherwise>
+							<div>
+								조회된 결과가 없습니다
+							</div>
+						</c:otherwise>
+					</c:choose>
+				</div>
+			</div>
 			<%@include file="../../views/layout/footer.jsp"%>
 		</div>
 	</div>
