@@ -5,15 +5,8 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="stylesheet" type="text/css" href="style.css" />
+<script type="text/javascript"src="<c:url value='/resources/js/signupValidityTest.js' />"></script>
 <title>회원가입</title>
-<script>
-	window.onload = function() {
-		document.getElementById('backBtn').onclick = function() {
-			location.href = "main.do";
-		}
-	};
-</script>
 </head>
 <body>
 	<div class="containor">
@@ -21,7 +14,7 @@
 		<div class="mainContents">
 			<h2>회원가입</h2>
 			<div class="signup_form">
-				<form action="signup.do" method="post" enctype="multipart/form-data">
+				<form id="signupForm" action="signup.do" method="post" enctype="multipart/form-data">
 					<div>
 						<input type="text" id="" name="id" placeholder="아이디" />
 						<input type="button" value="아이디 중복검사" /><br /> 
@@ -63,7 +56,7 @@
 							<option value="허스키">허스키</option>
 							<option value="웰시코기">웰시코기</option>
 						</select><br /> 
-						<span> 애견 사진 </span> <input type="file" accept="image/*" name="file_no" multiple="multiple"  /><br />
+						<span> 애견 사진 </span> <input type="file" accept="image/*" name="member_file" multiple="multiple"  /><br />
 						<div class="checks">
 							<input type="radio" id="gender_m" name="gender" value="m" checked />
 							<label for="gender_m"> 남 </label>
@@ -86,7 +79,10 @@
 							<label for="size_l"> 대형 </label>
 						</div>
 					</div>
-					<input type="submit" value="회원가입"> <input type="button" value="취소">
+					<input id="submitBtn" type="submit" value="회원가입"> 
+					<a href="main.do">
+						<input id="backBtn" type="button" value="취소">
+					</a>
 				</form>
 			</div>
 			<%@include file="../views/layout/footer.jsp"%>

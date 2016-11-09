@@ -30,7 +30,7 @@ public class MemberController {
 	public ModelAndView mypage(@ModelAttribute("memberVO")MemberVO memberVO) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		List<MemberVO> list = memberService.getMember(memberVO);
-		mv.addObject("list", list);
+		mv.addObject("memberlist", list);
 		mv.setViewName("/mypage");
 		return mv;
 	}

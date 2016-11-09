@@ -7,7 +7,6 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="stylesheet" type="text/css" href="style.css" />
 <title>contents</title>
 </head>
 <body>
@@ -32,8 +31,8 @@
 				</thead>
 				<tbody>
 					<c:choose>
-						<c:when test="${fn:length(list) > 0}">
-							<c:forEach items="${list}" var="member">
+						<c:when test="${fn:length(memberlist) > 0}">
+							<c:forEach items="${memberlist}" var="member">
 								<tr>
 									<td>${member.id}</td>
 									<td>${member.pwd}</td>

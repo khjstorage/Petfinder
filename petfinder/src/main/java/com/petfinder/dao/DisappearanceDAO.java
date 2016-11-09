@@ -1,6 +1,7 @@
 package com.petfinder.dao;
 
-import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -14,14 +15,18 @@ public class DisappearanceDAO {
 	@Autowired
 	private SqlSession sqlSession;
 	
-	public void insertDisappr(DisappearanceVO disappearanceVO) {
-		System.out.println("test");
-		//sqlSession.insert("sample.insertdisappr", disappearanceVO);
+	public void insertDisappearance(DisappearanceVO disappearanceVO) {
+		sqlSession.insert("disappearance.insertDisappearance", disappearanceVO);
 	}
 	
-	public ArrayList<DisappearanceVO> getDisappr(){
-		System.out.println("DAO test");
-		return null;
+	public void insertDisappearanceFile(Map<String,Object> mapFile) {
+		sqlSession.insert("disappearance.insertDisappearanceFile", mapFile);
 	}
+	
+	public List<DisappearanceVO> disappearanceList(DisappearanceVO disappearanceVO){
+		return sqlSession.selectList("disappearance.disappearanceList", disappearanceVO);
+	}
+
+
 
 }

@@ -1,12 +1,14 @@
 package com.petfinder.service;
 
-import java.util.ArrayList;
+import java.util.List;
+
+import javax.servlet.http.HttpServletRequest;
 
 import com.petfinder.vo.DisappearanceVO;
 
 public interface DisappearanceService {
-	public ArrayList<DisappearanceVO> getDisapprance();
-	public void insertDisapprance(DisappearanceVO disappearanceVO);
-	public void updateDisapprance(String name);
-	public void deleteDisapprance(String name);
+	public List<DisappearanceVO> disappearanceList(DisappearanceVO disappearanceVO);
+	public void insertDisappearance(DisappearanceVO disappearanceVO, HttpServletRequest request) throws Exception;
+	public void updateDisappearance(String name);
+	public void deleteDisappearance(String name);
 }

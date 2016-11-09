@@ -1,50 +1,52 @@
 /* 모든 화면 */
-html,
-body {
+html, body {
 	height: 100%;
 }
-html,
-body,
-div {
+
+html, body, div {
 	margin: 0;
 	padding: 0;
 	border: none;
 	font-family: '새굴림';
 }
+
 ::-webkit-scrollbar {
 	width: 8px;
 	height: 8px;
 	border: 3px solid #ffffff;
 }
+
 ::-webkit-scrollbar-track {
 	background: none;
 }
+
 ::-webkit-scrollbar-thumb {
 	height: 50px;
 	width: 50px;
-	background: rgba(74, 71, 10,0.8);
+	background: rgba(74, 71, 10, 0.8);
 }
-a,
-a:link,
-a:visited,
-a:active {
+
+a, a:link, a:visited, a:active {
 	text-decoration: none;
 	color: #4a470a;
 }
-.asideHeader > ul > li > a:hover {
+
+.asideHeader>ul>li>a:hover {
 	text-decoration: none;
 	color: #ffffff;
 }
+
 .asideHeader {
-		position: fixed;
-		top: 0;	left: 0;
-		margin: 0;
-		padding: 30px;
-		background-color: #e0d821;
-		color: #4a470a;
-		font-weight: bold;
-		z-index: 100;
-	}
+	position: fixed;
+	top: 0;
+	left: 0;
+	margin: 0;
+	padding: 30px;
+	background-color: #e0d821;
+	color: #4a470a;
+	font-weight: bold;
+	z-index: 100;
+}
 /* 큰 화면 */
 @media screen and (min-width:998px) {
 	h2 {
@@ -54,9 +56,8 @@ a:active {
 		font-size: 20px;
 		font-weight: bold;
 	}
-	input[type="text"],
-	input[type="password"] {
-		margin-top: 10px;
+	input[type="text"], input[type="password"] {
+		margin-bottom: 10px;
 		border: 1px solid #4a470a;
 		outline: none;
 		padding: 10px;
@@ -67,7 +68,7 @@ a:active {
 		color: #4a470a;
 	}
 	select {
-		margin-top: 10px;
+		margin-bottom: 10px;
 		border: 1px solid #4a470a;
 		outline: none;
 		padding: 0 40px;
@@ -81,12 +82,10 @@ a:active {
 		appearance: none;
 	}
 	input[type="file"] {
-		margin-top: 10px;
-		margin-bottom: 5px;
+		margin-bottom: 10px;
 	}
-	input[type="button"],
-	input[type="submit"] {
-		margin-top: 10px;
+	input[type="button"], input[type="submit"] {
+		margin-bottom: 10px;
 		border: none;
 		width: 222px;
 		height: 51px;
@@ -95,9 +94,9 @@ a:active {
 		background-color: #4a470a;
 		color: #ffffff;
 	}
-	img {
+	.card > img {
 		width: 100%;
-		height: 80%;
+		height: 70%;
 	}
 	.checks {
 		position: relative;
@@ -111,10 +110,10 @@ a:active {
 		padding: 0;
 		margin: -1px;
 		overflow: hidden;
-		clip:rect(0,0,0,0);
+		clip: rect(0, 0, 0, 0);
 		border: 0;
 	}
-	.checks input[type="radio"] + label {
+	.checks input[type="radio"]+label {
 		display: inline-block;
 		position: relative;
 		padding-left: 30px;
@@ -123,28 +122,29 @@ a:active {
 		-moz-user-select: none;
 		-ms-user-select: none;
 	}
-	.checks input[type="radio"] + label:before {
+	.checks input[type="radio"]+label:before {
 		content: '';
 		position: absolute;
 		top: 2px;
-		left: 4px;
-		width: 15px;
+		left: 4px;		width: 15px;
 		height: 15px;
 		text-align: center;
 		background: #fafafa;
 		border: 1px solid #cacece;
 		border-radius: 100%;
-		box-shadow: 0px 1px 2px rgba(0,0,0,0.05), inset 0px -15px 10px -12px rgba(0,0,0,0.05);
+		box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05), inset 0px -15px 10px -12px
+			rgba(0, 0, 0, 0.05);
 	}
-	.checks input[type="radio"] + label:active:before,
-	.checks input[type="radio"]:checked + label:active:before  {
-		box-shadow: 0 1px 2px rgba(0,0,0,0.05), inset 0px 1px 3px rgba(0,0,0,0.1);
+	.checks input[type="radio"]+label:active:before, .checks input[type="radio"]:checked+label:active:before
+		{
+		box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), inset 0px 1px 3px
+			rgba(0, 0, 0, 0.1);
 	}
-	.checks input[type="radio"]:checked + label:before {
+	.checks input[type="radio"]:checked+label:before {
 		background: #e9ecee;
 		border-color: #adb8c0;
 	}
-	.checks input[type="radio"]:checked + label:after {
+	.checks input[type="radio"]:checked+label:after {
 		content: '';
 		position: absolute;
 		top: 6px;
@@ -153,16 +153,16 @@ a:active {
 		height: 9px;
 		background: #4a470a;
 		border-radius: 100%;
-		box-shadow: inset 0px 0px 10px rgba(0,0,0,0.3);
+		box-shadow: inset 0px 0px 10px rgba(0, 0, 0, 0.3);
 	}
 	.asideHeader {
 		width: 140px;
 		height: 100%;
 	}
-	.asideHeader > a {
+	.asideHeader>a {
 		font-size: 40px;
 	}
-	.asideHeader > ul > li > a {
+	.asideHeader>ul>li>a {
 		font-size: 18px;
 	}
 	.headerNav {
@@ -180,7 +180,7 @@ a:active {
 	.asideHeader ul li {
 		padding-top: 20px;
 	}
-	.headerNav > a {
+	.headerNav>a {
 		padding: 5px;
 	}
 	footer {
@@ -225,16 +225,12 @@ a:active {
 	.page {
 		width: 100%;
 	}
-	.page,
-	.page .main_finds,
-	.page .main_finds > div,
-	.page .main_disappear,
-	.page .main_disappear > div {
+	.page, .page .main_finds, .page .main_finds>div, .page .main_disappear,
+		.page .main_disappear>div {
 		float: left;
 		text-align: center;
 	}
-	.main_finds,
-	.main_disappear {
+	.main_finds, .main_disappear {
 		width: 50%;
 	}
 	.main_card {
@@ -248,8 +244,82 @@ a:active {
 		margin: 1%;
 		border: 1px solid #4a470a;
 		width: 30%;
-		height: 17em;
+		height: 19em;
 	}
+	.card_info > h2 {
+		margin: 0;
+	}
+	input[type="date"] {
+		border: 1px solid #4a470a;
+		outline: none;
+		padding: 10px;
+		width: 200px;
+		height: 18px !important;
+		font-size: 15px;
+		text-align: center;
+		color: #4a470a;
+	}
+	.editorTool {
+		width: 100%;
+	}
+	.editorTool input[type="file"] {
+		margin: 0;
+		border: 1px solid #4a470a;
+		outline: none;
+		padding: 10px;
+		width: 200px;
+		height: 25px;
+		font-size: 15px;
+		text-align: center;
+		color: #4a470a;
+	}
+	.editorTool input[type="text"] {
+		margin-bottom: 0;
+		height: 18px;
+	}
+	.editorTool select {
+		margin-bottom: 0;
+		height: 40px;
+	}
+	.editorToolbar>img {
+		margin-bottom: 10px;
+		float: left;
+		width: 25px;
+		height: 25px;
+	}
+	.editorToolbar>img:hover {
+		background-color: #e0d821;
+	}
+	.editorTool table tr td textarea {
+		resize: none;
+		width: 98.7%;
+		height: 300px;	
+	}
+	#boardEditor {
+		margin-top: 50px;
+		border: 1px solid #4a470a;
+		width: 100%;
+		min-height: 200px;
+	}
+	.editorTool table {
+		width: 100%;
+		border: 1px solid #4a470a;
+		vertical-align: middle;
+	}
+	.editorTool table th {
+		width: 15%;
+	}
+	.editorTool table td {
+		width: 35%;
+	}
+	.editorTool table {
+		text-align: left;
+		padding: 5px;
+	}
+	 .editorTool table th, .editorTool table td {
+	 	height: 35px;
+	 	padding: 2px;
+	 }
 }
 /* 작은 화면 */
 @media screen and (max-width:997px) {

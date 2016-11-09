@@ -17,5 +17,10 @@ public class FindsController {
 	public String finds_list() {
 		return "finds/finds_list";
 	}
+	
+	@RequestMapping("/finds_form")
+	public String finds_form() {
+		return "finds/finds_form";
+	}
 
 }

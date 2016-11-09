@@ -5,11 +5,13 @@
     
     <typeAliases>
     	<typeAlias alias="memberVO" type="com.petfinder.vo.MemberVO" />
+    	<typeAlias alias="disappearanceVO" type="com.petfinder.vo.DisappearanceVO" />
     </typeAliases>
     
 
 	<mappers>
         <mapper resource="/sqlmap/mappers/member_sql.xml" />
+        <mapper resource="/sqlmap/mappers/disappearance_sql.xml" />
    </mappers> 
 
  

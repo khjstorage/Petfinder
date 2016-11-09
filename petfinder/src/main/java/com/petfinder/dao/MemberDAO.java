@@ -16,15 +16,15 @@ public class MemberDAO {
 	private SqlSession sqlSession;
 	
 	public void insertMember(MemberVO memberVO) {
-		sqlSession.insert("sample.insertmember", memberVO);
+		sqlSession.insert("member.insertmember", memberVO);
 	}
 	
 	public void insertFile(Map<String,Object> mapFile) {
-		sqlSession.insert("sample.insertfile", mapFile);
+		sqlSession.insert("member.insertfile", mapFile);
 	}
 
 	public List<MemberVO> getMember(MemberVO memberVO) {
-		return sqlSession.selectList("sample.getmember", memberVO);
+		return sqlSession.selectList("member.getmember", memberVO);
 	}
 	
 }

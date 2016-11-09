@@ -21,7 +21,7 @@ public class HomeController {
 	public String login() {
 		return "/login";
 	}
-	
+
 	@RequestMapping("/login_process.do")
 	public ModelAndView login_pro(MemberVO memberVO, @RequestParam("id") String id, @RequestParam("pwd") String pwd, HttpSession session) {
 		ModelAndView mv = new ModelAndView();

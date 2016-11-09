@@ -13,9 +13,9 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.petfinder.vo.MemberVO;
 
-@Component("fileUtils")
-public class FileUtils {
-	private static final String filePath = "C:\\dev\\file\\";
+@Component("memberfileUtils")
+public class MemberFileUtils {
+	private static final String filePath = "C:\\dev\\memberfile\\";
 
 	public Map<String,Object> parseInsertFileInfo(MemberVO memberVO, HttpServletRequest request) throws Exception{
 		
@@ -49,9 +49,9 @@ public class FileUtils {
 				
 				mapFile = new HashMap<String,Object>();
 				mapFile.put("M_ID", m_Id);
-				mapFile.put("ORIGINAL_FILE_NAME", originalFileName);
-				mapFile.put("STORED_FILE_NAME", storedFileName);
-				mapFile.put("FILE_SIZE", multipartFile.getSize());
+				mapFile.put("M_ORIGINAL_FILE_NAME", originalFileName);
+				mapFile.put("M_STORED_FILE_NAME", storedFileName);
+				mapFile.put("M_FILE_SIZE", multipartFile.getSize());
 
 			}else{
 				
