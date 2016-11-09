@@ -26,6 +26,14 @@ public class DisappearanceServiceImpl implements DisappearanceService {
 		return disappearanceDAO.disappearanceList(null);
 	}
 
+
+	@Override
+	public Map<String, Object> selectBoardDetail(String parameter)throws Exception {
+	    Map<String, Object> resultMap = disappearanceDAO.selectBoardDetail(parameter);
+	    return resultMap;
+	}
+	
+	
 	@Override
 	public void insertDisappearance(DisappearanceVO disappearanceVO, HttpServletRequest request) throws Exception {
 		disappearanceDAO.insertDisappearance(disappearanceVO);
@@ -44,6 +52,7 @@ public class DisappearanceServiceImpl implements DisappearanceService {
 		// TODO Auto-generated method stub
 		
 	}
+
 
 
 }

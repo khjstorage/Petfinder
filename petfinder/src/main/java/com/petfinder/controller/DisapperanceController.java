@@ -1,6 +1,7 @@
 package com.petfinder.controller;
 
 import java.util.List;
+import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
@@ -39,8 +40,16 @@ public class DisapperanceController {
 		return "redirect:disappearance_list.do";
 	}
 	
+	
 	@RequestMapping("/disappearance_contents")
-	public String disappearance_contents() throws Exception {
-		return "disappearance/disappearance_contents";
+	public ModelAndView disappearance_contents(HttpServletRequest request) throws Exception {
+		ModelAndView mv = new ModelAndView();
+		Map<String,Object> map = disappearanceService.selectBoardDetail(request.getParameter("idx"));
+		mv.addObject("map", map);
+		mv.setViewName("disappearance/disappearance_contents");
+		return mv;
 	}
+	
+	
+	
 }

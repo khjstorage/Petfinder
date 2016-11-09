@@ -27,6 +27,10 @@ public class DisappearanceDAO {
 		return sqlSession.selectList("disappearance.disappearanceList", disappearanceVO);
 	}
 
+	public Map<String, Object> selectBoardDetail(String parameter) {
+		return sqlSession.selectOne("disappearance.selectBoardDetail", parameter);
+	}
+
 
 
 }

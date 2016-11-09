@@ -42,6 +42,12 @@
 		SELECT * FROM DISAPPEARANCE ORDER BY D_IDX DESC
 		]]>
 	</select>
+	
+	<select id="selectBoardDetail" parameterType="String" resultType="hashmap">
+    <![CDATA[
+        SELECT * FROM DISAPPEARANCE WHERE D_IDX = #{idx}        
+    ]]>
+</select>
 
 </mapper>
 
