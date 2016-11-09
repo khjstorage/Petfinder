@@ -18,7 +18,7 @@
 							<th>애견 사진</th>
 							<td><input type="file" accept="image/*" multiple="multiple" /></td>
 							<th>아이디</th>
-							<td>1212${map.get(id)}</td>
+							<td>1212${map}</td>
 						</tr>
 						<tr>
 							<th>색상</th>
@@ -42,7 +42,7 @@
 								${map.gender}
 							</td>
 							<th>애견 이름</th>
-							<td>${map.dogname}</td>
+							<td>${map.D_DOGNAME}</td>
 						</tr>
 						<tr>
 							<th>크기</th>
@@ -61,7 +61,7 @@
 						</tr>
 						<tr>
 							<th>실종 지역</th>
-							<td>${map.region}</td>
+							<td>${map.D_REGION}</td>
 						</tr>
 						<tr>
 							<th>제목</th>
