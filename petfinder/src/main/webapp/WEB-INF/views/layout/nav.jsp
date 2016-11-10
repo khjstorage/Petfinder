@@ -1,5 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+   pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
@@ -13,13 +13,23 @@
 <div class="asideHeader">
    <a href="main.do">PET-<br />FINDER</a>
    <div class="headerNav">
-      <a href="login.do">로그인</a>
+   <%
+         if(session.getAttribute("id")==null){
+   %>
+        <a href="login.do">로그인</a>
       <a href="signup_form.do">회원가입</a>
+   
+   <%}else{%>
+        <p><%=session.getAttribute("id")%>님 <br />반갑습니다.</p>
+        <p><a href="mypage.do">마이페이지</a></p>
+        <p><a href="logout.do">로그아웃</a></p>
+   
+   <%}%>
+      
    </div>
    <ul>
       <li><a href="disappearance_list.do">실종게시판</a></li>
       <li><a href="finds_list.do">발견게시판</a></li>
-      <li><a href="mypage.do">마이페이지</a></li>
       <li><a href="about.do">ABOUT</a></li>
    </ul>
 </div>

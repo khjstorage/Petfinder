@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.petfinder.service.DisappearanceService;
@@ -48,6 +49,27 @@ public class DisapperanceController {
 		mv.addObject("map", map);
 		mv.setViewName("disappearance/disappearance_contents");
 		return mv;
+	}
+	
+	@RequestMapping("/disappearance_delete")
+	public String disappearance_delete(@RequestParam("idx") String idx) {
+		disappearanceService.deleteDisappearance(idx);
+		return "redirect:disappearance_list.do";
+	}
+	
+	@RequestMapping("/disappearance_update")
+	public ModelAndView disappearance_update(HttpServletRequest request) throws Exception {
+		ModelAndView mv = new ModelAndView();
+		Map<String,Object> map = disappearanceService.selectBoardDetail(request.getParameter("idx"));
+		mv.addObject("map", map);
+		mv.setViewName("disappearance/disappearance_update");
+		return mv;
+	}
+
+	@RequestMapping("/disappearance_update_pro")
+	public String disappearance_update_pro(@ModelAttribute("disappearanceVO")DisappearanceVO disappearanceVO, HttpServletRequest request) throws Exception {
+		disappearanceService.updateDisappearance(disappearanceVO, request);
+		return "redirect:disappearance_list.do";
 	}
 	
 	

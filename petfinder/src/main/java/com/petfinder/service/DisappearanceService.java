@@ -11,7 +11,7 @@ public interface DisappearanceService {
 	public List<DisappearanceVO> disappearanceList(DisappearanceVO disappearanceVO);
 	public Map<String, Object> selectBoardDetail(String parameter) throws Exception; 
 	public void insertDisappearance(DisappearanceVO disappearanceVO, HttpServletRequest request) throws Exception;
-	public void updateDisappearance(String name);
-	public void deleteDisappearance(String name);
+	public void updateDisappearance(DisappearanceVO disappearanceVO, HttpServletRequest request) throws Exception;
+	public void deleteDisappearance(String idx);
 }
 

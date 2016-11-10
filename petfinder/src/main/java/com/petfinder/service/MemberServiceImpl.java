@@ -15,22 +15,34 @@ import com.petfinder.vo.MemberVO;
 @Service("memberService")
 public class MemberServiceImpl implements MemberService {
 
-    @Resource(name="memberfileUtils")
-    private MemberFileUtils memberfileUtils;
-	
+	@Resource(name="memberfileUtils")
+	private MemberFileUtils memberfileUtils;
+
 	@Resource(name="memberDao")
 	private MemberDAO memberDao;
 
 	@Override
-	public void insertMember(MemberVO memberVO, HttpServletRequest request) throws Exception {
-		memberDao.insertMember(memberVO);
-        Map<String,Object> mapFile = memberfileUtils.parseInsertFileInfo(memberVO, request);
-        memberDao.insertFile(mapFile);
+	public String loginMember(String id, String pwd){
+		List<MemberVO> list =memberDao.getID(id, pwd);
+		String idcheck;
+		if(list.size()==0){
+			idcheck="";
+		}else{
+			idcheck=list.get(0).getId();
+		}
+		return idcheck;
 	}
 
 	@Override
-	public List<MemberVO> getMember(MemberVO memberVO) throws Exception {
-		return memberDao.getMember(memberVO);
+	public void insertMember(MemberVO memberVO, HttpServletRequest request) throws Exception {
+		memberDao.insertMember(memberVO);
+		Map<String,Object> mapFile = memberfileUtils.parseInsertFileInfo(memberVO, request);
+		memberDao.insertFile(mapFile);
+	}
+
+	@Override
+	public List<MemberVO> getMember(String sessionId) throws Exception {
+		return memberDao.getMember(sessionId);
 	}
 
 	@Override

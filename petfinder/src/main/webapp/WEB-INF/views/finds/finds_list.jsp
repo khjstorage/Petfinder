@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+   pageEncoding="UTF-8"%>
+   <%@ taglib prefix="fn" uri="http://java.sun.com/jsp/jstl/functions"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -16,15 +17,15 @@
 			</a>
 			<div class="page">
 				<c:choose>
-					<c:when test="${fn:length(list) > 0}">
-						<c:forEach items="${list}" var="dog">
-							<a href="">
+					<c:when test="${fn:length(findslist) > 0}">
+						<c:forEach items="${findslist}" var="dog">
+							<a href="finds_contents.do?idx=${dog.idx }">
 								<div class="card">
 									<img src="사진.jpg">
 									<div class="card_info">
-										<h2>제목 : 박정호유정호${dog.title}</h2>
-										<h2>견종 : 박정호유정호${dog.dog}</h2>
-										<h2>지역 : 박정호유정호${dog.region}</h2>
+										<h2>제목 : ${dog.title}</h2>
+										<h2>견종 : ${dog.dog}</h2>
+										<h2>지역 : ${dog.region}</h2>
 									</div>
 								</div>
 							</a>
@@ -42,4 +43,3 @@
 	</div>
 </body>
 </html>
-

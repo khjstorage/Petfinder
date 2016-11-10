@@ -11,56 +11,55 @@
 		<%@include file="../../views/layout/nav.jsp"%>
 		<div class="mainContents">
 			<h2>발견게시판 글쓰기</h2>
-			<form id="" action="disappearance_write.do" method="post"
-				enctype="multipart/form-data">
+			<form id="" action="finds_write.do" method="post" enctype="multipart/form-data">
+				<input type="submit" class="rightTopButtons" value="글쓰기" /> 
+				<a href="finds_list.do"><input type="button" class="rightTopButtons" value="뒤로" /></a>
 				<div class="editorTool" style="float: left;">
 					<table>
 						<tr>
 							<th>발견 사진</th>
-							<td><input type="file" accept="image/*" multiple="multiple" /></td>
-							<th>아이디</th>
-							<td><input type="text" name="id" placeholder="아이디" /></td>
+							<td><input type="file" accept="image/*" name="finds_file"
+								multiple="multiple" /></td>
+							<th>닉네임</th>
+							<td><input type="text" name="name" placeholder="닉네임" /></td>
+
 						</tr>
 						<tr>
 							<th>색상</th>
-							<td>
-								<select name="color">
+							<td><select name="color">
 									<option value="" selected>색상</option>
 									<option value="검정">검정</option>
 									<option value="흰색">흰색</option>
-								</select>
-							</td>
+							</select></td>
 							<th>연락처</th>
-							<td><input type="text" name="phone1" placeholder="연락처" /></td>
+							<td><input type="text" name="phone" placeholder="연락처" /></td>
 						</tr>
 						<tr>
 							<th>견종</th>
-							<td>
-								<select name="dog">
+							<td><select name="dog">
 									<option value="" selected>견종</option>
 									<option value="김대성">김대성</option>
 									<option value="김현진">김현진</option>
 									<option value="김지원">김지원</option>
 									<option value="김현우">김현우</option>
 									<option value="최주혁">최주혁</option>
-								</select>
-							</td>
-							<th></th>
-							<td></td>
+							</select></td>
+							<th>비밀번호</th>
+							<td><input type="text" name="pwd" placeholder="비밀번호" /></td>
 						</tr>
 						<tr>
 							<th>성별</th>
 							<td>
 								<div class="checks">
-									<input type="radio" id="gender_f" name="gender" value="f" checked />
-									<label for="gender_f"> ♀ </label>
+									<input type="radio" id="gender_f" name="gender" value="f"
+										checked /> <label for="gender_f"> ♀ </label>
 								</div>
 								<div class="checks">
-									<input type="radio" id="gender_m" name="gender" value="m" /> 
-									<label for="gender_m"> ♂ </label>
+									<input type="radio" id="gender_m" name="gender" value="m" /> <label
+										for="gender_m"> ♂ </label>
 								</div>
 								<div class="checks">
-									<input type="radio" id="gender_un" name="gender" value="un" /> 
+									<input type="radio" id="gender_un" name="gender" value="un" />
 									<label for="gender_un"> UNKNOWN </label>
 								</div>
 							</td>
@@ -83,7 +82,8 @@
 										for="size_l"> 대 </label>
 								</div>
 							</td>
-							<td colspan="2" rowspan="4" style="background-color:#cccccc;text-align:center;vertical-align:middle;">
+							<td colspan="2" rowspan="4"
+								style="background-color: #cccccc; text-align: center; vertical-align: middle;">
 								<div>
 									<h1>MAP SECTION</h1>
 								</div>
@@ -104,7 +104,8 @@
 						</tr>
 						<tr>
 							<th>제목</th>
-							<td><input type="text" name="title" style="width:90%;text-align:left;" /></td>
+							<td><input type="text" name="title"
+								style="width: 90%; text-align: left;" /></td>
 						</tr>
 						<tr>
 							<th>상세 내용</th>
@@ -117,6 +118,6 @@
 			<%@include file="../../views/layout/footer.jsp"%>
 		</div>
 	</div>
+
 </body>
 </html>
-

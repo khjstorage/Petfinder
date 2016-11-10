@@ -36,7 +36,6 @@
        ]]>
 	</insert>
 		
-
 	<select id="disappearanceList" parameterType="disappearanceVO" resultMap="disappearanceListResultMap">
 		<![CDATA[
 		SELECT * FROM DISAPPEARANCE ORDER BY D_IDX DESC
@@ -47,8 +46,49 @@
     <![CDATA[
         SELECT * FROM DISAPPEARANCE WHERE D_IDX = #{idx}        
     ]]>
-</select>
-
+	</select>
+	
+	
+	<select id="deleteDisappearance" parameterType="String">
+    <![CDATA[
+        DELETE FROM DISAPPEARANCE WHERE D_IDX = #{idx}
+    ]]>
+	</select>
+	
+	<select id="deleteDisappearanceFile" parameterType="String">
+    <![CDATA[
+        DELETE FROM DISAPPEARANCE_FILE WHERE D_BOARD_IDX = #{idx}
+    ]]>
+	</select>
+	
+	<update id="updateDisappearance" parameterType="disappearanceVO" >
+	<![CDATA[
+	    UPDATE DISAPPEARANCE
+		SET D_ID = #{id}, 
+			D_PHONE = #{phone1}, 
+			D_EMERTGENCY_PHONE = #{phone2}, 
+			D_DOGNAME = #{dogname}, 
+			D_DOG = #{dog}, 
+			D_SIZE = #{size}, 
+			D_COLOR = #{color}, 
+			D_GENDER = #{gender},  
+			D_DATE = #{date}, 
+			D_REGION = #{region}, 
+			D_TITLE = #{title}, 
+			D_DETAIL = #{detail}
+		WHERE D_IDX = #{idx}
+	]]>
+	</update>
+	
+	<update id="updateDisappearanceFile" parameterType="hashmap" >
+		<![CDATA[
+	    UPDATE DISAPPEARANCE_FILE
+		SET D_ORIGINAL_FILE_NAME = #{D_ORIGINAL_FILE_NAME},
+			D_STORED_FILE_NAME = #{D_STORED_FILE_NAME}, 
+			D_FILE_SIZE = #{D_FILE_SIZE}
+		WHERE D_BOARD_IDX = CAST(#{D_BOARD_IDX} as INTEGER)
+		]]>
+	</update>
+	
 </mapper>
-
 

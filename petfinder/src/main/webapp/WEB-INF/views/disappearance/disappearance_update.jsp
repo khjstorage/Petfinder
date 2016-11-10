@@ -4,24 +4,23 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>분실게시판 글쓰기</title>
+<title>분실게시판 수정</title>
 </head>
 <body>
    <div class="containor">
       <%@include file="../../views/layout/nav.jsp"%>
       <div class="mainContents">
-         <h2 style="float:left;">분실게시판 글쓰기</h2>
-         <form id="" action="disappearance_write.do" method="post"
-            enctype="multipart/form-data">
-            <input type="submit" class="rightTopButtons" value="글쓰기">
-            <a href="disappearance_list.do"><input type="button" class="rightTopButtons" value="뒤로" /></a>
+         <h2 style="float:left;">분실게시판 수정</h2>
+         <form id="" action="disappearance_update_pro.do?idx=${map.D_IDX}" method="post" enctype="multipart/form-data">
+           <a href="disappearance_list.do"><input type="button" class="rightTopButtons" value="취소"></a>
+           <input type="submit" class="rightTopButtons" value="수정" />
             <div class="editorTool" style="float: left;">
                <table>
                   <tr>
                      <th>애견 사진</th>
                      <td><input type="file" accept="image/*" name="disappearance_file" multiple="multiple" /></td>
                      <th>아이디</th>
-                     <td><input type="text" name="id" placeholder="아이디" /></td>
+                     <td><input type="text" name="id" placeholder="아이디" value="${map.D_ID}" /></td>
                   </tr>
                   <tr>
                      <th>색상</th>
@@ -33,7 +32,7 @@
                         </select>
                      </td>
                      <th>연락처</th>
-                     <td><input type="text" name="phone1" placeholder="연락처" /></td>
+                     <td><input type="text" name="phone1" placeholder="연락처" value="${map.D_PHONE}" /></td>
                   </tr>
                   <tr>
                      <th>견종</th>
@@ -48,7 +47,7 @@
                         </select>
                      </td>
                      <th>비상연락망</th>
-                     <td><input type="text" name="phone2" placeholder="비상연락망" /></td>
+                     <td><input type="text" name="phone2" placeholder="비상연락망" value="${map.D_PHONE}"/></td>
                   </tr>
                   <tr>
                      <th>성별</th>
@@ -63,7 +62,7 @@
                         </div>
                      </td>
                      <th>애견 이름</th>
-                     <td><input type="text" name="dogname" placeholder="애견 이름" /></td>
+                     <td><input type="text" name="dogname" placeholder="애견 이름" value="${map.D_DOGNAME}" /></td>
                   </tr>
                   <tr>
                      <th>크기</th>
@@ -89,7 +88,7 @@
                   </tr>
                   <tr>
                      <th>실종 날짜</th>
-                     <td><input type="date" id="date" name="date" /></td>
+                     <td><input type="date" id="date" name="date" value="${map.D_DATE}"/></td>
                   </tr>
                   <tr>
                      <th>실종 지역</th>
@@ -102,11 +101,11 @@
                   </tr>
                   <tr>
                      <th>제목</th>
-                     <td><input type="text" name="title" maxlength="20" style="width:90%; text-align:left;" /></td>
+                     <td><input type="text" name="title" maxlength="20" value="${map.D_TITLE}" style="width:90%; text-align:left;" /></td>
                   </tr>
                   <tr>
                      <th>상세 내용</th>
-                     <td colspan="3"><textarea id="detail" name="detail"></textarea></td>
+                     <td colspan="3"><textarea id="detail" name="detail">${map.D_DETAIL}</textarea></td>
                   </tr>
                </table>
             </div>

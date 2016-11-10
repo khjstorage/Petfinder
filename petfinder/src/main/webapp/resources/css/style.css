@@ -1,325 +1,373 @@
 /* 모든 화면 */
-html, body {
-	height: 100%;
-}
-
-html, body, div {
-	margin: 0;
-	padding: 0;
-	border: none;
-	font-family: '새굴림';
-}
-
-::-webkit-scrollbar {
-	width: 8px;
-	height: 8px;
-	border: 3px solid #ffffff;
-}
-
-::-webkit-scrollbar-track {
-	background: none;
-}
-
-::-webkit-scrollbar-thumb {
-	height: 50px;
-	width: 50px;
-	background: rgba(74, 71, 10, 0.8);
-}
-
-a, a:link, a:visited, a:active {
-	text-decoration: none;
-	color: #4a470a;
-}
-
-.asideHeader>ul>li>a:hover {
-	text-decoration: none;
-	color: #ffffff;
-}
-
-.asideHeader {
-	position: fixed;
-	top: 0;
-	left: 0;
-	margin: 0;
-	padding: 30px;
-	background-color: #e0d821;
-	color: #4a470a;
-	font-weight: bold;
-	z-index: 100;
-}
 /* 큰 화면 */
 @media screen and (min-width:998px) {
-	h2 {
-		margin-top: 0px;
-	}
-	span {
-		font-size: 20px;
-		font-weight: bold;
-	}
-	input[type="text"], input[type="password"] {
-		margin-bottom: 10px;
-		border: 1px solid #4a470a;
-		outline: none;
-		padding: 10px;
-		width: 200px;
-		height: 30px;
-		font-size: 15px;
-		text-align: center;
-		color: #4a470a;
-	}
-	select {
-		margin-bottom: 10px;
-		border: 1px solid #4a470a;
-		outline: none;
-		padding: 0 40px;
-		width: 222px;
-		height: 50px;
-		font-size: 15px;
-		text-align: center;
-		color: #4a470a;
-		-webkit-appearance: none; /* 네이티브 외형 감추기 */
-		-moz-appearance: none;
-		appearance: none;
-	}
-	input[type="file"] {
-		margin-bottom: 10px;
-	}
-	input[type="button"], input[type="submit"] {
-		margin-bottom: 10px;
-		border: none;
-		width: 222px;
-		height: 51px;
-		padding: 10px;
-		font-size: 15px;
-		background-color: #4a470a;
-		color: #ffffff;
-	}
-	.card > img {
-		width: 100%;
-		height: 70%;
-	}
-	.checks {
-		position: relative;
-		display: inline-block;
-		margin-bottom: 5px;
-	}
-	.checks input[type="radio"] {
-		position: absolute;
-		width: 1px;
-		height: 1px;
-		padding: 0;
-		margin: -1px;
-		overflow: hidden;
-		clip: rect(0, 0, 0, 0);
-		border: 0;
-	}
-	.checks input[type="radio"]+label {
-		display: inline-block;
-		position: relative;
-		padding-left: 30px;
-		cursor: pointer;
-		-webkit-user-select: none;
-		-moz-user-select: none;
-		-ms-user-select: none;
-	}
-	.checks input[type="radio"]+label:before {
-		content: '';
-		position: absolute;
-		top: 2px;
-		left: 4px;		width: 15px;
-		height: 15px;
-		text-align: center;
-		background: #fafafa;
-		border: 1px solid #cacece;
-		border-radius: 100%;
-		box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05), inset 0px -15px 10px -12px
-			rgba(0, 0, 0, 0.05);
-	}
-	.checks input[type="radio"]+label:active:before, .checks input[type="radio"]:checked+label:active:before
-		{
-		box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), inset 0px 1px 3px
-			rgba(0, 0, 0, 0.1);
-	}
-	.checks input[type="radio"]:checked+label:before {
-		background: #e9ecee;
-		border-color: #adb8c0;
-	}
-	.checks input[type="radio"]:checked+label:after {
-		content: '';
-		position: absolute;
-		top: 6px;
-		left: 8px;
-		width: 9px;
-		height: 9px;
-		background: #4a470a;
-		border-radius: 100%;
-		box-shadow: inset 0px 0px 10px rgba(0, 0, 0, 0.3);
-	}
-	.asideHeader {
-		width: 140px;
-		height: 100%;
-	}
-	.asideHeader>a {
-		font-size: 40px;
-	}
-	.asideHeader>ul>li>a {
-		font-size: 18px;
-	}
-	.headerNav {
-		margin-top: 50px;
-		margin-left: -5px;
-		margin-right: -10px;
-		height: 50px;
-		font-size: 18px;
-	}
-	.asideHeader ul {
-		padding-left: 0;
-		list-style-type: none;
-		text-align: center;
-	}
-	.asideHeader ul li {
-		padding-top: 20px;
-	}
-	.headerNav>a {
-		padding: 5px;
-	}
-	footer {
-		position: relative;
-		margin-top: 30px;
-		border-top: 1px solid #000000;
-		width: 100%;
-		height: 50px;
-		color: #000000;
-		text-align: center;
-		display: inline-block;
-	}
-	.containor {
-		position: relative;
-		margin-left: 200px;
-		max-width: 960px;
-	}
-	.mainContents {
-		position: relative;
-		padding: 40px;
-		width: 100%;
-		color: #4a470a;
-	}
-	.login {
-		margin-top: 20px;
-		margin-left: 20px;
-		float: left;
-		text-align: center;
-		font-size: 18px;
-	}
-	.find_info {
-		margin-top: 40px;
-		text-align: center;
-		font-size: 18px;
-	}
-	.signup_form {
-		text-align: center;
-	}
-	.about {
-		text-align: center;
-	}
-	.page {
-		width: 100%;
-	}
-	.page, .page .main_finds, .page .main_finds>div, .page .main_disappear,
-		.page .main_disappear>div {
-		float: left;
-		text-align: center;
-	}
-	.main_finds, .main_disappear {
-		width: 50%;
-	}
-	.main_card {
-		margin: 1%;
-		border: 1px solid #4a470a;
-		width: 47.5%;
-		height: 17em;
-	}
-	.card {
-		float: left;
-		margin: 1%;
-		border: 1px solid #4a470a;
-		width: 30%;
-		height: 19em;
-	}
-	.card_info > h2 {
-		margin: 0;
-	}
-	input[type="date"] {
-		border: 1px solid #4a470a;
-		outline: none;
-		padding: 10px;
-		width: 200px;
-		height: 18px !important;
-		font-size: 15px;
-		text-align: center;
-		color: #4a470a;
-	}
-	.editorTool {
-		width: 100%;
-	}
-	.editorTool input[type="file"] {
-		margin: 0;
-		border: 1px solid #4a470a;
-		outline: none;
-		padding: 10px;
-		width: 200px;
-		height: 25px;
-		font-size: 15px;
-		text-align: center;
-		color: #4a470a;
-	}
-	.editorTool input[type="text"] {
-		margin-bottom: 0;
-		height: 18px;
-	}
-	.editorTool select {
-		margin-bottom: 0;
-		height: 40px;
-	}
-	.editorToolbar>img {
-		margin-bottom: 10px;
-		float: left;
-		width: 25px;
-		height: 25px;
-	}
-	.editorToolbar>img:hover {
-		background-color: #e0d821;
-	}
-	.editorTool table tr td textarea {
-		resize: none;
-		width: 98.7%;
-		height: 300px;	
-	}
-	#boardEditor {
-		margin-top: 50px;
-		border: 1px solid #4a470a;
-		width: 100%;
-		min-height: 200px;
-	}
-	.editorTool table {
-		width: 100%;
-		border: 1px solid #4a470a;
-		vertical-align: middle;
-	}
-	.editorTool table th {
-		width: 15%;
-	}
-	.editorTool table td {
-		width: 35%;
-	}
-	.editorTool table {
-		text-align: left;
-		padding: 5px;
-	}
-	 .editorTool table th, .editorTool table td {
-	 	height: 35px;
-	 	padding: 2px;
-	 }
+   html, body {
+      height: 100%;
+   }
+   html, body, div {
+      margin: 0;
+      padding: 0;
+      border: none;
+      font-family: '새굴림';
+   }
+   ::-webkit-scrollbar {
+      width: 8px;
+      height: 8px;
+      border: 3px solid #ffffff;
+   }
+   ::-webkit-scrollbar-track {
+      background: none;
+   }
+   ::-webkit-scrollbar-thumb {
+      height: 50px;
+      width: 50px;
+      background: rgba(74, 71, 10, 0.8);
+   }
+   a, a:link, a:visited, a:active {
+      text-decoration: none;
+      color: #4a470a;
+   }
+   .headerNav a:hover {
+      text-decoration: none;
+      color: #ffffff;
+   }
+   .asideHeader>ul>li>a:hover {
+      text-decoration: none;
+      color: #ffffff;
+   }
+   .asideHeader {
+      position: fixed;
+      top: 0;
+      left: 0;
+      margin: 0;
+      padding: 30px;
+      background-color: #e0d821;
+      color: #4a470a;
+      font-weight: bold;
+      z-index: 100;
+   }
+   h2 {
+      margin-top: 0px;
+   }
+   span {
+      font-size: 20px;
+      font-weight: bold;
+   }
+   input[type="text"], input[type="password"] {
+      margin-bottom: 10px;
+      border: 1px solid #4a470a;
+      outline: none;
+      padding: 10px;
+      width: 200px;
+      height: 30px;
+      font-size: 15px;
+      text-align: center;
+      color: #4a470a;
+   }
+   select {
+      margin-bottom: 10px;
+      border: 1px solid #4a470a;
+      outline: none;
+      padding: 0 40px;
+      width: 222px;
+      height: 50px;
+      font-size: 15px;
+      text-align: center;
+      color: #4a470a;
+      -webkit-appearance: none; /* 네이티브 외형 감추기 */
+      -moz-appearance: none;
+      appearance: none;
+   }
+   input[type="file"] {
+      margin-bottom: 10px;
+   }
+   input[type="button"], input[type="submit"] {
+      margin-bottom: 10px;
+      border: none;
+      width: 222px;
+      height: 51px;
+      padding: 10px;
+      font-size: 15px;
+      background-color: #4a470a;
+      color: #ffffff;
+   }
+   .card>img {
+      width: 100%;
+      height: 70%;
+   }
+   .editorTool input:disabled {
+      background-color: #ffffff;
+   }
+   .editorTool textarea:disabled {
+      background-color: #ffffff;
+   }
+   .checks {
+      position: relative;
+      display: inline-block;
+      margin-bottom: 5px;
+   }
+   .checks input[type="radio"] {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      border: 0;
+   }
+   .checks input[type="radio"]+label {
+      display: inline-block;
+      position: relative;
+      padding-left: 30px;
+      cursor: pointer;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+   }
+   .checks input[type="radio"]+label:before {
+      content: '';
+      position: absolute;
+      top: 2px;
+      left: 4px;
+      width: 15px;
+      height: 15px;
+      text-align: center;
+      background: #fafafa;
+      border: 1px solid #cacece;
+      border-radius: 100%;
+      box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05), inset 0px -15px 10px -12px
+         rgba(0, 0, 0, 0.05);
+   }
+   .checks input[type="radio"]+label:active:before, .checks input[type="radio"]:checked+label:active:before
+      {
+      box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), inset 0px 1px 3px
+         rgba(0, 0, 0, 0.1);
+   }
+   .checks input[type="radio"]:checked+label:before {
+      background: #e9ecee;
+      border-color: #adb8c0;
+   }
+   .checks input[type="radio"]:checked+label:after {
+      content: '';
+      position: absolute;
+      top: 6px;
+      left: 8px;
+      width: 9px;
+      height: 9px;
+      background: #4a470a;
+      border-radius: 100%;
+      box-shadow: inset 0px 0px 10px rgba(0, 0, 0, 0.3);
+   }
+   .asideHeader {
+      width: 140px;
+      height: 100%;
+   }
+   .asideHeader>a {
+      font-size: 40px;
+   }
+   .asideHeader>ul>li>a {
+      font-size: 18px;
+   }
+   .asideHeader ul {
+      padding-left: 0;
+      list-style-type: none;
+      text-align: center;
+   }
+   .asideHeader ul li {
+      padding-top: 20px;
+   }
+   .headerNav {
+      margin-top: 30px;
+      margin-left: -5px;
+      margin-right: -10px;
+      height: 100px;
+      font-size: 18px;
+      text-align: center;
+   }
+   .headerNav>a {
+      padding: 5px;
+   }
+   .headerNav>p {
+      margin: 8px 0;
+   }
+   .headerNav>p:first-child {
+      font-size: 25px;
+   }
+   footer {
+      position: relative;
+      margin-top: 30px;
+      border-top: 1px solid #000000;
+      width: 100%;
+      height: 50px;
+      color: #000000;
+      text-align: center;
+      display: inline-block;
+   }
+   .containor {
+      position: relative;
+      margin-left: 200px;
+      max-width: 960px;
+   }
+   .mainContents {
+      position: relative;
+      padding: 40px;
+      width: 100%;
+      color: #4a470a;
+   }
+   .login {
+      margin-top: 20px;
+      margin-left: 20px;
+      float: left;
+      text-align: center;
+      font-size: 18px;
+   }
+   .find_info {
+      margin-top: 40px;
+      text-align: center;
+      font-size: 18px;
+   }
+   .signup_form {
+      text-align: center;
+   }
+   .about {
+      text-align: center;
+   }
+   .mainPageTable {
+      width: 100%;
+      padding: 5px;
+   }
+   .mainPageTable h4 {
+      font-size: 20px;
+   }
+   .mainPageTable td {
+      width: 50%;
+   }
+   .mainPageTable .page .card {
+      margin: 1%;
+      width: 47.5%;
+      font-size: 13px;
+      text-align: center;
+   }
+   .page {
+      width: 100%;
+   }
+   .page, .page .main_finds, .page .main_finds>div {
+      float: left;
+      text-align: center;
+   }
+   .main_disappear, .main_finds {
+      float: left;
+   }
+   .main_finds, .main_disappear {
+      width: 50%;
+   }
+   .myPageTable .card {
+      width: 47.5%;
+      height: 10em;
+      float: left;
+   }
+   .myPageTable .card > img{
+      width: 100%;
+      height: 100%;
+   }
+   .main_card {
+      margin: 1%;
+      border: 1px solid #4a470a;
+      width: 47.5%;
+      height: 17em;
+   }
+   .card {
+      float: left;
+      margin: 1%;
+      border: 1px solid #4a470a;
+      width: 30%;
+      height: 19em;
+   }
+   .card_info>h2 {
+      margin: 0;
+      width: 100%;
+      overflow: hidden;
+      white-space: nowrap;
+      text-overflow: ellipsis;
+      -o-text-overflow: ellipsis;
+      -ms-text-overflow: ellipsis;
+   }
+   .rightTopButtons {
+      float: right;
+      margin-left: 5px;
+   }
+   input[type="date"] {
+      border: 1px solid #4a470a;
+      outline: none;
+      padding: 10px;
+      width: 200px;
+      height: 18px;
+      font-size: 15px;
+      text-align: center;
+      color: #4a470a;
+   }
+   .editorTool {
+      width: 100%;
+   }
+   .editorTool input[type="file"] {
+      margin: 0;
+      border: 1px solid #4a470a;
+      outline: none;
+      padding: 10px;
+      width: 200px;
+      height: 25px;
+      font-size: 15px;
+      text-align: center;
+      color: #4a470a;
+   }
+   .editorTool input[type="text"], .editorTool input[type="password"] {
+      margin-bottom: 0;
+      height: 18px;
+   }
+   .editorTool select {
+      margin-bottom: 0;
+      height: 40px;
+   }
+   .editorToolbar>img {
+      margin-bottom: 10px;
+      float: left;
+      width: 25px;
+      height: 25px;
+   }
+   .editorToolbar>img:hover {
+      background-color: #e0d821;
+   }
+   .editorTool table tr td textarea {
+      resize: none;
+      width: 98.7%;
+      height: 300px;
+   }
+   #boardEditor {
+      margin-top: 50px;
+      border: 1px solid #4a470a;
+      width: 100%;
+      min-height: 200px;
+   }
+   .editorTool table {
+      width: 100%;
+      border: 1px solid #4a470a;
+      vertical-align: middle;
+   }
+   .editorTool table th {
+      width: 15%;
+   }
+   .editorTool table td {
+      width: 35%;
+   }
+   .editorTool table {
+      text-align: left;
+      padding: 5px;
+   }
+   .editorTool table th, .editorTool table td {
+      height: 35px;
+      padding: 2px;
+   }
 }
 /* 작은 화면 */
 @media screen and (max-width:997px) {

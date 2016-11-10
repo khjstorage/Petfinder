@@ -1,0 +1,83 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="finds">
+
+   <resultMap id="findsListResultMap" type="com.petfinder.vo.FindsVO">
+      <id property="idx" column="F_IDX" />
+      <id property="name" column="F_NAME" />
+      <id property="pwd" column="F_PASSWORD" />
+      <id property="phone" column="F_PHONE" />
+      <id property="dog" column="F_DOG" />
+      <id property="size" column="F_SIZE" />
+      <id property="color" column="F_COLOR" />
+      <id property="gender" column="F_GENDER" />
+      <id property="date" column="F_DATE" />
+      <id property="region" column="F_REGION" />
+      <id property="title" column="F_TITLE" />
+      <id property="detail" column="F_DETAIL" />
+   </resultMap>
+
+   <insert id="insertFinds" parameterType="findsVO"
+      useGeneratedKeys="true" keyProperty="IDX">
+      <selectKey keyProperty="idx" resultType="string" order="BEFORE">
+         SELECT SEQ_FINDS_IDX.NEXTVAL FROM DUAL
+      </selectKey>
+    <![CDATA[
+        INSERT INTO FINDS(F_IDX, F_NAME, F_PASSWORD, F_PHONE, F_DOG, F_SIZE, F_COLOR, F_GENDER, F_DATE, F_REGION, F_TITLE, F_DETAIL)
+               VALUES(#{idx}, #{name}, #{pwd}, #{phone}, #{dog}, #{size}, #{color}, #{gender}, #{date}, #{region}, #{title}, #{detail})
+       ]]>
+   </insert>
+
+   <insert id="insertFindsFile" parameterType="hashmap">
+       <![CDATA[
+         INSERT INTO FINDS_FILE(F_FILE_IDX, F_BOARD_IDX, F_ORIGINAL_FILE_NAME, F_STORED_FILE_NAME, F_FILE_SIZE) 
+         VALUES (SEQ_FINDS_FILE_IDX.NEXTVAL, #{F_BOARD_IDX}, #{F_ORIGINAL_FILE_NAME}, #{F_STORED_FILE_NAME}, #{F_FILE_SIZE})
+       ]]>
+   </insert>
+
+
+   <select id="findsList" parameterType="findsVO" resultMap="findsListResultMap">
+      <![CDATA[
+      SELECT * FROM FINDS ORDER BY F_IDX ASC
+      ]]>
+   </select>
+
+   <select id="selectBoardDetail" parameterType="String" resultType="hashmap">
+    <![CDATA[
+        SELECT F_IDX, F_NAME , F_PASSWORD, F_PHONE, F_DOG, F_SIZE, F_COLOR,
+               F_GENDER, TO_CHAR(F_DATE, 'YYYY-MM-DD')F_DATE, F_REGION,
+               F_TITLE, F_DETAIL
+        FROM FINDS WHERE F_IDX = #{idx} 
+    ]]>
+   </select>
+
+   <select id="selectBoardDetailFile" parameterType="hashmap" resultType="hashmap">
+    <![CDATA[
+        SELECT
+            F_BOARD_IDX,
+            F_ORIGINAL_FILE_NAME,
+            ROUND(F_FILE_SIZE/1024,1) AS F_FILE_SIZE
+        FROM
+            FINDS_FILE
+        WHERE
+            F_BOARD_IDX = #{idx}
+    ]]>
+   </select>
+
+   <select id="deleteFinds" parameterType="String">
+    <![CDATA[
+        DELETE FROM FINDS WHERE F_IDX = #{idx}
+    ]]>
+   </select>
+
+   <select id="deleteFindsFile" parameterType="String">
+    <![CDATA[
+        DELETE FROM FINDS_FILE WHERE F_BOARD_IDX = #{idx}
+    ]]>
+   </select>
+
+
+
+</mapper>
+

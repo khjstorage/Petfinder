@@ -31,11 +31,17 @@
        ]]>
 	</insert>
 
-	<select id="getmember" parameterType="memberVO" resultMap="memberResultMap">
+	<select id="getmember" parameterType="String" resultMap="memberResultMap">
 		<![CDATA[
-		SELECT * FROM MEMBER
+		SELECT * FROM MEMBER WHERE M_ID = #{sessionId}
 		]]>
 	</select>
+
+	<select id="getid" parameterType="hashmap" resultMap="memberResultMap">
+      <![CDATA[
+      SELECT M_ID FROM MEMBER WHERE M_ID=#{id} AND M_PASSWORD=#{pwd}
+      ]]>
+   </select>
 </mapper>
 
 

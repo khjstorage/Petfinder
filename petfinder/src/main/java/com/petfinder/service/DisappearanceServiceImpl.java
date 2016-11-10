@@ -42,15 +42,20 @@ public class DisappearanceServiceImpl implements DisappearanceService {
 	}
 
 	@Override
-	public void updateDisappearance(String name) {
-		// TODO Auto-generated method stub
-		
+	public void updateDisappearance(DisappearanceVO disappearanceVO, HttpServletRequest request) throws Exception {
+		disappearanceDAO.updateDisappearance(disappearanceVO);
+        Map<String,Object> mapFile = disappearanceFileUtils.parseInsertFileInfo(disappearanceVO, request);
+        System.out.println(mapFile.get("D_BOARD_IDX"));
+        System.out.println(mapFile.get("D_ORIGINAL_FILE_NAME"));
+        System.out.println(mapFile.get("D_STORED_FILE_NAME"));
+        System.out.println(mapFile.get("D_FILE_SIZE"));
+        disappearanceDAO.updateDisappearanceFile(mapFile);
 	}
 
 	@Override
-	public void deleteDisappearance(String name) {
-		// TODO Auto-generated method stub
-		
+	public void deleteDisappearance(String idx) {
+		disappearanceDAO.deleteDisappearanceFile(idx);
+		disappearanceDAO.deleteDisappearance(idx);
 	}
 
 

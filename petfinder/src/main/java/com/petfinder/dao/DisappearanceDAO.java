@@ -31,6 +31,22 @@ public class DisappearanceDAO {
 		return sqlSession.selectOne("disappearance.selectBoardDetail", parameter);
 	}
 
+	public void deleteDisappearanceFile(String idx) {
+		sqlSession.delete("disappearance.deleteDisappearanceFile", idx);
+	}
+	
+	public void deleteDisappearance(String idx) {
+		sqlSession.delete("disappearance.deleteDisappearance", idx);
+	}
 
+	public void updateDisappearance(DisappearanceVO disappearanceVO) {
+		sqlSession.update("disappearance.updateDisappearance", disappearanceVO);
+	}
+
+	public void updateDisappearanceFile(Map<String, Object> mapFile) {
+		sqlSession.update("disappearance.updateDisappearanceFile", mapFile);
+		
+	
+	}
 
 }

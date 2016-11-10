@@ -4,15 +4,15 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>실종게시판</title>
+<title>분실게시판</title>
 </head>
 <body>
 	<div class="containor">
 		<%@include file="../../views/layout/nav.jsp"%>
 		<div class="mainContents">
-			<h2 style="float:left;">실종 게시판</h2>
-			<a href="disappearance_form.do">
-				<input type="button" id="write" style="float:right;" value="글쓰기" />
+			<h2 style="float: left;">실종 게시판</h2>
+			<a href="disappearance_form.do"> <input type="button" id="write"
+				class="rightTopButtons" value="글쓰기" />
 			</a>
 			<div class="page">
 				<c:choose>
@@ -40,5 +40,6 @@
 	</div>
 </body>
 </html>
+
 
 

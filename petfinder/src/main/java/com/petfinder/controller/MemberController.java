@@ -4,6 +4,7 @@ import java.util.List;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -27,9 +28,9 @@ public class MemberController {
 	}
 	
 	@RequestMapping("/mypage.do")
-	public ModelAndView mypage(@ModelAttribute("memberVO")MemberVO memberVO) throws Exception {
+	public ModelAndView mypage(HttpSession session) throws Exception {
 		ModelAndView mv = new ModelAndView();
-		List<MemberVO> list = memberService.getMember(memberVO);
+		List<MemberVO> list = memberService.getMember((String) session.getAttribute("id"));
 		mv.addObject("memberlist", list);
 		mv.setViewName("/mypage");
 		return mv;
