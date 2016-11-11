@@ -1,5 +1,6 @@
 package com.petfinder.service;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Service;
 import com.petfinder.dao.DisappearanceDAO;
 import com.petfinder.utill.DisappearanceFileUtils;
 import com.petfinder.vo.DisappearanceVO;
+import com.petfinder.vo.FindsVO;
 
 @Service("disappearanceService")
 public class DisappearanceServiceImpl implements DisappearanceService {
@@ -22,14 +24,21 @@ public class DisappearanceServiceImpl implements DisappearanceService {
 	private DisappearanceDAO disappearanceDAO;
 
 	@Override
-	public List<DisappearanceVO> disappearanceList(DisappearanceVO disappearanceVO) {
-		return disappearanceDAO.disappearanceList(null);
+	public List<DisappearanceVO> disappearanceList() {
+		return disappearanceDAO.disappearanceList();
 	}
 
 
 	@Override
 	public Map<String, Object> selectBoardDetail(String parameter)throws Exception {
-	    Map<String, Object> resultMap = disappearanceDAO.selectBoardDetail(parameter);
+		Map<String, Object> resultMap = new HashMap<String, Object>(); 
+		
+		Map<String, Object> map = disappearanceDAO.selectBoardDetail(parameter);
+		resultMap.put("infoMap", map);
+		
+		List<Object> fileMap = disappearanceDAO.selectBoardDetailFile(parameter);
+		resultMap.put("fileMap", fileMap);
+	    
 	    return resultMap;
 	}
 	
@@ -45,10 +54,6 @@ public class DisappearanceServiceImpl implements DisappearanceService {
 	public void updateDisappearance(DisappearanceVO disappearanceVO, HttpServletRequest request) throws Exception {
 		disappearanceDAO.updateDisappearance(disappearanceVO);
         Map<String,Object> mapFile = disappearanceFileUtils.parseInsertFileInfo(disappearanceVO, request);
-        System.out.println(mapFile.get("D_BOARD_IDX"));
-        System.out.println(mapFile.get("D_ORIGINAL_FILE_NAME"));
-        System.out.println(mapFile.get("D_STORED_FILE_NAME"));
-        System.out.println(mapFile.get("D_FILE_SIZE"));
         disappearanceDAO.updateDisappearanceFile(mapFile);
 	}
 
@@ -56,6 +61,11 @@ public class DisappearanceServiceImpl implements DisappearanceService {
 	public void deleteDisappearance(String idx) {
 		disappearanceDAO.deleteDisappearanceFile(idx);
 		disappearanceDAO.deleteDisappearance(idx);
+	}
+	
+	@Override
+	public List<FindsVO> searchDisappearance(DisappearanceVO disappearanceVO){
+		return disappearanceDAO.searchDisappearance(disappearanceVO);
 	}
 
 

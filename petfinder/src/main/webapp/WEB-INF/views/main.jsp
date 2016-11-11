@@ -1,7 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
    pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<%@ page import="com.petfinder.vo.MemberVO"%>
 <!DOCTYPE html>
 <html>
 <head>
@@ -20,118 +19,50 @@
                   <td><a href="finds_list.do"><h4>발견게시판</h4></a></td>
                </tr>
                <tr>
+               <!-- disappearance_list.do -->
                   <td>
                      <div class="page">
                         <c:choose>
-                           <c:when test="${fn:length(disappearancelist) > 0}">
-                              <c:forEach items="${disappearancelist}" var="dog">
-                                 <a href="disappearance_contents.do">
+                           <c:when test="${fn:length(dlist) > 0}">
+                              <c:forEach items="${dlist}" var="dlist" begin="0" end="3" step="1">
+                                 <a href="disappearance_contents.do?idx=${dlist.idx }">
                                     <div class="card">
                                        <img src="사진.jpg">
                                        <div class="card_info">
-                                          <h2>${dog.title}</h2>
-                                          <h2>${dog.dog}</h2>
-                                          <h2>${dog.region}</h2>
+                                          <h2>${dlist.title}</h2>
+                                          <h2>${dlist.dog}</h2>
+                                          <h2>${dlist.region}</h2>
                                        </div>
                                     </div>
                                  </a>
                               </c:forEach>
                            </c:when>
                            <c:otherwise>
-<!--                               <div>조회된 결과가 없습니다</div> -->
-                                 <a href="disappearance_contents.do">
-                                    <div class="card">
-                                       <img src="사진.jpg">
-                                       <div class="card_info">
-                                          <h2>이십자이십자이십자이십자${dog.title}</h2>
-                                          <h2>이십자이십자${dog.dog}</h2>
-                                          <h2>이십자이십자${dog.region}</h2>
-                                       </div>
-                                    </div>
-                                 </a>
-                                 <a href="disappearance_contents.do">
-                                    <div class="card">
-                                       <img src="사진.jpg">
-                                       <div class="card_info">
-                                          <h2>이십자이십자이십자이십자${dog.title}</h2>
-                                          <h2>이십자이십자${dog.dog}</h2>
-                                          <h2>이십자이십자${dog.region}</h2>
-                                       </div>
-                                    </div>
-                                 </a>
-                                 <a href="disappearance_contents.do">
-                                    <div class="card">
-                                       <img src="사진.jpg">
-                                       <div class="card_info">
-                                          <h2>이십자이십자이십자이십자${dog.title}</h2>
-                                          <h2>이십자이십자${dog.dog}</h2>
-                                          <h2>이십자이십자${dog.region}</h2>
-                                       </div>
-                                    </div>
-                                 </a>
+                              <div>조회된 결과가 없습니다</div>
                            </c:otherwise>
                         </c:choose>
                      </div>
                   </td>
+                  <!-- finds_list.do -->
                   <td>
                      <div class="page">
                         <c:choose>
-                           <c:when test="${fn:length(list) > 0}">
-                              <c:forEach items="${list}" var="dog">
-                                 <a href="finds_contents.do">
+                           <c:when test="${fn:length(flist) > 0}">
+                              <c:forEach items="${flist}" var="flist" begin="0" end="3" step="1">
+                                 <a href="finds_contents.do?idx=${flist.idx }">
                                     <div class="card">
                                        <img src="사진.jpg">
                                        <div class="card_info">
-                                          <h2>${dog.title}</h2>
-                                          <h2>${dog.dog}</h2>
-                                          <h2>${dog.region}</h2>
+                                          <h2>${flist.title}</h2>
+                                          <h2>${flist.dog}</h2>
+                                          <h2>${flist.region}</h2>
                                        </div>
                                     </div>
                                  </a>
                               </c:forEach>
                            </c:when>
                            <c:otherwise>
-<!--                               <div>조회된 결과가 없습니다</div> -->
-                                 <a href="disappearance_contents.do">
-                                    <div class="card">
-                                       <img src="사진.jpg">
-                                       <div class="card_info">
-                                          <h2>이십자이십자이십자이십자${dog.title}</h2>
-                                          <h2>이십자이십자${dog.dog}</h2>
-                                          <h2>이십자이십자${dog.region}</h2>
-                                       </div>
-                                    </div>
-                                 </a>
-                                 <a href="disappearance_contents.do">
-                                    <div class="card">
-                                       <img src="사진.jpg">
-                                       <div class="card_info">
-                                          <h2>이십자이십자이십자이십자${dog.title}</h2>
-                                          <h2>이십자이십자${dog.dog}</h2>
-                                          <h2>이십자이십자${dog.region}</h2>
-                                       </div>
-                                    </div>
-                                 </a>
-                                 <a href="disappearance_contents.do">
-                                    <div class="card">
-                                       <img src="사진.jpg">
-                                       <div class="card_info">
-                                          <h2>이십자이십자이십자이십자${dog.title}</h2>
-                                          <h2>이십자이십자${dog.dog}</h2>
-                                          <h2>이십자이십자${dog.region}</h2>
-                                       </div>
-                                    </div>
-                                 </a>
-                                 <a href="disappearance_contents.do">
-                                    <div class="card">
-                                       <img src="사진.jpg">
-                                       <div class="card_info">
-                                          <h2>이십자이십자이십자이십자${dog.title}</h2>
-                                          <h2>이십자이십자${dog.dog}</h2>
-                                          <h2>이십자이십자${dog.region}</h2>
-                                       </div>
-                                    </div>
-                                 </a>
+                               <div>조회된 결과가 없습니다</div>
                            </c:otherwise>
                         </c:choose>
                      </div>

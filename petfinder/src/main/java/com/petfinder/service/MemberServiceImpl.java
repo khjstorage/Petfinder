@@ -1,5 +1,6 @@
 package com.petfinder.service;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -22,8 +23,8 @@ public class MemberServiceImpl implements MemberService {
 	private MemberDAO memberDao;
 
 	@Override
-	public String loginMember(String id, String pwd){
-		List<MemberVO> list =memberDao.getID(id, pwd);
+	public String loginMember(HashMap<String, String> map){
+		List<MemberVO> list = memberDao.getID(map);
 		String idcheck;
 		if(list.size()==0){
 			idcheck="";
@@ -46,12 +47,15 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public void updateMember(String id) {
+	public void updateMember(MemberVO memberVO, HttpServletRequest request) throws Exception{
+		memberDao.updateMember(memberVO);
+		Map<String,Object> mapFile = memberfileUtils.parseInsertFileInfo(memberVO, request);
+		memberDao.updateMemberFile(mapFile);
 	}
 
 	@Override
-	public void deleteMember(String id) {
+	public void deleteMember(String id){
+		memberDao.deleteMemberFile(id);
+		memberDao.deleteMember(id);
 	}
-
-
 }

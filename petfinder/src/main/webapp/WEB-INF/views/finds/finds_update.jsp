@@ -4,23 +4,23 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>실종게시판 수정</title>
+<title>발견게시판 수정</title>
 </head>
 <body>
    <div class="containor">
       <%@include file="../../views/layout/nav.jsp"%>
       <div class="mainContents">
-         <h2 style="float:left;">실종게시판 수정</h2>
-         <form id="" action="disappearance_update_pro.do?idx=${map.infoMap.D_IDX}" method="post" enctype="multipart/form-data">
-           <a href="disappearance_list.do"><input type="button" class="rightTopButtons" value="취소"></a>
+         <h2 style="float:left;">발견게시판 수정</h2>
+         <form id="" action="finds_update_pro.do?idx=${map.infoMap.F_IDX}" method="post" enctype="multipart/form-data">
+           <a href="finds_list.do"><input type="button" class="rightTopButtons" value="취소"></a>
            <input type="submit" class="rightTopButtons" value="수정" />
             <div class="editorTool" style="float: left;">
                <table>
                   <tr>
                      <th>애견 사진</th>
-                     <td><input type="file" accept="image/*" name="disappearance_file" multiple="multiple" /></td>
-                     <th>아이디</th>
-                     <td><input type="text" name="id" placeholder="아이디" value="${map.infoMap.D_ID}" /></td>
+                     <td><input type="file" accept="image/*" name="finds_file" multiple="multiple" /></td>
+                     <th>닉네임</th>
+                     <td><input type="text" name="name" placeholder="닉네임" value="${map.infoMap.F_NAME}" /></td>
                   </tr>
                   <tr>
                      <th>색상</th>
@@ -32,7 +32,7 @@
                         </select>
                      </td>
                      <th>연락처</th>
-                     <td><input type="text" name="phone1" placeholder="연락처" value="${map.infoMap.D_PHONE}" /></td>
+                     <td><input type="text" name="phone" placeholder="연락처" value="${map.infoMap.F_PHONE}" /></td>
                   </tr>
                   <tr>
                      <th>견종</th>
@@ -46,8 +46,8 @@
                            <option value="최주혁">최주혁</option>
                         </select>
                      </td>
-                     <th>비상연락망</th>
-                     <td><input type="text" name="phone2" placeholder="비상연락망" value="${map.infoMap.D_PHONE}"/></td>
+                     <th></th>
+                     <td></td>
                   </tr>
                   <tr>
                      <th>성별</th>
@@ -61,8 +61,8 @@
                            <label for="gender_m"> ♂ </label>
                         </div>
                      </td>
-                     <th>애견 이름</th>
-                     <td><input type="text" name="dogname" placeholder="애견 이름" value="${map.infoMap.D_DOGNAME}" /></td>
+                     <th></th>
+                     <td></td>
                   </tr>
                   <tr>
                      <th>크기</th>
@@ -87,11 +87,11 @@
                      </td>
                   </tr>
                   <tr>
-                     <th>실종 날짜</th>
-                     <td><input type="date" id="date" name="date" value="${map.infoMap.D_DATE_1}"/></td>
+                     <th>발견 날짜</th>
+                     <td><input type="date" id="date" name="date" value="${map.infoMap.F_DATE}"/></td>
                   </tr>
                   <tr>
-                     <th>실종 지역</th>
+                     <th>발견 지역</th>
                      <td><select name="region">
                            <option value="" selected>실종지역</option>
                            <option value="서울">서울</option>
@@ -101,28 +101,28 @@
                   </tr>
                   <tr>
                      <th>제목</th>
-                     <td><input type="text" name="title" maxlength="20" value="${map.infoMap.D_TITLE}" style="width:90%; text-align:left;" /></td>
+                     <td><input type="text" name="title" maxlength="20" value="${map.infoMap.F_TITLE}" style="width:90%; text-align:left;" /></td>
                   </tr>
                   <tr>
                      <th>상세 내용</th>
-                     <td colspan="3"><textarea id="detail" name="detail">${map.infoMap.D_DETAIL}</textarea></td>
+                     <td colspan="3"><textarea id="detail" name="detail">${map.infoMap.F_DETAIL}</textarea></td>
                   </tr>
                   <tr>
                   <th>첨부파일</th>
                   <td>
-						<c:choose>
-							<c:when test="${fn:length(map.fileMap ) > 0}">
-								 <c:forEach var="row" items="${map.fileMap }">
-								<input type="hidden" id="IDX" value="${row.D_IDX }">
-								<a name="file">${row.D_ORIGINAL_FILE_NAME }</a> 
-								(${row.D_FILE_SIZE } KB)
-								</c:forEach>
-							</c:when>
-							<c:otherwise>
-								<div>첨부파일이 없습니다</div>
-							</c:otherwise>
-						</c:choose>
-                  </td>
+                  	<c:choose>
+                  		<c:when test="${fn:length(file.fileMap) > 0 }">
+                       	<c:forEach var="row" items="${file.fileMap }">
+                        <input type="hidden" id="IDX" value="${row.F_IDX }">
+                        <a name="file">${row.F_ORIGINAL_FILE_NAME }</a> 
+                        (${row.F_FILE_SIZE } KB)
+                    	</c:forEach>
+                    	</c:when>
+                    	<c:otherwise>
+                    	<div>첨부파일이 없습니다</div>
+                    	</c:otherwise>
+                    	</c:choose>
+                	</td>
                   </tr> 
                </table>
             </div>

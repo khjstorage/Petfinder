@@ -1,23 +1,36 @@
 package com.petfinder.controller;
 
+import java.util.List;
+
 import javax.annotation.Resource;
-import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.ModelAndView;
 
-import com.petfinder.service.MemberService;
+import com.petfinder.service.DisappearanceService;
+import com.petfinder.service.FindsService;
+import com.petfinder.vo.DisappearanceVO;
+import com.petfinder.vo.FindsVO;
 
 @Controller
 public class HomeController {
-
-    @Resource(name="memberService")
-    private MemberService memberService;
 	
+	@Resource(name = "findsService")
+	private FindsService findsService;
+	
+    @Resource(name="disappearanceService")
+    private DisappearanceService disappearanceService;
+    
 	@RequestMapping("/main.do")
-	public String main() {
-		return "/main";
+	public ModelAndView main() {
+		ModelAndView mv = new ModelAndView();
+		List<DisappearanceVO> dlist = disappearanceService.disappearanceList();
+		mv.addObject("dlist", dlist);
+		List<FindsVO> flist = findsService.findsList();
+		mv.addObject("flist", flist);
+		mv.setViewName("/main");
+		return mv;
 	}
 
 	@RequestMapping("/login.do")
@@ -25,26 +38,6 @@ public class HomeController {
 		return "/login";
 	}
 
-	@RequestMapping("/login_process.do")
-	   public String login_pro(@RequestParam("id") String id, @RequestParam("pwd") String pwd, HttpSession session) {
-	      String idcheck = memberService.loginMember(id, pwd);
-	      if(idcheck.equals(id)){
-	         session.setAttribute("id",id);
-	         return "redirect:main.do";
-	      }
-	      else{
-	         session.setAttribute("idfail",id);
-	         return "redirect:login.do";
-	      }
-	}
-	
-	@RequestMapping("/logout.do")
-	public String logout(HttpSession session){
-		session.removeAttribute("id");
-		session.invalidate();
-		return "redirect:main.do";
-		
-	}
 
 	@RequestMapping("/signup_form.do")
 	public String signup_write() {

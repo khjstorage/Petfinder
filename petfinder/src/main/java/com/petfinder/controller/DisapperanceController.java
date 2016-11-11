@@ -5,6 +5,7 @@ import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
@@ -14,6 +15,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import com.petfinder.service.DisappearanceService;
 import com.petfinder.vo.DisappearanceVO;
+import com.petfinder.vo.FindsVO;
 
 @Controller
 public class DisapperanceController {
@@ -22,17 +24,21 @@ public class DisapperanceController {
     private DisappearanceService disappearanceService;
 	
 	@RequestMapping("/disappearance_list")
-	public ModelAndView disappearance_list(@ModelAttribute("disappearanceVO")DisappearanceVO disappearanceVO) {
+	public ModelAndView disappearance_list() {
 		ModelAndView mv = new ModelAndView();
-		List<DisappearanceVO> list = disappearanceService.disappearanceList(disappearanceVO);
+		List<DisappearanceVO> list = disappearanceService.disappearanceList();
 		mv.addObject("disappearancelist", list);
 		mv.setViewName("disappearance/disappearance_list");
 		return mv;
 	}
 	
 	@RequestMapping("/disappearance_form")
-	public String disappearance_form() {
-		return "disappearance/disappearance_form";
+	public String disappearance_form(HttpSession session) {
+		if(session.getAttribute("id")!=null){
+			return "disappearance/disappearance_form";
+		}else{
+			return "redirect:login.do";
+		}
 	}
 	
 	@RequestMapping("/disappearance_write")
@@ -41,12 +47,12 @@ public class DisapperanceController {
 		return "redirect:disappearance_list.do";
 	}
 	
-	
 	@RequestMapping("/disappearance_contents")
 	public ModelAndView disappearance_contents(HttpServletRequest request) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		Map<String,Object> map = disappearanceService.selectBoardDetail(request.getParameter("idx"));
-		mv.addObject("map", map);
+		mv.addObject("map", map.get("infoMap"));
+		mv.addObject("file", map.get("fileMap"));;
 		mv.setViewName("disappearance/disappearance_contents");
 		return mv;
 	}
@@ -72,6 +78,12 @@ public class DisapperanceController {
 		return "redirect:disappearance_list.do";
 	}
 	
-	
-	
+	@RequestMapping("/disappearance_search")
+	public ModelAndView disappearance_search(@ModelAttribute("disappearanceVO")DisappearanceVO disappearanceVO) throws Exception {
+		ModelAndView mv = new ModelAndView();
+		List<FindsVO> list = disappearanceService.searchDisappearance(disappearanceVO);
+		mv.addObject("findslist", list);
+		mv.setViewName("finds/finds_list");
+		return mv;
+	}
 }

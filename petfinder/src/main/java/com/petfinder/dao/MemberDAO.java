@@ -28,13 +28,25 @@ public class MemberDAO {
 		return sqlSession.selectList("member.getmember", sessionId);
 	}
 
-	public List<MemberVO> getID(String id, String pwd){
-		HashMap<String, String> map = new HashMap<String, String>();
-		map.put("id", id);
-		map.put("pwd", pwd);
+	public List<MemberVO> getID(HashMap<String, String> map){
 		return sqlSession.selectList("member.getid", map);
 	}
 
+	public void deleteMember(String id){
+		sqlSession.delete("member.deletemember", id);
+	}
+	
+	public void deleteMemberFile(String id){
+		sqlSession.delete("member.deletememberfile",id);
+	}
+	
+	public void updateMember(MemberVO memberVO){
+		sqlSession.update("member.updateMember", memberVO);
+	}
+	
+	public void updateMemberFile(Map<String, Object> mapFile){
+		sqlSession.update("member.updateMemberFile", mapFile);
+	}
 
 
 }

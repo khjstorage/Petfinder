@@ -44,10 +44,26 @@
 	
 	<select id="selectBoardDetail" parameterType="String" resultType="hashmap">
     <![CDATA[
-        SELECT * FROM DISAPPEARANCE WHERE D_IDX = #{idx}        
+        SELECT D.*, TO_CHAR(D_DATE, 'YYYY-MM-DD')D_DATE_1  
+        FROM DISAPPEARANCE D 
+        WHERE D_IDX = #{idx}        
     ]]>
 	</select>
 	
+	
+	<select id="selectBoardDetailFile" parameterType="hashmap" resultType="hashmap">
+    <![CDATA[
+        SELECT
+        	D_FILE_IDX,
+            D_BOARD_IDX,
+            D_ORIGINAL_FILE_NAME,
+            ROUND(D_FILE_SIZE/1024,1) AS D_FILE_SIZE
+        FROM
+            DISAPPEARANCE_FILE
+        WHERE
+            D_BOARD_IDX = #{idx}
+    ]]>
+   </select> 
 	
 	<select id="deleteDisappearance" parameterType="String">
     <![CDATA[
@@ -89,6 +105,12 @@
 		WHERE D_BOARD_IDX = CAST(#{D_BOARD_IDX} as INTEGER)
 		]]>
 	</update>
+	
+	<select id="searchDisappearance" parameterType="findsVO" resultMap="disappearanceListResultMap">
+		<![CDATA[
+		SELECT * FROM DISAPPEARANCE WHERE D_COLOR=#{color} AND D_DOG=#{dog} AND D_GENDER=#{gender} AND D_SIZE=#{size}
+		]]>
+	</select>
 	
 </mapper>
 

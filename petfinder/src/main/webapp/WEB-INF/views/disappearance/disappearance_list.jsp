@@ -11,9 +11,14 @@
 		<%@include file="../../views/layout/nav.jsp"%>
 		<div class="mainContents">
 			<h2 style="float: left;">실종 게시판</h2>
-			<a href="disappearance_form.do"> <input type="button" id="write"
-				class="rightTopButtons" value="글쓰기" />
-			</a>
+			<a href="disappearance_form.do"> <input type="button" id="write" class="rightTopButtons" value="글쓰기" /></a>
+			<input type="submit" class="rightTopButtons" value="조회" />
+         	<input type="text" class="rightTopButtons" />
+	         <select class="rightTopButtons" style="height:52px;">
+	            <option value="">제목/내용</option>
+	            <option value="">제목만</option>
+	            <option value="">내용만</option>
+	         </select>
 			<div class="page">
 				<c:choose>
 					<c:when test="${fn:length(disappearancelist) > 0}">

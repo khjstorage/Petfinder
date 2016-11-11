@@ -86,7 +86,5 @@ public class FindsVO {
 	public void setDetail(String detail) {
 		this.detail = detail;
 	}
-	
-
-	
+		
 }

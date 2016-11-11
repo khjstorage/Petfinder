@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.petfinder.vo.DisappearanceVO;
+import com.petfinder.vo.FindsVO;
 
 @Repository("disappearanceDAO")
 public class DisappearanceDAO {
@@ -23,14 +24,18 @@ public class DisappearanceDAO {
 		sqlSession.insert("disappearance.insertDisappearanceFile", mapFile);
 	}
 	
-	public List<DisappearanceVO> disappearanceList(DisappearanceVO disappearanceVO){
-		return sqlSession.selectList("disappearance.disappearanceList", disappearanceVO);
+	public List<DisappearanceVO> disappearanceList(){
+		return sqlSession.selectList("disappearance.disappearanceList");
 	}
 
 	public Map<String, Object> selectBoardDetail(String parameter) {
 		return sqlSession.selectOne("disappearance.selectBoardDetail", parameter);
 	}
 
+	public List<Object> selectBoardDetailFile(String parameter){
+		return sqlSession.selectList("disappearance.selectBoardDetailFile", parameter);
+	}
+	
 	public void deleteDisappearanceFile(String idx) {
 		sqlSession.delete("disappearance.deleteDisappearanceFile", idx);
 	}
@@ -45,8 +50,10 @@ public class DisappearanceDAO {
 
 	public void updateDisappearanceFile(Map<String, Object> mapFile) {
 		sqlSession.update("disappearance.updateDisappearanceFile", mapFile);
-		
+	}
 	
+	public List<FindsVO> searchDisappearance(DisappearanceVO disappearanceVO){
+		return sqlSession.selectList("finds.searchFinds",disappearanceVO);
 	}
 
 }
