@@ -11,8 +11,7 @@
       <%@include file="../../views/layout/nav.jsp"%>
       <div class="mainContents">
          <h2 style="float:left;">분실게시판 글쓰기</h2>
-         <form id="" action="disappearance_write.do" method="post"
-            enctype="multipart/form-data">
+         <form id="" action="disappearance_write.do" method="post" enctype="multipart/form-data">
             <input type="submit" class="rightTopButtons" value="글쓰기">
             <a href="disappearance_list.do"><input type="button" class="rightTopButtons" value="뒤로" /></a>
             <div class="editorTool" style="float: left;">
@@ -73,12 +72,12 @@
                            <label for="size_s"> 소 </label>
                         </div>
                         <div class="checks">
-                           <input type="radio" id="size_m" name="size" value="m" /> <label
-                              for="size_m"> 중 </label>
+                           <input type="radio" id="size_m" name="size" value="m" /> 
+                           <label for="size_m"> 중 </label>
                         </div>
                         <div class="checks">
-                           <input type="radio" id="size_l" name="size" value="l" /> <label
-                              for="size_l"> 대 </label>
+                           <input type="radio" id="size_l" name="size" value="l" />
+                           <label for="size_l"> 대 </label>
                         </div>
                      </td>
                      <td colspan="2" rowspan="4" style="background-color:#cccccc;text-align:center;vertical-align:middle;">

@@ -44,8 +44,8 @@ public class MemberController {
 		HashMap<String, String> map = new HashMap<String, String>();
 		map.put("id", id);
 		map.put("pwd", pwd);
-		String idcheck = memberService.loginMember(map);
-		if(idcheck.equals(id)){
+		String account = memberService.loginMember(map);
+		if(account.equals(id)){
 			session.setAttribute("id",id);
 			return "redirect:main.do";
 		}else{
