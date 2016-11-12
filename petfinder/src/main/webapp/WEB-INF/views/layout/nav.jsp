@@ -12,8 +12,7 @@
 </head>
 <body>
 	<div class="asideHeader">
-		<a href="main.do">PET-<br />FINDER
-		</a>
+		<a href="main.do">PET-<br />FINDER</a>
 		<div class="headerNav">
 			<c:choose>
 				<c:when test="${id == null}">
@@ -21,15 +20,9 @@
 					<a href="signup_form.do">회원가입</a>
 				</c:when>
 				<c:otherwise>
-					<p>${id}님
-						<br />반갑습니다.
-					</p>
-					<p>
-						<a href="mypage.do">마이페이지</a>
-					</p>
-					<p>
-						<a href="logout.do">로그아웃</a>
-					</p>
+					<p>${id}님<br />반갑습니다.	</p>
+					<p><a href="mypage.do">마이페이지</a></p>
+					<p><a href="logout.do">로그아웃</a></p>
 				</c:otherwise>
 			</c:choose>
 		</div>

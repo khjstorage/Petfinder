@@ -17,7 +17,6 @@
             <input class="rightTopButtons" type="button" value="탈퇴" />
          </a>
          <input class="rightTopButtons" type="submit" value="수정" />
-         
                <c:forEach items="${memberlist}" var="member">
                   <div class="editorTool">
                      <table class="myPageTable">
