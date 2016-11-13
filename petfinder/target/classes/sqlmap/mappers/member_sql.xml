@@ -2,7 +2,7 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 
 <mapper namespace="member">
-    
+
 	<resultMap id="memberResultMap" type="com.petfinder.vo.MemberVO">
 		<id property="id" column="M_ID" />
 		<id property="pwd" column="M_PASSWORD" />
@@ -17,13 +17,14 @@
 		<id property="gender" column="M_GENDER" />
 	</resultMap>
 
+	<!-- -->
 	<insert id="insertmember" parameterType="memberVO">
        <![CDATA[
 		INSERT INTO MEMBER(M_ID, M_PASSWORD, M_NAME, M_PHONE, M_REGION1, M_REGION2, M_REGION3, M_DOG, M_SIZE, M_COLOR, M_GENDER) 
 		VALUES (#{id}, #{pwd}, #{name}, #{phone}, #{region1}, #{region2}, #{region3}, #{dog}, #{size}, #{color}, #{gender})
        ]]>
 	</insert>
-	
+
 	<insert id="insertfile" parameterType="hashmap">
        <![CDATA[
          INSERT INTO MEMBER_FILE(M_ID, M_ORIGINAL_FILE_NAME, M_STORED_FILE_NAME, M_FILE_SIZE) 
@@ -31,31 +32,33 @@
        ]]>
 	</insert>
 
+	<!-- -->
 	<select id="getmember" parameterType="String" resultMap="memberResultMap">
 		<![CDATA[
 		SELECT * FROM MEMBER WHERE M_ID = #{sessionId}
 		]]>
 	</select>
 
+	<!-- -->
 	<select id="getid" parameterType="hashmap" resultMap="memberResultMap">
       <![CDATA[
       SELECT M_ID FROM MEMBER WHERE M_ID=#{id} AND M_PASSWORD=#{pwd}
       ]]>
-   </select>
-   
-   <select id="deletemember" parameterType="String">
+	</select>
+
+	<select id="deletemember" parameterType="String">
     <![CDATA[
         DELETE FROM MEMBER WHERE M_ID = #{id}
     ]]>
-   </select>
-   
-   <select id="deletememberfile" parameterType="String">
+	</select>
+
+	<select id="deletememberfile" parameterType="String">
     <![CDATA[
         DELETE FROM MEMBER_FILE WHERE M_ID = #{id}
     ]]>
-   </select>
-   
-   <update id="updateMember" parameterType="memberVO" >
+	</select>
+
+	<update id="updateMember" parameterType="memberVO">
 	<![CDATA[
 	    UPDATE MEMBER
 		SET M_PASSWORD = #{pwd}, 
@@ -71,14 +74,20 @@
 		WHERE M_ID = #{id}
 	]]>
 	</update>
-	
-	<update id="updateMemberFile" parameterType="hashmap" >
+
+	<update id="updateMemberFile" parameterType="hashmap">
 		<![CDATA[
-	    UPDATE MEMBER_FILE
-		SET M_ORIGINAL_FILE_NAME = #{M_ORIGINAL_FILE_NAME},
-			M_STORED_FILE_NAME = #{M_STORED_FILE_NAME}, 
-			M_FILE_SIZE = #{M_FILE_SIZE}
-		WHERE M_ID = #{M_ID}
+		MERGE INTO MEMBER_FILE
+		USING DUAL
+		ON (M_ID = #{M_ID})
+		WHEN MATCHED THEN
+				UPDATE SET
+				M_ORIGINAL_FILE_NAME = #{M_ORIGINAL_FILE_NAME},
+				M_STORED_FILE_NAME = #{M_STORED_FILE_NAME}, 
+				M_FILE_SIZE = #{M_FILE_SIZE}
+		WHEN NOT MATCHED THEN
+				INSERT (M_ID, M_ORIGINAL_FILE_NAME, M_STORED_FILE_NAME, M_FILE_SIZE) 
+				VALUES (#{M_ID}, #{M_ORIGINAL_FILE_NAME}, #{M_STORED_FILE_NAME}, #{M_FILE_SIZE})
 		]]>
 	</update>
 </mapper>

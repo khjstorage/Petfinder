@@ -19,39 +19,56 @@
 		<id property="detail" column="D_DETAIL" />
 	</resultMap>
 
-	<insert id="insertDisappearance" parameterType="disappearanceVO" useGeneratedKeys="true" keyProperty="IDX">
-      <selectKey keyProperty="idx" resultType="string" order="BEFORE">
-         SELECT SEQ_DISAPPEARANCE_IDX.NEXTVAL FROM DUAL
-      </selectKey>
+
+	<!-- -->
+	<insert id="insertDisappearance" parameterType="disappearanceVO"
+		useGeneratedKeys="true" keyProperty="IDX">
+		<selectKey keyProperty="idx" resultType="string" order="BEFORE">
+			SELECT SEQ_DISAPPEARANCE_IDX.NEXTVAL FROM DUAL
+		</selectKey>
     <![CDATA[
         INSERT INTO DISAPPEARANCE(D_IDX, D_ID, D_PHONE, D_EMERTGENCY_PHONE, D_DOGNAME, D_DOG, D_SIZE, D_COLOR, D_GENDER, D_DATE, D_REGION, D_TITLE, D_DETAIL)
                VALUES(#{idx}, #{id}, #{phone1}, #{phone2}, #{dogname}, #{dog}, #{size}, #{color}, #{gender}, #{date}, #{region}, #{title}, #{detail})
        ]]>
-   </insert>
+	</insert>
 
 	<insert id="insertDisappearanceFile" parameterType="hashmap">
        <![CDATA[
-         INSERT INTO DISAPPEARANCE_FILE(D_FILE_IDX, D_BOARD_IDX, D_ORIGINAL_FILE_NAME, D_STORED_FILE_NAME, D_FILE_SIZE) 
-         VALUES (SEQ_DISAPPEARANCE_FILE_IDX.NEXTVAL, #{D_BOARD_IDX}, #{D_ORIGINAL_FILE_NAME}, #{D_STORED_FILE_NAME}, #{D_FILE_SIZE})
+        INSERT INTO DISAPPEARANCE_FILE(D_FILE_IDX, D_BOARD_IDX, D_ORIGINAL_FILE_NAME, D_STORED_FILE_NAME, D_FILE_SIZE) 
+        		 VALUES (SEQ_DISAPPEARANCE_FILE_IDX.NEXTVAL, #{D_BOARD_IDX}, #{D_ORIGINAL_FILE_NAME}, #{D_STORED_FILE_NAME}, #{D_FILE_SIZE})
        ]]>
 	</insert>
-		
-	<select id="disappearanceList" parameterType="disappearanceVO" resultMap="disappearanceListResultMap">
+
+	<!-- -->
+	<select id="disappearanceList" parameterType="disappearanceVO"
+		resultMap="disappearanceListResultMap">
 		<![CDATA[
 		SELECT * FROM DISAPPEARANCE ORDER BY D_IDX DESC
 		]]>
 	</select>
-	
-	<select id="selectBoardDetail" parameterType="String" resultType="hashmap">
+
+	<select id="disappearanceImg" parameterType="hashmap">
+		<![CDATA[
+		SELECT D_STORED_FILE_NAME
+		FROM DISAPPEARANCE A
+     		 INNER JOIN DISAPPEARANCE_FILE B
+     				ON A.D_IDX = B.D_BOARD_IDX
+		WHERE A.D_IDX = #{idx};
+		]]>
+	</select>
+
+	<!-- -->
+	<select id="selectBoardDetail" parameterType="String"
+		resultType="hashmap">
     <![CDATA[
         SELECT D.*, TO_CHAR(D_DATE, 'YYYY-MM-DD')D_DATE_1  
         FROM DISAPPEARANCE D 
         WHERE D_IDX = #{idx}        
     ]]>
 	</select>
-	
-	
-	<select id="selectBoardDetailFile" parameterType="hashmap" resultType="hashmap">
+
+	<select id="selectBoardDetailFile" parameterType="hashmap"
+		resultType="hashmap">
     <![CDATA[
         SELECT
         	D_FILE_IDX,
@@ -63,25 +80,26 @@
         WHERE
             D_BOARD_IDX = #{idx}
     ]]>
-   </select> 
-	
+	</select>
+
+	<!-- -->
 	<select id="deleteDisappearance" parameterType="String">
     <![CDATA[
         DELETE FROM DISAPPEARANCE WHERE D_IDX = #{idx}
     ]]>
 	</select>
-	
+
 	<select id="deleteDisappearanceFile" parameterType="String">
     <![CDATA[
         DELETE FROM DISAPPEARANCE_FILE WHERE D_BOARD_IDX = #{idx}
     ]]>
 	</select>
-	
-	<update id="updateDisappearance" parameterType="disappearanceVO" >
+
+	<!-- -->
+	<update id="updateDisappearance" parameterType="disappearanceVO">
 	<![CDATA[
 	    UPDATE DISAPPEARANCE
-		SET D_ID = #{id}, 
-			D_PHONE = #{phone1}, 
+		SET D_PHONE = #{phone1}, 
 			D_EMERTGENCY_PHONE = #{phone2}, 
 			D_DOGNAME = #{dogname}, 
 			D_DOG = #{dog}, 
@@ -95,22 +113,43 @@
 		WHERE D_IDX = #{idx}
 	]]>
 	</update>
-	
-	<update id="updateDisappearanceFile" parameterType="hashmap" >
-		<![CDATA[
-	    UPDATE DISAPPEARANCE_FILE
-		SET D_ORIGINAL_FILE_NAME = #{D_ORIGINAL_FILE_NAME},
-			D_STORED_FILE_NAME = #{D_STORED_FILE_NAME}, 
-			D_FILE_SIZE = #{D_FILE_SIZE}
-		WHERE D_BOARD_IDX = CAST(#{D_BOARD_IDX} as INTEGER)
+
+	<update id="updateDisappearanceFile" parameterType="hashmap">
+		<![CDATA[		
+		MERGE INTO DISAPPEARANCE_FILE
+		USING DUAL
+		ON (D_BOARD_IDX = #{D_BOARD_IDX})
+		WHEN MATCHED THEN
+				UPDATE SET
+				D_ORIGINAL_FILE_NAME = #{D_ORIGINAL_FILE_NAME},
+				D_STORED_FILE_NAME = #{D_STORED_FILE_NAME}, 
+				D_FILE_SIZE = #{D_FILE_SIZE}
+		WHEN NOT MATCHED THEN
+				INSERT (D_FILE_IDX, D_BOARD_IDX, D_ORIGINAL_FILE_NAME, D_STORED_FILE_NAME, D_FILE_SIZE) 
+				VALUES (SEQ_DISAPPEARANCE_FILE_IDX.NEXTVAL, #{D_BOARD_IDX}, #{D_ORIGINAL_FILE_NAME}, #{D_STORED_FILE_NAME}, #{D_FILE_SIZE})
 		]]>
 	</update>
-	
-	<select id="searchDisappearance" parameterType="findsVO" resultMap="disappearanceListResultMap">
+
+	<!-- -->
+	<select id="searchDisappearance" parameterType="findsVO"
+		resultMap="disappearanceListResultMap">
 		<![CDATA[
 		SELECT * FROM DISAPPEARANCE WHERE D_COLOR=#{color} AND D_DOG=#{dog} AND D_GENDER=#{gender} AND D_SIZE=#{size}
 		]]>
 	</select>
-	
+
+
+	<select id="selectFileInfo" parameterType="hashmap" resultType="hashmap">
+    <![CDATA[
+        SELECT
+            D_STORED_FILE_NAME,
+            D_ORIGINAL_FILE_NAME
+        FROM
+            DISAPPEARANCE_FILE
+        WHERE
+            D_BOARD_IDX = #{idx}
+    ]]>
+	</select>
+
 </mapper>
 

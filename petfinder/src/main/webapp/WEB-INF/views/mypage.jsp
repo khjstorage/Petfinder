@@ -4,7 +4,6 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<link rel="stylesheet" type="text/css" href="style.css" />
 <title>contents</title>
 </head>
 <body>
@@ -25,8 +24,7 @@
                            <td><input type="file" accept="image/*" name="member_file"
                               multiple="multiple"/></td>
                            <th>아이디</th>
-                           <td><input type="text" name="id" placeholder="아이디"
-                              value="${member.id}" /></td>
+                           <td><input type="text" name="id" placeholder="아이디" value="${member.id}" readOnly /></td>
                         </tr>
                         <tr>
                            <th>색상</th>

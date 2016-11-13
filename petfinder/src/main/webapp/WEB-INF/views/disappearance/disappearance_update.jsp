@@ -20,7 +20,7 @@
                      <th>애견 사진</th>
                      <td><input type="file" accept="image/*" name="disappearance_file" multiple="multiple" /></td>
                      <th>아이디</th>
-                     <td><input type="text" name="id" placeholder="아이디" value="${map.infoMap.D_ID}" /></td>
+                     <td><input type="text" name="id" placeholder="아이디" value="${map.infoMap.D_ID}" readOnly/></td>
                   </tr>
                   <tr>
                      <th>색상</th>

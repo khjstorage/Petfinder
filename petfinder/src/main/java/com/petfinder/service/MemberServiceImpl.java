@@ -35,22 +35,27 @@ public class MemberServiceImpl implements MemberService {
 	}
 
 	@Override
-	public void insertMember(MemberVO memberVO, HttpServletRequest request) throws Exception {
-		memberDao.insertMember(memberVO);
-		Map<String,Object> mapFile = memberfileUtils.parseInsertFileInfo(memberVO, request);
-		memberDao.insertFile(mapFile);
-	}
-
-	@Override
 	public List<MemberVO> getMember(String sessionId) throws Exception {
 		return memberDao.getMember(sessionId);
 	}
+	
+	@Override
+	public void insertMember(MemberVO memberVO, HttpServletRequest request) throws Exception {
+		memberDao.insertMember(memberVO);
+		Map<String,Object> mapFile = memberfileUtils.parseInsertFileInfo(memberVO, request);
+		if(mapFile!=null){
+			memberDao.insertFile(mapFile);
+		}
+	}
+
 
 	@Override
 	public void updateMember(MemberVO memberVO, HttpServletRequest request) throws Exception{
 		memberDao.updateMember(memberVO);
 		Map<String,Object> mapFile = memberfileUtils.parseInsertFileInfo(memberVO, request);
-		memberDao.updateMemberFile(mapFile);
+		if(mapFile!=null){
+			memberDao.updateMemberFile(mapFile);
+		}
 	}
 
 	@Override

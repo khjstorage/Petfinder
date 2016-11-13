@@ -4,9 +4,8 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><link rel="stylesheet" type="text/css" href="style.css"/>
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>발견게시판 글쓰기</title>
-<script type="text/javascript"src="<c:url value='/resources/js/imgDownFn.js' />"></script>
 </head>
 <body>
    <div class="containor">

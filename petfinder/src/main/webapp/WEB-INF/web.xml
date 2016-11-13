@@ -7,6 +7,9 @@
 		<welcome-file>index.jsp</welcome-file>
 	</welcome-file-list>
 
+	<!-- 어플리케이션 전체에서 사용하는 초기화 파라미터. application 에서 사용하며 getInitParameter(paramName), 
+		getInitParameterNames() 로 사용 . 예를 들어 데이터베이스 연결과 관련된 설정 파일의 경로나, 로깅 설정 파일, 
+		웹 어플리케이션의 주요 속성 정보를 담고 있는 파일의 경로등을 지정할 때 사용. -->
 	<context-param>
 		<param-name>contextConfigLocation</param-name>
 		<param-value>classpath*:spring/context-*.xml</param-value>
@@ -45,5 +48,24 @@
 		<filter-name>encodingFilter</filter-name>
 		<url-pattern>*.do</url-pattern>
 	</filter-mapping>
+
+
+	<!-- JSP 에서 include 디렉티브를 사용하기 위한 설정 값 
+		 url-pattern : url 패턴 지정 
+		 include-prelude : 모든 페이지 처음에 지정한 페이지가 삽입 됨.
+		 include-coda : 모든 페이지 하단에 지정한 페이지가 삽입 됨. -->
+	<jsp-config>
+		<jsp-property-group>
+			<url-pattern>*.jsp</url-pattern>
+			<include-prelude>/WEB-INF/views/webConstraint.jspf</include-prelude>
+		</jsp-property-group>
+	</jsp-config>
+
+	<!-- Session Timeout 설정, 단위는 분 값을 0이나 음수로 설정하면 세션은 유효 시간을 갖지 않는다. session.invalidate() 
+		를 호출하지 않는 이상 session 객체가 사라지지 않는다. (분 단위) -->
+	<session-config>
+		<session-timeout>1</session-timeout>
+	</session-config>
+
 
 </web-app>

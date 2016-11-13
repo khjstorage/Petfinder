@@ -1,5 +1,20 @@
 package com.petfinder.vo;
-
+/**
+ * 회원정보를 저장하기 위한 VO클래스
+ * 
+ * @author  1조
+ * @since 2016.11.14
+ * @version 1.0
+ * @see 
+ * <pre>
+ *  == 개정이력(Modification Information) ==
+ *   
+ *          수정일          수정자           수정내용
+ *  ----------------    ------------    ---------------------------
+ *   2016.11.14        1조             최초 생성
+ * 
+ * </pre>
+ */
 public class MemberVO {
 	private String id;
 	private String pwd;

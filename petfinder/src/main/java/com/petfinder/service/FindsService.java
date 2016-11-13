@@ -14,10 +14,7 @@ public interface FindsService {
 	public void insertFinds(FindsVO findsVO, HttpServletRequest request) throws Exception;
 	public void updateFinds(FindsVO findsVO, HttpServletRequest request) throws Exception;
 	public void deleteFinds(String idx);
-	public Map<String, Object> selectFileInfo(Map<String, Object> map) throws Exception;
-
 	public List<DisappearanceVO> searchFinds(FindsVO findsVO) throws Exception;
-	
-	
+	public Map<String, Object> selectFileInfo(Map<String, Object> map) throws Exception;
 	
 }
