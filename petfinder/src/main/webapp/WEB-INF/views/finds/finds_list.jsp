@@ -13,7 +13,7 @@
 		<div class="mainContents">
 			<h2 style="float:left;">발견 게시판</h2>
 			<a href="finds_form.do"> <input type="button" id="write" style="float:right" class="rightTopButtons" value="글쓰기" /></a>
-			<input type="submit" class="rightTopButtons" value="조회" />
+			<a> <input type="submit" class="rightTopButtons" value="조회" /></a>
          	<input type="text" class="rightTopButtons" />
 	         <select class="rightTopButtons" style="height:52px;">
 	            <option value="">제목/내용</option>
@@ -26,7 +26,7 @@
 						<c:forEach items="${findslist}" var="dog">
 							<a href="finds_contents.do?idx=${dog.idx }">
 								<div class="card">
-									<img src="사진.jpg">
+									<img src="사진.jpg"> <!-- 사진경로 -->
 									<div class="card_info">
 										<h2>제목 : ${dog.title}</h2>
 										<h2>견종 : ${dog.dog}</h2>

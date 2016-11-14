@@ -4,18 +4,52 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><link rel="stylesheet" type="text/css" href="style.css"/>
 <title>발견게시판 글쓰기</title>
+<script type="text/javascript">
+	$(document).ready(function() {
+		// 발견게시물 수정 비밀번호 입력 폼
+		$("#findsUpdateFormView").click(function() {
+			$(".findsUpdateFormView").toggleClass("hide");
+			$(".findsDeleteFormView").addClass("hide");
+		});
+		// 발견게시물 삭제 비밀번호 입력 폼
+		$("#findsDeleteFormView").click(function() {
+			$(".findsDeleteFormView").toggleClass("hide");
+			$(".findsUpdateFormView").addClass("hide");
+		});
+	});
+</script>
 </head>
 <body>
    <div class="containor">
       <%@include file="../../views/layout/nav.jsp"%>
       <div class="mainContents">
-         <h2 style="float:left;">CONTENTS</h2>
-         <a href="finds_list.do"><input type="button" class="rightTopButtons" value="목록으로" /></a>
-         <a href="finds_delete.do?idx=${map.F_IDX}"><input type="button" class="rightTopButtons" value="삭제" /></a>
-         <a href="finds_update.do?idx=${map.F_IDX}"><input type="button" class="rightTopButtons" value="수정" /></a>
-         <a href="finds_search.do?color=${map.F_COLOR}&dog=${map.F_DOG}&gender=${map.F_GENDER}&size=${map.F_SIZE}"><input type="button" class="rightTopButtons" value="매칭" /></a>
+        <h2 style="float:left;">CONTENTS</h2>
+        <a href="finds_list.do"><input type="button" class="rightTopButtons" value="목록으로" /></a>
+		<input type="button" class="rightTopButtons" id="findsDeleteFormView" value="삭제" />
+		<!-- 발견게시물 삭제 비밀번호 입력 -->
+		<div class="findsDeleteFormView hide">
+			<img src="../resources/img/findsUpdateForm.png"/>
+			<form action="finds_contendsDelete.do" method="post" enctype="multipart/form-data">
+				<input name="idx" type="hidden" value ="${map.F_IDX}"/>                     
+				<input name="pwd" type="password" placeholder="게시물 비밀번호 입력" /><br />
+				<input type="submit" value="확인" />
+			</form>
+		</div>
+		
+		<input type="button" class="rightTopButtons" id="findsUpdateFormView" value="수정" />
+		<!-- 발견게시물 수정 비밀번호 입력 -->
+		<div class="findsUpdateFormView hide">
+			<img src="../resources/img/findsUpdateForm.png"/>
+			<form action="finds_password.do" method="post" enctype="multipart/form-data">
+				<input name="idx" type="hidden" value ="${map.F_IDX}"/>                     
+				<input name="pwd" type="password" placeholder="게시물 비밀번호 입력" /><br />
+				<input type="submit" value="확인" />
+			</form>
+		</div>
+         
+         <a href="finds_match.do?color=${map.F_COLOR}&dog=${map.F_DOG}&gender=${map.F_GENDER}&size=${map.F_SIZE}"><input type="button" class="rightTopButtons" value="매칭" /></a>
          <form id="" action="finds_write.do" method="post" enctype="multipart/form-data">
             <div class="editorTool" style="float: left;">
                <table>
@@ -26,8 +60,8 @@
  						<c:when test="${fn:length(file) > 0 }"> 
 							<c:forEach var="row" items="${file }">
                       		<input type="hidden" id="IDX" value="${row.F_BOARD_IDX }">
-                        	<a href="#this" name="file">${row.F_ORIGINAL_FILE_NAME }</a>
-                        	(${row.F_FILE_SIZE } KB)
+                        	<a href="finds_download.do?idx=${map.F_IDX}" name="file">${row.F_ORIGINAL_FILE_NAME }</a>
+                        	(${row.F_FILE_SIZE } (KB)
 	                        </c:forEach> 
 						</c:when>				
 						<c:otherwise> 

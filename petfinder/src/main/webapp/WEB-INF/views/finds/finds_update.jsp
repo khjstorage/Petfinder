@@ -46,8 +46,8 @@
                            <option value="최주혁">최주혁</option>
                         </select>
                      </td>
-                     <th></th>
-                     <td></td>
+                     <th>비밀번호</th>
+                     <td><input type="text" name="pwd" placeholder="비밀번호" value="${map.infoMap.F_PASSWORD}" /></td>
                   </tr>
                   <tr>
                      <th>성별</th>
@@ -88,7 +88,7 @@
                   </tr>
                   <tr>
                      <th>발견 날짜</th>
-                     <td><input type="date" id="date" name="date" value="${map.infoMap.F_DATE}"/></td>
+                     <td><input type="date" id="date" name="date" value="${map.infoMap.F_DATE_1}"/></td>
                   </tr>
                   <tr>
                      <th>발견 지역</th>
@@ -111,8 +111,8 @@
                   <th>첨부파일</th>
                   <td>
                   	<c:choose>
-                  		<c:when test="${fn:length(file.fileMap) > 0 }">
-                       	<c:forEach var="row" items="${file.fileMap }">
+                  		<c:when test="${fn:length(map.fileMap) > 0 }">
+                       	<c:forEach var="row" items="${map.fileMap }">
                         <input type="hidden" id="IDX" value="${row.F_IDX }">
                         <a name="file">${row.F_ORIGINAL_FILE_NAME }</a> 
                         (${row.F_FILE_SIZE } KB)

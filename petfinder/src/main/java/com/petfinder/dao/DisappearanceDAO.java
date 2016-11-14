@@ -1,5 +1,6 @@
 package com.petfinder.dao;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -137,8 +138,8 @@ public class DisappearanceDAO {
 	 * @return List<FindsVO>
 	 * @throws Exception
 	 */
-	public List<FindsVO> searchDisappearance(DisappearanceVO disappearanceVO){
-		return sqlSession.selectList("finds.searchFinds",disappearanceVO);
+	public List<FindsVO> matchDisappearance(DisappearanceVO disappearanceVO){
+		return sqlSession.selectList("finds.matchFinds",disappearanceVO);
 	}
 	
 	/**
@@ -152,4 +153,25 @@ public class DisappearanceDAO {
 		return sqlSession.selectOne("disappearance.selectFileInfo", idx);
 	}
 
+	/**
+	 * DB에서 회원아이디를 (조회) 한다.
+	 * 
+	 * @param String idx
+	 * @return String
+	 * @throws Exception
+	 */
+	public String idCheck(String idx){
+		return sqlSession.selectOne("disappearance.idcheckDisappearance", idx);
+	}
+	
+	/**
+	 * DB에서 입력한 내용을 (조회) 한다.
+	 * 
+	 * @param HashMap<String, String> map
+	 * @return List<DisappearanceVO>
+	 * @throws Exception
+	 */
+	public List<DisappearanceVO> searchDisappearance(HashMap<String, String> map){
+		return sqlSession.selectList("disappearance.searchDisappearance", map);
+	}
 }

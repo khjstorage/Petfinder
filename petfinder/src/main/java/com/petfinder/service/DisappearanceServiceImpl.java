@@ -128,8 +128,8 @@ public class DisappearanceServiceImpl implements DisappearanceService {
 	 * @throws 
 	 */
 	@Override
-	public List<FindsVO> searchDisappearance(DisappearanceVO disappearanceVO){
-		return disappearanceDAO.searchDisappearance(disappearanceVO);
+	public List<FindsVO> matchDisappearance(DisappearanceVO disappearanceVO){
+		return disappearanceDAO.matchDisappearance(disappearanceVO);
 	}
 
 	/**
@@ -143,5 +143,29 @@ public class DisappearanceServiceImpl implements DisappearanceService {
 	public Map<String, Object> selectFileInfo(String idx) throws Exception{
 		return disappearanceDAO.selectFileInfo(idx);
 	}
+	
+	/** 
+	 * 해당게시물의 등록한 아이디를 확인하기 위해 데이터처리를 요청한다.
+	 * 
+	 * @param String idx
+	 * @return String
+	 * @throws 
+	 */
+	@Override
+	public String idCheck(String idx){
+		return disappearanceDAO.idCheck(idx);
+	}
 
+	
+	/** 
+	 * 작성된 글을 조회하기 위해 데이터처리를 요청한다.
+	 * 
+	 * @param HashMap<String, String> map
+	 * @return List<DisappearanceVO>
+	 * @throws 
+	 */
+	@Override
+	public List<DisappearanceVO> searchDisappearance(HashMap<String, String> map){
+		return disappearanceDAO.searchDisappearance(map);
+	}
 }

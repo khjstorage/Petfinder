@@ -9,31 +9,43 @@
 <body>
 	<div class="containor">
 		<%@include file="../../views/layout/nav.jsp"%>
-		<div class="mainContents">
-			<h2 style="float: left;">CONTENTS</h2>
-			<a href="disappearance_list.do"><input type="button" class="rightTopButtons" value="목록으로" /></a>
-			<a href="disappearance_delete.do?idx=${map.D_IDX}"><input type="button" class="rightTopButtons" value="삭제" /></a>
-			<a href="disappearance_update.do?idx=${map.D_IDX}"><input type="button" class="rightTopButtons" value="수정" /></a>
-			<a href="disappearance_search.do?color=${map.D_COLOR}&dog=${map.D_DOG}&gender=${map.D_GENDER}&size=${map.D_SIZE}">
-			<input type="button" class="rightTopButtons" value="매칭" /></a>
-			<form id="" action="disappearance_write.do" method="post" enctype="multipart/form-data">
-				<div class="editorTool" style="float: left;">
+		<!-- 데스크탑 화면 구성 -->
+		<div class="mainContents mobileHide">
+			<h2 class="floatLeft">실종게시판 CONTENTS</h2>
+			<a href="disappearance_list.do"><input type="button"
+				class="rightTopButtons" value="목록으로" /></a>
+
+			<c:choose>
+				<c:when test="${idcheck.equals('permission')}">
+					<a href="disappearance_delete.do?idx=${map.D_IDX}"><input
+						type="button" class="rightTopButtons" value="삭제" /></a>
+					<a href="disappearance_update.do?idx=${map.D_IDX}"><input
+						type="button" class="rightTopButtons" value="수정" /></a>
+					<c:remove scope="session" var="idcheck" />
+				</c:when>
+			</c:choose>
+			<a href="disappearance_match.do?color=${map.D_COLOR}&dog=${map.D_DOG}&gender=${map.D_GENDER}&size=${map.D_SIZE}">
+				<input type="button" class="rightTopButtons" value="매칭" />
+			</a>
+			<form id="" action="disappearance_write.do" method="post"
+				enctype="multipart/form-data">
+				<div class="editorTool floatLeft">
 					<table>
 						<tr>
 							<th>애견 사진</th>
-							<td>
-								<c:choose>
-									<c:when test="${fn:length(file) > 0}">
+							<td><c:choose> 
+			 						<c:when test="${fn:length(file) > 0 }"> 
 										<c:forEach var="row" items="${file }">
-											<input type="hidden" id="IDX" value="${row.D_BOARD_IDX }">
-											<a href="disappearance_download.do?idx=${map.D_IDX}" name="file">${row.D_ORIGINAL_FILE_NAME }</a>
-	                        				${row.D_FILE_SIZE }(KB)
-	                        	</c:forEach>
-									</c:when>
-									<c:otherwise>
-										<div>첨부파일이 없습니다</div>
-									</c:otherwise>
-								</c:choose><th>아이디</th>
+			                      		<input type="hidden" id="IDX" value="${row.D_BOARD_IDX }">
+			                        	<a href="disappearance_download.do?idx=${map.D_IDX}" name="file">${row.D_ORIGINAL_FILE_NAME }</a>
+			                        	(${row.D_FILE_SIZE } (KB)
+				                        </c:forEach> 
+									</c:when>				
+									<c:otherwise> 
+										<div>첨부파일이 없습니다 </div>
+									 </c:otherwise> 
+							  	</c:choose></td>
+							<th>아이디</th>
 							<td>${map.D_ID}</td>
 						</tr>
 						<tr>
@@ -88,3 +100,4 @@
 	</div>
 </body>
 </html>
+

@@ -43,17 +43,11 @@
 	<select id="disappearanceList" parameterType="disappearanceVO"
 		resultMap="disappearanceListResultMap">
 		<![CDATA[
-		SELECT * FROM DISAPPEARANCE ORDER BY D_IDX DESC
-		]]>
-	</select>
-
-	<select id="disappearanceImg" parameterType="hashmap">
-		<![CDATA[
-		SELECT D_STORED_FILE_NAME
-		FROM DISAPPEARANCE A
-     		 INNER JOIN DISAPPEARANCE_FILE B
-     				ON A.D_IDX = B.D_BOARD_IDX
-		WHERE A.D_IDX = #{idx};
+		SELECT 
+			*
+		FROM
+			DISAPPEARANCE
+		ORDER BY D_IDX DESC
 		]]>
 	</select>
 
@@ -61,9 +55,12 @@
 	<select id="selectBoardDetail" parameterType="String"
 		resultType="hashmap">
     <![CDATA[
-        SELECT D.*, TO_CHAR(D_DATE, 'YYYY-MM-DD')D_DATE_1  
-        FROM DISAPPEARANCE D 
-        WHERE D_IDX = #{idx}        
+        SELECT 
+        	D.*, TO_CHAR(D_DATE, 'YYYY-MM-DD')D_DATE_1  
+        FROM
+        	DISAPPEARANCE D 
+        WHERE
+        	D_IDX = #{idx}        
     ]]>
 	</select>
 
@@ -85,21 +82,31 @@
 	<!-- -->
 	<select id="deleteDisappearance" parameterType="String">
     <![CDATA[
-        DELETE FROM DISAPPEARANCE WHERE D_IDX = #{idx}
+        DELETE
+        FROM
+        	DISAPPEARANCE
+        WHERE
+        	D_IDX = #{idx}
     ]]>
 	</select>
 
 	<select id="deleteDisappearanceFile" parameterType="String">
     <![CDATA[
-        DELETE FROM DISAPPEARANCE_FILE WHERE D_BOARD_IDX = #{idx}
+        DELETE 
+        FROM
+        	DISAPPEARANCE_FILE 
+        WHERE
+        	D_BOARD_IDX = #{idx}
     ]]>
 	</select>
 
 	<!-- -->
 	<update id="updateDisappearance" parameterType="disappearanceVO">
 	<![CDATA[
-	    UPDATE DISAPPEARANCE
-		SET D_PHONE = #{phone1}, 
+	    UPDATE 
+	    	DISAPPEARANCE
+		SET
+			D_PHONE = #{phone1}, 
 			D_EMERTGENCY_PHONE = #{phone2}, 
 			D_DOGNAME = #{dogname}, 
 			D_DOG = #{dog}, 
@@ -110,7 +117,8 @@
 			D_REGION = #{region}, 
 			D_TITLE = #{title}, 
 			D_DETAIL = #{detail}
-		WHERE D_IDX = #{idx}
+		WHERE
+			D_IDX = #{idx}
 	]]>
 	</update>
 
@@ -131,14 +139,19 @@
 	</update>
 
 	<!-- -->
-	<select id="searchDisappearance" parameterType="findsVO"
-		resultMap="disappearanceListResultMap">
+	<select id="matchDisappearance" parameterType="findsVO"	resultMap="disappearanceListResultMap">
 		<![CDATA[
-		SELECT * FROM DISAPPEARANCE WHERE D_COLOR=#{color} AND D_DOG=#{dog} AND D_GENDER=#{gender} AND D_SIZE=#{size}
+		SELECT 
+			* 
+		FROM 
+			DISAPPEARANCE 
+		WHERE
+			D_COLOR=#{color} AND D_DOG=#{dog} AND D_GENDER=#{gender} AND D_SIZE=#{size}
 		]]>
 	</select>
 
 
+	<!-- 사진을 다운로드 하기위해 -->
 	<select id="selectFileInfo" parameterType="hashmap" resultType="hashmap">
     <![CDATA[
         SELECT
@@ -150,6 +163,55 @@
             D_BOARD_IDX = #{idx}
     ]]>
 	</select>
+	
+	
+	<select id="idcheckDisappearance" parameterType="String" resultType="String">
+		<![CDATA[
+		SELECT 
+			D_ID 
+		FROM 
+			DISAPPEARANCE 
+		WHERE
+			D_IDX=#{idx}
+		]]>
+	</select>
+	
+	
+	
+	<select id="disappearanceImg" parameterType="hashmap">
+		<![CDATA[
+		SELECT 
+			D_STORED_FILE_NAME
+		FROM 
+			DISAPPEARANCE A
+     		 INNER JOIN DISAPPEARANCE_FILE B
+     				ON A.D_IDX = B.D_BOARD_IDX
+		WHERE
+			A.D_IDX = #{idx};
+		]]>
+	</select>
+	
+	
+	<select id="searchDisappearance" parameterType="hashmap" resultMap="disappearanceListResultMap">
 
+		  SELECT
+		  	*
+		  FROM
+		  	DISAPPEARANCE
+		  WHERE
+			<choose>
+			    <when test="searchoption == 'title'">
+			       D_TITLE like '%' ||  #{searchtext} || '%'
+			    </when>
+			    <when test="searchoption == 'contents'">
+			       D_DETAIL like '%' ||  #{searchtext} || '%'
+			    </when>
+			    <otherwise>
+			       D_TITLE like '%' ||  #{searchtext} || '%' OR D_DETAIL like '%' ||  #{searchtext} || '%'
+			    </otherwise>
+			</choose>
+		
+	</select>
+	
 </mapper>
 

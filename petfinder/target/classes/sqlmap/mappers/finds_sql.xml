@@ -64,6 +64,18 @@
             F_BOARD_IDX = #{idx}
     ]]>
    </select> 
+   
+   	<select id="selectFileInfo" parameterType="hashmap" resultType="hashmap">
+    <![CDATA[
+        SELECT
+            F_STORED_FILE_NAME,
+            F_ORIGINAL_FILE_NAME
+        FROM
+            FINDS_FILE
+        WHERE
+            F_BOARD_IDX = #{idx}
+    ]]>
+	</select>
 
    <select id="deleteFinds" parameterType="String">
     <![CDATA[
@@ -77,7 +89,7 @@
     ]]>
    </select>
    
-   <select id="searchFinds" parameterType="disappearanceVO" resultMap="findsResultMap">
+   <select id="matchFinds" parameterType="disappearanceVO" resultMap="findsResultMap">
 		<![CDATA[
 		SELECT * FROM FINDS WHERE F_COLOR=#{color} AND F_DOG=#{dog} AND F_GENDER=#{gender} AND F_SIZE=#{size}
 		]]>
@@ -87,6 +99,7 @@
 		<![CDATA[
 		UPDATE FINDS
 		SET F_NAME = #{name},
+			F_PASSWORD = #{pwd},
 			F_PHONE = #{phone},
 			F_DOG = #{dog},
 			F_SIZE = #{size},
@@ -102,27 +115,26 @@
 		
 	<update id="updateFindsFile" parameterType="hashmap">
 		<![CDATA[
-		UPDATE FINDS_FILE
-		SET	F_ORIGINAL_FILE_NAME = #{F_ORIGINAL_FILE_NAME},
-			F_STORED_FILE_NAME = #{F_STORED_FILE_NAME},
-			F_FILE_SIZE = #{F_FILE_SIZE}
-		WHERE F_BOARD_IDX = CAST(#{F_BOARD_IDX} as INTEGER)
-		]]>
+		MERGE INTO FINDS_FILE
+		USING DUAL
+		ON (F_BOARD_IDX = #{F_BOARD_IDX})
+		WHEN MATCHED THEN
+             UPDATE SET
+                  F_ORIGINAL_FILE_NAME = #{F_ORIGINAL_FILE_NAME},
+                  F_STORED_FILE_NAME = #{F_STORED_FILE_NAME},
+                  F_FILE_SIZE =  #{F_FILE_SIZE}
+		WHEN NOT MATCHED THEN
+             INSERT(F_FILE_IDX, F_BOARD_IDX, F_ORIGINAL_FILE_NAME, F_STORED_FILE_NAME, F_FILE_SIZE) 
+             VALUES(SEQ_FINDS_FILE_IDX.NEXTVAL, #{F_BOARD_IDX}, #{F_ORIGINAL_FILE_NAME}, #{F_STORED_FILE_NAME}, #{F_FILE_SIZE})
+            ]]>
 	</update>
 	
-	<select id="selectFileInfo" parameterType="hashmap" resultType="hashmap">
-    <![CDATA[
-        SELECT
-            F_STORED_FILE_NAME,
-            F_ORIGINAL_FILE_NAME
-        FROM
-            FINDS_FILE
-        WHERE
-            F_BOARD_IDX = #{idx}
-    ]]>
-</select>
-
-
+	<select id="getpassword" parameterType="hashmap" resultType="String">
+      <![CDATA[
+      SELECT F_PASSWORD FROM FINDS WHERE F_PASSWORD=#{pwd} AND F_IDX=#{idx}
+      ]]>
+	</select>
+	
 	
 </mapper>
 

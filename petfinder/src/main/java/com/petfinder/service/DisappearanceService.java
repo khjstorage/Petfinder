@@ -1,5 +1,6 @@
 package com.petfinder.service;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -77,7 +78,7 @@ public interface DisappearanceService {
 	 * @return List<FindsVO>
 	 * @throws 
 	 */
-	public List<FindsVO> searchDisappearance(DisappearanceVO disappearanceVO);
+	public List<FindsVO> matchDisappearance(DisappearanceVO disappearanceVO);
 
 	/**
 	 * 분실게시판 사진다운로드를 처리하기 위해 데이터처리를 요청한다.
@@ -87,5 +88,23 @@ public interface DisappearanceService {
 	 * @throws 
 	 */
 	public Map<String, Object> selectFileInfo(String idx) throws Exception;
+	
+	/** 
+	 * 해당게시물의 등록한 아이디를 확인하기 위해 데이터처리를 요청한다.
+	 * 
+	 * @param String idx
+	 * @return String
+	 * @throws 
+	 */
+	public String idCheck(String idx);
+	
+	/** 
+	 * 작성된 글을 조회하기 위해 데이터처리를 요청한다.
+	 * 
+	 * @param HashMap<String, String> map
+	 * @return List<DisappearanceVO>
+	 * @throws 
+	 */
+	public List<DisappearanceVO> searchDisappearance(HashMap<String, String> map);
 }
 

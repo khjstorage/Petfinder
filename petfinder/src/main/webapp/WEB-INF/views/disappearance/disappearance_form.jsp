@@ -5,6 +5,12 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>분실게시판 글쓰기</title>
+<script type="text/javascript">
+	$(document).ready(function() {
+		// 페이지 포커스
+		$("#pageFocusDisList").addClass("pageFocus");
+	});
+</script>
 </head>
 <body>
    <div class="containor">
@@ -20,7 +26,7 @@
                      <th>애견 사진</th>
                      <td><input type="file" accept="image/*" name="disappearance_file" multiple="multiple" /></td>
                      <th>아이디</th>
-                     <td><input type="text" name="id" placeholder="아이디" /></td>
+                     <td><input type="text" name="id" placeholder="아이디" value="${id}" readOnly /></td>
                   </tr>
                   <tr>
                      <th>색상</th>
