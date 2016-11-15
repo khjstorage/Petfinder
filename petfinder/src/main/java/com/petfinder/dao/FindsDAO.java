@@ -10,7 +10,6 @@ import org.springframework.stereotype.Repository;
 
 import com.petfinder.vo.DisappearanceVO;
 import com.petfinder.vo.FindsVO;
-
 /**
  * 발견정보에 관한 데이터처리 DAO 클래스
  * 
@@ -143,7 +142,7 @@ public class FindsDAO {
 	}
 	
 	/**
-	 * DB에서 발견글사진을 (조회) 한다.
+	 * DB에서 발견글사진을 (조회) 한다. 다운로드에 필요한컬럼
 	 * 
 	 * @param String idx
 	 * @return Map<String, Object>
@@ -153,6 +152,19 @@ public class FindsDAO {
 	    return sqlSession.selectOne("finds.selectFileInfo", idx);
 	}
 
+	/**
+	 * DB에서 입력한 내용을 (조회) 한다.
+	 * 
+	 * @param HashMap<String, String> map
+	 * @return List<DisappearanceVO>
+	 * @throws Exception
+	 */
+	public List<FindsVO> searchFinds(HashMap<String, String> map){
+		return sqlSession.selectList("finds.searchFinds", map);
+	}
+	
+	
+	
 	public String getPwd(HashMap<String, String> map) {
 		return sqlSession.selectOne("finds.getpassword", map);
 	}

@@ -88,6 +88,16 @@ public interface FindsService {
 	 */
 	public Map<String, Object> selectFileInfo(String idx) throws Exception;
 
+	
+	/** 
+	 * 작성된 글을 조회하기 위해 데이터처리를 요청한다.
+	 * 
+	 * @param HashMap<String, String> map
+	 * @return List<FindsVO>
+	 * @throws 
+	 */
+	public List<FindsVO> searchFinds(HashMap<String, String> map);
+	
 	public String nonMemberUpdate(HashMap<String, String> map);
 
 }

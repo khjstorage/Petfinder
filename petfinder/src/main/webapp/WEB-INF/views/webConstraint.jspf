@@ -13,20 +13,7 @@
 		$("#preferences").click(function() {
 			$(".preferences").toggleClass("hide");
 		});
-		// 모바일 메뉴 토글
-		$(".hamburger").click(function() {
-			$(this).toggleClass("is-active");
-			$("#navList").toggleClass("hide");
-		});
-		// 모바일 검색 메뉴 토글
-		$("#contentsSearch").click(function() {
-			$(".contentsSearch").toggleClass("hide");
-			if ($(this).val() == "조회") {
-				$(this).val("취소");
-			} else if ($(this).val() == "취소") {
-				$(this).val("조회");
-			}
-		});
+		
 		// 페이지 포커스
 		if (location.href.match("finds")) {
 			$("#pageFocusFindList").addClass("pageFocus");

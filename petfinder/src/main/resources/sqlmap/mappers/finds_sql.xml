@@ -135,6 +135,25 @@
       ]]>
 	</select>
 	
+	<select id="searchFinds" parameterType="hashmap" resultMap="findsResultMap">
+		  SELECT
+		  	*
+		  FROM
+		  	FINDS
+		  WHERE
+			<choose>
+			    <when test="searchoption == 'title'">
+			       F_TITLE like '%' ||  #{searchtext} || '%'
+			    </when>
+			    <when test="searchoption == 'contents'">
+			       F_DETAIL like '%' ||  #{searchtext} || '%'
+			    </when>
+			    <otherwise>
+			       F_TITLE like '%' ||  #{searchtext} || '%' OR F_DETAIL like '%' ||  #{searchtext} || '%'
+			    </otherwise>
+			</choose>
+	</select>
+	
 	
 </mapper>
 

@@ -26,9 +26,9 @@
                      <th>색상</th>
                      <td>
                         <select name="color">
-                           <option value="" selected>색상</option>
-                           <option value="검정">검정</option>
-                           <option value="흰색">흰색</option>
+                           <c:forEach var="color" items="${colorList}">
+                          		<option value="${color}" <c:if test="${color eq map.infoMap.D_COLOR}">selected="selected"</c:if>>${color}</option>
+                           </c:forEach>
                         </select>
                      </td>
                      <th>연락처</th>
@@ -38,12 +38,9 @@
                      <th>견종</th>
                      <td>
                         <select name="dog">
-                           <option value="" selected>견종</option>
-                           <option value="김대성">김대성</option>
-                           <option value="김현진">김현진</option>
-                           <option value="김지원">김지원</option>
-                           <option value="김현우">김현우</option>
-                           <option value="최주혁">최주혁</option>
+                            <c:forEach var="dog" items="${dogList}">
+                           		<option value="${dog}" <c:if test="${dog eq map.infoMap.D_DOG}">selected="selected"</c:if>>${dog}</option>
+                         	</c:forEach>
                         </select>
                      </td>
                      <th>비상연락망</th>

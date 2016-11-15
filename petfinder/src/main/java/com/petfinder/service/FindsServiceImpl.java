@@ -139,6 +139,18 @@ public class FindsServiceImpl implements FindsService{
 	    return findsDAO.selectFileInfo(idx);
 	}
 
+	/** 
+	 * 작성된 글을 조회하기 위해 데이터처리를 요청한다.
+	 * 
+	 * @param HashMap<String, String> map
+	 * @return List<DisappearanceVO>
+	 * @throws 
+	 */
+	@Override
+	public List<FindsVO> searchFinds(HashMap<String, String> map){
+		return findsDAO.searchFinds(map);
+	}
+	
 	@Override
 	public String nonMemberUpdate(HashMap<String, String> map) {
 		return findsDAO.getPwd(map);

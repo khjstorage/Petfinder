@@ -10,7 +10,6 @@ import org.springframework.stereotype.Repository;
 
 import com.petfinder.vo.DisappearanceVO;
 import com.petfinder.vo.FindsVO;
-
 /**
  * 분실정보에 관한 데이터처리 DAO 클래스
  * 
@@ -143,7 +142,7 @@ public class DisappearanceDAO {
 	}
 	
 	/**
-	 * DB에서 분실글사진을 (조회) 한다.
+	 * DB에서 분실글사진을 (조회) 한다. 다운로드에 필요한컬럼
 	 * 
 	 * @param String idx
 	 * @return Map<String, Object>

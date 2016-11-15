@@ -13,13 +13,15 @@
 		<div class="mainContents">
 			<h2 style="float:left;">발견 게시판</h2>
 			<a href="finds_form.do"> <input type="button" id="write" style="float:right" class="rightTopButtons" value="글쓰기" /></a>
-			<a> <input type="submit" class="rightTopButtons" value="조회" /></a>
-         	<input type="text" class="rightTopButtons" />
-	         <select class="rightTopButtons" style="height:52px;">
-	            <option value="">제목/내용</option>
-	            <option value="">제목만</option>
-	            <option value="">내용만</option>
-	         </select>
+			<form action="finds_search.do" method="post" enctype="multipart/form-data">
+            <input type="submit" class="rightTopButtons" value="조회" />
+               <input type="text" class="rightTopButtons" name="searchtext"/>
+               <select class="rightTopButtons" name="searchoption" style="height:52px;">
+                  <option value="title_contents">제목/내용</option>
+                  <option value="title">제목만</option>
+                  <option value="contents">내용만</option>
+               </select>
+            </form>
 			<div class="page">
 				<c:choose>
 					<c:when test="${fn:length(findslist) > 0}">

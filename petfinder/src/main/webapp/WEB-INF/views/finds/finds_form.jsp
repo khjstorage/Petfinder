@@ -45,7 +45,7 @@
 									<option value="최주혁">최주혁</option>
 							</select></td>
 							<th>비밀번호</th>
-							<td><input type="text" name="pwd" placeholder="비밀번호" /></td>
+							<td><input type="password" name="pwd" placeholder="비밀번호" /></td>
 						</tr>
 						<tr>
 							<th>성별</th>

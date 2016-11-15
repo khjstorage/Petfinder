@@ -47,7 +47,7 @@
                         </select>
                      </td>
                      <th>비밀번호</th>
-                     <td><input type="text" name="pwd" placeholder="비밀번호" value="${map.infoMap.F_PASSWORD}" /></td>
+                     <td><input type="password" name="pwd" placeholder="비밀번호" value="${map.infoMap.F_PASSWORD}" /></td>
                   </tr>
                   <tr>
                      <th>성별</th>

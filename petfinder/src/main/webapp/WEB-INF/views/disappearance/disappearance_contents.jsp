@@ -14,7 +14,6 @@
 			<h2 class="floatLeft">실종게시판 CONTENTS</h2>
 			<a href="disappearance_list.do"><input type="button"
 				class="rightTopButtons" value="목록으로" /></a>
-
 			<c:choose>
 				<c:when test="${idcheck.equals('permission')}">
 					<a href="disappearance_delete.do?idx=${map.D_IDX}"><input

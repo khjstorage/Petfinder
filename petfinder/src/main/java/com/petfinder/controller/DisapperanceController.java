@@ -2,6 +2,7 @@ package com.petfinder.controller;
 
 import java.io.File;
 import java.net.URLEncoder;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -140,6 +141,19 @@ public class DisapperanceController {
 		mv.addObject("map", map);
 		HashMap<String, Object> infoMap = (HashMap<String, Object>)map.get("infoMap");
 		if(session.getAttribute("id").equals(infoMap.get("D_ID"))){
+			List<String> colorList = new ArrayList<String>();
+			colorList.add("색상");
+			colorList.add("검정");
+			colorList.add("흰색");
+			mv.addObject("colorList", colorList);
+			List<String> dogList = new ArrayList<String>();
+			dogList.add("견종");
+			dogList.add("김대성");
+			dogList.add("김현진");
+			dogList.add("김지원");
+			dogList.add("최주혁");
+			dogList.add("김현우");
+			mv.addObject("dogList", dogList);
 			mv.setViewName("disappearance/disappearance_update");
 		}else{
 			mv.setViewName("redirect:disappearance_list.do");

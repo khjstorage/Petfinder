@@ -99,6 +99,29 @@ public class FindsController {
 		mv.setViewName("finds/finds_contents");
 		return mv;
 	}
+	
+	
+	 
+    /**
+     * 발견글의 패스워드 화면에서 해당 글에 패스워드가 일치하면 삭제된다.
+     * @param @RequestParam("pwd") String pwd 
+     * @param @RequestParam("idx") String idx
+     * @return "redirect:finds_delete.do?idx="+idx
+     * @return "redirect:finds_password.do?idx="+idx
+     */
+   @RequestMapping("/finds_contendsDelete")
+    public String finds_deleteProcess(@RequestParam("pwd") String pwd, @RequestParam("idx") String idx){
+    	HashMap<String, String> map = new HashMap<String, String>();
+    	map.put("pwd", pwd);
+    	map.put("idx", idx);
+    	String account = findsService.nonMemberUpdate(map);
+    	 if(pwd.equals(account)){
+    		 return "redirect:finds_delete.do?idx="+idx;
+    	 }else{
+    		 return "redirect:finds_contents.do?idx="+idx;
+    	}
+    }
+   		
 	/**
 	 * 발견정보 삭제 후 목록조회 화면으로 이동한다.
 	 * @param @RequestParam("idx") String idx
@@ -111,6 +134,32 @@ public class FindsController {
 		return "redirect:finds_list.do";
 	}
 	
+	
+	
+	
+	
+	
+	   
+	/**
+     * 발견글의 패스워드 화면에서 해당 글에 패스워드가 일치하면 수정 화면으로 이동한다.
+     * @param @RequestParam("pwd") String pwd 
+     * @param @RequestParam("idx") String idx
+     * @return "redirect:finds_update.do?idx="+idx
+     * @return "redirect:finds_password.do?idx="+idx
+     */
+    @RequestMapping("/finds_password")
+    public String finds_process(@RequestParam("pwd") String pwd, @RequestParam("idx") String idx){
+    	HashMap<String, String> map = new HashMap<String, String>();
+    	map.put("pwd", pwd);
+    	map.put("idx", idx);
+    	String account = findsService.nonMemberUpdate(map);
+    	 if(pwd.equals(account)){
+    		 return "redirect:finds_update.do?idx="+idx;
+    	 }else{
+    		 return "redirect:finds_contents.do?idx="+idx;
+    	}
+    }
+	    
 
 	/**
 	 * 발견정보 수정 화면으로 이동한다.
@@ -127,6 +176,7 @@ public class FindsController {
 		mv.setViewName("finds/finds_update");
 		return mv;
 	}
+	
 	/** 
 	 * 분실정보 수정하고 목록조회 화면으로 이동한다.
 	 * @param1 @ModelAttribute("findsVO")FindsVO findsVO
@@ -139,6 +189,9 @@ public class FindsController {
 		findsService.updateFinds(findsVO, request);
 		return "redirect:finds_list.do";
 	}
+	
+	
+	
 	
 	/** 
 	 * 파일 다운로드
@@ -181,46 +234,28 @@ public class FindsController {
 		return mv;
 	}
 	
-    
-	/**
-     * 발견글의 패스워드 화면에서 해당 글에 패스워드가 일치하면 수정 화면으로 이동한다.
-     * @param @RequestParam("pwd") String pwd 
-     * @param @RequestParam("idx") String idx
-     * @return "redirect:finds_update.do?idx="+idx
-     * @return "redirect:finds_password.do?idx="+idx
-     */
-    @RequestMapping("/finds_password")
-    public String finds_process(@RequestParam("pwd") String pwd, @RequestParam("idx") String idx){
-    	HashMap<String, String> map = new HashMap<String, String>();
-    	map.put("pwd", pwd);
-    	map.put("idx", idx);
-    	String account = findsService.nonMemberUpdate(map);
-    	 if(pwd.equals(account)){
-    		 return "redirect:finds_update.do?idx="+idx;
-    	 }else{
-    		 return "redirect:finds_contents.do?idx="+idx;
-    	}
-    }
-    
-    /**
-     * 발견글의 패스워드 화면에서 해당 글에 패스워드가 일치하면 삭제된다.
-     * @param @RequestParam("pwd") String pwd 
-     * @param @RequestParam("idx") String idx
-     * @return "redirect:finds_delete.do?idx="+idx
-     * @return "redirect:finds_password.do?idx="+idx
-     */
-   @RequestMapping("/finds_contendsDelete")
-    public String finds_deleteProcess(@RequestParam("pwd") String pwd, @RequestParam("idx") String idx){
-    	HashMap<String, String> map = new HashMap<String, String>();
-    	map.put("pwd", pwd);
-    	map.put("idx", idx);
-    	String account = findsService.nonMemberUpdate(map);
-    	 if(pwd.equals(account)){
-    		 return "redirect:finds_delete.do?idx="+idx;
-    	 }else{
-    		 return "redirect:finds_contents.do?idx="+idx;
-    	}
-    }
+
+	/** 
+	 * 조회기능
+	 * @param @RequestParam("searchtext") String searchtext	
+	 * @param @RequestParam("searchoption") String searchoption
+	 * @return mv.addObject("disappearancelist", list)
+	 * @return mv.setViewName("disappearance/disappearance_list")
+	 * @throws Exception
+	 */
+	@RequestMapping("/finds_search")
+	public ModelAndView finds_search(@RequestParam("searchtext") String searchtext,	@RequestParam("searchoption") String searchoption) throws Exception {
+		ModelAndView mv = new ModelAndView();
+		HashMap<String, String> map = new HashMap<String, String>();
+		map.put("searchtext", searchtext);
+		map.put("searchoption", searchoption);
+		List<FindsVO> list = findsService.searchFinds(map);
+		mv.addObject("findslist", list);
+		mv.setViewName("finds/finds_list");
+		return mv;
+	}
     
     
+   
+   
 }

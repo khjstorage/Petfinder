@@ -12,7 +12,21 @@ import org.springframework.stereotype.Service;
 import com.petfinder.dao.MemberDAO;
 import com.petfinder.utill.MemberFileUtils;
 import com.petfinder.vo.MemberVO;
-
+/**
+ * 회원정보 CRUD 요청을 처리하는 비즈니스 클래스
+ * 
+ * @author  1조
+ * @since 2016.11.14
+ * @version 1.0
+ * @see <pre>
+ *  == 개정이력(Modification Information) ==
+ *   
+ *          수정일          수정자           수정내용
+ *  ----------------    ------------    ---------------------------
+ *   2016.11.14        1조             최초 생성
+ * 
+ * </pre>
+ */
 @Service("memberService")
 public class MemberServiceImpl implements MemberService {
 
