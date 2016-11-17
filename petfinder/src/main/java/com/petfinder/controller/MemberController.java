@@ -32,6 +32,7 @@ import com.petfinder.vo.MemberVO;
  * </pre>
  */
 @Controller
+@RequestMapping("/member")
 public class MemberController {
 
 	@Resource(name="memberService")
@@ -44,9 +45,9 @@ public class MemberController {
 	 * @return
 	 * @throws 
 	 */
-	@RequestMapping("/member/register.do")
+	@RequestMapping("/register.do")
 	public String register() {
-		return "member/register";
+		return "/member/register";
 	}
 
 	
@@ -59,7 +60,7 @@ public class MemberController {
 	@RequestMapping("/signup")
 	public String signup(@ModelAttribute("memberVO")MemberVO memberVO, HttpServletRequest request) throws Exception{
 		memberService.insertMember(memberVO, request);
-		return "redirect:main.do";
+		return "redirect:/main.do";
 	}
 
 
@@ -69,9 +70,9 @@ public class MemberController {
 	 * @return
 	 * @throws 
 	 */
-	@RequestMapping("/member/login.do")
+	@RequestMapping("/login.do")
 	public String login() {
-		return "member/login";
+		return "/member/login";
 	}
 
 	/** 
@@ -88,10 +89,10 @@ public class MemberController {
 		map.put("pwd", pwd);
 		if(memberService.loginMember(map).equals(id)){
 			session.setAttribute("id",id);
-			return mv = new ModelAndView("redirect:main.do");
+			return mv = new ModelAndView("redirect:/main.do");
 		}else{
 			session.setAttribute("idfail",id);
-			return mv = new ModelAndView("redirect:login.do");
+			return mv = new ModelAndView("redirect:/member/login.do");
 		}
 	}
 	
@@ -101,12 +102,12 @@ public class MemberController {
 	 * @return
 	 * @throws 
 	 */
-	@RequestMapping("/member/mypage.do")
+	@RequestMapping("/mypage.do")
 	public ModelAndView mypage(HttpSession session) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		List<MemberVO> list = memberService.getMember((String) session.getAttribute("id"));
 		mv.addObject("memberlist", list);
-		mv.setViewName("member/mypage");
+		mv.setViewName("/member/mypage");
 		return mv;
 	}
 
@@ -121,7 +122,7 @@ public class MemberController {
 	public String logout(HttpSession session){
 		session.removeAttribute("id");
 		session.invalidate();
-		return "redirect:main.do";
+		return "redirect:/main.do";
 	}
 	
 	/** 
@@ -130,7 +131,7 @@ public class MemberController {
 	 * @return
 	 * @throws 
 	 */
-	@RequestMapping("/deleteMember.do")
+	@RequestMapping("/delete.do")
 	public String deleteMember(HttpSession session){
 		String id = (String) session.getAttribute("id");
 		//id넘겨줘서 쿼리문 실행
@@ -138,7 +139,7 @@ public class MemberController {
 		//session삭제
 		session.removeAttribute("id");
 		session.invalidate();
-		return "redirect:main.do";
+		return "redirect:/main.do";
 	}
 
 	/** 
@@ -147,10 +148,10 @@ public class MemberController {
 	 * @return
 	 * @throws 
 	 */
-	@RequestMapping("/updateMember.do")
+	@RequestMapping("/update.do")
 	public String updateMember(@ModelAttribute("memberVO")MemberVO memberVO, HttpServletRequest request) throws Exception{
 		memberService.updateMember(memberVO, request);
-		return "redirect:main.do";
+		return "redirect:/main.do";
 	}
 
 }

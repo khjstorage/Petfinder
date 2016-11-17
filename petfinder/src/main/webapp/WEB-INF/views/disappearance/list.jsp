@@ -10,7 +10,7 @@
 		<div class="mainContents">
 			<h2 style="float: left;">실종게시판</h2>
 			<a href="<c:url value='/disappearance/write.do'/>"><input type="button" id="write" class="rightTopButtons" value="글쓰기" /></a>
-				<form action="<c:url value='/search.do'/>" method="post" enctype="multipart/form-data">
+				<form action="<c:url value='/disappearance/search.do'/>" method="post" enctype="multipart/form-data">
 		            <input type="submit" class="rightTopButtons" value="조회" />
 		               <input type="text" class="rightTopButtons" name="keyWord_search"/>
 		               <select class="rightTopButtons" name="selection_search" style="height:52px;">

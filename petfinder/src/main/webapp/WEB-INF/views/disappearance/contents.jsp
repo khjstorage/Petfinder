@@ -12,12 +12,12 @@
 			<a href="<c:url value='/disappearance/list.do'/>"><input type="button" class="rightTopButtons" value="목록으로" /></a>
 			<c:choose>
 				<c:when test="${idcheck.equals('permission')}">
-					<a href="<c:url value='/delete.do?idx=${map.D_IDX}'/>"><input type="button" class="rightTopButtons" value="삭제" /></a>
+					<a href="<c:url value='/disappearance/delete.do?idx=${map.D_IDX}'/>"><input type="button" class="rightTopButtons" value="삭제" /></a>
 					<a href="<c:url value='/disappearance/edit.do?idx=${map.D_IDX}'/>"><input type="button" class="rightTopButtons" value="수정" /></a>
 					<c:remove scope="session" var="idcheck" />
 				</c:when>
 			</c:choose>
-			<a href="<c:url value='/match.do?color=${map.D_COLOR}&dog=${map.D_DOG}&gender=${map.D_GENDER}&size=${map.D_SIZE}'/>"><input type="button" class="rightTopButtons" value="매칭" /></a>
+			<a href="<c:url value='/disappearance/match.do?color=${map.D_COLOR}&dog=${map.D_DOG}&gender=${map.D_GENDER}&size=${map.D_SIZE}'/>"><input type="button" class="rightTopButtons" value="매칭" /></a>
 				<div class="editorTool floatLeft">
 					<table>
 						<tr>
@@ -26,7 +26,7 @@
 			 						<c:when test="${fn:length(file) > 0 }"> 
 										<c:forEach var="row" items="${file }">
 			                      		<input type="hidden" id="IDX" value="${row.D_BOARD_IDX }">
-			                        	<a href="<c:url value='/download.do?idx=${map.D_IDX}'/>" name="file">${row.D_ORIGINAL_FILE_NAME }</a>
+			                        	<a href="<c:url value='/disappearance/download.do?idx=${map.D_IDX}'/>" name="file">${row.D_ORIGINAL_FILE_NAME }</a>
 			                        	(${row.D_FILE_SIZE } (KB)
 				                        </c:forEach> 
 									</c:when>				

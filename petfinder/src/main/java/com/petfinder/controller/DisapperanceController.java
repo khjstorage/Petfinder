@@ -38,6 +38,7 @@ import com.petfinder.vo.FindsVO;
  * </pre>
  */
 @Controller
+@RequestMapping("/disappearance")
 public class DisapperanceController {
 
     @Resource(name="disappearanceService")
@@ -50,12 +51,12 @@ public class DisapperanceController {
 	 * @return "disappearance/disappearancelist"
 	 * @throws 
 	 */
-	@RequestMapping("/disappearance/list.do")
+	@RequestMapping("/list.do")
 	public ModelAndView disappearancelist() {
 		ModelAndView mv = new ModelAndView();
 		List<DisappearanceVO> list = disappearanceService.disappearanceList();
 		mv.addObject("disappearancelist", list);
-		mv.setViewName("disappearance/list");
+		mv.setViewName("/disappearance/list");
 		return mv;
 	}
 		
@@ -70,7 +71,7 @@ public class DisapperanceController {
 	 * @return "disappearance/disappearance_contents"
 	 * @throws Exception
 	 */
-	@RequestMapping("/disappearance/contents.do")
+	@RequestMapping("/contents.do")
 	public ModelAndView disappearance_contents(HttpSession session, @RequestParam("idx") String idx) throws Exception {
 		String id = (String)session.getAttribute("id");
 		String idcheck = disappearanceService.idCheck(idx);
@@ -81,7 +82,7 @@ public class DisapperanceController {
 		Map<String,Object> map = disappearanceService.selectBoardDetail(idx);
 		mv.addObject("map", map.get("infoMap"));
 		mv.addObject("file", map.get("fileMap"));;
-		mv.setViewName("disappearance/contents");
+		mv.setViewName("/disappearance/contents");
 		return mv;
 	}
 			
@@ -93,12 +94,12 @@ public class DisapperanceController {
 	 * @return "redirect:login.do";
 	 * @throws Exception
 	 */
-	@RequestMapping("/disappearance/write.do")
+	@RequestMapping("/write.do")
 	public String disappearance_form(HttpSession session) {
 		if(session.getAttribute("id")!=null){
-			return "disappearance/write";
+			return "/disappearance/write";
 		}else{
-			return "redirect:login.do";
+			return "redirect:/member/login.do";
 		}
 	}
 		
@@ -113,7 +114,7 @@ public class DisapperanceController {
 	@RequestMapping("/create.do")
 	public String disappearance_write(@ModelAttribute("disappearanceVO")DisappearanceVO disappearanceVO, HttpServletRequest request) throws Exception {
 		disappearanceService.insertDisappearance(disappearanceVO, request);
-		return "redirect:disappearance/list.do";
+		return "redirect:/disappearance/list.do";
 	}
 	
 
@@ -127,7 +128,7 @@ public class DisapperanceController {
 	@RequestMapping("/delete.do")
 	public String disappearance_delete(@RequestParam("idx") String idx) {
 		disappearanceService.deleteDisappearance(idx);
-		return "redirect:disappearance/list.do";
+		return "redirect:/disappearance/list.do";
 	}
 	
 	
@@ -140,16 +141,16 @@ public class DisapperanceController {
 	 * @return "disappearance/disappearance_update"
 	 * @throws Exception
 	 */
-	@RequestMapping("/disappearance/edit.do")
+	@RequestMapping("/edit.do")
 	public ModelAndView disappearance_update(HttpSession session, @RequestParam("idx") String idx) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		Map<String,Object> map = disappearanceService.selectBoardDetail(idx);
 		mv.addObject("map", map);
 		HashMap<String, Object> infoMap = (HashMap<String, Object>)map.get("infoMap");
 		if(session.getAttribute("id").equals(infoMap.get("D_ID"))){
-			mv.setViewName("disappearance/edit");
+			mv.setViewName("/disappearance/edit");
 		}else{
-			mv.setViewName("redirect:disappearance/list.do");
+			mv.setViewName("redirect:/disappearance/list.do");
 		}
 		return mv;
 	}
@@ -166,7 +167,7 @@ public class DisapperanceController {
 	@RequestMapping("/update.do")
 	public String disappearance_update_pro(@ModelAttribute("disappearanceVO")DisappearanceVO disappearanceVO, HttpServletRequest request) throws Exception {
 		disappearanceService.updateDisappearance(disappearanceVO, request);
-		return "redirect:disappearance/list.do";
+		return "redirect:/disappearance/list.do";
 	}
 	
 	
@@ -194,7 +195,7 @@ public class DisapperanceController {
 	 * @param2 HttpServletResponse response
 	 * @throws Exception
 	 */
-	@RequestMapping("/download")
+	@RequestMapping("/download.do")
 	public void disappearance_download(@RequestParam("idx") String idx, HttpServletResponse response) throws Exception{
 		Map<String, Object> map = disappearanceService.selectFileInfo(idx);
 	    String storedFileName = (String)map.get("D_STORED_FILE_NAME");
@@ -229,7 +230,7 @@ public class DisapperanceController {
 		map.put("selection_search", selection_search);
 		List<DisappearanceVO> list = disappearanceService.searchDisappearance(map);
 		mv.addObject("disappearancelist", list);
-		mv.setViewName("disappearance/list");
+		mv.setViewName("/disappearance/list");
 		return mv;
 	}
 }

@@ -10,8 +10,8 @@
 <div class="containor">
 	<div class="mainContents">
 	  <h2 style="float: left;">My Page</h2>
-	  <form action="/updateMember.do" method="post" enctype="multipart/form-data">
-	  	<a href="<c:url value='/deleteMember.do'/>"><input class="rightTopButtons" type="button" value="탈퇴" /></a>
+	  <form action="/member/update.do" method="post" enctype="multipart/form-data">
+	  	<a href="<c:url value='/member/delete.do'/>"><input class="rightTopButtons" type="button" value="탈퇴" /></a>
 	  	<input class="rightTopButtons" type="submit" value="수정" />
 	  	<c:forEach items="${memberlist}" var="member">
 	      	<div class="editorTool">

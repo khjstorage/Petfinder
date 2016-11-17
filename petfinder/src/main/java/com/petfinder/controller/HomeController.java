@@ -43,7 +43,7 @@ public class HomeController {
 	 * @return
 	 * @throws 
 	 */
-	@RequestMapping("/main")
+	@RequestMapping("/main.do")
 	public ModelAndView main() {
 		ModelAndView mv = new ModelAndView();
 		List<DisappearanceVO> dlist = disappearanceService.disappearanceList();

@@ -9,7 +9,7 @@
 	<div class="containor">
     	<div class="mainContents">
         <h2 style="float:left;">실종게시판 수정</h2>
-        	<form id="" action="/update.do?idx=${map.infoMap.D_IDX}" method="post" enctype="multipart/form-data">
+        	<form id="" action="<c:url value='/disappearance/update.do?idx=${map.infoMap.D_IDX}'/>" method="post" enctype="multipart/form-data">
            		<a href="<c:url value='/disappearance/list.do'/>"><input type="button" class="rightTopButtons" value="취소"></a>
            		<input type="submit" class="rightTopButtons" value="수정" />
             	<div class="editorTool" style="float: left;">
@@ -110,10 +110,10 @@
                   <td>
 						<c:choose>
 							<c:when test="${fn:length(map.fileMap ) > 0}">
-								 <c:forEach var="row" items="${map.fileMap }">
-								<input type="hidden" id="IDX" value="${row.D_IDX }">
-								<a name="file">${row.D_ORIGINAL_FILE_NAME }</a> 
-								(${row.D_FILE_SIZE } KB)
+								<c:forEach var="row" items="${map.fileMap }">
+									<input type="hidden" id="IDX" value="${row.D_IDX }">
+									<a name="file">${row.D_ORIGINAL_FILE_NAME }</a> 
+									(${row.D_FILE_SIZE } KB)
 								</c:forEach>
 							</c:when>
 							<c:otherwise>

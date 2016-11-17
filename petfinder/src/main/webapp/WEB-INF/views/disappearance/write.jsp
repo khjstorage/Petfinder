@@ -9,7 +9,7 @@
    <div class="containor">
       <div class="mainContents">
          <h2 style="float:left;">실종게시판 글쓰기</h2>
-         <form id="" action="/create.do" method="post" enctype="multipart/form-data">
+         <form id="" action="/disappearance/create.do" method="post" enctype="multipart/form-data">
             <input type="submit" class="rightTopButtons" value="글쓰기">
             <a href="/disappearance/list.do"><input type="button" class="rightTopButtons" value="뒤로" /></a>
             <div class="editorTool" style="float: left;">

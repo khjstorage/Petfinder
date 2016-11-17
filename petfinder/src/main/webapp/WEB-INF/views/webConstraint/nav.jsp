@@ -26,7 +26,7 @@ $(document).ready(function() {
 					<div class="preferences hide">
 						<img src="../resources/img/preDiv.png"/>
 						<a href="<c:url value='/member/mypage.do'/>"><input type="button" value="마이페이지"></a>
-						<a href="<c:url value='/logout.do'/>"><input type="button" value="로그아웃"></a>
+						<a href="<c:url value='/member/logout.do'/>"><input type="button" value="로그아웃"></a>
 					</div>
 				</c:otherwise>
 			</c:choose>

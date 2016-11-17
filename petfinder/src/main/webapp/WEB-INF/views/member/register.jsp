@@ -11,7 +11,7 @@
       <div class="mainContents">
          <h2>회원가입</h2>
          <div class="signup_form">
-            <form id="signupForm" action="/signup.do" method="post" enctype="multipart/form-data">
+            <form id="signupForm" action="<c:url value='/member/signup.do'/>" method="post" enctype="multipart/form-data">
                <div>
 	               <input type="text" id="" name="id" placeholder="아이디" /> 
 	               <input type="button" value="아이디 중복검사" />
@@ -84,7 +84,7 @@
 	               </div>
 	            </div>
                <input id="submitBtn" type="submit" value="회원가입">
-               <a href="/main.do"><input id="backBtn" type="button" value="취소"></a>
+               <a href="<c:url value='/main.do'/>"><input id="backBtn" type="button" value="취소"></a>
             </form>
          </div>
       </div>

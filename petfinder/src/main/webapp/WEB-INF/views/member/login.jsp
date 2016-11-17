@@ -11,7 +11,7 @@
 		<div class="mainContents">
 			<h2>로그인</h2>
 			<div class="login">
-				<form action="/loginProcess.do" method="post" enctype="multipart/form-data">
+				<form action="/member/loginProcess.do" method="post" enctype="multipart/form-data">
 					<c:choose>
 						<c:when test="${idfail != null}">
 							<p>아이디와 비밀번호를 확인하세요</p>
