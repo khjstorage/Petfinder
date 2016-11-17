@@ -10,8 +10,8 @@
    <div class="containor">
       <div class="mainContents">
          <h2 style="float:left;">발견게시판 수정</h2>
-         <form id="" action="finds_update_pro.do?idx=${map.infoMap.F_IDX}" method="post" enctype="multipart/form-data">
-           <a href="findslist.do"><input type="button" class="rightTopButtons" value="취소"></a>
+         <form id="" action="/finds/update.do?idx=${map.infoMap.F_IDX}" method="post" enctype="multipart/form-data">
+           <a href="/finds/list.do"><input type="button" class="rightTopButtons" value="취소"></a>
            <input type="submit" class="rightTopButtons" value="수정" />
             <div class="editorTool" style="float: left;">
                <table>
@@ -111,22 +111,21 @@
                   <td>
                   	<c:choose>
                   		<c:when test="${fn:length(map.fileMap) > 0 }">
-                       	<c:forEach var="row" items="${map.fileMap }">
-                        <input type="hidden" id="IDX" value="${row.F_IDX }">
-                        <a name="file">${row.F_ORIGINAL_FILE_NAME }</a> 
-                        (${row.F_FILE_SIZE } KB)
-                    	</c:forEach>
+	                       	<c:forEach var="row" items="${map.fileMap }">
+		                        <input type="hidden" id="IDX" value="${row.F_IDX }">
+		                        <a>${row.F_ORIGINAL_FILE_NAME }</a> 
+		                        (${row.F_FILE_SIZE } KB)
+                    		</c:forEach>
                     	</c:when>
-                    	<c:otherwise>
-                    	<div>첨부파일이 없습니다</div>
-                    	</c:otherwise>
-                    	</c:choose>
+	                    <c:otherwise>
+	                    	<div>첨부파일이 없습니다</div>
+	                    </c:otherwise>
+                    </c:choose>
                 	</td>
                   </tr> 
                </table>
             </div>
          </form>
-
       </div>
    </div>
 </body>

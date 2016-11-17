@@ -176,14 +176,14 @@
  		FINDS
 	WHERE
 		<choose>
-		    <when test="searchoption == 'title'">
-		       F_TITLE like '%' ||  #{searchtext} || '%'
+		    <when test="selection_search == 'title'">
+		       F_TITLE like '%' ||  #{keyWord_search} || '%'
 		    </when>
-		    <when test="searchoption == 'contents'">
-		       F_DETAIL like '%' ||  #{searchtext} || '%'
+		    <when test="selection_search == 'contents'">
+		       F_DETAIL like '%' ||  #{keyWord_search} || '%'
 		    </when>
 		    <otherwise>
-		       F_TITLE like '%' ||  #{searchtext} || '%' OR F_DETAIL like '%' ||  #{searchtext} || '%'
+		       F_TITLE like '%' ||  #{keyWord_search} || '%' OR F_DETAIL like '%' ||  #{keyWord_search} || '%'
 		    </otherwise>
 		</choose>
 	</select>

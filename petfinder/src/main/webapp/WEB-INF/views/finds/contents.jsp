@@ -23,13 +23,13 @@ $(document).ready(function() {
    <div class="containor">
       <div class="mainContents">
         <h2 style="float:left;">상세내용</h2>
-        <a href="findslist.do"><input type="button" class="rightTopButtons" value="목록으로" /></a>
+        <a href="<c:url value='/finds/list.do'/>"><input type="button" class="rightTopButtons" value="목록으로" /></a>
 		<input type="button" class="rightTopButtons" id="findsDeleteFormView" value="삭제" />
 		
 		<!-- 발견게시물 삭제 비밀번호 입력 -->
 		<div class="findsDeleteFormView hide">
 			<img src="../resources/img/findsUpdateForm.png"/>
-			<form action="finds_delete_auth.do" method="post" enctype="multipart/form-data">
+			<form action="/finds/delete_auth.do" method="post" enctype="multipart/form-data">
 				<input name="idx" type="hidden" value ="${map.F_IDX}"/>                     
 				<input name="pwd" type="password" placeholder="게시물 비밀번호 입력" /><br />
 				<input type="submit" value="확인" />
@@ -40,15 +40,13 @@ $(document).ready(function() {
 		<!-- 발견게시물 수정 비밀번호 입력 -->
 		<div class="findsUpdateFormView hide">
 			<img src="../resources/img/findsUpdateForm.png"/>
-			<form action="finds_update_auth.do" method="post" enctype="multipart/form-data">
+			<form action="/finds/update_auth.do" method="post" enctype="multipart/form-data">
 				<input name="idx" type="hidden" value ="${map.F_IDX}"/>                     
 				<input name="pwd" type="password" placeholder="게시물 비밀번호 입력" /><br />
 				<input type="submit" value="확인" />
 			</form>
 		</div>
-         
-         <a href="finds_match.do?color=${map.F_COLOR}&dog=${map.F_DOG}&gender=${map.F_GENDER}&size=${map.F_SIZE}"><input type="button" class="rightTopButtons" value="매칭" /></a>
-         <form id="" action="finds_write.do" method="post" enctype="multipart/form-data">
+        <a href="<c:url value='/finds/match.do?color=${map.F_COLOR}&dog=${map.F_DOG}&gender=${map.F_GENDER}&size=${map.F_SIZE}'/>"><input type="button" class="rightTopButtons" value="매칭" /></a>
             <div class="editorTool" style="float: left;">
                <table>
                   <tr>
@@ -57,16 +55,15 @@ $(document).ready(function() {
                       <c:choose> 
  						<c:when test="${fn:length(file) > 0 }"> 
 							<c:forEach var="row" items="${file }">
-                      		<input type="hidden" id="IDX" value="${row.F_BOARD_IDX }">
-                        	<a href="finds_download.do?idx=${map.F_IDX}" name="file">${row.F_ORIGINAL_FILE_NAME }</a>
-                        	(${row.F_FILE_SIZE } (KB)
+	                      		<input type="hidden" id="IDX" value="${row.F_BOARD_IDX }">
+	                        	<a href="/finds/download.do?idx=${map.F_IDX}">${row.F_ORIGINAL_FILE_NAME }</a>
+	                        	(${row.F_FILE_SIZE })(KB)
 	                        </c:forEach> 
 						</c:when>				
 						<c:otherwise> 
 							<div>첨부파일이 없습니다 </div>
 						 </c:otherwise> 
 					</c:choose> 
-                     <!--  <td><input type="file" accept="image/*" multiple="multiple" /></td> -->
                      <th>닉네임</th>
                      <td>${map.F_NAME}</td>
                   </tr>
@@ -115,7 +112,6 @@ $(document).ready(function() {
                   </tr>
                </table>
             </div>
-         </form>
       </div>
    </div>
 </body>

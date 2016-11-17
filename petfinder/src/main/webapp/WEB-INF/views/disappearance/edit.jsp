@@ -112,7 +112,7 @@
 							<c:when test="${fn:length(map.fileMap ) > 0}">
 								<c:forEach var="row" items="${map.fileMap }">
 									<input type="hidden" id="IDX" value="${row.D_IDX }">
-									<a name="file">${row.D_ORIGINAL_FILE_NAME }</a> 
+									<a>${row.D_ORIGINAL_FILE_NAME }</a> 
 									(${row.D_FILE_SIZE } KB)
 								</c:forEach>
 							</c:when>

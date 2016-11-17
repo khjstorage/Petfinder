@@ -31,10 +31,10 @@ import com.petfinder.vo.FindsVO;
  * <pre>
  *  == 개정이력(Modification Information) ==
  *   
- *          수정일          수정자           수정내용
+ *      수정일       		   	수정자     		      수정내용
  *  ----------------    ------------    ---------------------------
- *   2016.11.14        1조             최초 생성
- * 
+ *   2016.11.14     		1조             		최초 생성
+ *   2016.11.17				김현진	  		requestmapping 수정
  * </pre>
  */
 @Controller
@@ -43,8 +43,7 @@ public class DisapperanceController {
 
     @Resource(name="disappearanceService")
     private DisappearanceService disappearanceService;
-	
-    
+	    
 	/** 
 	 * 분실목록을 조회 한다.
 	 * @return List<DisappearanceVO> list
@@ -59,8 +58,7 @@ public class DisapperanceController {
 		mv.setViewName("/disappearance/list");
 		return mv;
 	}
-		
-		
+				
 	/**
 	 * 분실정보 상세화면으로 이동한다. 
 	 * 로그인된값(세션)과 게시물의 id가 다르면 수정/삭제 버튼 비활성

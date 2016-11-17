@@ -30,13 +30,14 @@ import com.petfinder.vo.FindsVO;
  * <pre>
  *  == 개정이력(Modification Information) ==
  *   
- *          수정일          수정자           수정내용
+ *      수정일       		   	수정자     		      수정내용
  *  ----------------    ------------    ---------------------------
- *   2016.11.14        1조             최초 생성
- * 
+ *   2016.11.14     		1조             		최초 생성
+ *   2016.11.17				김현진	  		requestmapping 수정
  * </pre>
  */
 @Controller
+@RequestMapping("/finds")
 public class FindsController {
 
 	@Resource(name = "findsService")
@@ -48,12 +49,12 @@ public class FindsController {
 	 * @return2 "Finds/findslist"
 	 * @throws 
 	 */
-	@RequestMapping("/finds/list.do")
+	@RequestMapping("/list.do")
 	public ModelAndView findslist() {
 		ModelAndView mv = new ModelAndView();
 		List<FindsVO> list = findsService.findsList();
 		mv.addObject("findslist", list);
-		mv.setViewName("finds/list");
+		mv.setViewName("/finds/list");
 		return mv;
 	}
 
@@ -63,9 +64,9 @@ public class FindsController {
 	 * @return "finds/finds_form";
 	 * @throws 
 	 */
-	@RequestMapping("/finds_form")
+	@RequestMapping("/write.do")
 	public String finds_form() {
-		return "finds/finds_form";
+		return "/finds/write";
 	}
 
 
@@ -76,13 +77,12 @@ public class FindsController {
 	 * @return "redirect:findslist.do";
 	 * @throws Exception
 	 */
-	@RequestMapping("/finds_write")
-	public String finds_write(@ModelAttribute("findsVO") FindsVO findsVO,
-			HttpServletRequest request) throws Exception {
+	@RequestMapping("/create.do")
+	public String finds_write(@ModelAttribute("findsVO") FindsVO findsVO, HttpServletRequest request) throws Exception {
 		findsService.insertFinds(findsVO, request);
-		return "redirect:findslist.do";
+		return "redirect:/finds/list.do";
 	}
-	
+
 	/**
 	 * 발견정보 상세화면으로 이동한다.
 	 * @param HttpServletRequest request
@@ -90,71 +90,71 @@ public class FindsController {
 	 * @return2 "finds/finds_contents"
 	 * @throws Exception
 	 */
-	@RequestMapping("/finds_contents")
+	@RequestMapping("/contents.do")
 	public ModelAndView finds_contents(HttpServletRequest request) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		Map<String, Object> map = findsService.selectBoardDetail(request.getParameter("idx"));
 		mv.addObject("map", map.get("infoMap"));
 		mv.addObject("file", map.get("fileMap"));
-		mv.setViewName("finds/finds_contents");
+		mv.setViewName("/finds/contents");
 		return mv;
 	}
-	
-	
-	 
-    /**
-     * 발견글의 패스워드 화면에서 해당 글에 패스워드가 일치하면 finds_delete_pro 이동
-     * @param @RequestParam("pwd") String pwd 
-     * @param @RequestParam("idx") String idx
-     * @return "redirect:finds_delete.do?idx="+idx
-     * @return "redirect:finds_password.do?idx="+idx
-     */
-   @RequestMapping("/finds_delete_auth")
-    public String finds_delete_auth(@RequestParam("pwd") String pwd, @RequestParam("idx") String idx){
-    	HashMap<String, String> map = new HashMap<String, String>();
-    	map.put("pwd", pwd);
-    	map.put("idx", idx);
-    	String account = findsService.getpassword(map);
-    	 if(pwd.equals(account)){
-    		 return "redirect:finds_delete_pro.do?idx="+idx;
-    	 }else{
-    		 return "redirect:finds_contents.do?idx="+idx;
-    	}
-    }
-   		
+
+
+
+	/**
+	 * 발견글의 패스워드 화면에서 해당 글에 패스워드가 일치하면 finds_delete_pro 이동
+	 * @param @RequestParam("pwd") String pwd 
+	 * @param @RequestParam("idx") String idx
+	 * @return "redirect:finds_delete.do?idx="+idx
+	 * @return "redirect:finds_password.do?idx="+idx
+	 */
+	@RequestMapping("/delete_auth.do")
+	public String finds_delete_auth(@RequestParam("pwd") String pwd, @RequestParam("idx") String idx){
+		HashMap<String, String> map = new HashMap<String, String>();
+		map.put("pwd", pwd);
+		map.put("idx", idx);
+		String account = findsService.getpassword(map);
+		if(pwd.equals(account)){
+			return "redirect:/finds/delete.do?idx="+idx;
+		}else{
+			return "redirect:/finds/contents.do?idx="+idx;
+		}
+	}
+
 	/**
 	 * 발견정보 삭제 후 목록조회 화면으로 이동한다.
 	 * @param @RequestParam("idx") String idx
 	 * @return "redirect:findslist.do"
 	 * @throws Exception
 	 */
-	@RequestMapping("/finds_delete_pro")
+	@RequestMapping("/delete.do")
 	public String finds_delete_pro(@RequestParam("idx") String idx){
 		findsService.deleteFinds(idx);
-		return "redirect:findslist.do";
+		return "redirect:/finds/list.do";
 	}
-	
-	   
+
+
 	/**
-     * 발견글의 패스워드 화면에서 해당 글에 패스워드가 일치하면 수정 화면으로 이동한다.
-     * @param @RequestParam("pwd") String pwd 
-     * @param @RequestParam("idx") String idx
-     * @return "redirect:finds_update.do?idx="+idx
-     * @return "redirect:finds_password.do?idx="+idx
-     */
-    @RequestMapping("/finds_update_auth")
-    public String finds_update_auth(@RequestParam("pwd") String pwd, @RequestParam("idx") String idx){
-    	HashMap<String, String> map = new HashMap<String, String>();
-    	map.put("pwd", pwd);
-    	map.put("idx", idx);
-    	String account = findsService.getpassword(map);
-    	 if(pwd.equals(account)){
-    		 return "redirect:finds_update.do?idx="+idx;
-    	 }else{
-    		 return "redirect:finds_contents.do?idx="+idx;
-    	}
-    }
-	    
+	 * 발견글의 패스워드 화면에서 해당 글에 패스워드가 일치하면 수정 화면으로 이동한다.
+	 * @param @RequestParam("pwd") String pwd 
+	 * @param @RequestParam("idx") String idx
+	 * @return "redirect:finds_update.do?idx="+idx
+	 * @return "redirect:finds_password.do?idx="+idx
+	 */
+	@RequestMapping("/update_auth.do")
+	public String finds_update_auth(@RequestParam("pwd") String pwd, @RequestParam("idx") String idx){
+		HashMap<String, String> map = new HashMap<String, String>();
+		map.put("pwd", pwd);
+		map.put("idx", idx);
+		String account = findsService.getpassword(map);
+		if(pwd.equals(account)){
+			return "redirect:/finds/edit.do?idx="+idx;
+		}else{
+			return "redirect:/finds/contents.do?idx="+idx;
+		}
+	}
+
 
 	/**
 	 * 발견정보 수정 화면으로 이동한다.
@@ -163,15 +163,15 @@ public class FindsController {
 	 * @return2 "finds/finds_update"
 	 * @throws Exception
 	 */
-	@RequestMapping("/finds_update")
+	@RequestMapping("/edit.do")
 	public ModelAndView finds_update(HttpServletRequest request) throws Exception{
 		ModelAndView mv = new ModelAndView();
 		Map<String, Object> map = findsService.selectBoardDetail(request.getParameter("idx"));
 		mv.addObject("map", map);
-		mv.setViewName("finds/finds_update");
+		mv.setViewName("/finds/edit");
 		return mv;
 	}
-	
+
 	/** 
 	 * 분실정보 수정하고 목록조회 화면으로 이동한다.
 	 * @param1 @ModelAttribute("findsVO")FindsVO findsVO
@@ -179,39 +179,39 @@ public class FindsController {
 	 * @return "redirect:findslist.do"
 	 * @throws Exception
 	 */
-	@RequestMapping("/finds_update_pro")
+	@RequestMapping("/update.do")
 	public String finds_update_pro(@ModelAttribute("findsVO")FindsVO findsVO, HttpServletRequest request) throws Exception {
 		findsService.updateFinds(findsVO, request);
-		return "redirect:findslist.do";
+		return "redirect:/finds/list.do";
 	}
-		
-	
-	
+
+
+
 	/** 
 	 * 파일 다운로드
 	 * @param1 @RequestParam("idx") String idx
 	 * @param2 HttpServletResponse response
 	 * @throws Exception
 	 */
-	@RequestMapping("/finds_download")
+	@RequestMapping("/download.do")
 	public void finds_download(@RequestParam("idx") String idx, HttpServletResponse response) throws Exception{
 		Map<String, Object> map = findsService.selectFileInfo(idx);
-	    String storedFileName = (String)map.get("F_STORED_FILE_NAME");
-	    String originalFileName = (String)map.get("F_ORIGINAL_FILE_NAME");
-	     
-	    byte fileByte[] = FileUtils.readFileToByteArray(new File("C:\\dev\\findsfile\\"+storedFileName));
-	     
-	    response.setContentType("application/octet-stream");
-	    response.setContentLength(fileByte.length);
-	    response.setHeader("Content-Disposition", "attachment; fileName=\"" + URLEncoder.encode(originalFileName,"UTF-8")+"\";");
-	    response.setHeader("Content-Transfer-Encoding", "binary");
-	    response.getOutputStream().write(fileByte);
-	     
-	    response.getOutputStream().flush();
-	    response.getOutputStream().close();
+		String storedFileName = (String)map.get("F_STORED_FILE_NAME");
+		String originalFileName = (String)map.get("F_ORIGINAL_FILE_NAME");
+
+		byte fileByte[] = FileUtils.readFileToByteArray(new File("C:\\dev\\image\\findsfile\\"+storedFileName));
+
+		response.setContentType("application/octet-stream");
+		response.setContentLength(fileByte.length);
+		response.setHeader("Content-Disposition", "attachment; fileName=\"" + URLEncoder.encode(originalFileName,"UTF-8")+"\";");
+		response.setHeader("Content-Transfer-Encoding", "binary");
+		response.getOutputStream().write(fileByte);
+
+		response.getOutputStream().flush();
+		response.getOutputStream().close();
 	}
-		
-	
+
+
 	/** 
 	 * 발견글의 매칭버튼을 클릭하면 실종글 정보와 일치한 게시글 화면으로 이동한다.
 	 * @param1 @ModelAttribute("findsVO")FindsVO findsVO
@@ -220,15 +220,15 @@ public class FindsController {
 	 * @return "disappearance/disappearance_list"
 	 * @throws Exception
 	 */
-	@RequestMapping("/finds_match")
+	@RequestMapping("/match.do")
 	public ModelAndView finds_match(@ModelAttribute("findsVO")FindsVO findsVO) throws Exception{
 		ModelAndView mv = new ModelAndView();
 		List<DisappearanceVO> list = findsService.matchFinds(findsVO);
 		mv.addObject("disappearancelist", list);
-		mv.setViewName("disappearance/disappearancelist");
+		mv.setViewName("/disappearance/list");
 		return mv;
 	}
-	
+
 
 	/** 
 	 * 조회기능
@@ -238,19 +238,19 @@ public class FindsController {
 	 * @return mv.setViewName("disappearance/disappearance_list")
 	 * @throws Exception
 	 */
-	@RequestMapping("/finds_search")
-	public ModelAndView finds_search(@RequestParam("searchtext") String searchtext,	@RequestParam("searchoption") String searchoption) throws Exception {
+	@RequestMapping("/search.do")
+	public ModelAndView finds_search(@RequestParam("keyWord_search") String keyWord_search,	@RequestParam("selection_search") String selection_search) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		HashMap<String, String> map = new HashMap<String, String>();
-		map.put("searchtext", searchtext);
-		map.put("searchoption", searchoption);
+		map.put("keyWord_search", keyWord_search);
+		map.put("selection_search", selection_search);
 		List<FindsVO> list = findsService.searchFinds(map);
 		mv.addObject("findslist", list);
-		mv.setViewName("finds/findslist");
+		mv.setViewName("/finds/list");
 		return mv;
 	}
-    
-    
-   
-   
+
+
+
+
 }
