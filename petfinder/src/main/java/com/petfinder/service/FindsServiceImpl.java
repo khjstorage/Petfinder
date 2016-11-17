@@ -152,7 +152,7 @@ public class FindsServiceImpl implements FindsService{
 	}
 	
 	@Override
-	public String nonMemberUpdate(HashMap<String, String> map) {
-		return findsDAO.getPwd(map);
+	public String getpassword(HashMap<String, String> map) {
+		return findsDAO.getpassword(map);
 	}
 }

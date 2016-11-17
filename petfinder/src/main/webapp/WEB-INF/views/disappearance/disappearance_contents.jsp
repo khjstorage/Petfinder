@@ -1,18 +1,15 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-	pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"	pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>contents</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>실종게시판 상세내용</title>
 </head>
 <body>
 	<div class="containor">
-		<%@include file="../../views/layout/nav.jsp"%>
-		<!-- 데스크탑 화면 구성 -->
 		<div class="mainContents mobileHide">
-			<h2 class="floatLeft">실종게시판 CONTENTS</h2>
-			<a href="disappearance_list.do"><input type="button"
+			<h2 class="floatLeft">상세내용</h2>
+			<a href="disappearancelist.do"><input type="button"
 				class="rightTopButtons" value="목록으로" /></a>
 			<c:choose>
 				<c:when test="${idcheck.equals('permission')}">
@@ -26,8 +23,7 @@
 			<a href="disappearance_match.do?color=${map.D_COLOR}&dog=${map.D_DOG}&gender=${map.D_GENDER}&size=${map.D_SIZE}">
 				<input type="button" class="rightTopButtons" value="매칭" />
 			</a>
-			<form id="" action="disappearance_write.do" method="post"
-				enctype="multipart/form-data">
+			<form id="" action="disappearance_write.do" method="post" enctype="multipart/form-data">
 				<div class="editorTool floatLeft">
 					<table>
 						<tr>
@@ -57,7 +53,7 @@
 							<th>견종</th>
 							<td>${map.D_DOG}</td>
 							<th>비상연락망</th>
-							<td>${map.D_PHONE}</td>
+							<td>${map.D_EMERTGENCY_PHONE}</td>
 						</tr>
 						<tr>
 							<th>성별</th>
@@ -68,8 +64,7 @@
 						<tr>
 							<th>크기</th>
 							<td>${map.D_SIZE}</td>
-							<td colspan="2" rowspan="4"
-								style="background-color: #cccccc; text-align: center; vertical-align: middle;">
+							<td colspan="2" rowspan="4" style="background-color: #cccccc; text-align: center; vertical-align: middle;">
 								<div>
 									<h1>MAP SECTION</h1>
 								</div>
@@ -94,7 +89,6 @@
 					</table>
 				</div>
 			</form>
-			<%@include file="../../views/layout/footer.jsp"%>
 		</div>
 	</div>
 </body>

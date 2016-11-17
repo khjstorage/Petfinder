@@ -1,22 +1,14 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-   pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>분실게시판 글쓰기</title>
-<script type="text/javascript">
-	$(document).ready(function() {
-		// 페이지 포커스
-		$("#pageFocusDisList").addClass("pageFocus");
-	});
-</script>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>실종게시판 글쓰기</title>
 </head>
 <body>
    <div class="containor">
-      <%@include file="../../views/layout/nav.jsp"%>
       <div class="mainContents">
-         <h2 style="float:left;">분실게시판 글쓰기</h2>
+         <h2 style="float:left;">실종게시판 글쓰기</h2>
          <form id="" action="disappearance_write.do" method="post" enctype="multipart/form-data">
             <input type="submit" class="rightTopButtons" value="글쓰기">
             <a href="disappearance_list.do"><input type="button" class="rightTopButtons" value="뒤로" /></a>
@@ -116,7 +108,6 @@
                </table>
             </div>
          </form>
-         <%@include file="../../views/layout/footer.jsp"%>
       </div>
    </div>
 </body>

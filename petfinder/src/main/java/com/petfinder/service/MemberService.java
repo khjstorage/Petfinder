@@ -22,11 +22,24 @@ import com.petfinder.vo.MemberVO;
  * </pre>
  */
 public interface MemberService {
+	
 	public List<MemberVO> getMember(String sessionId) throws Exception;
-	public void insertMember(MemberVO memberVO, HttpServletRequest request) throws Exception;
-	public void updateMember(MemberVO memberVO, HttpServletRequest requesr) throws Exception;
-	public void deleteMember(String id);
+	
+	/**
+	 * 아이디 패스워드 확인 요청을 처리하기 위해 데이터처리를 요청한다.
+	 * 
+	 * @param HashMap<String, String> map / id, pwd
+	 * @return String
+	 * @throws 
+	 */
 	public String loginMember(HashMap<String, String> map);
+	
+	public void insertMember(MemberVO memberVO, HttpServletRequest request) throws Exception;
+	
+	public void updateMember(MemberVO memberVO, HttpServletRequest requesr) throws Exception;
+	
+	public void deleteMember(String id);
+
 }
 
 

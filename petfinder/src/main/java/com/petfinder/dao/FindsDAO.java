@@ -165,7 +165,7 @@ public class FindsDAO {
 	
 	
 	
-	public String getPwd(HashMap<String, String> map) {
+	public String getpassword(HashMap<String, String> map) {
 		return sqlSession.selectOne("finds.getpassword", map);
 	}
 

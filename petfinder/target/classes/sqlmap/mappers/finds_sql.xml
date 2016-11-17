@@ -18,37 +18,51 @@
       <id property="detail" column="F_DETAIL" />
    </resultMap>
 
-   <insert id="insertFinds" parameterType="findsVO"
-      useGeneratedKeys="true" keyProperty="IDX">
-      <selectKey keyProperty="idx" resultType="string" order="BEFORE">
-         SELECT SEQ_FINDS_IDX.NEXTVAL FROM DUAL
-      </selectKey>
-    <![CDATA[
-        INSERT INTO FINDS(F_IDX, F_NAME, F_PASSWORD, F_PHONE, F_DOG, F_SIZE, F_COLOR, F_GENDER, F_DATE, F_REGION, F_TITLE, F_DETAIL)
-               VALUES(#{idx}, #{name}, #{pwd}, #{phone}, #{dog}, #{size}, #{color}, #{gender}, #{date}, #{region}, #{title}, #{detail})
-       ]]>
+	<insert id="insertFinds" parameterType="findsVO" useGeneratedKeys="true" keyProperty="IDX">
+		<selectKey keyProperty="idx" resultType="string" order="BEFORE">
+	     SELECT
+	     	SEQ_FINDS_IDX.NEXTVAL
+	     FROM
+	     	DUAL
+		</selectKey>
+		<![CDATA[
+	    INSERT INTO
+	   		FINDS(F_IDX, F_NAME, F_PASSWORD, F_PHONE, F_DOG, F_SIZE, F_COLOR, F_GENDER, F_DATE, F_REGION, F_TITLE, F_DETAIL)
+	    VALUES
+	   		(#{idx}, #{name}, #{pwd}, #{phone}, #{dog}, #{size}, #{color}, #{gender}, #{date}, #{region}, #{title}, #{detail})
+	   ]]>
    </insert>
 
    <insert id="insertFindsFile" parameterType="hashmap">
        <![CDATA[
-         INSERT INTO FINDS_FILE(F_FILE_IDX, F_BOARD_IDX, F_ORIGINAL_FILE_NAME, F_STORED_FILE_NAME, F_FILE_SIZE) 
-         VALUES (SEQ_FINDS_FILE_IDX.NEXTVAL, #{F_BOARD_IDX}, #{F_ORIGINAL_FILE_NAME}, #{F_STORED_FILE_NAME}, #{F_FILE_SIZE})
+         INSERT INTO
+         	FINDS_FILE(F_FILE_IDX, F_BOARD_IDX, F_ORIGINAL_FILE_NAME, F_STORED_FILE_NAME, F_FILE_SIZE) 
+         VALUES
+         	(SEQ_FINDS_FILE_IDX.NEXTVAL, #{F_BOARD_IDX}, #{F_ORIGINAL_FILE_NAME}, #{F_STORED_FILE_NAME}, #{F_FILE_SIZE})
        ]]>
    </insert>
 
 
-   <select id="findsList" parameterType="findsVO" resultMap="findsResultMap">
-      <![CDATA[
-      SELECT * FROM FINDS ORDER BY F_IDX DESC
-      ]]>
-   </select>
+	<select id="findsList" parameterType="findsVO" resultMap="findsResultMap">
+	   	<![CDATA[
+	     	SELECT
+			*
+	     	FROM
+	     		FINDS
+	     	ORDER BY
+	     		F_IDX DESC
+	    ]]>
+   	</select>
 
    <select id="selectBoardDetail" parameterType="String" resultType="hashmap">
-    <![CDATA[
-        SELECT A.*, TO_CHAR(F_DATE, 'YYYY-MM-DD')F_DATE_1
-        FROM FINDS A
-        WHERE F_IDX = #{idx} 
-    ]]>
+	   <![CDATA[
+	       SELECT
+	       	A.*, TO_CHAR(F_DATE, 'YYYY-MM-DD')F_DATE_1
+	       FROM 
+	       	FINDS A
+	       WHERE
+	       	F_IDX = #{idx} 
+	   ]]>
    </select>
 
    <select id="selectBoardDetailFile" parameterType="hashmap" resultType="hashmap">
@@ -79,26 +93,40 @@
 
    <select id="deleteFinds" parameterType="String">
     <![CDATA[
-        DELETE FROM FINDS WHERE F_IDX = #{idx}
+        DELETE
+        FROM
+        	FINDS
+        WHERE
+        	F_IDX = #{idx}
     ]]>
    </select>
 
    <select id="deleteFindsFile" parameterType="String">
     <![CDATA[
-        DELETE FROM FINDS_FILE WHERE F_BOARD_IDX = #{idx}
+        DELETE
+        FROM
+        	FINDS_FILE
+        WHERE
+        	F_BOARD_IDX = #{idx}
     ]]>
    </select>
    
    <select id="matchFinds" parameterType="disappearanceVO" resultMap="findsResultMap">
 		<![CDATA[
-		SELECT * FROM FINDS WHERE F_COLOR=#{color} AND F_DOG=#{dog} AND F_GENDER=#{gender} AND F_SIZE=#{size}
+		SELECT
+			*
+		FROM FINDS
+		WHERE
+			F_COLOR=#{color} AND F_DOG=#{dog} AND F_GENDER=#{gender} AND F_SIZE=#{size}
 		]]>
 	</select>
 
 	<update id="updateFinds" parameterType="findsVO">
 		<![CDATA[
-		UPDATE FINDS
-		SET F_NAME = #{name},
+		UPDATE
+			FINDS
+		SET 
+			F_NAME = #{name},
 			F_PASSWORD = #{pwd},
 			F_PHONE = #{phone},
 			F_DOG = #{dog},
@@ -109,7 +137,8 @@
 			F_REGION = #{region},
 			F_TITLE = #{title},
 			F_DETAIL = #{detail}
-		WHERE F_IDX = #{idx}
+		WHERE
+			F_IDX = #{idx}
 		]]>
 	</update>
 		
@@ -130,30 +159,34 @@
 	</update>
 	
 	<select id="getpassword" parameterType="hashmap" resultType="String">
-      <![CDATA[
-      SELECT F_PASSWORD FROM FINDS WHERE F_PASSWORD=#{pwd} AND F_IDX=#{idx}
-      ]]>
+    	<![CDATA[
+    	SELECT
+    		F_PASSWORD
+    	FROM
+    		FINDS
+    	WHERE
+    		F_PASSWORD=#{pwd} AND F_IDX=#{idx}
+    ]]>
 	</select>
 	
 	<select id="searchFinds" parameterType="hashmap" resultMap="findsResultMap">
-		  SELECT
-		  	*
-		  FROM
-		  	FINDS
-		  WHERE
-			<choose>
-			    <when test="searchoption == 'title'">
-			       F_TITLE like '%' ||  #{searchtext} || '%'
-			    </when>
-			    <when test="searchoption == 'contents'">
-			       F_DETAIL like '%' ||  #{searchtext} || '%'
-			    </when>
-			    <otherwise>
-			       F_TITLE like '%' ||  #{searchtext} || '%' OR F_DETAIL like '%' ||  #{searchtext} || '%'
-			    </otherwise>
-			</choose>
+ 	SELECT
+ 		*
+	FROM
+ 		FINDS
+	WHERE
+		<choose>
+		    <when test="searchoption == 'title'">
+		       F_TITLE like '%' ||  #{searchtext} || '%'
+		    </when>
+		    <when test="searchoption == 'contents'">
+		       F_DETAIL like '%' ||  #{searchtext} || '%'
+		    </when>
+		    <otherwise>
+		       F_TITLE like '%' ||  #{searchtext} || '%' OR F_DETAIL like '%' ||  #{searchtext} || '%'
+		    </otherwise>
+		</choose>
 	</select>
-	
-	
+		
 </mapper>
 

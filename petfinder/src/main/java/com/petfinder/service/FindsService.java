@@ -98,6 +98,6 @@ public interface FindsService {
 	 */
 	public List<FindsVO> searchFinds(HashMap<String, String> map);
 	
-	public String nonMemberUpdate(HashMap<String, String> map);
+	public String getpassword(HashMap<String, String> map);
 
 }

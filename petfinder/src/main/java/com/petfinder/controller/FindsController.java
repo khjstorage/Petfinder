@@ -45,15 +45,15 @@ public class FindsController {
 	/** 
 	 * 발견목록을 조회 한다.
 	 * @return1 List<FindsVO> list
-	 * @return2 "Finds/finds_list"
+	 * @return2 "Finds/findslist"
 	 * @throws 
 	 */
-	@RequestMapping("/finds_list")
-	public ModelAndView finds_list() {
+	@RequestMapping("/finds/list.do")
+	public ModelAndView findslist() {
 		ModelAndView mv = new ModelAndView();
 		List<FindsVO> list = findsService.findsList();
 		mv.addObject("findslist", list);
-		mv.setViewName("finds/finds_list");
+		mv.setViewName("finds/list");
 		return mv;
 	}
 
@@ -73,14 +73,14 @@ public class FindsController {
 	 * 발견정보 등록하고 목록조회 화면으로 이동한다.
 	 * @param1 @ModelAttribute("findsVO") FindsVO findsVO 발견정보
 	 * @param2 HttpServletRequest request 파일정보
-	 * @return "redirect:finds_list.do";
+	 * @return "redirect:findslist.do";
 	 * @throws Exception
 	 */
 	@RequestMapping("/finds_write")
 	public String finds_write(@ModelAttribute("findsVO") FindsVO findsVO,
 			HttpServletRequest request) throws Exception {
 		findsService.insertFinds(findsVO, request);
-		return "redirect:finds_list.do";
+		return "redirect:findslist.do";
 	}
 	
 	/**
@@ -103,20 +103,20 @@ public class FindsController {
 	
 	 
     /**
-     * 발견글의 패스워드 화면에서 해당 글에 패스워드가 일치하면 삭제된다.
+     * 발견글의 패스워드 화면에서 해당 글에 패스워드가 일치하면 finds_delete_pro 이동
      * @param @RequestParam("pwd") String pwd 
      * @param @RequestParam("idx") String idx
      * @return "redirect:finds_delete.do?idx="+idx
      * @return "redirect:finds_password.do?idx="+idx
      */
-   @RequestMapping("/finds_contendsDelete")
-    public String finds_deleteProcess(@RequestParam("pwd") String pwd, @RequestParam("idx") String idx){
+   @RequestMapping("/finds_delete_auth")
+    public String finds_delete_auth(@RequestParam("pwd") String pwd, @RequestParam("idx") String idx){
     	HashMap<String, String> map = new HashMap<String, String>();
     	map.put("pwd", pwd);
     	map.put("idx", idx);
-    	String account = findsService.nonMemberUpdate(map);
+    	String account = findsService.getpassword(map);
     	 if(pwd.equals(account)){
-    		 return "redirect:finds_delete.do?idx="+idx;
+    		 return "redirect:finds_delete_pro.do?idx="+idx;
     	 }else{
     		 return "redirect:finds_contents.do?idx="+idx;
     	}
@@ -125,19 +125,14 @@ public class FindsController {
 	/**
 	 * 발견정보 삭제 후 목록조회 화면으로 이동한다.
 	 * @param @RequestParam("idx") String idx
-	 * @return "redirect:finds_list.do"
+	 * @return "redirect:findslist.do"
 	 * @throws Exception
 	 */
-	@RequestMapping("/finds_delete")
-	public String finds_delete(@RequestParam("idx") String idx){
+	@RequestMapping("/finds_delete_pro")
+	public String finds_delete_pro(@RequestParam("idx") String idx){
 		findsService.deleteFinds(idx);
-		return "redirect:finds_list.do";
+		return "redirect:findslist.do";
 	}
-	
-	
-	
-	
-	
 	
 	   
 	/**
@@ -147,12 +142,12 @@ public class FindsController {
      * @return "redirect:finds_update.do?idx="+idx
      * @return "redirect:finds_password.do?idx="+idx
      */
-    @RequestMapping("/finds_password")
-    public String finds_process(@RequestParam("pwd") String pwd, @RequestParam("idx") String idx){
+    @RequestMapping("/finds_update_auth")
+    public String finds_update_auth(@RequestParam("pwd") String pwd, @RequestParam("idx") String idx){
     	HashMap<String, String> map = new HashMap<String, String>();
     	map.put("pwd", pwd);
     	map.put("idx", idx);
-    	String account = findsService.nonMemberUpdate(map);
+    	String account = findsService.getpassword(map);
     	 if(pwd.equals(account)){
     		 return "redirect:finds_update.do?idx="+idx;
     	 }else{
@@ -181,16 +176,15 @@ public class FindsController {
 	 * 분실정보 수정하고 목록조회 화면으로 이동한다.
 	 * @param1 @ModelAttribute("findsVO")FindsVO findsVO
 	 * @param2 HttpServletRequest request
-	 * @return "redirect:finds_list.do"
+	 * @return "redirect:findslist.do"
 	 * @throws Exception
 	 */
 	@RequestMapping("/finds_update_pro")
 	public String finds_update_pro(@ModelAttribute("findsVO")FindsVO findsVO, HttpServletRequest request) throws Exception {
 		findsService.updateFinds(findsVO, request);
-		return "redirect:finds_list.do";
+		return "redirect:findslist.do";
 	}
-	
-	
+		
 	
 	
 	/** 
@@ -217,6 +211,7 @@ public class FindsController {
 	    response.getOutputStream().close();
 	}
 		
+	
 	/** 
 	 * 발견글의 매칭버튼을 클릭하면 실종글 정보와 일치한 게시글 화면으로 이동한다.
 	 * @param1 @ModelAttribute("findsVO")FindsVO findsVO
@@ -230,7 +225,7 @@ public class FindsController {
 		ModelAndView mv = new ModelAndView();
 		List<DisappearanceVO> list = findsService.matchFinds(findsVO);
 		mv.addObject("disappearancelist", list);
-		mv.setViewName("disappearance/disappearance_list");
+		mv.setViewName("disappearance/disappearancelist");
 		return mv;
 	}
 	
@@ -251,7 +246,7 @@ public class FindsController {
 		map.put("searchoption", searchoption);
 		List<FindsVO> list = findsService.searchFinds(map);
 		mv.addObject("findslist", list);
-		mv.setViewName("finds/finds_list");
+		mv.setViewName("finds/findslist");
 		return mv;
 	}
     

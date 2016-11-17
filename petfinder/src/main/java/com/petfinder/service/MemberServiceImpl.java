@@ -36,12 +36,20 @@ public class MemberServiceImpl implements MemberService {
 	@Resource(name="memberDao")
 	private MemberDAO memberDao;
 
+	
+	/**
+	 * 아이디 패스워드 확인 요청을 처리하기 위해 데이터처리를 요청한다.
+	 * 
+	 * @param HashMap<String, String> map / id, pwd
+	 * @return String
+	 * @throws 
+	 */
 	@Override
 	public String loginMember(HashMap<String, String> map){
-		List<MemberVO> list = memberDao.getID(map);
+		List<MemberVO> list = memberDao.loginMember(map);
 		String idcheck;
 		if(list.size()==0){
-			idcheck="";
+			idcheck="123";
 		}else{
 			idcheck=list.get(0).getId();
 		}

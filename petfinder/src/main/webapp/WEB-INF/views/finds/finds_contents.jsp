@@ -1,37 +1,35 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-   pageEncoding="UTF-8" info="" isErrorPage="false"%>
-<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><link rel="stylesheet" type="text/css" href="style.css"/>
-<title>발견게시판 글쓰기</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><link rel="stylesheet" type="text/css" href="style.css"/>
+	<title>발견게시판 상세내용</title>
 <script type="text/javascript">
-	$(document).ready(function() {
-		// 발견게시물 수정 비밀번호 입력 폼
-		$("#findsUpdateFormView").click(function() {
-			$(".findsUpdateFormView").toggleClass("hide");
-			$(".findsDeleteFormView").addClass("hide");
-		});
-		// 발견게시물 삭제 비밀번호 입력 폼
-		$("#findsDeleteFormView").click(function() {
-			$(".findsDeleteFormView").toggleClass("hide");
-			$(".findsUpdateFormView").addClass("hide");
-		});
+$(document).ready(function() {
+	// 발견게시물 수정 비밀번호 입력 폼
+	$("#findsUpdateFormView").click(function() {
+		$(".findsUpdateFormView").toggleClass("hide");
+		$(".findsDeleteFormView").addClass("hide");
 	});
+	// 발견게시물 삭제 비밀번호 입력 폼
+	$("#findsDeleteFormView").click(function() {
+		$(".findsDeleteFormView").toggleClass("hide");
+		$(".findsUpdateFormView").addClass("hide");
+	});
+});
 </script>
 </head>
 <body>
    <div class="containor">
-      <%@include file="../../views/layout/nav.jsp"%>
       <div class="mainContents">
-        <h2 style="float:left;">CONTENTS</h2>
-        <a href="finds_list.do"><input type="button" class="rightTopButtons" value="목록으로" /></a>
+        <h2 style="float:left;">상세내용</h2>
+        <a href="findslist.do"><input type="button" class="rightTopButtons" value="목록으로" /></a>
 		<input type="button" class="rightTopButtons" id="findsDeleteFormView" value="삭제" />
+		
 		<!-- 발견게시물 삭제 비밀번호 입력 -->
 		<div class="findsDeleteFormView hide">
 			<img src="../resources/img/findsUpdateForm.png"/>
-			<form action="finds_contendsDelete.do" method="post" enctype="multipart/form-data">
+			<form action="finds_delete_auth.do" method="post" enctype="multipart/form-data">
 				<input name="idx" type="hidden" value ="${map.F_IDX}"/>                     
 				<input name="pwd" type="password" placeholder="게시물 비밀번호 입력" /><br />
 				<input type="submit" value="확인" />
@@ -42,7 +40,7 @@
 		<!-- 발견게시물 수정 비밀번호 입력 -->
 		<div class="findsUpdateFormView hide">
 			<img src="../resources/img/findsUpdateForm.png"/>
-			<form action="finds_password.do" method="post" enctype="multipart/form-data">
+			<form action="finds_update_auth.do" method="post" enctype="multipart/form-data">
 				<input name="idx" type="hidden" value ="${map.F_IDX}"/>                     
 				<input name="pwd" type="password" placeholder="게시물 비밀번호 입력" /><br />
 				<input type="submit" value="확인" />
@@ -118,7 +116,6 @@
                </table>
             </div>
          </form>
-         <%@include file="../../views/layout/footer.jsp"%>
       </div>
    </div>
 </body>

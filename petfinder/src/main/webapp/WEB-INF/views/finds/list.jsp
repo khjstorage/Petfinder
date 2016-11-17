@@ -9,9 +9,8 @@
 </head>
 <body>
 	<div class="containor">
-		<%@include file="../../views/layout/nav.jsp"%>
 		<div class="mainContents">
-			<h2 style="float:left;">발견 게시판</h2>
+			<h2 style="float:left;">발견게시판</h2>
 			<a href="finds_form.do"> <input type="button" id="write" style="float:right" class="rightTopButtons" value="글쓰기" /></a>
 			<form action="finds_search.do" method="post" enctype="multipart/form-data">
             <input type="submit" class="rightTopButtons" value="조회" />
@@ -45,7 +44,7 @@
 					</c:otherwise>
 				</c:choose>
 			</div>
-			<%@include file="../../views/layout/footer.jsp"%>
+
 		</div>
 	</div>
 </body>

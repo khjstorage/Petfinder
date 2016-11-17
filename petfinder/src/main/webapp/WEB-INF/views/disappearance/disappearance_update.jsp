@@ -1,21 +1,19 @@
-<%@ page language="java" contentType="text/html; charset=UTF-8"
-   pageEncoding="UTF-8"%>
+<%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>실종게시판 수정</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>실종게시판 수정</title>
 </head>
 <body>
-   <div class="containor">
-      <%@include file="../../views/layout/nav.jsp"%>
-      <div class="mainContents">
-         <h2 style="float:left;">실종게시판 수정</h2>
-         <form id="" action="disappearance_update_pro.do?idx=${map.infoMap.D_IDX}" method="post" enctype="multipart/form-data">
-           <a href="disappearance_list.do"><input type="button" class="rightTopButtons" value="취소"></a>
-           <input type="submit" class="rightTopButtons" value="수정" />
-            <div class="editorTool" style="float: left;">
-               <table>
+	<div class="containor">
+    	<div class="mainContents">
+        <h2 style="float:left;">실종게시판 수정</h2>
+        	<form id="" action="disappearance_update_pro.do?idx=${map.infoMap.D_IDX}" method="post" enctype="multipart/form-data">
+           		<a href="disappearancelist.do"><input type="button" class="rightTopButtons" value="취소"></a>
+           		<input type="submit" class="rightTopButtons" value="수정" />
+            	<div class="editorTool" style="float: left;">
+               	<table>
                   <tr>
                      <th>애견 사진</th>
                      <td><input type="file" accept="image/*" name="disappearance_file" multiple="multiple" /></td>
@@ -26,9 +24,9 @@
                      <th>색상</th>
                      <td>
                         <select name="color">
-                           <c:forEach var="color" items="${colorList}">
-                          		<option value="${color}" <c:if test="${color eq map.infoMap.D_COLOR}">selected="selected"</c:if>>${color}</option>
-                           </c:forEach>
+                           <option value="" selected>색상</option>
+                           <option value="검정">검정</option>
+                           <option value="흰색">흰색</option>
                         </select>
                      </td>
                      <th>연락처</th>
@@ -38,13 +36,16 @@
                      <th>견종</th>
                      <td>
                         <select name="dog">
-                            <c:forEach var="dog" items="${dogList}">
-                           		<option value="${dog}" <c:if test="${dog eq map.infoMap.D_DOG}">selected="selected"</c:if>>${dog}</option>
-                         	</c:forEach>
+                           <option value="" selected>견종</option>
+                           <option value="김대성">김대성</option>
+                           <option value="김현진">김현진</option>
+                           <option value="김지원">김지원</option>
+                           <option value="김현우">김현우</option>
+                           <option value="최주혁">최주혁</option>
                         </select>
                      </td>
                      <th>비상연락망</th>
-                     <td><input type="text" name="phone2" placeholder="비상연락망" value="${map.infoMap.D_PHONE}"/></td>
+                     <td><input type="text" name="phone2" placeholder="비상연락망" value="${map.infoMap.D_EMERTGENCY_PHONE}"/></td>
                   </tr>
                   <tr>
                      <th>성별</th>
@@ -124,8 +125,7 @@
                </table>
             </div>
          </form>
-         <%@include file="../../views/layout/footer.jsp"%>
-      </div>
-   </div>
+    	</div>
+	</div>
 </body>
 </html>

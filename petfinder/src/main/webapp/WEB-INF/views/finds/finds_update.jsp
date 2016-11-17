@@ -3,16 +3,15 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>발견게시판 수정</title>
+	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+	<title>발견게시판 수정</title>
 </head>
 <body>
    <div class="containor">
-      <%@include file="../../views/layout/nav.jsp"%>
       <div class="mainContents">
          <h2 style="float:left;">발견게시판 수정</h2>
          <form id="" action="finds_update_pro.do?idx=${map.infoMap.F_IDX}" method="post" enctype="multipart/form-data">
-           <a href="finds_list.do"><input type="button" class="rightTopButtons" value="취소"></a>
+           <a href="findslist.do"><input type="button" class="rightTopButtons" value="취소"></a>
            <input type="submit" class="rightTopButtons" value="수정" />
             <div class="editorTool" style="float: left;">
                <table>
@@ -127,7 +126,7 @@
                </table>
             </div>
          </form>
-         <%@include file="../../views/layout/footer.jsp"%>
+
       </div>
    </div>
 </body>

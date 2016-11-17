@@ -8,7 +8,6 @@
 </head>
 <body>
 	<div class="containor">
-		<%@include file="../../views/layout/nav.jsp"%>
 		<div class="mainContents">
 			<h2 style="float:left;">발견게시판 글쓰기</h2>
 			<form id="" action="finds_write.do" method="post" enctype="multipart/form-data">
@@ -114,7 +113,7 @@
 					</table>
 				</div>
 			</form>
-			<%@include file="../../views/layout/footer.jsp"%>
+
 		</div>
 	</div>
 

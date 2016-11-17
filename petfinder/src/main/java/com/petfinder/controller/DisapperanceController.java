@@ -47,15 +47,15 @@ public class DisapperanceController {
 	/** 
 	 * 분실목록을 조회 한다.
 	 * @return List<DisappearanceVO> list
-	 * @return "disappearance/disappearance_list"
+	 * @return "disappearance/disappearancelist"
 	 * @throws 
 	 */
-	@RequestMapping("/disappearance_list")
-	public ModelAndView disappearance_list() {
+	@RequestMapping("/disappearance/list.do")
+	public ModelAndView disappearancelist() {
 		ModelAndView mv = new ModelAndView();
 		List<DisappearanceVO> list = disappearanceService.disappearanceList();
 		mv.addObject("disappearancelist", list);
-		mv.setViewName("disappearance/disappearance_list");
+		mv.setViewName("disappearance/list");
 		return mv;
 	}
 	
@@ -79,13 +79,13 @@ public class DisapperanceController {
 	 * 분실정보 등록하고 목록조회 화면으로 이동한다.
 	 * @param @ModelAttribute("disappearanceVO")DisappearanceVO disappearanceVO 분실정보
 	 * @param HttpServletRequest request 파일정보
-	 * @return "redirect:disappearance_list.do";
+	 * @return "redirect:disappearancelist.do";
 	 * @throws Exception
 	 */
 	@RequestMapping("/disappearance_write")
 	public String disappearance_write(@ModelAttribute("disappearanceVO")DisappearanceVO disappearanceVO, HttpServletRequest request) throws Exception {
 		disappearanceService.insertDisappearance(disappearanceVO, request);
-		return "redirect:disappearance_list.do";
+		return "redirect:disappearancelist.do";
 	}
 	
 	
@@ -117,13 +117,13 @@ public class DisapperanceController {
 	/**
 	 * 분실정보 삭제 후 목록조회 화면으로 이동한다.
 	 * @param @RequestParam("idx") String idx
-	 * @return "redirect:disappearance_list.do"
+	 * @return "redirect:disappearancelist.do"
 	 * @throws Exception
 	 */
 	@RequestMapping("/disappearance_delete")
 	public String disappearance_delete(@RequestParam("idx") String idx) {
 		disappearanceService.deleteDisappearance(idx);
-		return "redirect:disappearance_list.do";
+		return "redirect:disappearancelist.do";
 	}
 	
 	/**
@@ -141,22 +141,9 @@ public class DisapperanceController {
 		mv.addObject("map", map);
 		HashMap<String, Object> infoMap = (HashMap<String, Object>)map.get("infoMap");
 		if(session.getAttribute("id").equals(infoMap.get("D_ID"))){
-			List<String> colorList = new ArrayList<String>();
-			colorList.add("색상");
-			colorList.add("검정");
-			colorList.add("흰색");
-			mv.addObject("colorList", colorList);
-			List<String> dogList = new ArrayList<String>();
-			dogList.add("견종");
-			dogList.add("김대성");
-			dogList.add("김현진");
-			dogList.add("김지원");
-			dogList.add("최주혁");
-			dogList.add("김현우");
-			mv.addObject("dogList", dogList);
 			mv.setViewName("disappearance/disappearance_update");
 		}else{
-			mv.setViewName("redirect:disappearance_list.do");
+			mv.setViewName("redirect:disappearancelist.do");
 		}
 		return mv;
 	}
@@ -164,13 +151,13 @@ public class DisapperanceController {
 	 * 분실정보 수정하고 목록조회 화면으로 이동한다.
 	 * @param @ModelAttribute("disappearanceVO")DisappearanceVO disappearanceVO
 	 * @param HttpServletRequest request
-	 * @return "redirect:disappearance_list.do"
+	 * @return "redirect:disappearancelist.do"
 	 * @throws Exception
 	 */
 	@RequestMapping("/disappearance_update_pro")
 	public String disappearance_update_pro(@ModelAttribute("disappearanceVO")DisappearanceVO disappearanceVO, HttpServletRequest request) throws Exception {
 		disappearanceService.updateDisappearance(disappearanceVO, request);
-		return "redirect:disappearance_list.do";
+		return "redirect:disappearancelist.do";
 	}
 	
 	/** 
@@ -186,7 +173,7 @@ public class DisapperanceController {
 		ModelAndView mv = new ModelAndView();
 		List<FindsVO> list = disappearanceService.matchDisappearance(disappearanceVO);
 		mv.addObject("findslist", list);
-		mv.setViewName("finds/finds_list");
+		mv.setViewName("finds/findslist");
 		return mv;
 	}
 	
@@ -217,21 +204,21 @@ public class DisapperanceController {
 
 	/** 
 	 * 조회기능
-	 * @param @RequestParam("searchtext") String searchtext	
-	 * @param @RequestParam("searchoption") String searchoption
+	 * @param @RequestParam("keyWord_search") String keyWord_search
+	 * @param @RequestParam("selection_search") String selection_search)
 	 * @return mv.addObject("disappearancelist", list)
-	 * @return mv.setViewName("disappearance/disappearance_list")
+	 * @return mv.setViewName("disappearance/disappearancelist")
 	 * @throws Exception
 	 */
 	@RequestMapping("/disappearance_search")
-	public ModelAndView disappearance_search(@RequestParam("searchtext") String searchtext,	@RequestParam("searchoption") String searchoption) throws Exception {
+	public ModelAndView disappearance_search(@RequestParam("keyWord_search") String keyWord_search,	@RequestParam("selection_search") String selection_search) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		HashMap<String, String> map = new HashMap<String, String>();
-		map.put("searchtext", searchtext);
-		map.put("searchoption", searchoption);
+		map.put("keyWord_search", keyWord_search);
+		map.put("selection_search", selection_search);
 		List<DisappearanceVO> list = disappearanceService.searchDisappearance(map);
 		mv.addObject("disappearancelist", list);
-		mv.setViewName("disappearance/disappearance_list");
+		mv.setViewName("disappearance/disappearancelist");
 		return mv;
 	}
 }

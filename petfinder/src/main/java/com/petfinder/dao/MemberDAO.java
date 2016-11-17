@@ -70,8 +70,8 @@ public class MemberDAO {
 	 * @return List<MemberVO>
 	 * @throws 
 	 */
-	public List<MemberVO> getID(HashMap<String, String> map){
-		return sqlSession.selectList("member.getid", map);
+	public List<MemberVO> loginMember(HashMap<String, String> map){
+		return sqlSession.selectList("member.loginmember", map);
 	}
 
 	/**
