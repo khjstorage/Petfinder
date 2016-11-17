@@ -21,7 +21,7 @@
 						<c:choose>
 							<c:when test="${fn:length(dlist) > 0}">
 								<c:forEach items="${dlist}" var="dog" begin="0" end="3" step="1">
-									<a href="disappearance_contents.do?idx=${dog.idx}">
+									<a href="/disappearance/contents.do?idx=${dog.idx}">
 										<div class="card">
 											<img src="">
 											<div class="card_info">
@@ -44,7 +44,7 @@
 						<c:choose>
 							<c:when test="${fn:length(flist) > 0}">
 								<c:forEach items="${flist}" var="dog" begin="0" end="3" step="1">
-									<a href="finds_contents.do?idx=${dog.idx}">
+									<a href="/finds/contents.do?idx=${dog.idx}">
 										<div class="card">
 											<img src="">
 											<div class="card_info">

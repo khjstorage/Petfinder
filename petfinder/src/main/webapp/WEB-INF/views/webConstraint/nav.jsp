@@ -17,15 +17,15 @@ $(document).ready(function() {
 		<div class="headerNav">
 			<c:choose>
 				<c:when test="${id == null}">
-					<a href="<c:url value='/login.do'/>"> <input type="button" id="pageFocusLogin" value="로그인"></a>
-					<a href="<c:url value='/register.do'/>"> <input type="button" id="pageFocusSignup" value="회원가입"></a>
+					<a href="<c:url value='/member/login.do'/>"> <input type="button" id="pageFocusLogin" value="로그인"></a>
+					<a href="<c:url value='/member/register.do'/>"> <input type="button" id="pageFocusSignup" value="회원가입"></a>
 				</c:when>
 				<c:otherwise>
 					<p>${id}</p>
 					<img id="preferences" src="../resources/img/preferences.png"/>
 					<div class="preferences hide">
 						<img src="../resources/img/preDiv.png"/>
-						<a href="<c:url value='/mypage.do'/>"><input type="button" value="마이페이지"></a>
+						<a href="<c:url value='/member/mypage.do'/>"><input type="button" value="마이페이지"></a>
 						<a href="<c:url value='/logout.do'/>"><input type="button" value="로그아웃"></a>
 					</div>
 				</c:otherwise>

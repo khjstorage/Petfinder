@@ -44,7 +44,7 @@ public class MemberController {
 	 * @return
 	 * @throws 
 	 */
-	@RequestMapping("/register")
+	@RequestMapping("/member/register.do")
 	public String register() {
 		return "member/register";
 	}
@@ -69,7 +69,7 @@ public class MemberController {
 	 * @return
 	 * @throws 
 	 */
-	@RequestMapping("/login")
+	@RequestMapping("/member/login.do")
 	public String login() {
 		return "member/login";
 	}
@@ -80,7 +80,7 @@ public class MemberController {
 	 * @return
 	 * @throws 
 	 */
-	@RequestMapping("loginProcess.do")
+	@RequestMapping("/loginProcess.do")
 	public ModelAndView loginProcess(@RequestParam("id") String id, @RequestParam("pwd") String pwd, HttpSession session) {
 		ModelAndView mv = null;
 		HashMap<String, String> map = new HashMap<String, String>();
@@ -101,7 +101,7 @@ public class MemberController {
 	 * @return
 	 * @throws 
 	 */
-	@RequestMapping("/mypage.do")
+	@RequestMapping("/member/mypage.do")
 	public ModelAndView mypage(HttpSession session) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		List<MemberVO> list = memberService.getMember((String) session.getAttribute("id"));

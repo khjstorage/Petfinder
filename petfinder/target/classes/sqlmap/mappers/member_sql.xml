@@ -65,7 +65,7 @@
 	        DELETE
 	        FROM
 	        	MEMBER
-	        WHER
+	        WHERE
 	        	M_ID = #{id}
 	    ]]>
 	</select>

@@ -11,7 +11,7 @@
 		<div class="mainContents">
 			<h2>로그인</h2>
 			<div class="login">
-				<form action="loginProcess.do" method="post" enctype="multipart/form-data">
+				<form action="/loginProcess.do" method="post" enctype="multipart/form-data">
 					<c:choose>
 						<c:when test="${idfail != null}">
 							<p>아이디와 비밀번호를 확인하세요</p>
@@ -26,7 +26,7 @@
 					<input name="pwd" type="password" placeholder="비밀번호 입력" /><br />
 					<input type="submit" value="로그인"><br />
 				</form>
-				<a href="#">계정 찾기</a> / <a href="register.do">회원가입</a>
+				<a href="#">계정 찾기</a> / <a href="/member/register.do">회원가입</a>
 			</div>
 		</div>
 	</div>

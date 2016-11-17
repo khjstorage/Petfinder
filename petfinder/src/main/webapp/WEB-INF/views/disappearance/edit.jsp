@@ -9,8 +9,8 @@
 	<div class="containor">
     	<div class="mainContents">
         <h2 style="float:left;">실종게시판 수정</h2>
-        	<form id="" action="disappearance_update_pro.do?idx=${map.infoMap.D_IDX}" method="post" enctype="multipart/form-data">
-           		<a href="disappearancelist.do"><input type="button" class="rightTopButtons" value="취소"></a>
+        	<form id="" action="/update.do?idx=${map.infoMap.D_IDX}" method="post" enctype="multipart/form-data">
+           		<a href="<c:url value='/disappearance/list.do'/>"><input type="button" class="rightTopButtons" value="취소"></a>
            		<input type="submit" class="rightTopButtons" value="수정" />
             	<div class="editorTool" style="float: left;">
                	<table>

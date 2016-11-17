@@ -10,8 +10,8 @@
 <div class="containor">
 	<div class="mainContents">
 	  <h2 style="float: left;">My Page</h2>
-	  <form action="updateMember.do" method="post" enctype="multipart/form-data">
-	  	<a href="deleteMember.do"><input class="rightTopButtons" type="button" value="탈퇴" /></a>
+	  <form action="/updateMember.do" method="post" enctype="multipart/form-data">
+	  	<a href="<c:url value='/deleteMember.do'/>"><input class="rightTopButtons" type="button" value="탈퇴" /></a>
 	  	<input class="rightTopButtons" type="submit" value="수정" />
 	  	<c:forEach items="${memberlist}" var="member">
 	      	<div class="editorTool">
@@ -21,8 +21,8 @@
 	                     		<td><input type="file" accept="image/*" name="member_file" multiple="multiple"/></td>
 	                     	<th>아이디</th>
 	                     		<td><input type="text" name="id" placeholder="아이디" value="${member.id}" readOnly /></td>
-	                  </tr>
-	                  <tr>
+	                </tr>
+	                <tr>
 	                  	<th>색상</th>
 	                     		<td><select id="color" name="color">
 	                            <option value="">색상</option>
@@ -50,17 +50,17 @@
 	                  <tr>
 	                     <th>성별</th>
 	                      	<td>
-	                       <div class="checks">
-	                          <input type="radio" id="gender_m" name="gender" value="m" <c:if test="${member.gender eq 'm'}">checked</c:if> />
-	                          <label for="gender_m"> 남 </label>
-	                       </div>
-	                       <div class="checks">
-	                          <input type="radio" id="gender_f" name="gender" value="f" <c:if test="${member.gender eq 'f'}">checked</c:if>/> 
-	                          <label for="gender_f"> 여 </label>
-	                       </div>
+	                      	 <div class="checks">
+	                         	<input type="radio" id="gender_m" name="gender" value="수컷" <c:if test="${member.gender eq '수컷'}">checked</c:if> />
+	                         	<label for="gender_m"> 수컷 </label>
+	                       	 </div>
+	                       	<div class="checks">
+	                       		<input type="radio" id="gender_f" name="gender" value="암컷" <c:if test="${member.gender eq '암컷'}">checked</c:if>/> 
+	                       		<label for="gender_f"> 암컷 </label>
+	                       	</div>
 	                     	</td>
 	                     <th>이름</th>
-	                    	  	<td><input type="text" name="name" placeholder="이름" value="${member.name}" /></td>
+	                    	<td><input type="text" name="name" placeholder="이름" value="${member.name}" /></td>
 	                  </tr>
 	                  <tr>
 	                     <th>크기</th>
