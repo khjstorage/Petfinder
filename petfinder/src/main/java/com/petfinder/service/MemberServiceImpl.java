@@ -49,7 +49,7 @@ public class MemberServiceImpl implements MemberService {
 		List<MemberVO> list = memberDao.loginMember(map);
 		String idcheck;
 		if(list.size()==0){
-			idcheck="123";
+			idcheck="";
 		}else{
 			idcheck=list.get(0).getId();
 		}

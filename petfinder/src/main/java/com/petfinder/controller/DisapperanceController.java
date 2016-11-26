@@ -144,7 +144,9 @@ public class DisapperanceController {
 		ModelAndView mv = new ModelAndView();
 		Map<String,Object> map = disappearanceService.selectBoardDetail(idx);
 		mv.addObject("map", map);
+		
 		HashMap<String, Object> infoMap = (HashMap<String, Object>)map.get("infoMap");
+		
 		if(session.getAttribute("id").equals(infoMap.get("D_ID"))){
 			mv.setViewName("/disappearance/edit");
 		}else{
