@@ -114,12 +114,14 @@ $(document).ready(function() {
                   </tr>
                   <tr>
                      <th>실종 지역</th>
-                     <td><select name="region" required>
+                     <td>
+                     	<select name="region" required>
                            <option value="" selected>실종지역</option>
                            <option value="서울">서울</option>
                            <option value="경기">경기</option>
                            <option value="일본">일본</option>
-                     </select></td>
+                     	</select>
+                     </td>
                   </tr>
                   <tr>
                      <th>제목</th>

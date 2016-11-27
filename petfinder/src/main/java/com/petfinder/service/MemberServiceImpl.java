@@ -45,15 +45,8 @@ public class MemberServiceImpl implements MemberService {
 	 * @throws 
 	 */
 	@Override
-	public String loginMember(HashMap<String, String> map){
-		List<MemberVO> list = memberDao.loginMember(map);
-		String idcheck;
-		if(list.size()==0){
-			idcheck="";
-		}else{
-			idcheck=list.get(0).getId();
-		}
-		return idcheck;
+	public List<MemberVO> loginMember(HashMap<String, String> map){
+		return memberDao.loginMember(map);
 	}
 
 	@Override

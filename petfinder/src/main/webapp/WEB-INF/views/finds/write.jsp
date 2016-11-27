@@ -53,14 +53,16 @@ $(document).ready(function() {
 						</tr>
 						<tr>
 							<th>견종</th>
-								<td><select name="dog" required>
+								<td>
+									<select name="dog" required>
 										<option value="" selected>견종</option>
 										<option value="김대성">김대성</option>
 										<option value="김현진">김현진</option>
 										<option value="김지원">김지원</option>
 										<option value="김현우">김현우</option>
 										<option value="최주혁">최주혁</option>
-								</select></td>
+									</select>
+								</td>
 							<th>비밀번호</th>
 								<td><input type="password" id="pwd" name="pwd" placeholder="비밀번호"  maxlength="18" required/></td>
 						</tr>
@@ -111,12 +113,14 @@ $(document).ready(function() {
 						</tr>
 						<tr>
 							<th>발견 지역</th>
-								<td><select name="region" required>
+								<td>
+									<select name="region" required>
 										<option value="" selected>발견지역</option>
 										<option value="서울">서울</option>
 										<option value="경기">경기</option>
 										<option value="일본">일본</option>
-								</select></td>
+									</select>
+								</td>
 						</tr>
 						<tr>
 							<th>제목</th>

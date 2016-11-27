@@ -24,15 +24,8 @@ import com.petfinder.vo.MemberVO;
 public interface MemberService {
 	
 	public List<MemberVO> getMember(String sessionId) throws Exception;
-	
-	/**
-	 * �븘�씠�뵒 �뙣�뒪�썙�뱶 �솗�씤 �슂泥��쓣 泥섎━�븯湲� �쐞�빐 �뜲�씠�꽣泥섎━瑜� �슂泥��븳�떎.
-	 * 
-	 * @param HashMap<String, String> map / id, pwd
-	 * @return String
-	 * @throws 
-	 */
-	public String loginMember(HashMap<String, String> map);
+
+	public List<MemberVO> loginMember(HashMap<String, String> map);
 	
 	public void insertMember(MemberVO memberVO, HttpServletRequest request) throws Exception;
 	

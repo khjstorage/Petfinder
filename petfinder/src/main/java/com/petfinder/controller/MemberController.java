@@ -41,8 +41,7 @@ public class MemberController {
 
 	
 	/** 
-	 * �쉶�썝媛��엯 �럹�씠吏�濡� �씠�룞�븳�떎.
-	 * @return 
+	 * @param 
 	 * @return
 	 * @throws 
 	 */
@@ -53,8 +52,7 @@ public class MemberController {
 
 	
 	/** 
-	 * �쉶�썝媛��엯�쓣 �떊泥��븯怨� 硫붿씤�쑝濡� �씠�룞�븳�떎.
-	 * @return 
+	 * @param 
 	 * @return
 	 * @throws 
 	 */
@@ -66,7 +64,6 @@ public class MemberController {
 
 
 	/** 
-	 * 濡쒓렇�씤�럹�씠吏�濡� �씠�룞�븳�떎.
 	 * @return 
 	 * @return
 	 * @throws 
@@ -77,28 +74,26 @@ public class MemberController {
 	}
 
 	/** 
-	 * 濡쒓렇�씤泥섎━瑜� �븳�떎. �븘�씠�뵒�� �뙣�뒪�썙�뱶媛� 留욎쑝硫� �꽭�뀡媛믪쓣 遺��뿬�븳�떎.
-	 * @return 
+	 * 로그인
+	 * @param 
 	 * @return
 	 * @throws 
 	 */
 	@RequestMapping("/loginProcess.do")
 	public ModelAndView loginProcess(@RequestParam("id") String id, @RequestParam("pwd") String pwd, HttpSession session) {
-		ModelAndView mv = null;
 		HashMap<String, String> map = new HashMap<String, String>();
 		map.put("id", id);
 		map.put("pwd", pwd);
-		if(memberService.loginMember(map).equals(id)){
+		if(memberService.loginMember(map).size()==1){
 			session.setAttribute("id",id);
-			return mv = new ModelAndView("redirect:/main.do");
+			return new ModelAndView("redirect:/main.do");
 		}else{
 			session.setAttribute("idfail",id);
-			return mv = new ModelAndView("redirect:/member/login.do");
+			return new ModelAndView("redirect:/member/login.do");
 		}
 	}
 	
 	/** 
-	 * 留덉씠�럹�씠吏�濡� �씠�룞�븳�떎.
 	 * @return 
 	 * @return
 	 * @throws 
@@ -114,7 +109,6 @@ public class MemberController {
 
 
 	/** 
-	 * 濡쒓렇�븘�썐�쓣 泥섎━�븯怨�, 硫붿씤�럹�씠吏�濡� �씠�룞�븳�떎.
 	 * @return 
 	 * @return
 	 * @throws 
@@ -127,7 +121,6 @@ public class MemberController {
 	}
 	
 	/** 
-	 * �쉶�썝�깉�눜瑜� 泥섎━�븯怨�, 硫붿씤�럹�씠吏�濡� �씠�룞�븳�떎.
 	 * @return 
 	 * @return
 	 * @throws 
@@ -142,7 +135,6 @@ public class MemberController {
 	}
 
 	/** 
-	 * �쉶�썝�젙蹂대�� �닔�젙�븯怨�, 硫붿씤�럹�씠吏�濡� �씠�룞�븳�떎.
 	 * @return 
 	 * @return
 	 * @throws 
