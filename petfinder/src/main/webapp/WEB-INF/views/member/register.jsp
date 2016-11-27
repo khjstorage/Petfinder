@@ -8,6 +8,10 @@
 </head>
 <script>
 $(document).ready(function(){
+	var flag = 0;
+	var re_pwd = /^[a-z0-9_-]{6,18}$/; // 비밀번호 검사식
+	var re_name = /^[가-힣a-zA-Z]+$/; // 이름 검사식
+	var re_tel = /^\d{3}-\d{3,4}-\d{4}$/; // 전화번호 검사식
 	
 	$("#duplication").click(function() {
 		if($("#id").val()){
@@ -17,11 +21,19 @@ $(document).ready(function(){
 				type : "post",
 				data : query,
 				success : function(data) {
+					var re_id = /^[a-z0-9_-]{3,10}$/; // 아이디 검사식
 					if(data==1){
-						alert("사용할 수 없는 아이디");
+						alert("이미 사용중인 아이디입니다.");
 						$("#id").val("");
+						$("#id").focus();
+					}else if(!re_id.test($("#id").val())){
+						alert("영어(소문자),숫자 3~10글자만 가능");
+						$("#id").val("");
+						$("#id").focus();
 					}else if(data==-1){
 						alert("사용할 수 있는 아이디");
+						$("#id").attr("readonly",true);
+						flag = 1;
 					}
 				}
 			});
@@ -30,6 +42,39 @@ $(document).ready(function(){
 			$("#id").focus();
 		}
 	});
+	
+	$("#submitBtn").click(function(){
+		if(flag==0){
+			alert("아이디 중복검사를 해주세요")
+			return false;
+		}
+		
+		var pwd = $("#pwd"), pwd2 = $("#pwd2");
+		if(pwd.val()!=pwd2.val()){
+			alert("비밀번호가 일치하지 않습니다.");
+			$("#pwd2").focus();
+			return false;
+		}
+		
+		if(!re_pwd.test($("#pwd").val())){
+			alert("비밀번호는 6글자 이상 18글자 이하로 설정해주세요");
+			$("#pwd").focus();
+			return false;
+		}
+
+		if(!re_name.test($("#name").val())){
+			alert("이름형식이 올바르지 않습니다.");
+			$("#name").focus();
+			return false;
+		}
+		
+		if(!re_tel.test($("#phone").val())){
+			alert("휴대폰 번호를 형식에 맞게 입력해주세요");
+			$("#phone").focus();
+			return false;
+		}
+	});
+	
 	
 });
 </script>
@@ -47,7 +92,7 @@ $(document).ready(function(){
 	               <input type="password" id="pwd2" name="pwd2" placeholder="비밀번호 확인" required/>
 	               <br />
 	               <input type="text" id="name" name="name" placeholder="이름" required/>
-	               <input type="text" id="phone" name="phone" size="11" maxlength="11" placeholder="연락처" required/>
+	               <input type="text" id="phone" name="phone" size="11" maxlength="13" placeholder="010-0000-0000" required/>
 	               <br /> 
 	               <select name="region1" required>
 	                  <option value="" selected>시</option>
@@ -90,11 +135,11 @@ $(document).ready(function(){
 	               <br />
 	               <div class="checks">
 	                  <input type="radio" id="gender_m" name="gender" value="수컷" checked />
-	                  <label for="gender_m"> 암컷 </label>
+	                  <label for="gender_m"> 수컷 </label>
 	               </div>
 	               <div class="checks">
 	                  <input type="radio" id="gender_f" name="gender" value="암컷" /> 
-	                  <label for="gender_f"> 수컷 </label>
+	                  <label for="gender_f"> 암컷 </label>
 	               </div>
 	               <span> &nbsp; / &nbsp; </span>
 	               <div class="checks">

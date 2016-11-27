@@ -5,14 +5,25 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title>실종게시판</title>
 </head>
+<script type="text/javascript">
+$(document).ready(function() {
+	$("#searchBtn").click(function(){
+		if(!$("#keyWord_search").val()){
+			alert("검색어를 적어주세요");
+			$("#keyWord_search").focus();
+			return false;
+		}
+	});
+});
+</script>
 <body>
 	<div class="containor">
 		<div class="mainContents">
 			<h2 style="float: left;">실종게시판</h2>
 			<a href="<c:url value='/disappearance/write.do'/>"><input type="button" id="write" class="rightTopButtons" value="글쓰기" /></a>
 				<form action="<c:url value='/disappearance/search.do'/>" method="post" enctype="multipart/form-data">
-		            <input type="submit" class="rightTopButtons" value="조회" />
-		               <input type="text" class="rightTopButtons" name="keyWord_search"/>
+		            <input type="submit" id="searchBtn" class="rightTopButtons" value="조회" />
+		               <input type="text" id="keyWord_search" class="rightTopButtons" name="keyWord_search"/>
 		               <select class="rightTopButtons" name="selection_search" style="height:52px;">
 		                  <option value="all">제목/내용</option>
 		                  <option value="title">제목만</option>

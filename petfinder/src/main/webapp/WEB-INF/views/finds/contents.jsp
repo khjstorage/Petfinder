@@ -4,6 +4,7 @@
 <head>
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><link rel="stylesheet" type="text/css" href="style.css"/>
 	<title>발견게시판 상세내용</title>
+</head>
 <script type="text/javascript">
 $(document).ready(function() {
 	// 발견게시물 수정 비밀번호 입력 폼
@@ -18,7 +19,6 @@ $(document).ready(function() {
 	});
 });
 </script>
-</head>
 <body>
    <div class="containor">
       <div class="mainContents">
@@ -57,7 +57,7 @@ $(document).ready(function() {
 							<c:forEach var="row" items="${file }">
 	                      		<input type="hidden" id="IDX" value="${row.F_BOARD_IDX }">
 	                        	<a href="/finds/download.do?idx=${map.F_IDX}">${row.F_ORIGINAL_FILE_NAME }</a>
-	                        	(${row.F_FILE_SIZE })(KB)
+	                        	(${row.F_FILE_SIZE }KB)
 	                        </c:forEach> 
 						</c:when>				
 						<c:otherwise> 

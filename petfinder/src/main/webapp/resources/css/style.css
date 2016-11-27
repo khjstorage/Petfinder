@@ -1,4 +1,4 @@
-/* 모든 화면 */
+/* 紐⑤뱺 �솕硫� */
 * {
 	-webkit-transition: all 0.25s ease-in-out;
 	-o-transition: all 0.25s ease-in-out;
@@ -13,7 +13,7 @@ html, body, div {
 	margin: 0;
 	padding: 0;
 	border: none;
-	font-family: '새굴림';
+	font-family: '�깉援대┝';
 }
 
 .hide {
@@ -51,7 +51,7 @@ select {
 	outline: none;
 	text-align: center;
 	color: #4a470a;
-	-webkit-appearance: none; /* 네이티브 외형 감추기 */
+	-webkit-appearance: none; /* �꽕�씠�떚釉� �쇅�삎 媛먯텛湲� */
 	-moz-appearance: none;
 	appearance: none;
 }
@@ -129,7 +129,7 @@ footer {
 	background-color: #4a470a !important;
 	color: #ffffff !important;
 }
-/* 큰 화면 */
+/* �겙 �솕硫� */
 @media screen and (min-device-width:1025px) {
 	::-webkit-scrollbar {
 		width: 8px;
@@ -504,7 +504,7 @@ footer {
 	}
 }
 
-/* 작은 화면 */
+/* �옉�� �솕硫� */
 @media screen and (max-device-width:1024px) {
 	::-webkit-scrollbar {
 		width: 0;

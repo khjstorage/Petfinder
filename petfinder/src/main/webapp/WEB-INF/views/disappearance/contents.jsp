@@ -27,7 +27,7 @@
 										<c:forEach var="row" items="${file }">
 				                      		<input type="hidden" id="IDX" value="${row.D_BOARD_IDX }">
 				                        	<a href="<c:url value='/disappearance/download.do?idx=${map.D_IDX}'/>">${row.D_ORIGINAL_FILE_NAME }</a>
-				                        	(${row.D_FILE_SIZE })(KB)
+				                        	(${row.D_FILE_SIZE }KB)
 				                        </c:forEach> 
 									</c:when>				
 									<c:otherwise> 

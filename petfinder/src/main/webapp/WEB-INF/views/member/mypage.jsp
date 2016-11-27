@@ -6,46 +6,78 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title>My Page</title>
 </head>
+<script>
+$(document).ready(function(){
+	var re_pwd = /^[a-z0-9_-]{6,18}$/; // 비밀번호 검사식
+	var re_name = /^[가-힣a-zA-Z]+$/; // 이름 검사식
+	var re_tel = /^\d{3}-\d{3,4}-\d{4}$/; // 전화번호 검사식
+		
+	$("#submitBtn").click(function(){
+		if(!re_pwd.test($("#pwd").val())){
+			alert("비밀번호는 6글자 이상 18글자 이하로 설정해주세요");
+			$("#pwd").focus();
+			return false;
+		}
+
+		if(!re_name.test($("#name").val())){
+			alert("이름형식이 올바르지 않습니다.");
+			$("#name").focus();
+			return false;
+		}
+		
+		if(!re_tel.test($("#phone").val())){
+			alert("휴대폰번호를 형식에 맞게 적어주세요")
+			$("#phone").focus();
+			return false;
+		}
+		
+	});
+});
+</script>
 <body>
 <div class="containor">
 	<div class="mainContents">
 	  <h2 style="float: left;">My Page</h2>
 	  <form action="/member/update.do" method="post" enctype="multipart/form-data">
 	  	<a href="<c:url value='/member/delete.do'/>"><input class="rightTopButtons" type="button" value="탈퇴" /></a>
-	  	<input class="rightTopButtons" type="submit" value="수정" />
+	  	<input class="rightTopButtons" id="submitBtn" type="submit" value="수정" />
 	  	<c:forEach items="${memberlist}" var="member">
 	      	<div class="editorTool">
 	          	<table class="myPageTable">
 	              	<tr>
 	                  	<th>애견 사진</th>
-	                     		<td><input type="file" accept="image/*" name="member_file" multiple="multiple"/></td>
-	                     	<th>아이디</th>
-	                     		<td><input type="text" name="id" placeholder="아이디" value="${member.id}" readOnly /></td>
+	                    	<td><input type="file" accept="image/*" name="member_file" multiple="multiple"/></td>
+	                    <th>아이디</th>
+	                     	<td><input type="text" name="id" placeholder="아이디" value="${member.id}" readOnly /></td>
 	                </tr>
 	                <tr>
 	                  	<th>색상</th>
-	                     		<td><select id="color" name="color">
-	                            <option value="">색상</option>
-	                            <option value="갈색" <c:if test="${member.color eq '갈색'}">selected</c:if>>갈색</option>
-	                            <option value="검정색" <c:if test="${member.color eq '검정색'}">selected</c:if>>검정색</option>
-	                            <option value="얼룩(흰색+검정색)" <c:if test="${member.color eq '얼룩(흰색+검정색)'}">selected</c:if>>얼룩(흰색+검정색)</option>
-	                            <option value="얼룩(흰색+갈색)" <c:if test="${member.color eq '얼룩(흰색+갈색)'}">selected</c:if>>얼룩(흰색+갈색)</option>
-	                            <option value="얼룩(갈색+검정색)" <c:if test="${member.color eq '얼룩(갈색+검정색)'}">selected</c:if>>얼룩(갈색+검정색)</option>
-	                     		</select></td>
-	                      <th>연락처</th>
-	                      	<td><input type="text" name="phone" placeholder="연락처" value="${member.phone}" /></td>
-	                  </tr>
-	                  <tr>
-	                     	<th>견종</th>
-	                     		<td><select name="dog">
-	                            <option value="">견종</option>
-	                            <option value="코카스파니엘" <c:if test="${member.dog eq '코카스파니엘'}">selected</c:if>>코카스파니엘</option>
-	                            <option value="요크셔테리어" <c:if test="${member.dog eq '요크셔테리어'}">selected</c:if>>요크셔테리어</option>
-	                            <option value="허스키" <c:if test="${member.dog eq '허스키'}">selected</c:if>>허스키</option>
-	                            <option value="웰시코기" <c:if test="${member.dog eq '웰시코기'}">selected</c:if>>웰시코기</option>
-	                      		</select></td>
+	                     	<td>
+		                    	<select id="color" name="color">
+		                           <option value="">색상</option>
+		                           <option value="갈색" <c:if test="${member.color eq '갈색'}">selected</c:if>>갈색</option>
+		                           <option value="검정색" <c:if test="${member.color eq '검정색'}">selected</c:if>>검정색</option>
+		                           <option value="얼룩(흰색+검정색)" <c:if test="${member.color eq '얼룩(흰색+검정색)'}">selected</c:if>>얼룩(흰색+검정색)</option>
+		                           <option value="얼룩(흰색+갈색)" <c:if test="${member.color eq '얼룩(흰색+갈색)'}">selected</c:if>>얼룩(흰색+갈색)</option>
+		                           <option value="얼룩(갈색+검정색)" <c:if test="${member.color eq '얼룩(갈색+검정색)'}">selected</c:if>>얼룩(갈색+검정색)</option>
+		                    	</select>
+	                     	</td>
+	                    <th>연락처</th>
+	                      	<td><input type="text" id="phone" name="phone" placeholder="010-0000-0000" value="${member.phone}" /></td>
+	                </tr>
+	                <tr>
+	                   	<th>견종</th>
+	                   		<td>
+	                   			<select name="dog">
+		                            <option value="">견종</option>
+		                            <option value="코카스파니엘" <c:if test="${member.dog eq '코카스파니엘'}">selected</c:if>>코카스파니엘</option>
+		                            <option value="요크셔테리어" <c:if test="${member.dog eq '요크셔테리어'}">selected</c:if>>요크셔테리어</option>
+		                            <option value="허스키" <c:if test="${member.dog eq '허스키'}">selected</c:if>>허스키</option>
+	                            	<option value="웰시코기" <c:if test="${member.dog eq '웰시코기'}">selected</c:if>>웰시코기</option>
+	                      		</select>
+	                      	</td>
 	                     <th>비밀번호</th>
-	                     		<td><input type="password" name="pwd" placeholder="비밀번호" value="${member.pwd}" /></td>
+	                     	<td><input type="password" id="pwd" name="pwd" placeholder="비밀번호" value="${member.pwd}" /></td>
 	                  </tr>
 	                  <tr>
 	                     <th>성별</th>
@@ -60,7 +92,7 @@
 	                       	</div>
 	                     	</td>
 	                     <th>이름</th>
-	                    	<td><input type="text" name="name" placeholder="이름" value="${member.name}" /></td>
+	                    	<td><input type="text" id="name" name="name" placeholder="이름" value="${member.name}" /></td>
 	                  </tr>
 	                  <tr>
 	                     <th>크기</th>

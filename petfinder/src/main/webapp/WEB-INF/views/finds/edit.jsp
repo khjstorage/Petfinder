@@ -6,58 +6,82 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title>발견게시판 수정</title>
 </head>
+<script type="text/javascript">
+$(document).ready(function() {
+	var re_pwd = /^[a-z0-9_-]{6,18}$/; // 비밀번호 검사식
+	var re_tel = /^\d{3}-\d{3,4}-\d{4}$/; // 전화번호 검사식
+
+	$("#submitBtn").click(function(){
+		if(!re_tel.test($("#phone").val())){
+			alert("휴대폰 번호를 형식에 맞게 입력해주세요");
+			$("#phone").focus();
+			return false;
+		}
+		
+		if(!re_pwd.test($("#pwd").val())){
+			alert("비밀번호는 6글자 이상 18글자 이하로 설정해주세요");
+			$("#pwd").focus();
+			return false;
+		}
+	});
+});
+</script>
 <body>
    <div class="containor">
       <div class="mainContents">
          <h2 style="float:left;">발견게시판 수정</h2>
          <form id="" action="/finds/update.do?idx=${map.infoMap.F_IDX}" method="post" enctype="multipart/form-data">
            <a href="/finds/list.do"><input type="button" class="rightTopButtons" value="취소"></a>
-           <input type="submit" class="rightTopButtons" value="수정" />
+           <input type="submit" id="submitBtn" class="rightTopButtons" value="수정" />
             <div class="editorTool" style="float: left;">
                <table>
                   <tr>
                      <th>애견 사진</th>
                      <td><input type="file" accept="image/*" name="finds_file" multiple="multiple" /></td>
                      <th>닉네임</th>
-                     <td><input type="text" name="name" placeholder="닉네임" value="${map.infoMap.F_NAME}" /></td>
+                     <td><input type="text" name="name" placeholder="닉네임" value="${map.infoMap.F_NAME}" required /></td>
                   </tr>
                   <tr>
                      <th>색상</th>
                      <td>
-                        <select name="color">
-                           <option value="" selected>색상</option>
-                           <option value="검정">검정</option>
-                           <option value="흰색">흰색</option>
+                        <select name="color" required>
+                           <option value="">색상</option>
+                           <option value="검정" <c:if test="${map.infoMap.F_COLOR eq '검정'}">selected</c:if>>검정</option>
+                           <option value="흰색" <c:if test="${map.infoMap.F_COLOR eq '흰색'}">selected</c:if>>흰색</option>
                         </select>
                      </td>
                      <th>연락처</th>
-                     <td><input type="text" name="phone" placeholder="연락처" value="${map.infoMap.F_PHONE}" /></td>
+                     <td><input type="text" id="phone" name="phone" placeholder="010-0000-0000" value="${map.infoMap.F_PHONE}" /></td>
                   </tr>
                   <tr>
                      <th>견종</th>
                      <td>
-                        <select name="dog">
-                           <option value="" selected>견종</option>
-                           <option value="김대성">김대성</option>
-                           <option value="김현진">김현진</option>
-                           <option value="김지원">김지원</option>
-                           <option value="김현우">김현우</option>
-                           <option value="최주혁">최주혁</option>
+                        <select name="dog" required>
+                           <option value="">견종</option>
+                           <option value="김대성" <c:if test="${map.infoMap.F_DOG eq '김대성'}">selected</c:if>>김대성</option>
+                           <option value="김현진" <c:if test="${map.infoMap.F_DOG eq '김현진'}">selected</c:if>>김현진</option>
+                           <option value="김지원" <c:if test="${map.infoMap.F_DOG eq '김지원'}">selected</c:if>>김지원</option>
+                           <option value="김현우" <c:if test="${map.infoMap.F_DOG eq '김현우'}">selected</c:if>>김현우</option>
+                           <option value="최주혁" <c:if test="${map.infoMap.F_DOG eq '최주혁'}">selected</c:if>>최주혁</option>
                         </select>
                      </td>
                      <th>비밀번호</th>
-                     <td><input type="password" name="pwd" placeholder="비밀번호" value="${map.infoMap.F_PASSWORD}" /></td>
+                     <td><input type="password" id="pwd" name="pwd" placeholder="비밀번호" value="${map.infoMap.F_PASSWORD}" /></td>
                   </tr>
                   <tr>
                      <th>성별</th>
                      <td>
                         <div class="checks">
-                           <input type="radio" id="gender_f" name="gender" value="f" checked />
-                           <label for="gender_f"> ♀ </label>
+                        	<input type="radio" id="gender_f" name="gender" value="여자" <c:if test="${map.infoMap.F_GENDER eq '여자'}">checked</c:if> />
+                        	<label for="gender_f"> 여자 </label>
                         </div>
                         <div class="checks">
-                           <input type="radio" id="gender_m" name="gender" value="m" /> 
-                           <label for="gender_m"> ♂ </label>
+                        	<input type="radio" id="gender_m" name="gender" value="남자" <c:if test="${map.infoMap.F_GENDER eq '남자'}">checked</c:if> /> 
+                        	<label for="gender_m"> 남자 </label>
+                        </div>
+                        <div class="checks">
+							<input type="radio" id="gender_un" name="gender" value="모름" <c:if test="${map.infoMap.F_GENDER eq '모름'}">checked</c:if>/>
+							<label for="gender_un"> 모름 </label>
                         </div>
                      </td>
                      <th></th>
@@ -67,15 +91,15 @@
                      <th>크기</th>
                      <td>
                         <div class="checks">
-                           <input type="radio" id="size_s" name="size" value="s" checked />
+                           <input type="radio" id="size_s" name="size" value="소형" <c:if test="${map.infoMap.F_SIZE eq '소형'}">checked</c:if> />
                            <label for="size_s"> 소 </label>
                         </div>
                         <div class="checks">
-                           <input type="radio" id="size_m" name="size" value="m" /> <label
+                           <input type="radio" id="size_m" name="size" value="중형" <c:if test="${map.infoMap.F_SIZE eq '중형'}">checked</c:if> /> <label
                               for="size_m"> 중 </label>
                         </div>
                         <div class="checks">
-                           <input type="radio" id="size_l" name="size" value="l" /> <label
+                           <input type="radio" id="size_l" name="size" value="대형" <c:if test="${map.infoMap.F_SIZE eq '대형'}">checked</c:if> /> <label
                               for="size_l"> 대 </label>
                         </div>
                      </td>
@@ -91,12 +115,14 @@
                   </tr>
                   <tr>
                      <th>발견 지역</th>
-                     <td><select name="region">
-                           <option value="" selected>실종지역</option>
-                           <option value="서울">서울</option>
-                           <option value="경기">경기</option>
-                           <option value="일본">일본</option>
-                     </select></td>
+                     <td>
+	                     <select name="region">
+	                           <option value="">발견지역</option>
+	                           <option value="서울" <c:if test="${map.infoMap.F_REGION eq '서울'}">selected</c:if>>서울</option>
+	                           <option value="경기" <c:if test="${map.infoMap.F_REGION eq '경기'}">selected</c:if>>경기</option>
+	                           <option value="일본" <c:if test="${map.infoMap.F_REGION eq '일본'}">selected</c:if>>일본</option>
+	                     </select>
+                     </td>
                   </tr>
                   <tr>
                      <th>제목</th>

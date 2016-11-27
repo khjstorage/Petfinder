@@ -5,13 +5,31 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title>실종게시판 수정</title>
 </head>
+<script type="text/javascript">
+$(document).ready(function() {
+	var re_tel = /^\d{3}-\d{3,4}-\d{4}$/; // 전화번호 검사식
+
+	$("#submitBtn").click(function(){
+		if(!re_tel.test($("#phone1").val())){
+			alert("휴대폰 번호를 형식에 맞게 입력해주세요");
+			$("#phone1").focus();
+			return false;
+		}
+		if(!re_tel.test($("#phone2").val())){
+			alert("휴대폰 번호를 형식에 맞게 입력해주세요");
+			$("#phone2").focus();
+			return false;
+		}
+	});
+});
+</script>
 <body>
 	<div class="containor">
     	<div class="mainContents">
         <h2 style="float:left;">실종게시판 수정</h2>
         	<form id="" action="<c:url value='/disappearance/update.do?idx=${map.infoMap.D_IDX}'/>" method="post" enctype="multipart/form-data">
            		<a href="<c:url value='/disappearance/list.do'/>"><input type="button" class="rightTopButtons" value="취소"></a>
-           		<input type="submit" class="rightTopButtons" value="수정" />
+           		<input type="submit" id="submitBtn" class="rightTopButtons" value="수정" />
             	<div class="editorTool" style="float: left;">
                	<table>
                   <tr>
@@ -23,40 +41,44 @@
                   <tr>
                      <th>색상</th>
                      <td>
-                        <select name="color">
-                           <option value="" selected>색상</option>
-                           <option value="검정">검정</option>
-                           <option value="흰색">흰색</option>
+                        <select name="color" required>
+                           <option value="">색상</option>
+                           <option value="검정" <c:if test="${map.infoMap.D_COLOR eq '검정'}">selected</c:if>>검정</option>
+                           <option value="흰색" <c:if test="${map.infoMap.D_COLOR eq '흰색'}">selected</c:if>>흰색</option>
                         </select>
                      </td>
                      <th>연락처</th>
-                     <td><input type="text" name="phone1" placeholder="연락처" value="${map.infoMap.D_PHONE}" /></td>
+                     <td><input type="text" id="phone1" name="phone1" placeholder="010-0000-0000" value="${map.infoMap.D_PHONE}" /></td>
                   </tr>
                   <tr>
                      <th>견종</th>
                      <td>
-                        <select name="dog">
-                           <option value="" selected>견종</option>
-                           <option value="김대성">김대성</option>
-                           <option value="김현진">김현진</option>
-                           <option value="김지원">김지원</option>
-                           <option value="김현우">김현우</option>
-                           <option value="최주혁">최주혁</option>
+                        <select name="dog" required>
+                           <option value="">견종</option>
+                           <option value="김대성" <c:if test="${map.infoMap.D_DOG eq '김대성'}">selected</c:if>>김대성</option>
+                           <option value="김현진" <c:if test="${map.infoMap.D_DOG eq '김현진'}">selected</c:if>>김현진</option>
+                           <option value="김지원" <c:if test="${map.infoMap.D_DOG eq '김지원'}">selected</c:if>>김지원</option>
+                           <option value="김현우" <c:if test="${map.infoMap.D_DOG eq '김현우'}">selected</c:if>>김현우</option>
+                           <option value="최주혁" <c:if test="${map.infoMap.D_DOG eq '최주혁'}">selected</c:if>>최주혁</option>
                         </select>
                      </td>
                      <th>비상연락망</th>
-                     <td><input type="text" name="phone2" placeholder="비상연락망" value="${map.infoMap.D_EMERTGENCY_PHONE}"/></td>
+                     <td><input type="text" id="phone2" name="phone2" placeholder="010-0000-0000" value="${map.infoMap.D_EMERTGENCY_PHONE}"/></td>
                   </tr>
                   <tr>
                      <th>성별</th>
                      <td>
                         <div class="checks">
-                           <input type="radio" id="gender_f" name="gender" value="f" checked />
-                           <label for="gender_f"> ♀ </label>
+                        	<input type="radio" id="gender_f" name="gender" value="여자" <c:if test="${map.infoMap.D_GENDER eq '여자'}">checked</c:if> />
+                        	<label for="gender_f"> 여자 </label>
                         </div>
                         <div class="checks">
-                           <input type="radio" id="gender_m" name="gender" value="m" /> 
-                           <label for="gender_m"> ♂ </label>
+                        	<input type="radio" id="gender_m" name="gender" value="남자" <c:if test="${map.infoMap.D_GENDER eq '남자'}">checked</c:if> /> 
+                        	<label for="gender_m"> 남자 </label>
+                        </div>
+                        <div class="checks">
+							<input type="radio" id="gender_un" name="gender" value="모름" <c:if test="${map.infoMap.D_GENDER eq '모름'}">checked</c:if>/>
+							<label for="gender_un"> 모름 </label>
                         </div>
                      </td>
                      <th>애견 이름</th>
@@ -66,15 +88,15 @@
                      <th>크기</th>
                      <td>
                         <div class="checks">
-                           <input type="radio" id="size_s" name="size" value="s" checked />
+                           <input type="radio" id="size_s" name="size" value="소형" <c:if test="${map.infoMap.D_SIZE eq '소형'}">checked</c:if> />
                            <label for="size_s"> 소 </label>
                         </div>
                         <div class="checks">
-                           <input type="radio" id="size_m" name="size" value="m" /> <label
+                           <input type="radio" id="size_m" name="size" value="중형" <c:if test="${map.infoMap.D_SIZE eq '중형'}">checked</c:if> /> <label
                               for="size_m"> 중 </label>
                         </div>
                         <div class="checks">
-                           <input type="radio" id="size_l" name="size" value="l" /> <label
+                           <input type="radio" id="size_l" name="size" value="대형" <c:if test="${map.infoMap.D_SIZE eq '대형'}">checked</c:if> /> <label
                               for="size_l"> 대 </label>
                         </div>
                      </td>
@@ -90,20 +112,22 @@
                   </tr>
                   <tr>
                      <th>실종 지역</th>
-                     <td><select name="region">
-                           <option value="" selected>실종지역</option>
-                           <option value="서울">서울</option>
-                           <option value="경기">경기</option>
-                           <option value="일본">일본</option>
-                     </select></td>
+                     <td>
+                     	 <select name="region" required>
+	                           <option value="">실종지역</option>
+	                           <option value="서울" <c:if test="${map.infoMap.D_REGION eq '서울'}">selected</c:if>>서울</option>
+	                           <option value="경기" <c:if test="${map.infoMap.D_REGION eq '경기'}">selected</c:if>>경기</option>
+	                           <option value="일본" <c:if test="${map.infoMap.D_REGION eq '일본'}">selected</c:if>>일본</option>
+	                     </select>
+                     </td>
                   </tr>
                   <tr>
                      <th>제목</th>
-                     <td><input type="text" name="title" maxlength="20" value="${map.infoMap.D_TITLE}" style="width:90%; text-align:left;" /></td>
+                     <td><input type="text" name="title" maxlength="20" value="${map.infoMap.D_TITLE}" required style="width:90%; text-align:left;" /></td>
                   </tr>
                   <tr>
                      <th>상세 내용</th>
-                     <td colspan="3"><textarea id="detail" name="detail">${map.infoMap.D_DETAIL}</textarea></td>
+                     <td colspan="3"><textarea id="detail" name="detail" required>${map.infoMap.D_DETAIL}</textarea></td>
                   </tr>
                   <tr>
                   <th>첨부파일</th>
