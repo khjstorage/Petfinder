@@ -21,19 +21,19 @@ import com.petfinder.service.FindsService;
 import com.petfinder.vo.DisappearanceVO;
 import com.petfinder.vo.FindsVO;
 /**
- * 발견정보 CRUD 요청을 처리하는 Controller 클래스
+ * 諛쒓껄�젙蹂� CRUD �슂泥��쓣 泥섎━�븯�뒗 Controller �겢�옒�뒪
  * 
- * @author  1조
+ * @author  1議�
  * @since 2016.11.14
  * @version 1.0
  * @see 
  * <pre>
- *  == 개정이력(Modification Information) ==
+ *  == 媛쒖젙�씠�젰(Modification Information) ==
  *   
- *      수정일       		   	수정자     		      수정내용
+ *      �닔�젙�씪       		   	�닔�젙�옄     		      �닔�젙�궡�슜
  *  ----------------    ------------    ---------------------------
- *   2016.11.14     		1조             		최초 생성
- *   2016.11.17				김현진	  		requestmapping 수정
+ *   2016.11.14     		1議�             		理쒖큹 �깮�꽦
+ *   2016.11.17				源��쁽吏�	  		requestmapping �닔�젙
  * </pre>
  */
 @Controller
@@ -44,13 +44,13 @@ public class FindsController {
 	private FindsService findsService;
 
 	/** 
-	 * 발견목록을 조회 한다.
+	 * 諛쒓껄紐⑸줉�쓣 議고쉶 �븳�떎.
 	 * @return1 List<FindsVO> list
 	 * @return2 "Finds/findslist"
 	 * @throws 
 	 */
 	@RequestMapping("/list.do")
-	public ModelAndView findslist() {
+	public ModelAndView findsList() {
 		ModelAndView mv = new ModelAndView();
 		List<FindsVO> list = findsService.findsList();
 		mv.addObject("findslist", list);
@@ -59,7 +59,7 @@ public class FindsController {
 	}
 
 	/**
-	 * 발견게시판 글쓰기 화면으로 이동한다.
+	 * 諛쒓껄寃뚯떆�뙋 湲��벐湲� �솕硫댁쑝濡� �씠�룞�븳�떎.
 	 * @param 
 	 * @return "finds/finds_form";
 	 * @throws 
@@ -71,27 +71,27 @@ public class FindsController {
 
 
 	/**
-	 * 발견정보 등록하고 목록조회 화면으로 이동한다.
-	 * @param1 @ModelAttribute("findsVO") FindsVO findsVO 발견정보
-	 * @param2 HttpServletRequest request 파일정보
+	 * 諛쒓껄�젙蹂� �벑濡앺븯怨� 紐⑸줉議고쉶 �솕硫댁쑝濡� �씠�룞�븳�떎.
+	 * @param1 @ModelAttribute("findsVO") FindsVO findsVO 諛쒓껄�젙蹂�
+	 * @param2 HttpServletRequest request �뙆�씪�젙蹂�
 	 * @return "redirect:findslist.do";
 	 * @throws Exception
 	 */
 	@RequestMapping("/create.do")
-	public String finds_write(@ModelAttribute("findsVO") FindsVO findsVO, HttpServletRequest request) throws Exception {
+	public String findsCreate(@ModelAttribute("findsVO") FindsVO findsVO, HttpServletRequest request) throws Exception {
 		findsService.insertFinds(findsVO, request);
 		return "redirect:/finds/list.do";
 	}
 
 	/**
-	 * 발견정보 상세화면으로 이동한다.
+	 * 諛쒓껄�젙蹂� �긽�꽭�솕硫댁쑝濡� �씠�룞�븳�떎.
 	 * @param HttpServletRequest request
 	 * @return1 Map<String,Object> map 
 	 * @return2 "finds/finds_contents"
 	 * @throws Exception
 	 */
 	@RequestMapping("/contents.do")
-	public ModelAndView finds_contents(HttpServletRequest request) throws Exception {
+	public ModelAndView findsContents(HttpServletRequest request) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		Map<String, Object> map = findsService.selectBoardDetail(request.getParameter("idx"));
 		mv.addObject("map", map.get("infoMap"));
@@ -103,14 +103,14 @@ public class FindsController {
 
 
 	/**
-	 * 발견글의 패스워드 화면에서 해당 글에 패스워드가 일치하면 finds_delete_pro 이동
+	 * 諛쒓껄湲��쓽 �뙣�뒪�썙�뱶 �솕硫댁뿉�꽌 �빐�떦 湲��뿉 �뙣�뒪�썙�뱶媛� �씪移섑븯硫� finds_delete_pro �씠�룞
 	 * @param @RequestParam("pwd") String pwd 
 	 * @param @RequestParam("idx") String idx
 	 * @return "redirect:finds_delete.do?idx="+idx
 	 * @return "redirect:finds_password.do?idx="+idx
 	 */
 	@RequestMapping("/delete_auth.do")
-	public String finds_delete_auth(@RequestParam("pwd") String pwd, @RequestParam("idx") String idx){
+	public String findsDeleteAuth(@RequestParam("pwd") String pwd, @RequestParam("idx") String idx){
 		HashMap<String, String> map = new HashMap<String, String>();
 		map.put("pwd", pwd);
 		map.put("idx", idx);
@@ -123,27 +123,27 @@ public class FindsController {
 	}
 
 	/**
-	 * 발견정보 삭제 후 목록조회 화면으로 이동한다.
+	 * 諛쒓껄�젙蹂� �궘�젣 �썑 紐⑸줉議고쉶 �솕硫댁쑝濡� �씠�룞�븳�떎.
 	 * @param @RequestParam("idx") String idx
 	 * @return "redirect:findslist.do"
 	 * @throws Exception
 	 */
 	@RequestMapping("/delete.do")
-	public String finds_delete_pro(@RequestParam("idx") String idx){
+	public String findsDelete(@RequestParam("idx") String idx){
 		findsService.deleteFinds(idx);
 		return "redirect:/finds/list.do";
 	}
 
 
 	/**
-	 * 발견글의 패스워드 화면에서 해당 글에 패스워드가 일치하면 수정 화면으로 이동한다.
+	 * 諛쒓껄湲��쓽 �뙣�뒪�썙�뱶 �솕硫댁뿉�꽌 �빐�떦 湲��뿉 �뙣�뒪�썙�뱶媛� �씪移섑븯硫� �닔�젙 �솕硫댁쑝濡� �씠�룞�븳�떎.
 	 * @param @RequestParam("pwd") String pwd 
 	 * @param @RequestParam("idx") String idx
 	 * @return "redirect:finds_update.do?idx="+idx
 	 * @return "redirect:finds_password.do?idx="+idx
 	 */
 	@RequestMapping("/update_auth.do")
-	public String finds_update_auth(@RequestParam("pwd") String pwd, @RequestParam("idx") String idx){
+	public String findsUpdateAuth(@RequestParam("pwd") String pwd, @RequestParam("idx") String idx){
 		HashMap<String, String> map = new HashMap<String, String>();
 		map.put("pwd", pwd);
 		map.put("idx", idx);
@@ -157,14 +157,14 @@ public class FindsController {
 
 
 	/**
-	 * 발견정보 수정 화면으로 이동한다.
+	 * 諛쒓껄�젙蹂� �닔�젙 �솕硫댁쑝濡� �씠�룞�븳�떎.
 	 * @param HttpServletRequest request
 	 * @return1 Map<String,Object> map 
 	 * @return2 "finds/finds_update"
 	 * @throws Exception
 	 */
 	@RequestMapping("/edit.do")
-	public ModelAndView finds_update(HttpServletRequest request) throws Exception{
+	public ModelAndView findsEdit(HttpServletRequest request) throws Exception{
 		ModelAndView mv = new ModelAndView();
 		Map<String, Object> map = findsService.selectBoardDetail(request.getParameter("idx"));
 		mv.addObject("map", map);
@@ -173,14 +173,14 @@ public class FindsController {
 	}
 
 	/** 
-	 * 분실정보 수정하고 목록조회 화면으로 이동한다.
+	 * 遺꾩떎�젙蹂� �닔�젙�븯怨� 紐⑸줉議고쉶 �솕硫댁쑝濡� �씠�룞�븳�떎.
 	 * @param1 @ModelAttribute("findsVO")FindsVO findsVO
 	 * @param2 HttpServletRequest request
 	 * @return "redirect:findslist.do"
 	 * @throws Exception
 	 */
 	@RequestMapping("/update.do")
-	public String finds_update_pro(@ModelAttribute("findsVO")FindsVO findsVO, HttpServletRequest request) throws Exception {
+	public String findsUpdate(@ModelAttribute("findsVO")FindsVO findsVO, HttpServletRequest request) throws Exception {
 		findsService.updateFinds(findsVO, request);
 		return "redirect:/finds/list.do";
 	}
@@ -188,13 +188,13 @@ public class FindsController {
 
 
 	/** 
-	 * 파일 다운로드
+	 * �뙆�씪 �떎�슫濡쒕뱶
 	 * @param1 @RequestParam("idx") String idx
 	 * @param2 HttpServletResponse response
 	 * @throws Exception
 	 */
 	@RequestMapping("/download.do")
-	public void finds_download(@RequestParam("idx") String idx, HttpServletResponse response) throws Exception{
+	public void findsDownload(@RequestParam("idx") String idx, HttpServletResponse response) throws Exception{
 		Map<String, Object> map = findsService.selectFileInfo(idx);
 		String storedFileName = (String)map.get("F_STORED_FILE_NAME");
 		String originalFileName = (String)map.get("F_ORIGINAL_FILE_NAME");
@@ -213,7 +213,7 @@ public class FindsController {
 
 
 	/** 
-	 * 발견글의 매칭버튼을 클릭하면 실종글 정보와 일치한 게시글 화면으로 이동한다.
+	 * 諛쒓껄湲��쓽 留ㅼ묶踰꾪듉�쓣 �겢由��븯硫� �떎醫낃� �젙蹂댁� �씪移섑븳 寃뚯떆湲� �솕硫댁쑝濡� �씠�룞�븳�떎.
 	 * @param1 @ModelAttribute("findsVO")FindsVO findsVO
 	 * @param2 HttpServletRequest request
 	 * @return List<DisappearanceVO> list
@@ -221,7 +221,7 @@ public class FindsController {
 	 * @throws Exception
 	 */
 	@RequestMapping("/match.do")
-	public ModelAndView finds_match(@ModelAttribute("findsVO")FindsVO findsVO) throws Exception{
+	public ModelAndView findsMatch(@ModelAttribute("findsVO")FindsVO findsVO) throws Exception{
 		ModelAndView mv = new ModelAndView();
 		List<DisappearanceVO> list = findsService.matchFinds(findsVO);
 		mv.addObject("disappearancelist", list);
@@ -231,7 +231,7 @@ public class FindsController {
 
 
 	/** 
-	 * 조회기능
+	 * 議고쉶湲곕뒫
 	 * @param @RequestParam("searchtext") String searchtext	
 	 * @param @RequestParam("searchoption") String searchoption
 	 * @return mv.addObject("disappearancelist", list)
@@ -239,7 +239,7 @@ public class FindsController {
 	 * @throws Exception
 	 */
 	@RequestMapping("/search.do")
-	public ModelAndView finds_search(@RequestParam("keyWord_search") String keyWord_search,	@RequestParam("selection_search") String selection_search) throws Exception {
+	public ModelAndView findsSearch(@RequestParam("keyWord_search") String keyWord_search,	@RequestParam("selection_search") String selection_search) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		HashMap<String, String> map = new HashMap<String, String>();
 		map.put("keyWord_search", keyWord_search);

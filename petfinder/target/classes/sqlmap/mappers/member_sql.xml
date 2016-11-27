@@ -49,6 +49,17 @@
 	</select>
 
 	<!-- -->
+	<select id="duplication" parameterType="String" resultMap="memberResultMap">
+		SELECT
+			M_ID
+		FROM
+			MEMBER
+		WHERE 
+			M_ID = #{duplicationId}
+	</select>
+
+
+	<!-- -->
 	<select id="loginmember" parameterType="hashmap" resultMap="memberResultMap">
 	    <![CDATA[
 	    SELECT

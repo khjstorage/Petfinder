@@ -1,4 +1,4 @@
-           package com.petfinder.controller;
+package com.petfinder.controller;
 
 import java.util.HashMap;
 import java.util.List;
@@ -11,23 +11,24 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.petfinder.service.MemberService;
 import com.petfinder.vo.MemberVO;
 /**
- * 멤버정보 CRUD 요청을 처리하는 Controller 클래스
+ * 硫ㅻ쾭�젙蹂� CRUD �슂泥��쓣 泥섎━�븯�뒗 Controller �겢�옒�뒪
  * 
- * @author  1조
+ * @author  1議�
  * @since 2016.11.14
  * @version 1.0
  * @see 
  * <pre>
- *  == 개정이력(Modification Information) ==
+ *  == 媛쒖젙�씠�젰(Modification Information) ==
  *   
- *          수정일          수정자           수정내용
+ *          �닔�젙�씪          �닔�젙�옄           �닔�젙�궡�슜
  *  ----------------    ------------    ---------------------------
- *   2016.11.14        1조             최초 생성
+ *   2016.11.14        1議�             理쒖큹 �깮�꽦
  * 
  * </pre>
  */
@@ -40,7 +41,7 @@ public class MemberController {
 
 	
 	/** 
-	 * 회원가입 페이지로 이동한다.
+	 * �쉶�썝媛��엯 �럹�씠吏�濡� �씠�룞�븳�떎.
 	 * @return 
 	 * @return
 	 * @throws 
@@ -52,7 +53,7 @@ public class MemberController {
 
 	
 	/** 
-	 * 회원가입을 신청하고 메인으로 이동한다.
+	 * �쉶�썝媛��엯�쓣 �떊泥��븯怨� 硫붿씤�쑝濡� �씠�룞�븳�떎.
 	 * @return 
 	 * @return
 	 * @throws 
@@ -65,7 +66,7 @@ public class MemberController {
 
 
 	/** 
-	 * 로그인페이지로 이동한다.
+	 * 濡쒓렇�씤�럹�씠吏�濡� �씠�룞�븳�떎.
 	 * @return 
 	 * @return
 	 * @throws 
@@ -76,7 +77,7 @@ public class MemberController {
 	}
 
 	/** 
-	 * 로그인처리를 한다. 아이디와 패스워드가 맞으면 세션값을 부여한다.
+	 * 濡쒓렇�씤泥섎━瑜� �븳�떎. �븘�씠�뵒�� �뙣�뒪�썙�뱶媛� 留욎쑝硫� �꽭�뀡媛믪쓣 遺��뿬�븳�떎.
 	 * @return 
 	 * @return
 	 * @throws 
@@ -97,7 +98,7 @@ public class MemberController {
 	}
 	
 	/** 
-	 * 마이페이지로 이동한다.
+	 * 留덉씠�럹�씠吏�濡� �씠�룞�븳�떎.
 	 * @return 
 	 * @return
 	 * @throws 
@@ -113,7 +114,7 @@ public class MemberController {
 
 
 	/** 
-	 * 로그아웃을 처리하고, 메인페이지로 이동한다.
+	 * 濡쒓렇�븘�썐�쓣 泥섎━�븯怨�, 硫붿씤�럹�씠吏�濡� �씠�룞�븳�떎.
 	 * @return 
 	 * @return
 	 * @throws 
@@ -126,32 +127,48 @@ public class MemberController {
 	}
 	
 	/** 
-	 * 회원탈퇴를 처리하고, 메인페이지로 이동한다.
+	 * �쉶�썝�깉�눜瑜� 泥섎━�븯怨�, 硫붿씤�럹�씠吏�濡� �씠�룞�븳�떎.
 	 * @return 
 	 * @return
 	 * @throws 
 	 */
 	@RequestMapping("/delete.do")
-	public String deleteMember(HttpSession session){
+	public String delete(HttpSession session){
 		String id = (String) session.getAttribute("id");
-		//id넘겨줘서 쿼리문 실행
 		memberService.deleteMember(id);
-		//session삭제
 		session.removeAttribute("id");
 		session.invalidate();
 		return "redirect:/main.do";
 	}
 
 	/** 
-	 * 회원정보를 수정하고, 메인페이지로 이동한다.
+	 * �쉶�썝�젙蹂대�� �닔�젙�븯怨�, 硫붿씤�럹�씠吏�濡� �씠�룞�븳�떎.
 	 * @return 
 	 * @return
 	 * @throws 
 	 */
 	@RequestMapping("/update.do")
-	public String updateMember(@ModelAttribute("memberVO")MemberVO memberVO, HttpServletRequest request) throws Exception{
+	public String update(@ModelAttribute("memberVO")MemberVO memberVO, HttpServletRequest request) throws Exception{
 		memberService.updateMember(memberVO, request);
 		return "redirect:/main.do";
+	}
+	
+	/** 
+	 * 
+	 * @return 
+	 * @return
+	 * @throws 
+	 */
+	@RequestMapping("/duplication.do")
+	@ResponseBody
+	public int duplication(HttpServletRequest request){
+		String duplicationId = request.getParameter("id");
+		List<MemberVO> list = memberService.duplication(duplicationId);
+		if(list.size()==0){
+			return -1;
+		}else{
+			return 1;
+		}
 	}
 
 }

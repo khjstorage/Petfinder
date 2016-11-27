@@ -22,19 +22,19 @@ import com.petfinder.service.DisappearanceService;
 import com.petfinder.vo.DisappearanceVO;
 import com.petfinder.vo.FindsVO;
 /**
- * 분실정보 CRUD 요청을 처리하는 Controller 클래스
+ * 遺꾩떎�젙蹂� CRUD �슂泥��쓣 泥섎━�븯�뒗 Controller �겢�옒�뒪
  * 
- * @author  1조
+ * @author  1議�
  * @since 2016.11.14
  * @version 1.0
  * @see 
  * <pre>
- *  == 개정이력(Modification Information) ==
+ *  == 媛쒖젙�씠�젰(Modification Information) ==
  *   
- *      수정일       		   	수정자     		      수정내용
+ *      �닔�젙�씪       		   	�닔�젙�옄     		      �닔�젙�궡�슜
  *  ----------------    ------------    ---------------------------
- *   2016.11.14     		1조             		최초 생성
- *   2016.11.17				김현진	  		requestmapping 수정
+ *   2016.11.14     		1議�             		理쒖큹 �깮�꽦
+ *   2016.11.17				源��쁽吏�	  		requestmapping �닔�젙
  * </pre>
  */
 @Controller
@@ -45,13 +45,13 @@ public class DisapperanceController {
     private DisappearanceService disappearanceService;
 	    
 	/** 
-	 * 분실목록을 조회 한다.
+	 * 遺꾩떎紐⑸줉�쓣 議고쉶 �븳�떎.
 	 * @return List<DisappearanceVO> list
 	 * @return "disappearance/disappearancelist"
 	 * @throws 
 	 */
 	@RequestMapping("/list.do")
-	public ModelAndView disappearancelist() {
+	public ModelAndView disappearanceList() {
 		ModelAndView mv = new ModelAndView();
 		List<DisappearanceVO> list = disappearanceService.disappearanceList();
 		mv.addObject("disappearancelist", list);
@@ -60,9 +60,9 @@ public class DisapperanceController {
 	}
 				
 	/**
-	 * 분실정보 상세화면으로 이동한다. 
-	 * 로그인된값(세션)과 게시물의 id가 다르면 수정/삭제 버튼 비활성
-	 * 일치하면 idcheck 키에 permission 값을 넣는다
+	 * 遺꾩떎�젙蹂� �긽�꽭�솕硫댁쑝濡� �씠�룞�븳�떎. 
+	 * 濡쒓렇�씤�맂媛�(�꽭�뀡)怨� 寃뚯떆臾쇱쓽 id媛� �떎瑜대㈃ �닔�젙/�궘�젣 踰꾪듉 鍮꾪솢�꽦
+	 * �씪移섑븯硫� idcheck �궎�뿉 permission 媛믪쓣 �꽔�뒗�떎
 	 * @param @RequestParam("idx") String idx
 	 * @param HttpSession session
 	 * @return Map<String,Object> map 
@@ -70,7 +70,7 @@ public class DisapperanceController {
 	 * @throws Exception
 	 */
 	@RequestMapping("/contents.do")
-	public ModelAndView disappearance_contents(HttpSession session, @RequestParam("idx") String idx) throws Exception {
+	public ModelAndView disappearanceContents(HttpSession session, @RequestParam("idx") String idx) throws Exception {
 		String id = (String)session.getAttribute("id");
 		String idcheck = disappearanceService.idCheck(idx);
 		if(idcheck.equals(id)){
@@ -86,14 +86,14 @@ public class DisapperanceController {
 			
 	
 	/**
-	 * 분실게시판 글쓰기 화면으로 이동한다.
+	 * 遺꾩떎寃뚯떆�뙋 湲��벐湲� �솕硫댁쑝濡� �씠�룞�븳�떎.
 	 * @param HttpSession session
 	 * @return "disappearance/disappearance_form";
 	 * @return "redirect:login.do";
 	 * @throws Exception
 	 */
 	@RequestMapping("/write.do")
-	public String disappearance_form(HttpSession session) {
+	public String disappearanceWrite(HttpSession session) {
 		if(session.getAttribute("id")!=null){
 			return "/disappearance/write";
 		}else{
@@ -103,14 +103,14 @@ public class DisapperanceController {
 		
 		
 	/**
-	 * 분실정보 등록하고 목록조회 화면으로 이동한다.
-	 * @param @ModelAttribute("disappearanceVO")DisappearanceVO disappearanceVO 분실정보
-	 * @param HttpServletRequest request 파일정보
+	 * 遺꾩떎�젙蹂� �벑濡앺븯怨� 紐⑸줉議고쉶 �솕硫댁쑝濡� �씠�룞�븳�떎.
+	 * @param @ModelAttribute("disappearanceVO")DisappearanceVO disappearanceVO 遺꾩떎�젙蹂�
+	 * @param HttpServletRequest request �뙆�씪�젙蹂�
 	 * @return "redirect:disappearancelist.do";
 	 * @throws Exception
 	 */
 	@RequestMapping("/create.do")
-	public String disappearance_write(@ModelAttribute("disappearanceVO")DisappearanceVO disappearanceVO, HttpServletRequest request) throws Exception {
+	public String disappearanceCreate(@ModelAttribute("disappearanceVO")DisappearanceVO disappearanceVO, HttpServletRequest request) throws Exception {
 		disappearanceService.insertDisappearance(disappearanceVO, request);
 		return "redirect:/disappearance/list.do";
 	}
@@ -118,13 +118,13 @@ public class DisapperanceController {
 
 	
 	/**
-	 * 분실정보 삭제 후 목록조회 화면으로 이동한다.
+	 * 遺꾩떎�젙蹂� �궘�젣 �썑 紐⑸줉議고쉶 �솕硫댁쑝濡� �씠�룞�븳�떎.
 	 * @param @RequestParam("idx") String idx
 	 * @return "redirect:disappearancelist.do"
 	 * @throws Exception
 	 */
 	@RequestMapping("/delete.do")
-	public String disappearance_delete(@RequestParam("idx") String idx) {
+	public String disappearanceDelete(@RequestParam("idx") String idx) {
 		disappearanceService.deleteDisappearance(idx);
 		return "redirect:/disappearance/list.do";
 	}
@@ -132,15 +132,15 @@ public class DisapperanceController {
 	
 	
 	/**
-	 * 분실정보 수정 화면으로 이동한다.
-	 * 세션id랑 게시글의 id가 다르면 수정페이지로 못감(강제적으로 url 변경)
+	 * 遺꾩떎�젙蹂� �닔�젙 �솕硫댁쑝濡� �씠�룞�븳�떎.
+	 * �꽭�뀡id�옉 寃뚯떆湲��쓽 id媛� �떎瑜대㈃ �닔�젙�럹�씠吏�濡� 紐산컧(媛뺤젣�쟻�쑝濡� url 蹂�寃�)
 	 * @param @RequestParam("idx") String idx
 	 * @return Map<String,Object> map 
 	 * @return "disappearance/disappearance_update"
 	 * @throws Exception
 	 */
 	@RequestMapping("/edit.do")
-	public ModelAndView disappearance_update(HttpSession session, @RequestParam("idx") String idx) throws Exception {
+	public ModelAndView disappearanceEdit(HttpSession session, @RequestParam("idx") String idx) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		Map<String,Object> map = disappearanceService.selectBoardDetail(idx);
 		mv.addObject("map", map);
@@ -158,14 +158,14 @@ public class DisapperanceController {
 	
 	
 	/** 
-	 * 분실정보 수정하고 목록조회 화면으로 이동한다.
+	 * 遺꾩떎�젙蹂� �닔�젙�븯怨� 紐⑸줉議고쉶 �솕硫댁쑝濡� �씠�룞�븳�떎.
 	 * @param @ModelAttribute("disappearanceVO")DisappearanceVO disappearanceVO
 	 * @param HttpServletRequest request
 	 * @return "redirect:disappearancelist.do"
 	 * @throws Exception
 	 */
 	@RequestMapping("/update.do")
-	public String disappearance_update_pro(@ModelAttribute("disappearanceVO")DisappearanceVO disappearanceVO, HttpServletRequest request) throws Exception {
+	public String disappearanceUpdate(@ModelAttribute("disappearanceVO")DisappearanceVO disappearanceVO, HttpServletRequest request) throws Exception {
 		disappearanceService.updateDisappearance(disappearanceVO, request);
 		return "redirect:/disappearance/list.do";
 	}
@@ -173,7 +173,7 @@ public class DisapperanceController {
 	
 	
 	/** 
-	 * 분실글의 매칭버튼을 클릭하면 실종글 정보와 일치한 게시글 화면으로 이동한다.
+	 * 遺꾩떎湲��쓽 留ㅼ묶踰꾪듉�쓣 �겢由��븯硫� �떎醫낃� �젙蹂댁� �씪移섑븳 寃뚯떆湲� �솕硫댁쑝濡� �씠�룞�븳�떎.
 	 * @param @ModelAttribute("disappearanceVO")DisappearanceVO disappearanceVO
 	 * @param HttpServletRequest request
 	 * @return List<FindsVO> list
@@ -181,7 +181,7 @@ public class DisapperanceController {
 	 * @throws Exception
 	 */
 	@RequestMapping("/match.do")
-	public ModelAndView disappearance_match(@ModelAttribute("disappearanceVO")DisappearanceVO disappearanceVO) throws Exception {
+	public ModelAndView disappearanceMatch(@ModelAttribute("disappearanceVO")DisappearanceVO disappearanceVO) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		List<FindsVO> list = disappearanceService.matchDisappearance(disappearanceVO);
 		mv.addObject("findslist", list);
@@ -190,13 +190,13 @@ public class DisapperanceController {
 	}
 	
 	/** 
-	 * 파일 다운로드
+	 * �뙆�씪 �떎�슫濡쒕뱶
 	 * @param1 @RequestParam("idx") String idx
 	 * @param2 HttpServletResponse response
 	 * @throws Exception
 	 */
 	@RequestMapping("/download.do")
-	public void disappearance_download(@RequestParam("idx") String idx, HttpServletResponse response) throws Exception{
+	public void disappearanceDownload(@RequestParam("idx") String idx, HttpServletResponse response) throws Exception{
 		Map<String, Object> map = disappearanceService.selectFileInfo(idx);
 	    String storedFileName = (String)map.get("D_STORED_FILE_NAME");
 	    String originalFileName = (String)map.get("D_ORIGINAL_FILE_NAME");
@@ -215,7 +215,7 @@ public class DisapperanceController {
 	
 
 	/** 
-	 * 조회기능
+	 * 議고쉶湲곕뒫
 	 * @param @RequestParam("keyWord_search") String keyWord_search
 	 * @param @RequestParam("selection_search") String selection_search)
 	 * @return mv.addObject("disappearancelist", list)
@@ -223,7 +223,7 @@ public class DisapperanceController {
 	 * @throws Exception
 	 */
 	@RequestMapping("/search.do")
-	public ModelAndView disappearance_search(@RequestParam("keyWord_search") String keyWord_search,	@RequestParam("selection_search") String selection_search) throws Exception {
+	public ModelAndView disappearanceSearch(@RequestParam("keyWord_search") String keyWord_search,	@RequestParam("selection_search") String selection_search) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		HashMap<String, String> map = new HashMap<String, String>();
 		map.put("keyWord_search", keyWord_search);

@@ -13,17 +13,17 @@ import com.petfinder.dao.MemberDAO;
 import com.petfinder.utill.MemberFileUtils;
 import com.petfinder.vo.MemberVO;
 /**
- * 회원정보 CRUD 요청을 처리하는 비즈니스 클래스
+ * �쉶�썝�젙蹂� CRUD �슂泥��쓣 泥섎━�븯�뒗 鍮꾩쫰�땲�뒪 �겢�옒�뒪
  * 
- * @author  1조
+ * @author  1議�
  * @since 2016.11.14
  * @version 1.0
  * @see <pre>
- *  == 개정이력(Modification Information) ==
+ *  == 媛쒖젙�씠�젰(Modification Information) ==
  *   
- *          수정일          수정자           수정내용
+ *          �닔�젙�씪          �닔�젙�옄           �닔�젙�궡�슜
  *  ----------------    ------------    ---------------------------
- *   2016.11.14        1조             최초 생성
+ *   2016.11.14        1議�             理쒖큹 �깮�꽦
  * 
  * </pre>
  */
@@ -38,7 +38,7 @@ public class MemberServiceImpl implements MemberService {
 
 	
 	/**
-	 * 아이디 패스워드 확인 요청을 처리하기 위해 데이터처리를 요청한다.
+	 * �븘�씠�뵒 �뙣�뒪�썙�뱶 �솗�씤 �슂泥��쓣 泥섎━�븯湲� �쐞�빐 �뜲�씠�꽣泥섎━瑜� �슂泥��븳�떎.
 	 * 
 	 * @param HashMap<String, String> map / id, pwd
 	 * @return String
@@ -85,4 +85,11 @@ public class MemberServiceImpl implements MemberService {
 		memberDao.deleteMemberFile(id);
 		memberDao.deleteMember(id);
 	}
+
+	@Override
+	public List<MemberVO> duplication(String duplicationId) {
+		return memberDao.duplication(duplicationId);
+	}
+
+
 }

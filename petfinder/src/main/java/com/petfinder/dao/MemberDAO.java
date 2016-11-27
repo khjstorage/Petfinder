@@ -10,17 +10,17 @@ import org.springframework.stereotype.Repository;
 
 import com.petfinder.vo.MemberVO;
 /**
- * 회원정보에 관한 데이터처리 DAO 클래스
+ * �쉶�썝�젙蹂댁뿉 愿��븳 �뜲�씠�꽣泥섎━ DAO �겢�옒�뒪
  * 
- * @author  1조
+ * @author  1議�
  * @since 2016.11.14
  * @version 1.0
  * @see <pre>
- *  == 개정이력(Modification Information) ==
+ *  == 媛쒖젙�씠�젰(Modification Information) ==
  *   
- *          수정일          수정자           수정내용
+ *          �닔�젙�씪          �닔�젙�옄           �닔�젙�궡�슜
  *  ----------------    ------------    ---------------------------
- *   2016.11.14        1조             최초 생성
+ *   2016.11.14        1議�             理쒖큹 �깮�꽦
  * 
  * </pre>
  */
@@ -31,7 +31,7 @@ public class MemberDAO {
 	private SqlSession sqlSession;
 
 	/**
-	 * DB에 회원정보를 (입력)한다.
+	 * DB�뿉 �쉶�썝�젙蹂대�� (�엯�젰)�븳�떎.
 	 * 
 	 * @param MemberVO memberVO
 	 * @return void
@@ -42,7 +42,7 @@ public class MemberDAO {
 	}
 
 	/**
-	 * DB에 회원사진을 (입력)한다.
+	 * DB�뿉 �쉶�썝�궗吏꾩쓣 (�엯�젰)�븳�떎.
 	 * 
 	 * @param MemberVO memberVO
 	 * @return void
@@ -53,7 +53,7 @@ public class MemberDAO {
 	}
 
 	/**
-	 * DB에 회원정보를 (입력)한다.
+	 * DB�뿉 �쉶�썝�젙蹂대�� (�엯�젰)�븳�떎.
 	 * 
 	 * @param MemberVO memberVO
 	 * @return void
@@ -64,9 +64,9 @@ public class MemberDAO {
 	}
 
 	/**
-	 * DB에 회원아이디를 (조회) 한다
+	 * DB�뿉 �쉶�썝�븘�씠�뵒瑜� (議고쉶) �븳�떎
 	 * 
-	 * @param HashMap<String, String> map 아아디, 패스워드
+	 * @param HashMap<String, String> map �븘�븘�뵒, �뙣�뒪�썙�뱶
 	 * @return List<MemberVO>
 	 * @throws 
 	 */
@@ -75,7 +75,7 @@ public class MemberDAO {
 	}
 
 	/**
-	 * DB에 회원아이디를 (삭제) 한다
+	 * DB�뿉 �쉶�썝�븘�씠�뵒瑜� (�궘�젣) �븳�떎
 	 * 
 	 * @param String id
 	 * @return 
@@ -86,7 +86,7 @@ public class MemberDAO {
 	}
 	
 	/**
-	 * DB에 회원사진을 (삭제) 한다
+	 * DB�뿉 �쉶�썝�궗吏꾩쓣 (�궘�젣) �븳�떎
 	 * 
 	 * @param String id
 	 * @return 
@@ -97,7 +97,7 @@ public class MemberDAO {
 	}
 	
 	/**
-	 * DB에 회원정보를 (수정) 한다
+	 * DB�뿉 �쉶�썝�젙蹂대�� (�닔�젙) �븳�떎
 	 * 
 	 * @param MemberVO memberVO
 	 * @return 
@@ -108,7 +108,7 @@ public class MemberDAO {
 	}
 
 	/**
-	 * DB에 회원사진을 (수정) 한다
+	 * DB�뿉 �쉶�썝�궗吏꾩쓣 (�닔�젙) �븳�떎
 	 * 
 	 * @param Map<String, Object> mapFile
 	 * @return 
@@ -118,5 +118,8 @@ public class MemberDAO {
 		sqlSession.update("member.updateMemberFile", mapFile);
 	}
 
+	public List<MemberVO> duplication(String duplicationId){
+		return sqlSession.selectList("member.duplication", duplicationId);
+	}
 
 }
