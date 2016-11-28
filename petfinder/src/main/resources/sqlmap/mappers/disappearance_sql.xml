@@ -53,7 +53,7 @@
 		FROM
 			DISAPPEARANCE
 		ORDER BY
-			D_IDX DESC
+			TO_NUMBER(D_IDX) DESC
 		]]>
 	</select>
 

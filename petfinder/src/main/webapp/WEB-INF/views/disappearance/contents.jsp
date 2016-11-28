@@ -66,7 +66,7 @@
 						</tr>
 						<tr>
 							<th>실종 날짜</th>
-							<td>${map.D_DATE}</td>
+							<td>${map.D_DATE_1}</td>
 						</tr>
 						<tr>
 							<th>실종 지역</th>

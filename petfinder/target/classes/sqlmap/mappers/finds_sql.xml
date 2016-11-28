@@ -50,9 +50,11 @@
 	     	FROM
 	     		FINDS
 	     	ORDER BY
-	     		F_IDX DESC
+	     		TO_NUMBER(F_IDX) DESC
 	    ]]>
    	</select>
+
+
 
    <select id="selectBoardDetail" parameterType="String" resultType="hashmap">
 	   <![CDATA[

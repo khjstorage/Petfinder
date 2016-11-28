@@ -146,8 +146,8 @@ public class MemberController {
 	}
 	
 	/** 
-	 * 
-	 * @return 
+	 * 아이디중복확인
+	 * @param 
 	 * @return
 	 * @throws 
 	 */

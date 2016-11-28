@@ -58,7 +58,8 @@ public class DisapperanceController {
 		mv.setViewName("/disappearance/list");
 		return mv;
 	}
-				
+
+	
 	/**
 	 * 遺꾩떎�젙蹂� �긽�꽭�솕硫댁쑝濡� �씠�룞�븳�떎. 
 	 * 濡쒓렇�씤�맂媛�(�꽭�뀡)怨� 寃뚯떆臾쇱쓽 id媛� �떎瑜대㈃ �닔�젙/�궘�젣 踰꾪듉 鍮꾪솢�꽦
@@ -143,11 +144,10 @@ public class DisapperanceController {
 	public ModelAndView disappearanceEdit(HttpSession session, @RequestParam("idx") String idx) throws Exception {
 		ModelAndView mv = new ModelAndView();
 		Map<String,Object> map = disappearanceService.selectBoardDetail(idx);
-		mv.addObject("map", map);
-		
-		HashMap<String, Object> infoMap = (HashMap<String, Object>)map.get("infoMap");
+		Map<String,Object> infoMap = (Map<String, Object>) map.get("infoMap");
 		
 		if(session.getAttribute("id").equals(infoMap.get("D_ID"))){
+			mv.addObject("map", map);
 			mv.setViewName("/disappearance/edit");
 		}else{
 			mv.setViewName("redirect:/disappearance/list.do");
@@ -233,4 +233,22 @@ public class DisapperanceController {
 		mv.setViewName("/disappearance/list");
 		return mv;
 	}
+	
+	
+	
+	
+
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
 }
