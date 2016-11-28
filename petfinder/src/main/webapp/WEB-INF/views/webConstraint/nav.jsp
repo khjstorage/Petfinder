@@ -18,7 +18,7 @@ $(document).ready(function() {
 			<c:choose>
 				<c:when test="${id == null}">
 					<a href="<c:url value='/member/login.do'/>"> <input type="button" id="pageFocusLogin" value="로그인"></a>
-					<a href="<c:url value='/member/register.do'/>"> <input type="button" id="pageFocusSignup" value="회원가입"></a>
+					<a href="<c:url value='/member/register.do'/>"> <input type="button" id="pageFocusRegister" value="회원가입"></a>
 				</c:when>
 				<c:otherwise>
 					<p>${id}</p>

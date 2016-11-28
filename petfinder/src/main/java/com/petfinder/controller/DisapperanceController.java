@@ -37,6 +37,7 @@ import com.petfinder.vo.FindsVO;
  *   2016.11.17				源��쁽吏�	  		requestmapping �닔�젙
  * </pre>
  */
+import com.petfinder.vo.PagingVO;
 @Controller
 @RequestMapping("/disappearance")
 public class DisapperanceController {
@@ -58,7 +59,6 @@ public class DisapperanceController {
 		mv.setViewName("/disappearance/list");
 		return mv;
 	}
-
 	
 	/**
 	 * 遺꾩떎�젙蹂� �긽�꽭�솕硫댁쑝濡� �씠�룞�븳�떎. 
@@ -183,11 +183,13 @@ public class DisapperanceController {
 	@RequestMapping("/match.do")
 	public ModelAndView disappearanceMatch(@ModelAttribute("disappearanceVO")DisappearanceVO disappearanceVO) throws Exception {
 		ModelAndView mv = new ModelAndView();
-		List<FindsVO> list = disappearanceService.matchDisappearance(disappearanceVO);
-		mv.addObject("findslist", list);
+		List<FindsVO> boardList = disappearanceService.matchDisappearance(disappearanceVO);
+		mv.addObject("boardList", boardList);
 		mv.setViewName("finds/list");
 		return mv;
 	}
+	
+
 	
 	/** 
 	 * �뙆�씪 �떎�슫濡쒕뱶

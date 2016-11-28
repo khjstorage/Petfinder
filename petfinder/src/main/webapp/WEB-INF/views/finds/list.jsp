@@ -5,6 +5,11 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title>발견게시판</title>
 <script type="text/javascript">
+function goPage(pageNo){
+	document.listForm.pageNo.value = pageNo;
+	document.listForm.submit();
+	console.log("pageNo : " + pageNo);
+}
 $(document).ready(function() {
 	$("#searchBtn").click(function(){
 		if(!$("#keyWord_search").val()){
@@ -32,15 +37,15 @@ $(document).ready(function() {
 	            </form>
 			<div class="page">
 				<c:choose>
-					<c:when test="${fn:length(findslist) > 0}">
-						<c:forEach items="${findslist}" var="dog">
-							<a href="/finds/contents.do?idx=${dog.idx }">
+					<c:when test="${fn:length(boardList) > 0}">
+						<c:forEach items="${boardList}" var="dog">
+							<a href="/finds/contents.do?idx=${dog.F_IDX }">
 								<div class="card">
-									<img src="사진.jpg"> <!-- 사진경로 -->
+									<img src="C:\dev\image\findsfile\649f88ff7e4746959358943c77476eed.png"> <!-- 사진경로 -->
 									<div class="card_info">
-										<h2>제목 : ${dog.title}</h2>
-										<h2>견종 : ${dog.dog}</h2>
-										<h2>지역 : ${dog.region}</h2>
+										<h2>제목 : ${dog.F_TITLE}</h2>
+										<h2>견종 : ${dog.F_DOG}</h2>
+										<h2>지역 : ${dog.F_REGION}</h2>
 									</div>
 								</div>
 							</a>
@@ -53,6 +58,20 @@ $(document).ready(function() {
 					</c:otherwise>
 				</c:choose>
 			</div>
+		</div>
+		<div style="float:right">
+			<form name="listForm" action="<c:url value='/finds/list.do'/>" method="post">
+				<input type="hidden" name="pageNo" value="" /><br/><br/>
+				<jsp:include page="../paging.jsp" flush="true">
+					<jsp:param name="firstPageNo" value="${paging.firstPageNo}" />
+					<jsp:param name="prevPageNo" value="${paging.prevPageNo}" />
+					<jsp:param name="startPageNo" value="${paging.startPageNo}" />
+					<jsp:param name="pageNo" value="${paging.pageNo}" />
+					<jsp:param name="endPageNo" value="${paging.endPageNo}" />
+					<jsp:param name="nextPageNo" value="${paging.nextPageNo}" />
+					<jsp:param name="finalPageNo" value="${paging.finalPageNo}" />
+				</jsp:include>
+			</form>
 		</div>
 	</div>
 </body>

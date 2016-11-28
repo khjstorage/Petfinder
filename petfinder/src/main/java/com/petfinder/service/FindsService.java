@@ -8,6 +8,7 @@ import javax.servlet.http.HttpServletRequest;
 
 import com.petfinder.vo.DisappearanceVO;
 import com.petfinder.vo.FindsVO;
+import com.petfinder.vo.PagingVO;
 /**
  * 발견정보 CRUD 요청을 처리하는 비즈니스 인터페이스
  * 
@@ -99,5 +100,9 @@ public interface FindsService {
 	public List<FindsVO> searchFinds(HashMap<String, String> map);
 	
 	public String getpassword(HashMap<String, String> map);
+
+	public int postCount();
+
+	public List<PagingVO> getBoardList(PagingVO pagingVO);
 
 }

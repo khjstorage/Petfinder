@@ -113,7 +113,7 @@
     ]]>
    </select>
    
-   <select id="matchFinds" parameterType="disappearanceVO" resultMap="findsResultMap">
+   <select id="matchFinds" parameterType="disappearanceVO" resultType="hashmap">
 		<![CDATA[
 		SELECT
 			*
@@ -188,6 +188,35 @@
 		       F_TITLE like '%' ||  #{keyWord_search} || '%' OR F_DETAIL like '%' ||  #{keyWord_search} || '%'
 		    </otherwise>
 		</choose>
+	</select>
+		
+		
+	<select id="postCount" resultType="java.lang.Integer">
+		<![CDATA[
+		SELECT
+			NVL(COUNT(*),0) count
+		FROM 
+			FINDS
+		]]>
+	</select>	
+	
+
+	
+	<select id="paging" resultType="hashmap" parameterType="PagingVO">
+		<![CDATA[
+		SELECT
+			*
+		FROM
+			(SELECT 
+				ROWNUM rnum,
+				A.*
+			FROM 
+				(SELECT * FROM FINDS ORDER BY TO_NUMBER(F_IDX) DESC) A
+			WHERE 
+				ROWNUM <= #{endRowNum})
+		WHERE 
+			rnum >= #{startRowNum}
+		]]>
 	</select>
 		
 </mapper>

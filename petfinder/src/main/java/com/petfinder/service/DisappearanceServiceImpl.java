@@ -167,4 +167,5 @@ public class DisappearanceServiceImpl implements DisappearanceService {
 	public List<DisappearanceVO> searchDisappearance(HashMap<String, String> map){
 		return disappearanceDAO.searchDisappearance(map);
 	}
+
 }

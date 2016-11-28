@@ -173,4 +173,6 @@ public class DisappearanceDAO {
 	public List<DisappearanceVO> searchDisappearance(HashMap<String, String> map){
 		return sqlSession.selectList("disappearance.searchDisappearance", map);
 	}
+	
+
 }

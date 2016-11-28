@@ -105,5 +105,6 @@ public interface DisappearanceService {
 	 * @throws 
 	 */
 	public List<DisappearanceVO> searchDisappearance(HashMap<String, String> map);
+
 }
 

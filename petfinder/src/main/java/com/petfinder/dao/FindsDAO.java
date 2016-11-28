@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import com.petfinder.vo.DisappearanceVO;
 import com.petfinder.vo.FindsVO;
+import com.petfinder.vo.PagingVO;
 /**
  * 발견정보에 관한 데이터처리 DAO 클래스
  * 
@@ -167,6 +168,14 @@ public class FindsDAO {
 	
 	public String getpassword(HashMap<String, String> map) {
 		return sqlSession.selectOne("finds.getpassword", map);
+	}
+
+	public int postCount() {
+		return sqlSession.selectOne("finds.postCount");
+	}
+
+	public List<PagingVO> getBoardList(PagingVO pagingVO) {
+		return sqlSession.selectList("finds.paging", pagingVO);
 	}
 
 }

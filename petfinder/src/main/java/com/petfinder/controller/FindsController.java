@@ -11,6 +11,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
 import org.apache.commons.io.FileUtils;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -20,6 +21,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.petfinder.service.FindsService;
 import com.petfinder.vo.DisappearanceVO;
 import com.petfinder.vo.FindsVO;
+import com.petfinder.vo.PagingVO;
 /**
  * 諛쒓껄�젙蹂� CRUD �슂泥��쓣 泥섎━�븯�뒗 Controller �겢�옒�뒪
  * 
@@ -49,14 +51,38 @@ public class FindsController {
 	 * @return2 "Finds/findslist"
 	 * @throws 
 	 */
-	@RequestMapping("/list.do")
+/*	@RequestMapping("/list.do")
 	public ModelAndView findsList() {
 		ModelAndView mv = new ModelAndView();
 		List<FindsVO> list = findsService.findsList();
 		mv.addObject("findslist", list);
 		mv.setViewName("/finds/list");
 		return mv;
+	}*/
+	
+	
+	@RequestMapping("/list.do")
+	public ModelAndView disappearanceList(@ModelAttribute("PagingVO") PagingVO pagingVO, 
+										  @RequestParam(value = "pageNo", required = false) String pageNo) {
+		ModelAndView mv = new ModelAndView();
+		pagingVO.setPageSize(6); // 한 페이지에 보일 게시글 수
+		pagingVO.setPageNo(1); // 현재 페이지 번호
+		if(StringUtils.isNotEmpty(pageNo)){
+			pagingVO.setPageNo(Integer.parseInt(pageNo));
+		}
+		pagingVO.setBlockSize(5);
+		pagingVO.setTotalCount(findsService.postCount()); // 게시물 총 개수
+		
+		//List<FindsVO> list = findsService.findsList();
+		//mv.addObject("findslist", list);
+		
+		List<PagingVO> boardList = findsService.getBoardList(pagingVO);
+		mv.addObject("paging", pagingVO);
+		mv.addObject("boardList", boardList);
+		mv.setViewName("/finds/list");
+		return mv;
 	}
+
 
 	/**
 	 * 諛쒓껄寃뚯떆�뙋 湲��벐湲� �솕硫댁쑝濡� �씠�룞�븳�떎.

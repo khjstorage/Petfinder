@@ -7,6 +7,7 @@
     	<typeAlias alias="memberVO" type="com.petfinder.vo.MemberVO" />
     	<typeAlias alias="disappearanceVO" type="com.petfinder.vo.DisappearanceVO" />
     	<typeAlias alias="findsVO" type="com.petfinder.vo.FindsVO" />
+    	<typeAlias alias="pagingVO" type="com.petfinder.vo.PagingVO" />
     </typeAliases>
     
 

@@ -69,12 +69,12 @@ $(document).ready(function() {
                      <th>성별</th>
                      <td>
                         <div class="checks">
-                        	<input type="radio" id="gender_f" name="gender" value="여자" <c:if test="${map.infoMap.D_GENDER eq '여자'}">checked</c:if> />
-                        	<label for="gender_f"> 여자 </label>
+                        	<input type="radio" id="gender_f" name="gender" value="암컷" <c:if test="${map.infoMap.D_GENDER eq '암컷'}">checked</c:if> />
+                        	<label for="gender_f"> 암컷 </label>
                         </div>
                         <div class="checks">
-                        	<input type="radio" id="gender_m" name="gender" value="남자" <c:if test="${map.infoMap.D_GENDER eq '남자'}">checked</c:if> /> 
-                        	<label for="gender_m"> 남자 </label>
+                        	<input type="radio" id="gender_m" name="gender" value="수컷" <c:if test="${map.infoMap.D_GENDER eq '수컷'}">checked</c:if> /> 
+                        	<label for="gender_m"> 수컷 </label>
                         </div>
                         <div class="checks">
 							<input type="radio" id="gender_un" name="gender" value="모름" <c:if test="${map.infoMap.D_GENDER eq '모름'}">checked</c:if>/>

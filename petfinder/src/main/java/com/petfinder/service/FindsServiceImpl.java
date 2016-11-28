@@ -13,6 +13,7 @@ import com.petfinder.dao.FindsDAO;
 import com.petfinder.utill.FindsFileUtils;
 import com.petfinder.vo.DisappearanceVO;
 import com.petfinder.vo.FindsVO;
+import com.petfinder.vo.PagingVO;
 
 /**
  * 발견정보 CRUD 요청을 처리하는 비즈니스 클래스
@@ -154,5 +155,15 @@ public class FindsServiceImpl implements FindsService{
 	@Override
 	public String getpassword(HashMap<String, String> map) {
 		return findsDAO.getpassword(map);
+	}
+
+	@Override
+	public int postCount() {
+		return findsDAO.postCount();
+	}
+
+	@Override
+	public List<PagingVO> getBoardList(PagingVO pagingVO) {
+		return findsDAO.getBoardList(pagingVO);
 	}
 }
