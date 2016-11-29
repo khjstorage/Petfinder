@@ -54,7 +54,7 @@ public class FindsController {
 	@RequestMapping("/list.do")
 	public ModelAndView findsList(@ModelAttribute("PagingVO") PagingVO pagingVO, 
 								  @RequestParam(value = "pageNo", required = false) String pageNo) {
-		ModelAndView mv = new ModelAndView();
+		ModelAndView mv = new ModelAndView("/finds/list");
 		pagingVO.setPageSize(6); // 한 페이지에 보일 게시글 수
 		pagingVO.setPageNo(1); // 현재 페이지 번호
 		if(StringUtils.isNotEmpty(pageNo)){
@@ -66,7 +66,6 @@ public class FindsController {
 		List<PagingVO> boardList = findsService.getBoardList(pagingVO);
 		mv.addObject("paging", pagingVO);
 		mv.addObject("boardList", boardList);
-		mv.setViewName("/finds/list");
 		return mv;
 	}
 
@@ -114,7 +113,6 @@ public class FindsController {
 	}
 
 
-
 	/**
 	 * 諛쒓껄湲��쓽 �뙣�뒪�썙�뱶 �솕硫댁뿉�꽌 �빐�떦 湲��뿉 �뙣�뒪�썙�뱶媛� �씪移섑븯硫� finds_delete_pro �씠�룞
 	 * @param @RequestParam("pwd") String pwd 
@@ -127,8 +125,8 @@ public class FindsController {
 		HashMap<String, String> map = new HashMap<String, String>();
 		map.put("pwd", pwd);
 		map.put("idx", idx);
-		String account = findsService.passwordAuth(map);
-		if(pwd.equals(account)){
+		String postPwd = findsService.passwordAuth(map);
+		if(pwd.equals(postPwd)){
 			return "redirect:/finds/delete.do?idx="+idx;
 		}else{
 			return "redirect:/finds/contents.do?idx="+idx;
@@ -142,8 +140,11 @@ public class FindsController {
 	 * @throws Exception
 	 */
 	@RequestMapping("/delete.do")
-	public String findsDelete(@RequestParam("idx") String idx){
-		findsService.deleteFinds(idx);
+	public String findsDelete(HttpServletRequest request, @RequestParam("idx") String idx){
+		String strReferer = request.getHeader("referer");
+		if(strReferer != null){
+			findsService.deleteFinds(idx);
+		}
 		return "redirect:/finds/list.do";
 	}
 
@@ -156,12 +157,12 @@ public class FindsController {
 	 * @return "redirect:finds_password.do?idx="+idx
 	 */
 	@RequestMapping("/update_auth.do")
-	public String findsUpdateAuth(@RequestParam("pwd") String pwd, @RequestParam("idx") String idx){
+	public String findsUpdateAuth(HttpServletRequest request, @RequestParam("pwd") String pwd, @RequestParam("idx") String idx){
 		HashMap<String, String> map = new HashMap<String, String>();
 		map.put("pwd", pwd);
 		map.put("idx", idx);
-		String account = findsService.passwordAuth(map);
-		if(pwd.equals(account)){
+		String postPwd = findsService.passwordAuth(map);
+		if(pwd.equals(postPwd)){
 			return "redirect:/finds/edit.do?idx="+idx;
 		}else{
 			return "redirect:/finds/contents.do?idx="+idx;
@@ -177,11 +178,14 @@ public class FindsController {
 	 * @throws Exception
 	 */
 	@RequestMapping("/edit.do")
-	public ModelAndView findsEdit(HttpServletRequest request) throws Exception{
-		ModelAndView mv = new ModelAndView();
-		Map<String, Object> map = findsService.selectBoardDetail(request.getParameter("idx"));
+	public ModelAndView findsEdit(HttpServletRequest request,  @RequestParam("idx") String idx) throws Exception{
+		ModelAndView mv = new ModelAndView("/finds/edit");
+		Map<String, Object> map = findsService.selectBoardDetail(idx);
 		mv.addObject("map", map);
-		mv.setViewName("/finds/edit");
+		String strReferer = request.getHeader("referer");
+		if(strReferer == null){
+			mv.setViewName("redirect:/finds/list.do");
+		}
 		return mv;
 	}
 

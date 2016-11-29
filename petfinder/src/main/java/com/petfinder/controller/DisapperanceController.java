@@ -152,15 +152,12 @@ public class DisapperanceController {
 	 * @throws Exception
 	 */
 	@RequestMapping("/edit.do")
-	public ModelAndView disappearanceEdit(HttpSession session, @RequestParam("idx") String idx) throws Exception {
-		ModelAndView mv = new ModelAndView();
+	public ModelAndView disappearanceEdit(HttpServletRequest request, @RequestParam("idx") String idx) throws Exception {
+		ModelAndView mv = new ModelAndView("/disappearance/edit");
 		Map<String,Object> map = disappearanceService.selectBoardDetail(idx);
-		Map<String,Object> infoMap = (Map<String, Object>) map.get("infoMap");
-		
-		if(session.getAttribute("id").equals(infoMap.get("D_ID"))){
-			mv.addObject("map", map);
-			mv.setViewName("/disappearance/edit");
-		}else{
+		mv.addObject("map", map);
+		String strReferer = request.getHeader("referer");
+		if(strReferer == null){
 			mv.setViewName("redirect:/disappearance/list.do");
 		}
 		return mv;
@@ -196,7 +193,7 @@ public class DisapperanceController {
 		ModelAndView mv = new ModelAndView();
 		List<FindsVO> boardList = disappearanceService.matchDisappearance(disappearanceVO);
 		mv.addObject("boardList", boardList);
-		mv.setViewName("finds/list");
+		mv.setViewName("/finds/list");
 		return mv;
 	}
 	
@@ -246,21 +243,6 @@ public class DisapperanceController {
 		mv.setViewName("/disappearance/list");
 		return mv;
 	}
-	
-	
-	
-	
-
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
 	
 	
 	
