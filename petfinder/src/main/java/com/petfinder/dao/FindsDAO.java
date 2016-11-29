@@ -166,8 +166,8 @@ public class FindsDAO {
 	
 	
 	
-	public String getpassword(HashMap<String, String> map) {
-		return sqlSession.selectOne("finds.getpassword", map);
+	public String passwordAuth(HashMap<String, String> map) {
+		return sqlSession.selectOne("finds.passwordAuth", map);
 	}
 
 	public int postCount() {
@@ -175,7 +175,7 @@ public class FindsDAO {
 	}
 
 	public List<PagingVO> getBoardList(PagingVO pagingVO) {
-		return sqlSession.selectList("finds.paging", pagingVO);
+		return sqlSession.selectList("finds.getBoardList", pagingVO);
 	}
 
 }

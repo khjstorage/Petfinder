@@ -17,50 +17,50 @@
 			</tr>
 			<tr>
 				<td>
-					<div class="page">
-						<c:choose>
-							<c:when test="${fn:length(dlist) > 0}">
-								<c:forEach items="${dlist}" var="dog" begin="0" end="3" step="1">
-									<a href="/disappearance/contents.do?idx=${dog.idx}">
-										<div class="card">
-											<img src="">
-											<div class="card_info">
-												<h2>제목 : ${dog.title}</h2>
-												<h2>견종 : ${dog.dog}</h2>
-												<h2>지역 : ${dog.region}</h2>
-											</div>
+				<div class="page">
+					<c:choose>
+						<c:when test="${empty dlist}">
+							<div>최신글이 없습니다</div>
+						</c:when>
+						<c:otherwise>
+							<c:forEach items="${dlist}" var="dog">
+								<a href="/disappearance/contents.do?idx=${dog.idx}">
+									<div class="card">
+										<img src="">
+										<div class="card_info">
+											<h2>제목 : ${dog.title}</h2>
+											<h2>견종 : ${dog.dog}</h2>
+											<h2>지역 : ${dog.region}</h2>
 										</div>
-									</a>
-								</c:forEach>
-							</c:when>
-							<c:otherwise>
-								<div>조회된 결과가 없습니다</div>
-							</c:otherwise>
-						</c:choose>
-					</div>
+									</div>
+								</a>
+							</c:forEach>
+						</c:otherwise>
+					</c:choose>
+				</div>
 				</td>
 				<td>
-					<div class="page">
-						<c:choose>
-							<c:when test="${fn:length(flist) > 0}">
-								<c:forEach items="${flist}" var="dog" begin="0" end="3" step="1">
-									<a href="/finds/contents.do?idx=${dog.idx}">
-										<div class="card">
-											<img src="">
-											<div class="card_info">
-												<h2>제목 : ${dog.title}</h2>
-												<h2>견종 : ${dog.dog}</h2>
-												<h2>지역 : ${dog.region}</h2>
-											</div>
+				<div class="page">
+					<c:choose>
+						<c:when test="${fn:length(flist) > 0}">
+							<c:forEach items="${flist}" var="dog" begin="0" end="3" step="1">
+								<a href="/finds/contents.do?idx=${dog.idx}">
+									<div class="card">
+										<img src="">
+										<div class="card_info">
+											<h2>제목 : ${dog.title}</h2>
+											<h2>견종 : ${dog.dog}</h2>
+											<h2>지역 : ${dog.region}</h2>
 										</div>
-									</a>
-								</c:forEach>
-							</c:when>
-							<c:otherwise>
-								<div>조회된 결과가 없습니다</div>
-							</c:otherwise>
-						</c:choose>
-					</div>
+									</div>
+								</a>
+							</c:forEach>
+						</c:when>
+						<c:otherwise>
+							<div>최신글이 없습니다</div>
+						</c:otherwise>
+					</c:choose>
+				</div>
 				</td>
 			</tr>
 		</table>

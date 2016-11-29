@@ -99,7 +99,7 @@ public interface FindsService {
 	 */
 	public List<FindsVO> searchFinds(HashMap<String, String> map);
 	
-	public String getpassword(HashMap<String, String> map);
+	public String passwordAuth(HashMap<String, String> map);
 
 	public int postCount();
 

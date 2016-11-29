@@ -48,12 +48,17 @@
 	<!-- -->
 	<select id="disappearanceList" parameterType="disappearanceVO" resultMap="disappearanceListResultMap">
 		<![CDATA[
-		SELECT 
-			*
-		FROM
-			DISAPPEARANCE
-		ORDER BY
-			TO_NUMBER(D_IDX) DESC
+			SELECT 
+			  *
+			FROM
+			  (SELECT 
+			    *
+			  FROM
+			    DISAPPEARANCE
+			  ORDER BY
+			    TO_NUMBER(D_IDX) DESC)
+			WHERE
+			  ROWNUM <= 4
 		]]>
 	</select>
 
@@ -143,7 +148,7 @@
 	</update>
 
 	<!-- -->
-	<select id="matchDisappearance" parameterType="findsVO"	resultMap="disappearanceListResultMap">
+	<select id="matchDisappearance" parameterType="findsVO"	resultType="hashmap">
 		<![CDATA[
 		SELECT 
 			* 
@@ -151,6 +156,8 @@
 			DISAPPEARANCE 
 		WHERE
 			D_COLOR=#{color} AND D_DOG=#{dog} AND D_GENDER=#{gender} AND D_SIZE=#{size}
+		ORDER BY 
+			TO_NUMBER(D_IDX) DESC	
 		]]>
 	</select>
 
@@ -213,6 +220,35 @@
 			    </otherwise>
 			</choose>
 	</select>
+	
+	
+	<select id="postCount" resultType="java.lang.Integer">
+		<![CDATA[
+		SELECT
+			NVL(COUNT(*),0) count
+		FROM 
+			DISAPPEARANCE
+		]]>
+	</select>	
+	
+	
+	<select id="getBoardList" resultType="hashmap" parameterType="PagingVO">
+		<![CDATA[
+		SELECT
+			*
+		FROM
+			(SELECT 
+				ROWNUM rnum,
+				A.*
+			FROM 
+				(SELECT * FROM DISAPPEARANCE ORDER BY TO_NUMBER(D_IDX) DESC) A
+			WHERE 
+				ROWNUM <= #{endRowNum})
+		WHERE 
+			rnum >= #{startRowNum}
+		]]>
+	</select>
+	
 	
 </mapper>
 

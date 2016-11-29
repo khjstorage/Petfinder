@@ -12,6 +12,7 @@ import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.apache.commons.io.FileUtils;
+import org.apache.commons.lang.StringUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -21,6 +22,7 @@ import org.springframework.web.servlet.ModelAndView;
 import com.petfinder.service.DisappearanceService;
 import com.petfinder.vo.DisappearanceVO;
 import com.petfinder.vo.FindsVO;
+import com.petfinder.vo.PagingVO;
 /**
  * 遺꾩떎�젙蹂� CRUD �슂泥��쓣 泥섎━�븯�뒗 Controller �겢�옒�뒪
  * 
@@ -37,7 +39,6 @@ import com.petfinder.vo.FindsVO;
  *   2016.11.17				源��쁽吏�	  		requestmapping �닔�젙
  * </pre>
  */
-import com.petfinder.vo.PagingVO;
 @Controller
 @RequestMapping("/disappearance")
 public class DisapperanceController {
@@ -52,10 +53,20 @@ public class DisapperanceController {
 	 * @throws 
 	 */
 	@RequestMapping("/list.do")
-	public ModelAndView disappearanceList() {
+	public ModelAndView disappearanceList(@ModelAttribute("PagingVO") PagingVO pagingVO, 
+										  @RequestParam(value = "pageNo", required = false) String pageNo) {
 		ModelAndView mv = new ModelAndView();
-		List<DisappearanceVO> list = disappearanceService.disappearanceList();
-		mv.addObject("disappearancelist", list);
+		pagingVO.setPageSize(6); // 한 페이지에 보일 게시글 수
+		pagingVO.setPageNo(1); // 현재 페이지 번호
+		if(StringUtils.isNotEmpty(pageNo)){
+			pagingVO.setPageNo(Integer.parseInt(pageNo));
+		}
+		pagingVO.setBlockSize(5); //블록사이즈
+		pagingVO.setTotalCount(disappearanceService.postCount()); // 게시물 총 개수
+		
+		List<PagingVO> boardList = disappearanceService.getBoardList(pagingVO);
+		mv.addObject("paging", pagingVO);
+		mv.addObject("boardList", boardList);
 		mv.setViewName("/disappearance/list");
 		return mv;
 	}

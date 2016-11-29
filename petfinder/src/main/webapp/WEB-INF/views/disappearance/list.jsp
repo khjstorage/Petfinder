@@ -6,6 +6,11 @@
 	<title>실종게시판</title>
 </head>
 <script type="text/javascript">
+function goPage(pageNo){
+	document.listForm.pageNo.value = pageNo;
+	document.listForm.submit();
+	console.log("pageNo : " + pageNo);
+}
 $(document).ready(function() {
 	$("#searchBtn").click(function(){
 		if(!$("#keyWord_search").val()){
@@ -32,15 +37,15 @@ $(document).ready(function() {
 	            </form>
 			<div class="page">
 				<c:choose>
-					<c:when test="${fn:length(disappearancelist) > 0}">
-						<c:forEach items="${disappearancelist}" var="dog">
-							<a href="<c:url value='/disappearance/contents.do?idx=${dog.idx }'/>">
+					<c:when test="${fn:length(boardList) > 0}">
+						<c:forEach items="${boardList}" var="dog">
+							<a href="<c:url value='/disappearance/contents.do?idx=${dog.D_IDX }'/>">
 								<div class="card">
 									<img src="사진.jpg">
 									<div class="card_info">
-										<h2>제목 : ${dog.title}</h2>
-										<h2>견종 : ${dog.dog}</h2>
-										<h2>지역 : ${dog.region}</h2>
+										<h2>제목 : ${dog.D_TITLE}</h2>
+										<h2>견종 : ${dog.D_DOG}</h2>
+										<h2>지역 : ${dog.D_REGION}</h2>
 									</div>
 								</div>
 							</a>
@@ -52,6 +57,22 @@ $(document).ready(function() {
 				</c:choose>
 			</div>
 		</div>
+		<c:if test="${paging.firstPageNo >= 0}">
+			<div style="float:right">
+				<form name="listForm" action="<c:url value='/disappearance/list.do'/>" method="post">
+					<input type="hidden" name="pageNo" value="" /><br/><br/>
+					<jsp:include page="../etc/paging.jsp" >
+						<jsp:param name="firstPageNo" value="${paging.firstPageNo}" />
+						<jsp:param name="prevPageNo" value="${paging.prevPageNo}" />
+						<jsp:param name="startPageNo" value="${paging.startPageNo}" />
+						<jsp:param name="pageNo" value="${paging.pageNo}" />
+						<jsp:param name="endPageNo" value="${paging.endPageNo}" />
+						<jsp:param name="nextPageNo" value="${paging.nextPageNo}" />
+						<jsp:param name="finalPageNo" value="${paging.finalPageNo}" />
+					</jsp:include>
+				</form>
+			</div>
+		</c:if>
 	</div>
 </body>
 </html>

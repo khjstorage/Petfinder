@@ -46,10 +46,13 @@ public class HomeController {
 	@RequestMapping("/main.do")
 	public ModelAndView main() {
 		ModelAndView mv = new ModelAndView();
+		
 		List<DisappearanceVO> dlist = disappearanceService.disappearanceList();
 		mv.addObject("dlist", dlist);
+		
 		List<FindsVO> flist = findsService.findsList();
 		mv.addObject("flist", flist);
+		
 		mv.setViewName("/main");
 		return mv;
 	}

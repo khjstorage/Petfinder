@@ -58,8 +58,8 @@
 		<jsp-property-group>
 			<url-pattern>*.jsp</url-pattern>
 			<include-prelude>/WEB-INF/views/webConstraint/webConstraint.jspf</include-prelude>
-			<include-prelude>/WEB-INF/views/webConstraint/nav.jsp</include-prelude>
-			<include-coda>/WEB-INF/views/webConstraint/footer.jspf</include-coda>
+			<include-prelude>/WEB-INF/views/etc/nav.jsp</include-prelude>
+			<!-- <include-coda>/WEB-INF/views/etc/footer.jspf</include-coda> -->
 		</jsp-property-group>
 	</jsp-config>
 
@@ -70,6 +70,18 @@
 	<session-config>
 		<session-timeout>10</session-timeout>
 	</session-config>
+
+
+	<!--에러처리 -->
+     <error-page >
+            <error-code >404 </error-code >
+            <location>/WEB-INF/view/error/404code.jsp</location>
+     </error-page >
+
+     <error-page >
+            <error-code >500 </error-code >
+            <location>/WEB-INF/view/error/500code.jsp </location >
+     </error-page >
 
 
 </web-app>

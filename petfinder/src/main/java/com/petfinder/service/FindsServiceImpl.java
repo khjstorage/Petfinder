@@ -153,8 +153,8 @@ public class FindsServiceImpl implements FindsService{
 	}
 	
 	@Override
-	public String getpassword(HashMap<String, String> map) {
-		return findsDAO.getpassword(map);
+	public String passwordAuth(HashMap<String, String> map) {
+		return findsDAO.passwordAuth(map);
 	}
 
 	@Override

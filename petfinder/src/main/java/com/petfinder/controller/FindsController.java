@@ -51,30 +51,17 @@ public class FindsController {
 	 * @return2 "Finds/findslist"
 	 * @throws 
 	 */
-/*	@RequestMapping("/list.do")
-	public ModelAndView findsList() {
-		ModelAndView mv = new ModelAndView();
-		List<FindsVO> list = findsService.findsList();
-		mv.addObject("findslist", list);
-		mv.setViewName("/finds/list");
-		return mv;
-	}*/
-	
-	
 	@RequestMapping("/list.do")
-	public ModelAndView disappearanceList(@ModelAttribute("PagingVO") PagingVO pagingVO, 
-										  @RequestParam(value = "pageNo", required = false) String pageNo) {
+	public ModelAndView findsList(@ModelAttribute("PagingVO") PagingVO pagingVO, 
+								  @RequestParam(value = "pageNo", required = false) String pageNo) {
 		ModelAndView mv = new ModelAndView();
 		pagingVO.setPageSize(6); // 한 페이지에 보일 게시글 수
 		pagingVO.setPageNo(1); // 현재 페이지 번호
 		if(StringUtils.isNotEmpty(pageNo)){
 			pagingVO.setPageNo(Integer.parseInt(pageNo));
 		}
-		pagingVO.setBlockSize(5);
+		pagingVO.setBlockSize(5); //블록사이즈
 		pagingVO.setTotalCount(findsService.postCount()); // 게시물 총 개수
-		
-		//List<FindsVO> list = findsService.findsList();
-		//mv.addObject("findslist", list);
 		
 		List<PagingVO> boardList = findsService.getBoardList(pagingVO);
 		mv.addObject("paging", pagingVO);
@@ -140,7 +127,7 @@ public class FindsController {
 		HashMap<String, String> map = new HashMap<String, String>();
 		map.put("pwd", pwd);
 		map.put("idx", idx);
-		String account = findsService.getpassword(map);
+		String account = findsService.passwordAuth(map);
 		if(pwd.equals(account)){
 			return "redirect:/finds/delete.do?idx="+idx;
 		}else{
@@ -173,7 +160,7 @@ public class FindsController {
 		HashMap<String, String> map = new HashMap<String, String>();
 		map.put("pwd", pwd);
 		map.put("idx", idx);
-		String account = findsService.getpassword(map);
+		String account = findsService.passwordAuth(map);
 		if(pwd.equals(account)){
 			return "redirect:/finds/edit.do?idx="+idx;
 		}else{
@@ -249,8 +236,8 @@ public class FindsController {
 	@RequestMapping("/match.do")
 	public ModelAndView findsMatch(@ModelAttribute("findsVO")FindsVO findsVO) throws Exception{
 		ModelAndView mv = new ModelAndView();
-		List<DisappearanceVO> list = findsService.matchFinds(findsVO);
-		mv.addObject("disappearancelist", list);
+		List<DisappearanceVO> boardList = findsService.matchFinds(findsVO);
+		mv.addObject("boardList", boardList);
 		mv.setViewName("/disappearance/list");
 		return mv;
 	}

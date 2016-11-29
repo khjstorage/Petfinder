@@ -59,20 +59,22 @@ $(document).ready(function() {
 				</c:choose>
 			</div>
 		</div>
-		<div style="float:right">
-			<form name="listForm" action="<c:url value='/finds/list.do'/>" method="post">
-				<input type="hidden" name="pageNo" value="" /><br/><br/>
-				<jsp:include page="../paging.jsp" flush="true">
-					<jsp:param name="firstPageNo" value="${paging.firstPageNo}" />
-					<jsp:param name="prevPageNo" value="${paging.prevPageNo}" />
-					<jsp:param name="startPageNo" value="${paging.startPageNo}" />
-					<jsp:param name="pageNo" value="${paging.pageNo}" />
-					<jsp:param name="endPageNo" value="${paging.endPageNo}" />
-					<jsp:param name="nextPageNo" value="${paging.nextPageNo}" />
-					<jsp:param name="finalPageNo" value="${paging.finalPageNo}" />
-				</jsp:include>
-			</form>
-		</div>
+		<c:if test="${paging.firstPageNo >= 0}">
+			<div style="float:right">
+				<form name="listForm" action="<c:url value='/finds/list.do'/>" method="post">
+					<input type="hidden" name="pageNo" value="" /><br/><br/>
+					<jsp:include page="../etc/paging.jsp" >
+						<jsp:param name="firstPageNo" value="${paging.firstPageNo}" />
+						<jsp:param name="prevPageNo" value="${paging.prevPageNo}" />
+						<jsp:param name="startPageNo" value="${paging.startPageNo}" />
+						<jsp:param name="pageNo" value="${paging.pageNo}" />
+						<jsp:param name="endPageNo" value="${paging.endPageNo}" />
+						<jsp:param name="nextPageNo" value="${paging.nextPageNo}" />
+						<jsp:param name="finalPageNo" value="${paging.finalPageNo}" />
+					</jsp:include>
+				</form>
+			</div>
+		</c:if>
 	</div>
 </body>
 </html>

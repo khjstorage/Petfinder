@@ -43,27 +43,14 @@
    </insert>
 
 
-	<select id="findsList" parameterType="findsVO" resultMap="findsResultMap">
-	   	<![CDATA[
-	     	SELECT
-			*
-	     	FROM
-	     		FINDS
-	     	ORDER BY
-	     		TO_NUMBER(F_IDX) DESC
-	    ]]>
-   	</select>
-
-
-
    <select id="selectBoardDetail" parameterType="String" resultType="hashmap">
 	   <![CDATA[
 	       SELECT
-	       	A.*, TO_CHAR(F_DATE, 'YYYY-MM-DD')F_DATE_1
+	       		A.*, TO_CHAR(F_DATE, 'YYYY-MM-DD')F_DATE_1
 	       FROM 
-	       	FINDS A
+	       		FINDS A
 	       WHERE
-	       	F_IDX = #{idx} 
+	       		F_IDX = #{idx} 
 	   ]]>
    </select>
 
@@ -117,9 +104,12 @@
 		<![CDATA[
 		SELECT
 			*
-		FROM FINDS
+		FROM 
+			FINDS
 		WHERE
 			F_COLOR=#{color} AND F_DOG=#{dog} AND F_GENDER=#{gender} AND F_SIZE=#{size}
+		ORDER BY
+			TO_NUMBER(F_IDX) DESC
 		]]>
 	</select>
 
@@ -160,7 +150,7 @@
             ]]>
 	</update>
 	
-	<select id="getpassword" parameterType="hashmap" resultType="String">
+	<select id="passwordAuth" parameterType="hashmap" resultType="String">
     	<![CDATA[
     	SELECT
     		F_PASSWORD
@@ -189,7 +179,23 @@
 		    </otherwise>
 		</choose>
 	</select>
-		
+
+
+	<select id="findsList" parameterType="findsVO" resultMap="findsResultMap">
+	   	<![CDATA[
+			SELECT 
+			  *
+			FROM
+			  (SELECT 
+			    *
+			  FROM
+			    FINDS
+			  ORDER BY
+			    TO_NUMBER(F_IDX) DESC)
+			WHERE
+			  ROWNUM <= 4
+	    ]]>
+   	</select>		
 		
 	<select id="postCount" resultType="java.lang.Integer">
 		<![CDATA[
@@ -200,9 +206,8 @@
 		]]>
 	</select>	
 	
-
 	
-	<select id="paging" resultType="hashmap" parameterType="PagingVO">
+	<select id="getBoardList" resultType="hashmap" parameterType="PagingVO">
 		<![CDATA[
 		SELECT
 			*

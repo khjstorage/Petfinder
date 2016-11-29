@@ -10,6 +10,7 @@ import org.springframework.stereotype.Repository;
 
 import com.petfinder.vo.DisappearanceVO;
 import com.petfinder.vo.FindsVO;
+import com.petfinder.vo.PagingVO;
 /**
  * 분실정보에 관한 데이터처리 DAO 클래스
  * 
@@ -174,5 +175,13 @@ public class DisappearanceDAO {
 		return sqlSession.selectList("disappearance.searchDisappearance", map);
 	}
 	
+	
+	public int postCount() {
+		return sqlSession.selectOne("disappearance.postCount");
+	}
+
+	public List<PagingVO> getBoardList(PagingVO pagingVO) {
+		return sqlSession.selectList("disappearance.getBoardList", pagingVO);
+	}
 
 }
