@@ -59,7 +59,7 @@
 			<url-pattern>*.jsp</url-pattern>
 			<include-prelude>/WEB-INF/views/webConstraint/webConstraint.jspf</include-prelude>
 			<include-prelude>/WEB-INF/views/etc/nav.jsp</include-prelude>
-			<!-- <include-coda>/WEB-INF/views/etc/footer.jspf</include-coda> -->
+			<include-coda>/WEB-INF/views/etc/footer.jspf</include-coda>
 		</jsp-property-group>
 	</jsp-config>
 
