@@ -105,7 +105,7 @@ public interface DisappearanceService {
 	 * @return List<DisappearanceVO>
 	 * @throws 
 	 */
-	public List<DisappearanceVO> searchDisappearance(HashMap<String, String> map);
+	public List<DisappearanceVO> searchDisappearance(HashMap<String, String> map, PagingVO pagingVO);
 
 	public int postCount();
 

@@ -53,7 +53,7 @@ public class FindsController {
 	 */
 	@RequestMapping("/list.do")
 	public ModelAndView findsList(@ModelAttribute("PagingVO") PagingVO pagingVO, 
-								  @RequestParam(value = "pageNo", required = false) String pageNo) {
+								  @RequestParam(value = "pageNo", required = false) String pageNo){
 		ModelAndView mv = new ModelAndView("/finds/list");
 		pagingVO.setPageSize(6); // 한 페이지에 보일 게시글 수
 		pagingVO.setPageNo(1); // 현재 페이지 번호
@@ -62,10 +62,11 @@ public class FindsController {
 		}
 		pagingVO.setBlockSize(5); //블록사이즈
 		pagingVO.setTotalCount(findsService.postCount()); // 게시물 총 개수
+		mv.addObject("paging", pagingVO);
 		
 		List<PagingVO> boardList = findsService.getBoardList(pagingVO);
-		mv.addObject("paging", pagingVO);
 		mv.addObject("boardList", boardList);
+		
 		return mv;
 	}
 
@@ -216,7 +217,7 @@ public class FindsController {
 		String storedFileName = (String)map.get("F_STORED_FILE_NAME");
 		String originalFileName = (String)map.get("F_ORIGINAL_FILE_NAME");
 
-		byte fileByte[] = FileUtils.readFileToByteArray(new File("C:\\dev\\image\\findsfile\\"+storedFileName));
+		byte fileByte[] = FileUtils.readFileToByteArray(new File("C:\\dev\\workspace\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\petfinder\\image\\findsfile\\"+storedFileName));
 
 		response.setContentType("application/octet-stream");
 		response.setContentLength(fileByte.length);
@@ -256,13 +257,28 @@ public class FindsController {
 	 * @throws Exception
 	 */
 	@RequestMapping("/search.do")
-	public ModelAndView findsSearch(@RequestParam("keyWord_search") String keyWord_search,	@RequestParam("selection_search") String selection_search) throws Exception {
+	public ModelAndView findsSearch(@RequestParam("keyWord_search") String keyWord_search,	
+									@RequestParam("selection_search") String selection_search,
+									@ModelAttribute("PagingVO") PagingVO pagingVO,
+									@RequestParam(value = "pageNo", required = false) String pageNo) throws Exception {
 		ModelAndView mv = new ModelAndView();
+		
+		pagingVO.setPageSize(6); // 한 페이지에 보일 게시글 수
+		pagingVO.setPageNo(1); // 현재 페이지 번호
+		if(StringUtils.isNotEmpty(pageNo)){
+			pagingVO.setPageNo(Integer.parseInt(pageNo));
+		}
+		pagingVO.setBlockSize(5); //블록사이즈
+		pagingVO.setTotalCount(findsService.postCount()); // 게시물 총 개수
+		mv.addObject("paging", pagingVO);
+		
 		HashMap<String, String> map = new HashMap<String, String>();
 		map.put("keyWord_search", keyWord_search);
 		map.put("selection_search", selection_search);
-		List<FindsVO> list = findsService.searchFinds(map);
-		mv.addObject("findslist", list);
+		
+		List<FindsVO> boardList = findsService.searchFinds(map, pagingVO);
+		mv.addObject("boardList", boardList);
+		
 		mv.setViewName("/finds/list");
 		return mv;
 	}

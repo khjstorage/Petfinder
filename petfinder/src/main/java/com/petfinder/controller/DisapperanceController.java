@@ -63,10 +63,11 @@ public class DisapperanceController {
 		}
 		pagingVO.setBlockSize(5); //블록사이즈
 		pagingVO.setTotalCount(disappearanceService.postCount()); // 게시물 총 개수
+		mv.addObject("paging", pagingVO);
 		
 		List<PagingVO> boardList = disappearanceService.getBoardList(pagingVO);
-		mv.addObject("paging", pagingVO);
 		mv.addObject("boardList", boardList);
+		
 		mv.setViewName("/disappearance/list");
 		return mv;
 	}
@@ -211,7 +212,7 @@ public class DisapperanceController {
 	    String storedFileName = (String)map.get("D_STORED_FILE_NAME");
 	    String originalFileName = (String)map.get("D_ORIGINAL_FILE_NAME");
 	     
-	    byte fileByte[] = FileUtils.readFileToByteArray(new File("C:\\dev\\image\\disappearancefile\\"+storedFileName));
+	    byte fileByte[] = FileUtils.readFileToByteArray(new File("C:\\dev\\workspace\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\petfinder\\image\\disappearancefile\\"+storedFileName));
 	     
 	    response.setContentType("application/octet-stream");
 	    response.setContentLength(fileByte.length);
@@ -233,13 +234,29 @@ public class DisapperanceController {
 	 * @throws Exception
 	 */
 	@RequestMapping("/search.do")
-	public ModelAndView disappearanceSearch(@RequestParam("keyWord_search") String keyWord_search,	@RequestParam("selection_search") String selection_search) throws Exception {
+	public ModelAndView disappearanceSearch(@RequestParam("keyWord_search") String keyWord_search,
+											@RequestParam("selection_search") String selection_search,
+											@ModelAttribute("PagingVO") PagingVO pagingVO,
+											@RequestParam(value = "pageNo", required = false) String pageNo) throws Exception {
 		ModelAndView mv = new ModelAndView();
+		
+
+		pagingVO.setPageSize(6); // 한 페이지에 보일 게시글 수
+		pagingVO.setPageNo(1); // 현재 페이지 번호
+		if(StringUtils.isNotEmpty(pageNo)){
+			pagingVO.setPageNo(Integer.parseInt(pageNo));
+		}
+		pagingVO.setBlockSize(5); //블록사이즈
+		pagingVO.setTotalCount(disappearanceService.postCount()); // 게시물 총 개수
+		mv.addObject("paging", pagingVO);
+		
 		HashMap<String, String> map = new HashMap<String, String>();
 		map.put("keyWord_search", keyWord_search);
 		map.put("selection_search", selection_search);
-		List<DisappearanceVO> list = disappearanceService.searchDisappearance(map);
-		mv.addObject("disappearancelist", list);
+		
+		List<DisappearanceVO> boardList = disappearanceService.searchDisappearance(map, pagingVO);
+		mv.addObject("boardList", boardList);
+		
 		mv.setViewName("/disappearance/list");
 		return mv;
 	}

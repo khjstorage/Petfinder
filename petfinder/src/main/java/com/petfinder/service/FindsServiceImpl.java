@@ -71,6 +71,17 @@ public class FindsServiceImpl implements FindsService{
 		return resultMap;
 	}
 	
+	
+	@Override
+	public int postCount() {
+		return findsDAO.postCount();
+	}
+
+	@Override
+	public List<PagingVO> getBoardList(PagingVO pagingVO) {
+		return findsDAO.getBoardList(pagingVO);
+	}
+	
 	/**
 	 * 발견게시판 (입력) 요청을 처리하기 위해 데이터처리를 요청한다.
 	 * 
@@ -148,8 +159,11 @@ public class FindsServiceImpl implements FindsService{
 	 * @throws 
 	 */
 	@Override
-	public List<FindsVO> searchFinds(HashMap<String, String> map){
-		return findsDAO.searchFinds(map);
+	public List<FindsVO> searchFinds(HashMap<String, String> map, PagingVO pagingVO){
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		resultMap.put("map", map);
+		resultMap.put("pagingVO", pagingVO);
+		return findsDAO.searchFinds(resultMap);
 	}
 	
 	@Override
@@ -157,13 +171,4 @@ public class FindsServiceImpl implements FindsService{
 		return findsDAO.passwordAuth(map);
 	}
 
-	@Override
-	public int postCount() {
-		return findsDAO.postCount();
-	}
-
-	@Override
-	public List<PagingVO> getBoardList(PagingVO pagingVO) {
-		return findsDAO.getBoardList(pagingVO);
-	}
 }

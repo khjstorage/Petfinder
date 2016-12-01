@@ -161,27 +161,8 @@
     ]]>
 	</select>
 	
-	<select id="searchFinds" parameterType="hashmap" resultMap="findsResultMap">
- 	SELECT
- 		*
-	FROM
- 		FINDS
-	WHERE
-		<choose>
-		    <when test="selection_search == 'title'">
-		       F_TITLE like '%' ||  #{keyWord_search} || '%'
-		    </when>
-		    <when test="selection_search == 'contents'">
-		       F_DETAIL like '%' ||  #{keyWord_search} || '%'
-		    </when>
-		    <otherwise>
-		       F_TITLE like '%' ||  #{keyWord_search} || '%' OR F_DETAIL like '%' ||  #{keyWord_search} || '%'
-		    </otherwise>
-		</choose>
-	</select>
 
-
-	<select id="findsList" parameterType="findsVO" resultMap="findsResultMap">
+	<select id="findsList" parameterType="findsVO" resultType="hashmap">
 	   	<![CDATA[
 			SELECT 
 			  *
@@ -191,7 +172,13 @@
 			  FROM
 			    FINDS
 			  ORDER BY
-			    TO_NUMBER(F_IDX) DESC)
+			    TO_NUMBER(F_IDX) DESC) A
+			FULL OUTER JOIN  (SELECT 
+                     F_BOARD_IDX,
+                     F_STORED_FILE_NAME
+                    FROM
+                      FINDS_FILE ) B
+                ON A.F_IDX = B.F_BOARD_IDX
 			WHERE
 			  ROWNUM <= 4
 	    ]]>
@@ -218,9 +205,58 @@
 			FROM 
 				(SELECT * FROM FINDS ORDER BY TO_NUMBER(F_IDX) DESC) A
 			WHERE 
-				ROWNUM <= #{endRowNum})
+				ROWNUM <= #{endRowNum}) B
+        FULL OUTER JOIN  (SELECT 
+                     F_BOARD_IDX,
+                     F_STORED_FILE_NAME
+                    FROM
+                      FINDS_FILE ) C
+                ON B.F_IDX = C.F_BOARD_IDX
 		WHERE 
 			rnum >= #{startRowNum}
+		]]>
+	</select>
+	
+	
+	<select id="searchFinds" parameterType="hashmap" resultType="hashmap">
+ 		<![CDATA[
+ 		SELECT
+			*
+		FROM
+			(SELECT 
+				ROWNUM rnum,
+				A.*
+			FROM 
+				(SELECT
+	 				*
+				FROM
+			 		FINDS
+				WHERE
+					]]>
+					<choose>
+					    <when test="selection_search == 'title'">
+					       UPPER(F_TITLE) like UPPER('%' ||  #{map.keyWord_search} || '%')
+					    </when>
+					    <when test="selection_search == 'contents'">
+					       UPPER(F_DETAIL) like UPPER('%' ||  #{map.keyWord_search} || '%')
+					    </when>
+					    <otherwise>
+					       UPPER(F_TITLE) like UPPER('%' ||  #{map.keyWord_search} || '%') OR UPPER(F_DETAIL) like UPPER('%' ||  #{map.keyWord_search} || '%')
+					    </otherwise>
+					</choose>
+				<![CDATA[
+				ORDER BY
+					TO_NUMBER(F_IDX) DESC) A
+					WHERE 
+						ROWNUM <= #{pagingVO.endRowNum}) B
+		        FULL OUTER JOIN  (SELECT 
+		                     F_BOARD_IDX,
+		                     F_STORED_FILE_NAME
+		                    FROM
+		                      FINDS_FILE ) C
+		                ON B.F_IDX = C.F_BOARD_IDX
+		WHERE 
+			rnum >= #{pagingVO.startRowNum}
 		]]>
 	</select>
 		

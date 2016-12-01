@@ -16,7 +16,7 @@ import com.petfinder.vo.FindsVO;
 
 @Component("findsFileUtils")
 public class FindsFileUtils {
-	private static final String filePath = "C:\\dev\\image\\findsfile\\";
+	private static final String filePath = "C:\\dev\\workspace\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\petfinder\\image\\findsfile\\";
 
 	public Map<String,Object> parseInsertFileInfo(FindsVO findsVO, HttpServletRequest request) throws Exception{
 		

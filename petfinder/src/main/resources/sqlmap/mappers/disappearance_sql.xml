@@ -20,7 +20,7 @@
 	</resultMap>
 
 
-	<!-- -->
+
 	<insert id="insertDisappearance" parameterType="disappearanceVO" useGeneratedKeys="true" keyProperty="IDX">
 	<selectKey keyProperty="idx" resultType="string" order="BEFORE">
 		SELECT
@@ -45,8 +45,8 @@
        ]]>
 	</insert>
 
-	<!-- -->
-	<select id="disappearanceList" parameterType="disappearanceVO" resultMap="disappearanceListResultMap">
+
+	<select id="disappearanceList" parameterType="disappearanceVO" resultType="hashmap">
 		<![CDATA[
 			SELECT 
 			  *
@@ -56,13 +56,19 @@
 			  FROM
 			    DISAPPEARANCE
 			  ORDER BY
-			    TO_NUMBER(D_IDX) DESC)
+			    TO_NUMBER(D_IDX) DESC) A
+		    FULL OUTER JOIN  (SELECT 
+                    D_BOARD_IDX,
+                    D_STORED_FILE_NAME
+                   FROM
+                     DISAPPEARANCE_FILE ) B
+               ON A.D_IDX = B.D_BOARD_IDX
 			WHERE
 			  ROWNUM <= 4
 		]]>
 	</select>
 
-	<!-- -->
+
 	<select id="selectBoardDetail" parameterType="String" resultType="hashmap">
 	    <![CDATA[
 	        SELECT 
@@ -88,7 +94,7 @@
 	    ]]>
 	</select>
 
-	<!-- -->
+
 	<select id="deleteDisappearance" parameterType="String">
 	    <![CDATA[
 	        DELETE
@@ -109,7 +115,7 @@
 	    ]]>
 	</select>
 
-	<!-- -->
+
 	<update id="updateDisappearance" parameterType="disappearanceVO">
 		<![CDATA[
 		    UPDATE 
@@ -147,7 +153,7 @@
 		]]>
 	</update>
 
-	<!-- -->
+
 	<select id="matchDisappearance" parameterType="findsVO"	resultType="hashmap">
 		<![CDATA[
 		SELECT 
@@ -162,7 +168,7 @@
 	</select>
 
 
-	<!-- 사진을 다운로드 하기위해 -->
+
 	<select id="selectFileInfo" parameterType="hashmap" resultType="hashmap">
    		<![CDATA[
         SELECT
@@ -187,40 +193,6 @@
 		]]>
 	</select>
 	
-		
-	<select id="disappearanceImg" parameterType="hashmap">
-		<![CDATA[
-		SELECT 
-			D_STORED_FILE_NAME
-		FROM 
-			DISAPPEARANCE A
-     		 INNER JOIN DISAPPEARANCE_FILE B
-     				ON A.D_IDX = B.D_BOARD_IDX
-		WHERE
-			A.D_IDX = #{idx};
-		]]>
-	</select>
-	
-	
-	<select id="searchDisappearance" parameterType="hashmap" resultMap="disappearanceListResultMap">
-	 	SELECT
-	 		*
-	 	FROM
-	 		DISAPPEARANCE
-	 	WHERE
-			<choose>
-			    <when test="selection_search == 'title'">
-			       D_TITLE like '%' ||  #{keyWord_search} || '%'
-			    </when>
-			    <when test="selection_search == 'contents'">
-			       D_DETAIL like '%' ||  #{keyWord_search} || '%'
-			    </when>
-			    <otherwise>
-			       D_TITLE like '%' ||  #{keyWord_search} || '%' OR D_DETAIL like '%' ||  #{keyWord_search} || '%'
-			    </otherwise>
-			</choose>
-	</select>
-	
 	
 	<select id="postCount" resultType="java.lang.Integer">
 		<![CDATA[
@@ -243,12 +215,58 @@
 			FROM 
 				(SELECT * FROM DISAPPEARANCE ORDER BY TO_NUMBER(D_IDX) DESC) A
 			WHERE 
-				ROWNUM <= #{endRowNum})
+				ROWNUM <= #{endRowNum}) B
+		FULL OUTER JOIN  (SELECT 
+                     D_BOARD_IDX,
+                     D_STORED_FILE_NAME
+                    FROM
+                      DISAPPEARANCE_FILE ) C
+                ON B.D_IDX = C.D_BOARD_IDX
 		WHERE 
 			rnum >= #{startRowNum}
 		]]>
 	</select>
 	
-	
+	<select id="searchDisappearance" parameterType="hashmap" resultType="hashmap">
+ 		<![CDATA[
+ 		SELECT
+			*
+		FROM
+			(SELECT 
+				ROWNUM rnum,
+				A.*
+			FROM 
+				(SELECT
+	 				*
+				FROM
+			 		DISAPPEARANCE
+				WHERE
+					]]>
+        <choose>
+		    <when test="selection_search == 'title'">
+		       UPPER(D_TITLE) like UPPER('%' ||  #{map.keyWord_search} || '%')
+		    </when>
+		    <when test="selection_search == 'contents'">
+		       UPPER(D_DETAIL) like UPPER('%' ||  #{map.keyWord_search} || '%')
+		    </when>
+		    <otherwise>
+		       UPPER(D_TITLE) like UPPER('%' ||  #{map.keyWord_search} || '%') OR UPPER(D_DETAIL) like UPPER('%' ||  #{map.keyWord_search} || '%')
+		    </otherwise>
+        </choose>
+				<![CDATA[
+				ORDER BY
+					TO_NUMBER(D_IDX) DESC) A
+					WHERE 
+						ROWNUM <= #{pagingVO.endRowNum}) B
+		        FULL OUTER JOIN  (SELECT 
+		                     D_BOARD_IDX,
+		                     D_STORED_FILE_NAME
+		                    FROM
+		                      DISAPPEARANCE_FILE ) C
+		                ON B.D_IDX = C.D_BOARD_IDX
+		WHERE 
+			rnum >= #{pagingVO.startRowNum}
+		]]>
+	</select>
 </mapper>
 

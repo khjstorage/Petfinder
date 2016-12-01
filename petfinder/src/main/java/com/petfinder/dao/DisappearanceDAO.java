@@ -171,8 +171,8 @@ public class DisappearanceDAO {
 	 * @return List<DisappearanceVO>
 	 * @throws Exception
 	 */
-	public List<DisappearanceVO> searchDisappearance(HashMap<String, String> map){
-		return sqlSession.selectList("disappearance.searchDisappearance", map);
+	public List<DisappearanceVO> searchDisappearance(Map<String, Object> resultMap){
+		return sqlSession.selectList("disappearance.searchDisappearance", resultMap);
 	}
 	
 	

@@ -18,8 +18,7 @@ import com.petfinder.vo.DisappearanceVO;
 
 @Component("disappearanceFileUtils")
 public class DisappearanceFileUtils {
-	private static final String filePath = "C:\\dev\\image\\disappearancefile\\";
-
+	private static final String filePath = "C:\\dev\\workspace\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\petfinder\\image\\disappearancefile\\";
 	public Map<String,Object> parseInsertFileInfo(DisappearanceVO disappearanceVO, HttpServletRequest request) throws Exception{
 		
 		MultipartHttpServletRequest multipartHttpServletRequest = (MultipartHttpServletRequest)request;

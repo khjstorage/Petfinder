@@ -165,8 +165,11 @@ public class DisappearanceServiceImpl implements DisappearanceService {
 	 * @throws 
 	 */
 	@Override
-	public List<DisappearanceVO> searchDisappearance(HashMap<String, String> map){
-		return disappearanceDAO.searchDisappearance(map);
+	public List<DisappearanceVO> searchDisappearance(HashMap<String, String> map, PagingVO pagingVO){
+		Map<String, Object> resultMap = new HashMap<String, Object>();
+		resultMap.put("map", map);
+		resultMap.put("pagingVO", pagingVO);
+		return disappearanceDAO.searchDisappearance(resultMap);
 	}
 
 

@@ -24,13 +24,13 @@
 						</c:when>
 						<c:otherwise>
 							<c:forEach items="${dlist}" var="dog">
-								<a href="/disappearance/contents.do?idx=${dog.idx}">
+								<a href="/disappearance/contents.do?idx=${dog.D_IDX}">
 									<div class="card">
-										<img src="">
+										<img src="<c:url value='C:\dev\workspace\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\petfinder\image\disappearancefile/${dog.D_STORED_FILE_NAME}'/>">
 										<div class="card_info">
-											<h2>제목 : ${dog.title}</h2>
-											<h2>견종 : ${dog.dog}</h2>
-											<h2>지역 : ${dog.region}</h2>
+											<h2>제목 : ${dog.D_TITLE}</h2>
+											<h2>견종 : ${dog.D_DOG}</h2>
+											<h2>지역 : ${dog.D_REGION}</h2>
 										</div>
 									</div>
 								</a>
@@ -44,13 +44,13 @@
 					<c:choose>
 						<c:when test="${fn:length(flist) > 0}">
 							<c:forEach items="${flist}" var="dog" begin="0" end="3" step="1">
-								<a href="/finds/contents.do?idx=${dog.idx}">
+								<a href="/finds/contents.do?idx=${dog.F_IDX}">
 									<div class="card">
-										<img src="">
+										<img src="<c:url value='C:\dev\workspace\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\petfinder\image\findsfile/${dog.F_STORED_FILE_NAME}'/>">
 										<div class="card_info">
-											<h2>제목 : ${dog.title}</h2>
-											<h2>견종 : ${dog.dog}</h2>
-											<h2>지역 : ${dog.region}</h2>
+											<h2>제목 : ${dog.F_TITLE}</h2>
+											<h2>견종 : ${dog.F_DOG}</h2>
+											<h2>지역 : ${dog.F_REGION}</h2>
 										</div>
 									</div>
 								</a>

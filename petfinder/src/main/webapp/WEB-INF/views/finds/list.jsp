@@ -41,7 +41,7 @@ $(document).ready(function() {
 						<c:forEach items="${boardList}" var="dog">
 							<a href="/finds/contents.do?idx=${dog.F_IDX }">
 								<div class="card">
-									<img src="C:\dev\image\findsfile\649f88ff7e4746959358943c77476eed.png"> <!-- 사진경로 -->
+									<img src="<c:url value='C:\dev\workspace\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\petfinder\image\findsfile/${dog.F_STORED_FILE_NAME}'/>">
 									<div class="card_info">
 										<h2>제목 : ${dog.F_TITLE}</h2>
 										<h2>견종 : ${dog.F_DOG}</h2>

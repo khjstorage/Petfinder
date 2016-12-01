@@ -160,8 +160,8 @@ public class FindsDAO {
 	 * @return List<DisappearanceVO>
 	 * @throws Exception
 	 */
-	public List<FindsVO> searchFinds(HashMap<String, String> map){
-		return sqlSession.selectList("finds.searchFinds", map);
+	public List<FindsVO> searchFinds(Map<String, Object> resultMap){
+		return sqlSession.selectList("finds.searchFinds", resultMap);
 	}
 	
 	

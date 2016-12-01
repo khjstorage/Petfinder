@@ -15,7 +15,7 @@ import com.petfinder.vo.MemberVO;
 
 @Component("memberfileUtils")
 public class MemberFileUtils {
-	private static final String filePath = "C:\\dev\\image\\memberfile\\";
+	private static final String filePath = "C:\\dev\\workspace\\.metadata\\.plugins\\org.eclipse.wst.server.core\\tmp0\\wtpwebapps\\petfinder\\image\\memberfile\\";
 
 	public Map<String,Object> parseInsertFileInfo(MemberVO memberVO, HttpServletRequest request) throws Exception{
 		

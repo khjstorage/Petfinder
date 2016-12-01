@@ -16,11 +16,7 @@ $(document).ready(function() {
 		<a href="<c:url value='/main.do'/>"> PET-FINDER</a>
 		<div class="headerNav">
 			<c:choose>
-				<c:when test="${id == null}">
-					<a href="<c:url value='/member/login.do'/>"> <input type="button" id="pageFocusLogin" value="로그인"></a>
-					<a href="<c:url value='/member/register.do'/>"> <input type="button" id="pageFocusRegister" value="회원가입"></a>
-				</c:when>
-				<c:otherwise>
+				<c:when test="${!empty id}">
 					<p>${id}</p>
 					<img id="preferences" src="../resources/img/preferences.png"/>
 					<div class="preferences hide">
@@ -28,6 +24,10 @@ $(document).ready(function() {
 						<a href="<c:url value='/member/mypage.do'/>"><input type="button" value="마이페이지"></a>
 						<a href="<c:url value='/member/logout.do'/>"><input type="button" value="로그아웃"></a>
 					</div>
+				</c:when>
+				<c:otherwise>
+						<a href="<c:url value='/member/login.do'/>"> <input type="button" id="pageFocusLogin" value="로그인"></a>
+						<a href="<c:url value='/member/register.do'/>"> <input type="button" id="pageFocusRegister" value="회원가입"></a>
 				</c:otherwise>
 			</c:choose>
 					<ul>		
