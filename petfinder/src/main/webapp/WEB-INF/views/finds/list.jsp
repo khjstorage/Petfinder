@@ -41,7 +41,7 @@ $(document).ready(function() {
 						<c:forEach items="${boardList}" var="dog">
 							<a href="/finds/contents.do?idx=${dog.F_IDX }">
 								<div class="card">
-									<img src="<c:url value='C:\dev\workspace\.metadata\.plugins\org.eclipse.wst.server.core\tmp0\wtpwebapps\petfinder\image\findsfile/${dog.F_STORED_FILE_NAME}'/>">
+									<img src="<c:url value='/image/findsfile/${dog.F_STORED_FILE_NAME}' />" />
 									<div class="card_info">
 										<h2>제목 : ${dog.F_TITLE}</h2>
 										<h2>견종 : ${dog.F_DOG}</h2>
@@ -59,19 +59,28 @@ $(document).ready(function() {
 				</c:choose>
 			</div>
 		</div>
-		<c:if test="${paging.firstPageNo >= 0}">
+		<c:if test="${!empty paging.firstPageNo}">
 			<div style="float:right">
 				<form name="listForm" action="<c:url value='/finds/list.do'/>" method="post">
 					<input type="hidden" name="pageNo" value="" /><br/><br/>
-					<jsp:include page="../etc/paging.jsp" >
-						<jsp:param name="firstPageNo" value="${paging.firstPageNo}" />
-						<jsp:param name="prevPageNo" value="${paging.prevPageNo}" />
-						<jsp:param name="startPageNo" value="${paging.startPageNo}" />
-						<jsp:param name="pageNo" value="${paging.pageNo}" />
-						<jsp:param name="endPageNo" value="${paging.endPageNo}" />
-						<jsp:param name="nextPageNo" value="${paging.nextPageNo}" />
-						<jsp:param name="finalPageNo" value="${paging.finalPageNo}" />
-					</jsp:include>
+					<div class="pagination">
+						<a href="javascript:goPage(${paging.firstPageNo})" class="first">처음</a>
+						<a href="javascript:goPage(${paging.prevPageNo})" class="prev">이전</a>
+						<span>
+							<c:forEach var="i" begin="${paging.startPageNo}" end="${paging.endPageNo}" step="1">
+									<c:choose>
+										<c:when test="${i eq param.pageNo}">
+											<a href="javascript:goPage(${i})" class="selected">${i}</a>
+										</c:when>
+										<c:otherwise>
+											<a href="javascript:goPage(${i})">${i}</a>
+										</c:otherwise>
+									</c:choose>
+							</c:forEach>
+						</span>
+						<a href="javascript:goPage(${paging.nextPageNo})" class="next">다음</a>
+						<a href="javascript:goPage(${paging.finalPageNo})" class="last">마지막</a>
+					</div>	
 				</form>
 			</div>
 		</c:if>
