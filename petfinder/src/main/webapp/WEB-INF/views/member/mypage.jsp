@@ -8,7 +8,7 @@
 </head>
 <script>
 $(document).ready(function(){
-	var re_pwd = /^[a-Z0-9_-]{6,18}$/; // 비밀번호 검사식
+	var re_pwd = /^[a-z0-9_-]{6,18}$/; // 비밀번호 검사식
 	var re_name = /^[가-힣a-zA-Z]+$/; // 이름 검사식
 	var re_tel = /^\d{3}-\d{3,4}-\d{4}$/; // 전화번호 검사식
 		
