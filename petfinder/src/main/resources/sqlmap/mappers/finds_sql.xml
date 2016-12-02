@@ -194,6 +194,30 @@
 	</select>	
 	
 	
+			
+	<select id="searchPostCount" resultType="java.lang.Integer">
+		<![CDATA[
+		SELECT
+			NVL(COUNT(*),0) count
+		FROM 
+			FINDS
+		WHERE
+		]]>
+			<choose>
+			    <when test="selection_search == 'title'">
+			       UPPER(F_TITLE) like UPPER('%' ||  #{keyWord_search} || '%')
+			    </when>
+			    <when test="selection_search == 'contents'">
+			       UPPER(F_DETAIL) like UPPER('%' ||  #{keyWord_search} || '%')
+			    </when>
+			    <otherwise>
+			       UPPER(F_TITLE) like UPPER('%' ||  #{keyWord_search} || '%') OR UPPER(F_DETAIL) like UPPER('%' ||  #{keyWord_search} || '%')
+			    </otherwise>
+			</choose>
+	</select>	
+	
+	
+	
 	<select id="getBoardList" resultType="hashmap" parameterType="PagingVO">
 		<![CDATA[
 		SELECT

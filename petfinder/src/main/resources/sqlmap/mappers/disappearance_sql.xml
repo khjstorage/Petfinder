@@ -203,6 +203,27 @@
 		]]>
 	</select>	
 	
+	<select id="searchPostCount" resultType="java.lang.Integer">
+		<![CDATA[
+		SELECT
+			NVL(COUNT(*),0) count
+		FROM 
+			DISAPPEARANCE
+		WHERE
+		]]>
+			<choose>
+			    <when test="selection_search == 'title'">
+			       UPPER(D_TITLE) like UPPER('%' ||  #{keyWord_search} || '%')
+			    </when>
+			    <when test="selection_search == 'contents'">
+			       UPPER(D_DETAIL) like UPPER('%' ||  #{keyWord_search} || '%')
+			    </when>
+			    <otherwise>
+			       UPPER(D_TITLE) like UPPER('%' ||  #{keyWord_search} || '%') OR UPPER(D_DETAIL) like UPPER('%' ||  #{keyWord_search} || '%')
+			    </otherwise>
+			</choose>
+	</select>	
+	
 	
 	<select id="getBoardList" resultType="hashmap" parameterType="PagingVO">
 		<![CDATA[
@@ -242,28 +263,28 @@
 			 		DISAPPEARANCE
 				WHERE
 					]]>
-        <choose>
-		    <when test="selection_search == 'title'">
-		       UPPER(D_TITLE) like UPPER('%' ||  #{map.keyWord_search} || '%')
-		    </when>
-		    <when test="selection_search == 'contents'">
-		       UPPER(D_DETAIL) like UPPER('%' ||  #{map.keyWord_search} || '%')
-		    </when>
-		    <otherwise>
-		       UPPER(D_TITLE) like UPPER('%' ||  #{map.keyWord_search} || '%') OR UPPER(D_DETAIL) like UPPER('%' ||  #{map.keyWord_search} || '%')
-		    </otherwise>
-        </choose>
+		        <choose>
+				    <when test="selection_search == 'title'">
+				       UPPER(D_TITLE) like UPPER('%' ||  #{map.keyWord_search} || '%')
+				    </when>
+				    <when test="selection_search == 'contents'">
+				       UPPER(D_DETAIL) like UPPER('%' ||  #{map.keyWord_search} || '%')
+				    </when>
+				    <otherwise>
+				       UPPER(D_TITLE) like UPPER('%' ||  #{map.keyWord_search} || '%') OR UPPER(D_DETAIL) like UPPER('%' ||  #{map.keyWord_search} || '%')
+				    </otherwise>
+		        </choose>
 				<![CDATA[
 				ORDER BY
 					TO_NUMBER(D_IDX) DESC) A
-					WHERE 
-						ROWNUM <= #{pagingVO.endRowNum}) B
-		        FULL OUTER JOIN  (SELECT 
-		                     D_BOARD_IDX,
-		                     D_STORED_FILE_NAME
-		                    FROM
-		                      DISAPPEARANCE_FILE ) C
-		                ON B.D_IDX = C.D_BOARD_IDX
+			WHERE 
+				ROWNUM <= #{pagingVO.endRowNum}) B
+		        	FULL OUTER JOIN  (SELECT 
+		                     			D_BOARD_IDX,
+		                     			D_STORED_FILE_NAME
+		                    		  FROM
+		                      			DISAPPEARANCE_FILE ) C
+		            ON B.D_IDX = C.D_BOARD_IDX
 		WHERE 
 			rnum >= #{pagingVO.startRowNum}
 		]]>

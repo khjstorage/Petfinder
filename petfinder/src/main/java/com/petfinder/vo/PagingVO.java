@@ -121,7 +121,7 @@ public class PagingVO {
 		if (this.pageNo == 0)
 			this.setPageNo(1); // 기본 값 설정
 		if (this.pageSize == 0)
-			this.setPageSize(10); // 기본 값 설정
+			this.setPageSize(6); // 기본 값 설정
 
 		int finalPage = (totalCount + (pageSize - 1)) / pageSize; // 마지막 페이지
 		if (this.pageNo > finalPage)

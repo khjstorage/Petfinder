@@ -37,14 +37,14 @@
 	</insert>
 
 	<!-- -->
-	<select id="getmember" parameterType="String" resultMap="memberResultMap">
+	<select id="getmember" parameterType="String" resultType="hashmap">
 		<![CDATA[
-		SELECT
-			*
-		FROM
-			MEMBER
+		SELECT *
+		FROM  MEMBER A
+          INNER JOIN MEMBER_FILE B
+                  ON A.M_ID = B.M_ID
 		WHERE
-			M_ID = #{sessionId}
+			A.M_ID = #{sessionId}
 		]]>
 	</select>
 

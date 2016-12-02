@@ -171,4 +171,9 @@ public class FindsServiceImpl implements FindsService{
 		return findsDAO.passwordAuth(map);
 	}
 
+	@Override
+	public int searchPostCount(HashMap<String, String> map) {
+		return findsDAO.searchPostCount(map);
+	}
+
 }

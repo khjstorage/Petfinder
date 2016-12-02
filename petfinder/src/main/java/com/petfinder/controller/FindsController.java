@@ -15,6 +15,7 @@ import org.apache.commons.lang.StringUtils;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
@@ -256,12 +257,16 @@ public class FindsController {
 	 * @return mv.setViewName("disappearance/disappearance_list")
 	 * @throws Exception
 	 */
-	@RequestMapping("/search.do")
+	@RequestMapping(value="/search.do", method=RequestMethod.GET)
 	public ModelAndView findsSearch(@RequestParam("keyWord_search") String keyWord_search,	
 									@RequestParam("selection_search") String selection_search,
 									@ModelAttribute("PagingVO") PagingVO pagingVO,
 									@RequestParam(value = "pageNo", required = false) String pageNo) throws Exception {
 		ModelAndView mv = new ModelAndView();
+		
+		HashMap<String, String> map = new HashMap<String, String>();
+		map.put("keyWord_search", keyWord_search);
+		map.put("selection_search", selection_search);
 		
 		pagingVO.setPageSize(6); // 한 페이지에 보일 게시글 수
 		pagingVO.setPageNo(1); // 현재 페이지 번호
@@ -269,12 +274,9 @@ public class FindsController {
 			pagingVO.setPageNo(Integer.parseInt(pageNo));
 		}
 		pagingVO.setBlockSize(5); //블록사이즈
-		pagingVO.setTotalCount(findsService.postCount()); // 게시물 총 개수
-		mv.addObject("paging", pagingVO);
 		
-		HashMap<String, String> map = new HashMap<String, String>();
-		map.put("keyWord_search", keyWord_search);
-		map.put("selection_search", selection_search);
+		pagingVO.setTotalCount(findsService.searchPostCount(map)); // 게시물 총 개수
+		mv.addObject("paging", pagingVO);
 		
 		List<FindsVO> boardList = findsService.searchFinds(map, pagingVO);
 		mv.addObject("boardList", boardList);

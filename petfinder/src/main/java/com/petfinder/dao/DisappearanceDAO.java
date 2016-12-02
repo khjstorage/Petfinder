@@ -184,4 +184,8 @@ public class DisappearanceDAO {
 		return sqlSession.selectList("disappearance.getBoardList", pagingVO);
 	}
 
+	public int searchPostCount(HashMap<String, String> map) {
+		return sqlSession.selectOne("disappearance.searchPostCount", map);
+	}
+
 }

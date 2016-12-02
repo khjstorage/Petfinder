@@ -24,9 +24,9 @@ $(document).ready(function() {
       <div class="mainContents">
         <h2 style="float:left;">상세내용</h2>
         <a href="<c:url value='/finds/list.do'/>"><input type="button" class="rightTopButtons" value="목록으로" /></a>
-		<input type="button" class="rightTopButtons" id="findsDeleteFormView" value="삭제" />
 		
 		<!-- 발견게시물 삭제 비밀번호 입력 -->
+		<input type="button" class="rightTopButtons" id="findsDeleteFormView" value="삭제" />
 		<div class="findsDeleteFormView hide">
 			<img src="../resources/img/findsUpdateForm.png"/>
 			<form action="/finds/delete_auth.do" method="post" enctype="multipart/form-data">
@@ -36,8 +36,8 @@ $(document).ready(function() {
 			</form>
 		</div>
 		
-		<input type="button" class="rightTopButtons" id="findsUpdateFormView" value="수정" />
 		<!-- 발견게시물 수정 비밀번호 입력 -->
+		<input type="button" class="rightTopButtons" id="findsUpdateFormView" value="수정" />
 		<div class="findsUpdateFormView hide">
 			<img src="../resources/img/findsUpdateForm.png"/>
 			<form action="/finds/update_auth.do" method="post" enctype="multipart/form-data">
@@ -46,6 +46,7 @@ $(document).ready(function() {
 				<input type="submit" value="확인" />
 			</form>
 		</div>
+		
         <a href="<c:url value='/finds/match.do?color=${map.F_COLOR}&dog=${map.F_DOG}&gender=${map.F_GENDER}&size=${map.F_SIZE}'/>"><input type="button" class="rightTopButtons" value="매칭" /></a>
             <div class="editorTool" style="float: left;">
                <table>

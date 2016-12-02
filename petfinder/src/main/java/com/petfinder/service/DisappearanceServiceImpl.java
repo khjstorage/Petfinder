@@ -184,4 +184,10 @@ public class DisappearanceServiceImpl implements DisappearanceService {
 		return disappearanceDAO.getBoardList(pagingVO);
 	}
 
+
+	@Override
+	public int searchPostCount(HashMap<String, String> map) {
+		return disappearanceDAO.searchPostCount(map);
+	}
+
 }

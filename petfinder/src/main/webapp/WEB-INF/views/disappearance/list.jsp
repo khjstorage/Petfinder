@@ -26,7 +26,7 @@ $(document).ready(function() {
 		<div class="mainContents">
 			<h2 style="float: left;">실종게시판</h2>
 			<a href="<c:url value='/disappearance/write.do'/>"><input type="button" id="write" class="rightTopButtons" value="글쓰기" /></a>
-				<form action="<c:url value='/disappearance/search.do'/>" method="post" enctype="multipart/form-data">
+				<form action="<c:url value='/disappearance/search.do'/>" method="get" enctype="multipart/form-data">
 		            <input type="submit" id="searchBtn" class="rightTopButtons" value="조회" />
 		               <input type="text" id="keyWord_search" class="rightTopButtons" name="keyWord_search"/>
 		               <select class="rightTopButtons" name="selection_search" style="height:52px;">
@@ -59,7 +59,7 @@ $(document).ready(function() {
 		</div>
 		<c:if test="${!empty paging.firstPageNo}">
 			<div style="float:right">
-				<form name="listForm" action="<c:url value='/disappearance/list.do'/>" method="post">
+				<form name="listForm" action="<c:url value='/disappearance/list.do'/>" method="get">
 					<input type="hidden" name="pageNo" value="" /><br/><br/>
 					<div class="pagination">
 						<a href="javascript:goPage(${paging.firstPageNo})" class="first">처음</a>

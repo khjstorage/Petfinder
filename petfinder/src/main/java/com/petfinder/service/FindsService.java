@@ -105,4 +105,6 @@ public interface FindsService {
 
 	public List<PagingVO> getBoardList(PagingVO pagingVO);
 
+	public int searchPostCount(HashMap<String, String> map);
+
 }
