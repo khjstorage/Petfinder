@@ -7,7 +7,7 @@
 </head>
 <body>
 	<div class="containor">
-		<div class="mainContents mobileHide">
+		<div class="mainContents">
 			<h2 class="floatLeft">상세내용</h2>
 			<a href="<c:url value='/disappearance/list.do'/>"><input type="button" class="rightTopButtons" value="목록으로" /></a>
 			<c:choose>

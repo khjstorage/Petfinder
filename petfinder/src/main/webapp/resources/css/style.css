@@ -1,4 +1,3 @@
-/* 紐⑤뱺 �솕硫� */
 * {
 	-webkit-transition: all 0.25s ease-in-out;
 	-o-transition: all 0.25s ease-in-out;
@@ -13,7 +12,6 @@ html, body, div {
 	margin: 0;
 	padding: 0;
 	border: none;
-	font-family: '�깉援대┝';
 }
 
 .hide {
@@ -28,6 +26,7 @@ a, a:link, a:visited, a:active {
 	text-decoration: none;
 	color: #4a470a;
 }
+
 
 .asideHeader {
 	top: 0;
@@ -129,741 +128,451 @@ footer {
 	background-color: #4a470a !important;
 	color: #ffffff !important;
 }
-/* �겙 �솕硫� */
-@media screen and (min-device-width:1025px) {
-	::-webkit-scrollbar {
-		width: 8px;
-		height: 8px;
-		border: none;
-	}
-	::-webkit-scrollbar-track {
-		background: none;
-	}
-	::-webkit-scrollbar-thumb {
-		height: 50px;
-		width: 50px;
-		background: rgba(74, 71, 10, 0.8);
-	}
-	.deskHide {
-		display: none;
-	}
-	.headerNav>p {
-		font-size: 25px;
-		margin: 5px;
-	}
-	#preferences {
-		position: absolute;
-		top: 130px;
-		right: 30px;
-		width: 25px;
-		height: 25px;
-		cursor: pointer;
-	}
-	.preferences {
-		position: absolute;
-		top: 120px;
-		left: 190px;
-		padding: 5px;
-		background-color: #4a470a;
-		border-radius: 5px;
-		z-index: 101;
-	}
-	.preferences a>input[type="button"] {
-		float: left;
-		width: 100px !important;
-		margin: 3px;
-	}
-	.preferences > img {
-		position: absolute;
-		top: 10px;
-		left: -15px;
-		width: 15px;
-		height: 25px;
-	}
-	.asideHeader a>input[type="button"] {
-		width: 180px;
-		height: 40px;
-		line-height: 40px;
-		padding: 0;
-		font-size: 18px;
-		color: #4a470a;
-		background-color: #e0d821;
-		font-weight: bold;
-	}
-	input, .card, select {
-		outline: none;
-		font-weight: bold;
-	}
-	.card:hover, input:hover, select:hover {
-		transform: scale(1.05, 1.05);
-		box-shadow: 1px 5px 10px 1px rgba(0, 0, 0, 0.3);
-	}
-	.asideHeader a>input:hover {
-		background-color: #4a470a !important;
-		color: #ffffff !important;
-	}
-	.checks:hover {
-		transform: scale(1.3, 1.3) translateY(-5px);
-	}
-	.card:active, input[type="button"]:active, input[type="submit"]:active {
-		transform: scale(1, 1);
-	}
-	input:focus {
-		box-shadow: 1px 5px 10px 1px rgba(0, 0, 0, 0.3);
-	}
-	.asideHeader {
-		position: fixed;
-		padding: 30px;
-	}
-	h2 {
-		margin-top: 0px;
-	}
-	span {
-		font-size: 20px;
-		font-weight: bold;
-	}
-	select {
-		margin-bottom: 10px;
-		padding: 0 40px;
-		width: 222px;
-		height: 50px;
-		font-size: 15px;
-	}
-	input[type="text"], input[type="password"] {
-		margin-bottom: 10px;
-		padding: 10px;
-		width: 200px;
-		height: 30px;
-		font-size: 15px;
-	}
-	input[type="file"] {
-		margin-bottom: 10px;
-		padding: 10px;
-		width: 200px;
-		height: 25px;
-		font-size: 15px;
-	}
-	input[type="button"], input[type="submit"] {
-		margin-bottom: 10px;
-		width: 222px;
-		height: 51px;
-		padding: 10px;
-		font-size: 15px;
-	}
-	input[type="date"] {
-		padding: 10px;
-		width: 200px;
-		height: 18px;
-		font-size: 15px;
-	}
-	.card>img {
-		width: 100%;
-		height: 70%;
-	}
-	.checks {
-		position: relative;
-		display: inline-block;
-		margin-bottom: 5px;
-	}
-	.checks input[type="radio"] {
-		position: absolute;
-		width: 1px;
-		height: 1px;
-		padding: 0;
-		margin: -1px;
-		overflow: hidden;
-		clip: rect(0, 0, 0, 0);
-		border: 0;
-	}
-	.checks input[type="radio"]+label {
-		display: inline-block;
-		position: relative;
-		padding-left: 30px;
-		cursor: pointer;
-		-webkit-user-select: none;
-		-moz-user-select: none;
-		-ms-user-select: none;
-	}
-	.checks input[type="radio"]+label:before {
-		content: '';
-		position: absolute;
-		top: 2px;
-		left: 4px;
-		width: 15px;
-		height: 15px;
-		text-align: center;
-		background: #fafafa;
-		border: 1px solid #cacece;
-		border-radius: 100%;
-		box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05), inset 0px -15px 10px -12px
-			rgba(0, 0, 0, 0.05);
-	}
-	.checks input[type="radio"]+label:active:before, .checks input[type="radio"]:checked+label:active:before
-		{
-		box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), inset 0px 1px 3px
-			rgba(0, 0, 0, 0.1);
-	}
-	.checks input[type="radio"]:checked+label:before {
-		background: #e9ecee;
-		border-color: #adb8c0;
-	}
-	.checks input[type="radio"]:checked+label:after {
-		content: '';
-		position: absolute;
-		top: 6px;
-		left: 8px;
-		width: 9px;
-		height: 9px;
-		background: #4a470a;
-		border-radius: 100%;
-		box-shadow: inset 0px 0px 10px rgba(0, 0, 0, 0.3);
-	}
-	.asideHeader {
-		width: 140px;
-		height: 100%;
-	}
-	.asideHeader>a {
-		font-size: 40px;
-	}
-	.asideHeader>ul>li>a {
-		font-size: 18px;
-	}
-	.headerNav {
-		margin: 30px -30px 10px -30px;
-		font-size: 18px;
-	}
-	footer {
-		margin-top: 30px;
-		width: 100%;
-		height: 50px;
-	}
-	.containor {
-		position: relative;
-		margin-left: 200px;
-		width: 960px;
-	}
-	.mainContents {
-		position: relative;
-		padding: 50px;
-		width: 100%;
-		color: #4a470a;
-	}
-	.login {
-		margin-top: 20px;
-		margin-left: 20px;
-		float: left;
-		text-align: center;
-		font-size: 18px;
-	}
-	.find_info {
-		margin-top: 40px;
-		text-align: center;
-		font-size: 18px;
-	}
-	.signup_form {
-		text-align: center;
-	}
-	.about {
-		text-align: center;
-	}
-	.mainPageTable {
-		width: 100%;
-		padding: 5px;
-		text-align: center;
-	}
-	.mainPageTable h4 {
-		font-size: 20px;
-	}
-	.mainPageTable td {
-		width: 50%;
-	}
-	.mainPageTable .page .card {
-		margin: 1%;
-		width: 47.5%;
-		font-size: 13px;
-	}
-	.main_finds, .main_disappear {
-		width: 50%;
-	}
-	.myPageTable .card {
-		width: 47.5%;
-		height: 10em;
-		float: left;
-	}
-	.myPageTable .card>img {
-		width: 100%;
-		height: 100%;
-	}
-	.main_card {
-		margin: 1%;
-		border: 1px solid #4a470a;
-		width: 47.5%;
-		height: 17em;
-	}
-	.card {
-		float: left;
-		margin: 1%;
-		border: 1px solid #4a470a;
-		width: 30%;
-		height: 19em;
-	}
-	.card_info>h2 {
-		margin: 0;
-		width: 100%;
-	}
-	.rightTopButtons {
-		float: right;
-		width: 150px !important;
-		margin-left: 5px;
-	}
-	.editorTool {
-		width: 100%;
-	}
-	.editorTool input[type="text"], .editorTool input[type="password"] {
-		margin-bottom: 0;
-		height: 18px;
-	}
-	.editorTool select {
-		margin-bottom: 0;
-		height: 40px;
-	}
-	.editorToolbar>img {
-		margin-bottom: 10px;
-		float: left;
-		width: 25px;
-		height: 25px;
-	}
-	.editorToolbar>img:hover {
-		background-color: #e0d821;
-	}
-	.editorTool table tr td textarea {
-		resize: none;
-		width: 98.7%;
-		height: 300px;
-	}
-	#boardEditor {
-		margin-top: 50px;
-		border: 1px solid #4a470a;
-		width: 100%;
-		min-height: 200px;
-	}
-	.editorTool table {
-		width: 100%;
-		border: 1px solid #4a470a;
-		vertical-align: middle;
-	}
-	.editorTool table th {
-		width: 15%;
-	}
-	.editorTool table td {
-		width: 35%;
-	}
-	.editorTool table {
-		text-align: left;
-		padding: 5px;
-	}
-	.editorTool table th, .editorTool table td {
-		height: 35px;
-		padding: 2px;
-	}
-	.findsDeleteFormView {
-		z-index: 101;
-		position: absolute;
-		top: 130px;
-		left: 685px;
-		border: 1px solid #4a470a;
-		padding: 5px;
-		background-color: #ffffff;
-		box-shadow: 1px 5px 10px 1px rgba(0, 0, 0, 0.3);
-	}
-	.findsUpdateFormView {
-		z-index: 101;
-		position: absolute;
-		top: 130px;
-		left: 530px;
-		border: 1px solid #4a470a;
-		padding: 5px;
-		background-color: #ffffff;
-		box-shadow: 1px 5px 10px 1px rgba(0, 0, 0, 0.3);
-	}
-	.findsUpdateFormView input[type="password"], .findsDeleteFormView input[type="password"] {
-		margin: 5px;
-		width: 150px;
-	}
-	.findsUpdateFormView input[type="submit"], .findsDeleteFormView input[type="submit"] {
-		margin: 5px;
-		width: 172px;
-	}
-	.findsUpdateFormView img, .findsDeleteFormView img {
-		z-index: 101;
-		position: absolute;
-		top: -15px;
-		left: 78px;
-		width: 35px;
-		height: 15px;
-	}
+
+::-webkit-scrollbar {
+	width: 8px;
+	height: 8px;
+	border: none;
 }
 
-/* �옉�� �솕硫� */
-@media screen and (max-device-width:1024px) {
-	::-webkit-scrollbar {
-		width: 0;
-		height: 0;
-		border: none;
-	}
-	::-webkit-scrollbar-track {
-		background: none;
-	}
-	::-webkit-scrollbar-thumb {
-		height: 0;
-		width: 0;
-		background: none;
-	}
-	input {
-		-webkit-border-radius: 0;
-		-webkit-appearance: none;
-	}
-	.mobileHide {
-		display: none;
-	}
-	.containor {
-		position: relative;
-		margin: 0px;
-	}
-	.asideHeader {
-		padding: 50px;
-		width: 100%;
-		height: 80px;
-		text-align: center;
-	}
-	.asideHeader>a>h1 {
-		position: absolute;
-		margin: 0;
-		top: 30px;
-		left: 250px;
-		font-size: 100px;
-	}
-	.hamburgerPosition {
-		position: absolute;
-		left: 50px;
-		top: 45px;
-		z-index: 101;
-	}
-	.hamburger .line {
-		width: 100px;
-		height: 10px;
-		background-color: #4a470a;
-		display: block;
-		margin: 15px auto;
-		-webkit-transition: all 0.2s ease-in-out;
-		-o-transition: all 0.2s ease-in-out;
-		transition: all 0.2s ease-in-out;
-	}
-	.hamburger:hover {
-		cursor: pointer;
-	}
-	#hamburger-1.is-active .line:nth-child(2) {
-		opacity: 0;
-	}
-	#hamburger-1.is-active .line:nth-child(1) {
-		-webkit-transform: translateY(24px) rotate(45deg);
-		-ms-transform: translateY(24px) rotate(45deg);
-		-o-transform: translateY(24px) rotate(45deg);
-		transform: translateY(24px) rotate(45deg);
-	}
-	#hamburger-1.is-active .line:nth-child(3) {
-		-webkit-transform: translateY(-24px) rotate(-45deg);
-		-ms-transform: translateY(-24px) rotate(-45deg);
-		-o-transform: translateY(-24px) rotate(-45deg);
-		transform: translateY(-24px) rotate(-45deg);
-	}
-	.headerNav {
-		position: absolute;
-		z-index: 101;
-		top: 175px;
-		left: 0;
-		width: 600px;
-		padding: 15px 30px;
-		background-color: #e0d821;
-	}
-	.headerNav a>input[type="button"] {
-		margin-top: 20px;
-		width: 100%;
-		height: 150px;
-		padding: 0;
-		font-size: 75px;
-		border-radius: 0%;
-	}
-	.headerNav p:first-child {
-		margin: 0;
-		font-size: 75px;
-	}
-	.mainContents {
-		position: relative;
-		padding: 50px;
-		width: 100%;
-		color: #4a470a;
-	}
-	.mainContents>h2 {
-		margin-top: 0;
-		font-size: 70px;
-		line-height: 70px;
-	}
-	.mainPageTable {
-		width: 100%;
-		padding: 5px;
-	}
-	.mainPageTable th input[type="button"] {
-		padding: 30px 50px;
-		font-size: 60px;
-		line-height: 60px;
-	}
-	.mainPageTable .page .card {
-		float: left;
-		margin: 1%;
-		border: 1px solid #4a470a;
-		width: 47.5%;
-		height: 650px;
-		font-size: 30px;
-	}
-	.mainPageTable .page .card_info>h2 {
-		margin: 0;
-		width: 100%;
-	}
-	.login {
-		float: left;
-		text-align: center;
-		width: 100%;
-		padding: 100px 0;
-		font-size: 60px;
-		line-height: 60px;
-	}
-	input, select {
-		margin: 10px 0;
-		border-radius: 0;
-		width: 100%;
-		padding: 50px 0;
-		font-size: 70px;
-		line-height: 70px;
-	}
-	.signup_form {
-		text-align: center;
-		font-size: 70px;
-		line-height: 70px;
-	}
-	.checks {
-		position: relative;
-		display: inline-block;
-	}
-	.checks input[type="radio"] {
-		position: absolute;
-		width: 1px;
-		height: 1px;
-		padding: 0;
-		margin: -1px;
-		overflow: hidden;
-		clip: rect(0, 0, 0, 0);
-		border: 0;
-	}
-	.checks input[type="radio"]+label {
-		display: inline-block;
-		position: relative;
-		margin: 20px;
-		padding-left: 90px;
-		cursor: pointer;
-		-webkit-user-select: none;
-		-moz-user-select: none;
-		-ms-user-select: none;
-	}
-	.checks input[type="radio"]+label:before {
-		content: '';
-		position: absolute;
-		top: 3px;
-		left: 0;
-		width: 70px;
-		height: 70px;
-		text-align: center;
-		background: #fafafa;
-		border: 3px solid #cacece;
-		border-radius: 100%;
-		box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05), inset 0px -15px 10px -12px
-			rgba(0, 0, 0, 0.05);
-	}
-	.checks input[type="radio"]+label:active:before, .checks input[type="radio"]:checked+label:active:before
-		{
-		box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), inset 0px 1px 3px
-			rgba(0, 0, 0, 0.1);
-	}
-	.checks input[type="radio"]:checked+label:before {
-		background: #e9ecee;
-		border-color: #adb8c0;
-	}
-	.checks input[type="radio"]:checked+label:after {
-		content: '';
-		position: absolute;
-		top: 16px;
-		left: 13px;
-		width: 50px;
-		height: 50px;
-		background: #4a470a;
-		border-radius: 100%;
-		box-shadow: inset 0px 0px 10px rgba(0, 0, 0, 0.3);
-	}
-	.rightTopButtons {
-		float: right;
-		margin: 10px;
-		width: 25%;
-		padding: 20px 50px;
-	}
-	.myPageTable {
-		width: 100%;
-		font-size: 60px;
-		line-height: 60px;
-		text-align: center;
-	}
-	.myPageTable th {
-		text-align: left;
-	}
-	.myPageTable .address {
-		width: 48.7%;
-	}
-	.myPageTable .card {
-		width: 47.5%;
-		height: 10em;
-		float: left;
-	}
-	.myPageTable .card>img {
-		width: 100%;
-		height: 100%;
-	}
-	#contentsSearch {
-		z-index: 99;
-		position: absolute;
-		top: 50px;
-		right: 320px;
-		width: 22%;
-		padding: 25px;
-		font-size: 60px;
-		line-height: 60px;
-		color: #ffffff;
-		background-color: #4a470a;
-	}
-	.contentsSearch {
-		z-index: 100;
-		position: absolute;
-		top: 200px;
-		right: 0px;
-		width: 100%;
-		font-size: 60px;
-		line-height: 60px;
-		background-color: #ffffff;
-	}
-	.contentsSearch>select {
-		margin: 10px;
-		width: 31%;
-		padding: 20px;
-	}
-	.contentsSearch>input[type="text"] {
-		width: 32%;
-		padding: 15px 0;
-	}
-	.contentsSearch>input[type="submit"] {
-		width: 30%;
-		padding: 23px 0;
-	}
-	.writeButton {
-		padding: 25px;
-		font-size: 60px;
-		line-height: 60px;
-	}
-	.disList .card {
-		float: left;
-		border: 1px solid #4a470a;
-		margin: 1%;
-		width: 47.5%;
-	}
-	.disList h2 {
-		font-size: 50px;
-	}
-	.disContents th, .disContents td {
-		padding: 10px;
-		margin-bottom: 10px;
-		font-size: 60px;
-		line-height: 60px;
-	}
-	input[type="date"] {
-		padding: 20px 0;
-		font-size: 50px;
-		border-radius: 0%;
-	}
-	.myPageTable tr td select {
-		padding: 20px;
-	}
-	.card>img {
-		width: 100%;
-		height: 70%;
-	}
-	.find_info {
-		margin-top: 40px;
-		text-align: center;
-		font-size: 18px;
-	}
-	.about {
-		text-align: center;
-	}
-	.main_finds, .main_disappear {
-		width: 50%;
-	}
-	.main_card {
-		margin: 1%;
-		border: 1px solid #4a470a;
-		width: 47.5%;
-		height: 17em;
-	}
-	.editorTool {
-		width: 100%;
-	}
-	.editorTool input[type="text"], .editorTool input[type="password"] {
-		margin-bottom: 0;
-		height: 18px;
-	}
-	#boardEditor {
-		margin-top: 50px;
-		border: 1px solid #4a470a;
-		width: 100%;
-		min-height: 200px;
-	}
-	.editorTool table {
-		width: 100%;
-		border: 1px solid #4a470a;
-		vertical-align: middle;
-	}
-	.editorTool table th {
-		width: 15%;
-	}
-	.editorTool table td {
-		width: 35%;
-	}
-	.editorTool table {
-		text-align: left;
-		padding: 5px;
-	}
-	.editorTool table th, .editorTool table td {
-		height: 35px;
-		padding: 2px;
-	}
-	.editorTool table tr td textarea {
-		resize: none;
-		width: 98.7%;
-		height: 300px;
-	}
-	footer {
-		margin-top: 100px;
-		width: 100%;
-		height: 50px;
-		font-size: 30px;
-	}
-	.about {
-		font-size: 24px;
-	}
+::-webkit-scrollbar-track {
+	background: none;
+}
+
+::-webkit-scrollbar-thumb {
+	height: 50px;
+	width: 50px;
+	background: rgba(74, 71, 10, 0.8);
+}
+
+.deskHide {
+	display: none;
+}
+
+.headerNav>p {
+	font-size: 25px;
+	margin: 5px;
+}
+
+#preferences {
+	position: absolute;
+	top: 130px;
+	right: 30px;
+	width: 25px;
+	height: 25px;
+	cursor: pointer;
+}
+
+.preferences {
+	position: absolute;
+	top: 120px;
+	left: 190px;
+	padding: 5px;
+	background-color: #4a470a;
+	border-radius: 5px;
+	z-index: 101;
+}
+
+.preferences a>input[type="button"] {
+	float: left;
+	width: 100px !important;
+	margin: 3px;
+}
+
+.preferences>img {
+	position: absolute;
+	top: 10px;
+	left: -15px;
+	width: 15px;
+	height: 25px;
+}
+
+span {
+	font-size: 20px;
+}
+
+.selected {
+	font-weight: bold;
+	color: red !important;
+}
+
+.asideHeader a>input[type="button"] {
+	width: 180px;
+	height: 40px;
+	line-height: 40px;
+	padding: 0;
+	font-size: 18px;
+	color: #4a470a;
+	background-color: #e0d821;
+	font-weight: bold;
+}
+
+input, .card, select {
+	outline: none;
+	font-weight: bold;
+}
+
+.card:hover, input:hover, select:hover {
+	transform: scale(1.05, 1.05);
+	box-shadow: 1px 5px 10px 1px rgba(0, 0, 0, 0.3);
+}
+
+.asideHeader a>input:hover {
+	background-color: #4a470a !important;
+	color: #ffffff !important;
+}
+
+.checks:hover {
+	transform: scale(1.3, 1.3) translateY(-5px);
+}
+
+.card:active, input[type="button"]:active, input[type="submit"]:active {
+	transform: scale(1, 1);
+}
+
+input:focus {
+	box-shadow: 1px 5px 10px 1px rgba(0, 0, 0, 0.3);
+}
+
+.asideHeader {
+	position: fixed;
+	padding: 30px;
+}
+
+h2 {
+	margin-top: 0px;
+}
+
+
+select {
+	margin-bottom: 10px;
+	padding: 0 40px;
+	width: 222px;
+	height: 50px;
+	font-size: 15px;
+}
+
+input[type="text"], input[type="password"] {
+	margin-bottom: 10px;
+	padding: 10px;
+	width: 200px;
+	height: 30px;
+	font-size: 15px;
+}
+
+input[type="file"] {
+	margin-bottom: 10px;
+	padding: 10px;
+	width: 200px;
+	height: 25px;
+	font-size: 15px;
+}
+
+input[type="button"], input[type="submit"] {
+	margin-bottom: 10px;
+	width: 222px;
+	height: 51px;
+	padding: 10px;
+	font-size: 15px;
+}
+
+input[type="date"] {
+	padding: 10px;
+	width: 200px;
+	height: 18px;
+	font-size: 15px;
+}
+
+.card>img {
+	width: 100%;
+	height: 70%;
+}
+
+.checks {
+	position: relative;
+	display: inline-block;
+	margin-bottom: 5px;
+}
+
+.checks input[type="radio"] {
+	position: absolute;
+	width: 1px;
+	height: 1px;
+	padding: 0;
+	margin: -1px;
+	overflow: hidden;
+	clip: rect(0, 0, 0, 0);
+	border: 0;
+}
+
+.checks input[type="radio"]+label {
+	display: inline-block;
+	position: relative;
+	padding-left: 30px;
+	cursor: pointer;
+	-webkit-user-select: none;
+	-moz-user-select: none;
+	-ms-user-select: none;
+}
+
+.checks input[type="radio"]+label:before {
+	content: '';
+	position: absolute;
+	top: 2px;
+	left: 4px;
+	width: 15px;
+	height: 15px;
+	text-align: center;
+	background: #fafafa;
+	border: 1px solid #cacece;
+	border-radius: 100%;
+	box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.05), inset 0px -15px 10px -12px
+		rgba(0, 0, 0, 0.05);
+}
+
+.checks input[type="radio"]+label:active:before, .checks input[type="radio"]:checked+label:active:before {
+	box-shadow: 0 1px 2px rgba(0, 0, 0, 0.05), inset 0px 1px 3px rgba(0, 0, 0, 0.1);
+}
+
+.checks input[type="radio"]:checked+label:before {
+	background: #e9ecee;
+	border-color: #adb8c0;
+}
+
+.checks input[type="radio"]:checked+label:after {
+	content: '';
+	position: absolute;
+	top: 6px;
+	left: 8px;
+	width: 9px;
+	height: 9px;
+	background: #4a470a;
+	border-radius: 100%;
+	box-shadow: inset 0px 0px 10px rgba(0, 0, 0, 0.3);
+}
+
+.asideHeader {
+	width: 140px;
+	height: 100%;
+}
+
+.asideHeader>a {
+	font-size: 40px;
+}
+
+.asideHeader>ul>li>a {
+	font-size: 18px;
+}
+
+.headerNav {
+	margin: 30px -30px 10px -30px;
+	font-size: 18px;
+}
+
+footer {
+	margin-top: 30px;
+	width: 100%;
+	height: 50px;
+}
+
+.containor {
+	position: relative;
+	margin-left: 200px;
+	width: 960px;
+}
+
+.mainContents {
+	position: relative;
+	padding: 50px;
+	width: 100%;
+	color: #4a470a;
+	min-height: 500px;
+}
+
+.login {
+	margin-top: 20px;
+	margin-left: 20px;
+	float: left;
+	text-align: center;
+	font-size: 18px;
+}
+
+.find_info {
+	margin-top: 40px;
+	text-align: center;
+	font-size: 18px;
+}
+
+.signup_form {
+	text-align: center;
+}
+
+.about {
+	text-align: center;
+}
+
+.mainPageTable {
+	width: 100%;
+	padding: 5px;
+	text-align: center;
+}
+
+.mainPageTable h4 {
+	font-size: 20px;
+}
+
+.mainPageTable td {
+	width: 50%;
+}
+
+.mainPageTable .page .card {
+	margin: 1%;
+	width: 47.5%;
+	font-size: 13px;
+}
+
+.main_finds, .main_disappear {
+	width: 50%;
+}
+
+.myPageTable .card {
+	width: 47.5%;
+	height: 10em;
+	float: left;
+}
+
+.myPageTable .card>img {
+	width: 100%;
+	height: 100%;
+}
+
+.main_card {
+	margin: 1%;
+	border: 1px solid #4a470a;
+	width: 47.5%;
+	height: 17em;
+}
+
+.card {
+	float: left;
+	margin: 1%;
+	border: 1px solid #4a470a;
+	width: 30%;
+	height: 19em;
+}
+
+.card_info>h2 {
+	margin: 0;
+	width: 100%;
+}
+
+.rightTopButtons {
+	float: right;
+	width: 150px !important;
+	margin-left: 5px;
+}
+
+.editorTool {
+	width: 100%;
+}
+
+.editorTool input[type="text"], .editorTool input[type="password"] {
+	margin-bottom: 0;
+	height: 18px;
+}
+
+.editorTool select {
+	margin-bottom: 0;
+	height: 40px;
+}
+
+.editorToolbar>img {
+	margin-bottom: 10px;
+	float: left;
+	width: 25px;
+	height: 25px;
+}
+
+.editorToolbar>img:hover {
+	background-color: #e0d821;
+}
+
+.editorTool table tr td textarea {
+	resize: none;
+	width: 98.7%;
+	height: 300px;
+}
+
+#boardEditor {
+	margin-top: 50px;
+	border: 1px solid #4a470a;
+	width: 100%;
+	min-height: 200px;
+}
+
+.editorTool table {
+	width: 100%;
+	border: 1px solid #4a470a;
+	vertical-align: middle;
+}
+
+.editorTool table th {
+	width: 15%;
+}
+
+.editorTool table td {
+	width: 35%;
+}
+
+.editorTool table {
+	text-align: left;
+	padding: 5px;
+}
+
+.editorTool table th, .editorTool table td {
+	height: 35px;
+	padding: 2px;
+}
+
+.findsDeleteFormView {
+	z-index: 101;
+	position: absolute;
+	top: 130px;
+	left: 685px;
+	border: 1px solid #4a470a;
+	padding: 5px;
+	background-color: #ffffff;
+	box-shadow: 1px 5px 10px 1px rgba(0, 0, 0, 0.3);
+}
+
+.findsUpdateFormView {
+	z-index: 101;
+	position: absolute;
+	top: 130px;
+	left: 530px;
+	border: 1px solid #4a470a;
+	padding: 5px;
+	background-color: #ffffff;
+	box-shadow: 1px 5px 10px 1px rgba(0, 0, 0, 0.3);
+}
+
+.findsUpdateFormView input[type="password"], .findsDeleteFormView input[type="password"]
+	{
+	margin: 5px;
+	width: 150px;
+}
+
+.findsUpdateFormView input[type="submit"], .findsDeleteFormView input[type="submit"]
+	{
+	margin: 5px;
+	width: 172px;
+}
+
+.findsUpdateFormView img, .findsDeleteFormView img {
+	z-index: 101;
+	position: absolute;
+	top: -15px;
+	left: 78px;
+	width: 35px;
+	height: 15px;
 }

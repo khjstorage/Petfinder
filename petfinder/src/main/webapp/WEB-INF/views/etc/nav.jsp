@@ -13,7 +13,7 @@ $(document).ready(function() {
 </script>
 <body>
 	<div class="asideHeader mobileHide">
-		<a href="<c:url value='/main.do'/>"> PET-FINDER</a>
+		<a href="<c:url value='/main.do'/>"> <img src="../resources/img/title.png"> </a>
 		<div class="headerNav">
 			<c:choose>
 				<c:when test="${!empty id}">
