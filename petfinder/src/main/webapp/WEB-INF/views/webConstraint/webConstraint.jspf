@@ -9,6 +9,7 @@
 	<link rel="stylesheet" type="text/css" href="<c:url value="/resources/css/style.css" />" />
 	<script type="text/javascript" src="<c:url value="/resources/js/jquery-3.1.0.min.js" />"></script>
 	<script type="text/javascript" src="<c:url value="/resources/js/pagefocus.js" />"></script>
+	<script type="text/javascript" src="<c:url value="/resources/js/confirmCheck.js" />"></script>
 </head>
 <body>
 </body>

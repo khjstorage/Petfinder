@@ -12,7 +12,7 @@
 			<a href="<c:url value='/disappearance/list.do'/>"><input type="button" class="rightTopButtons" value="목록으로" /></a>
 			<c:choose>
 				<c:when test="${idcheck.equals('permission')}">
-					<a href="<c:url value='/disappearance/delete.do?idx=${map.D_IDX}'/>"><input type="button" class="rightTopButtons" value="삭제" /></a>
+					<a href="<c:url value='/disappearance/delete.do?idx=${map.D_IDX}'/>"><input type="button" class="rightTopButtons" value="삭제" onclick="return fnDeleteCheck();" /></a>
 					<a href="<c:url value='/disappearance/edit.do?idx=${map.D_IDX}'/>"><input type="button" class="rightTopButtons" value="수정" /></a>
 					<c:remove scope="session" var="idcheck" />
 				</c:when>

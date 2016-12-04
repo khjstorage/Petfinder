@@ -41,7 +41,14 @@ $(document).ready(function() {
 						<c:forEach items="${boardList}" var="dog">
 							<a href="<c:url value='/disappearance/contents.do?idx=${dog.D_IDX }'/>">
 								<div class="card">
-									<img src="<c:url value='/image/disappearancefile/${dog.D_STORED_FILE_NAME}' />" />
+									<c:choose>
+										<c:when test="${empty dog.D_STORED_FILE_NAME}">
+											<img src="../resources/img/nofile.png" />
+										</c:when>
+										<c:otherwise>
+											<img src="<c:url value='/image/disappearancefile/${dog.D_STORED_FILE_NAME}' />" />
+										</c:otherwise>
+									</c:choose>
 									<div class="card_info">
 										<h2>제목 : ${dog.D_TITLE}</h2>
 										<h2>견종 : ${dog.D_DOG}</h2>
@@ -52,7 +59,7 @@ $(document).ready(function() {
 						</c:forEach>
 					</c:when>
 					<c:otherwise>
-						<div>조회된 결과가 없습니다</div>
+						<img src="../resources/img/nodata.png" style="width:1000px;" />
 					</c:otherwise>
 				</c:choose>
 			</div>

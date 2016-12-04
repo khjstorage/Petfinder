@@ -18,6 +18,8 @@ $(document).ready(function() {
 		$(".findsUpdateFormView").addClass("hide");
 	});
 });
+
+
 </script>
 <body>
    <div class="containor">
@@ -32,7 +34,7 @@ $(document).ready(function() {
 			<form action="/finds/delete_auth.do" method="post" enctype="multipart/form-data">
 				<input name="idx" type="hidden" value ="${map.F_IDX}"/>                     
 				<input name="pwd" type="password" placeholder="게시물 비밀번호 입력" /><br />
-				<input type="submit" value="확인" />
+				<input type="submit" value="확인" id="deleteSubmit" onclick="return fnDeleteCheck();"/>
 			</form>
 		</div>
 		
@@ -43,7 +45,7 @@ $(document).ready(function() {
 			<form action="/finds/update_auth.do" method="post" enctype="multipart/form-data">
 				<input name="idx" type="hidden" value ="${map.F_IDX}"/>                     
 				<input name="pwd" type="password" placeholder="게시물 비밀번호 입력" /><br />
-				<input type="submit" value="확인" />
+				<input type="submit" value="확인""/>
 			</form>
 		</div>
 		

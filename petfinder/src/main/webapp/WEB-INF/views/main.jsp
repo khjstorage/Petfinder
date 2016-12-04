@@ -26,7 +26,14 @@
 							<c:forEach items="${dlist}" var="dog">
 								<a href="/disappearance/contents.do?idx=${dog.D_IDX}">
 									<div class="card">
-									<img src="<c:url value='/image/disappearancefile/${dog.D_STORED_FILE_NAME}' />" />
+									<c:choose>
+										<c:when test="${empty dog.D_STORED_FILE_NAME}">
+											<img src="../resources/img/nofile.png" />
+										</c:when>
+										<c:otherwise>
+											<img src="<c:url value='/image/disappearancefile/${dog.D_STORED_FILE_NAME}' />" />
+										</c:otherwise>
+									</c:choose>
 										<div class="card_info">
 											<h2>제목 : ${dog.D_TITLE}</h2>
 											<h2>견종 : ${dog.D_DOG}</h2>
@@ -46,7 +53,14 @@
 							<c:forEach items="${flist}" var="dog" begin="0" end="3" step="1">
 								<a href="/finds/contents.do?idx=${dog.F_IDX}">
 									<div class="card">
-									<img src="${pageContext.request.contextPath}/image/findsfile/${dog.F_STORED_FILE_NAME}" />
+									<c:choose>
+										<c:when test="${empty dog.F_STORED_FILE_NAME}">
+											<img src="../resources/img/nofile.png" />
+										</c:when>
+									<c:otherwise>
+										<img src="${pageContext.request.contextPath}/image/findsfile/${dog.F_STORED_FILE_NAME}" />
+										</c:otherwise>
+									</c:choose>									
 										<div class="card_info">
 											<h2>제목 : ${dog.F_TITLE}</h2>
 											<h2>견종 : ${dog.F_DOG}</h2>

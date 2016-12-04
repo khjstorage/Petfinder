@@ -155,7 +155,7 @@ $(document).ready(function(){
 	                  <label for="size_l"> 대형 </label>
 	               </div>
 	            </div>
-               <input id="submitBtn" type="submit" value="회원가입">
+               <input id="submitBtn" type="submit" value="회원가입" >
                <a href="<c:url value='/main.do'/>"><input id="backBtn" type="button" value="취소"></a>
             </form>
          </div>
