@@ -1,9 +1,3 @@
-* {
-	-webkit-transition: all 0.25s ease-in-out;
-	-o-transition: all 0.25s ease-in-out;
-	transition: all 0.25s ease-in-out;
-}
-
 html, body {
 	height: 100%;
 }
@@ -22,7 +16,7 @@ html, body, div {
 	float: left;
 }
 
-a, a:link, a:visited, a:active {
+a:link, a:visited, a:active {
 	text-decoration: none;
 	color: #4a470a;
 }
@@ -189,11 +183,6 @@ footer {
 
 span {
 	font-size: 20px;
-}
-
-.selected {
-	font-weight: bold;
-	color: red !important;
 }
 
 .asideHeader a>input[type="button"] {
@@ -575,4 +564,35 @@ footer {
 	left: 78px;
 	width: 35px;
 	height: 15px;
+}
+
+.arrow_1{
+	padding-right:8px;
+	background:url(http://nstatic.dcinside.com/dgn/gallery/images/btn_paging_next.gif) right center no-repeat;
+}
+.arrow_2{
+	padding-right:16px;
+	background:url(http://nstatic.dcinside.com/dgn/gallery/images/btn_paging_end.gif) right center no-repeat;
+}
+.arrow_3{
+	padding-left:8px;
+	background:url(http://nstatic.dcinside.com/dgn/gallery/images/btn_paging_prev.gif) left center no-repeat;
+}
+.arrow_4{
+	padding-left:16px;
+	background:url(http://nstatic.dcinside.com/dgn/gallery/images/btn_paging_first.gif) left center no-repeat;
+}
+.selected {
+	font-weight: bold;
+	text-decoration: underline !important;
+	color: #ff5a00 !important;
+}
+.paging{
+	border:1px solid #CCC;
+	padding:5px;
+	margin-left:0px;
+	display:inline-block;
+}
+.paging:hover{
+	color: #ff5a00;
 }

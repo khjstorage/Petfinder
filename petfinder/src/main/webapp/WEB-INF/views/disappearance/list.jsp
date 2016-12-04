@@ -64,27 +64,27 @@ $(document).ready(function() {
 				</c:choose>
 			</div>
 		</div>
-		<c:if test="${!empty paging.firstPageNo}">
+		<c:if test="${not empty paging.firstPageNo}">
 			<div style="float:right">
 				<form name="listForm" action="<c:url value='/disappearance/list.do'/>" method="get">
 					<input type="hidden" name="pageNo" value="" /><br/><br/>
 					<div class="pagination">
-						<a href="javascript:goPage(${paging.firstPageNo})" class="first">처음</a>
-						<a href="javascript:goPage(${paging.prevPageNo})" class="prev">이전</a>
+						<a href="javascript:goPage(${paging.firstPageNo})" class="first arrow_4">처음</a>
+						<a href="javascript:goPage(${paging.prevPageNo})" class="prev arrow_3">이전</a>
 						<span>
 							<c:forEach var="i" begin="${paging.startPageNo}" end="${paging.endPageNo}" step="1">
 									<c:choose>
 										<c:when test="${i eq param.pageNo}">
-											<a href="javascript:goPage(${i})" class="selected">${i}</a>
+											<a href="javascript:goPage(${i})" class="selected paging">${i}</a>
 										</c:when>
 										<c:otherwise>
-											<a href="javascript:goPage(${i})">${i}</a>
+											<a href="javascript:goPage(${i})" class="paging">${i}</a>
 										</c:otherwise>
 									</c:choose>
 							</c:forEach>
 						</span>
-						<a href="javascript:goPage(${paging.nextPageNo})" class="next">다음</a>
-						<a href="javascript:goPage(${paging.finalPageNo})" class="last">마지막</a>
+						<a href="javascript:goPage(${paging.nextPageNo})" class="next arrow_1">다음</a>
+						<a href="javascript:goPage(${paging.finalPageNo})" class="last arrow_2">마지막</a>
 					</div>	
 				</form>
 			</div>
