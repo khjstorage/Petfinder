@@ -65,10 +65,9 @@ $(document).ready(function() {
 			</div>
 		</div>
 		<c:if test="${not empty paging.firstPageNo}">
-			<div style="float:right">
 				<form name="listForm" action="<c:url value='/disappearance/list.do'/>" method="get">
-					<input type="hidden" name="pageNo" value="" /><br/><br/>
-					<div class="pagination">
+					<input type="hidden" name="pageNo" value="" />
+					<div class="boardNavigation" style="float: right; padding:10px 0;">
 						<a href="javascript:goPage(${paging.firstPageNo})" class="first arrow_4">처음</a>
 						<a href="javascript:goPage(${paging.prevPageNo})" class="prev arrow_3">이전</a>
 						<span>
@@ -87,7 +86,6 @@ $(document).ready(function() {
 						<a href="javascript:goPage(${paging.finalPageNo})" class="last arrow_2">마지막</a>
 					</div>	
 				</form>
-			</div>
 		</c:if>
 	</div>
 </body>

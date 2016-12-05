@@ -39,7 +39,7 @@ $(document).ready(function() {
 				<c:choose>
 					<c:when test="${fn:length(boardList) > 0}">
 						<c:forEach items="${boardList}" var="dog">
-							<a href="/finds/contents.do?idx=${dog.F_IDX }">
+							<a href="<c:url value='/finds/contents.do?idx=${dog.F_IDX }'/>">
 								<div class="card">
 									<c:choose>
 										<c:when test="${empty dog.F_STORED_FILE_NAME}">
@@ -67,10 +67,9 @@ $(document).ready(function() {
 			</div>
 		</div>
 		<c:if test="${not empty paging.firstPageNo}">
-			<div style="float:right">
 				<form name="listForm" action="<c:url value='/finds/list.do'/>" method="get">
-					<input type="hidden" name="pageNo" value="" /><br/><br/>
-					<div class="pagination">
+					<input type="hidden" name="pageNo" value="" />
+					<div class="boardNavigation" style="float: right; padding:10px 0;">
 						<a href="javascript:goPage(${paging.firstPageNo})" class="first arrow_4">맨처음</a>
 						<a href="javascript:goPage(${paging.prevPageNo})" class="prev arrow_3">이전</a>
 						<span>
@@ -89,7 +88,6 @@ $(document).ready(function() {
 						<a href="javascript:goPage(${paging.finalPageNo})" class="last arrow_2">맨뒤</a>
 					</div>	
 				</form>
-			</div>
 		</c:if>
 	</div>
 </body>

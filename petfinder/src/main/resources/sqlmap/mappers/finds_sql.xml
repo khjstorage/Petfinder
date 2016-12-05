@@ -102,10 +102,15 @@
    
    <select id="matchFinds" parameterType="disappearanceVO" resultType="hashmap">
 		<![CDATA[
-		SELECT
+  		SELECT
 			*
 		FROM 
-			FINDS
+			FINDS A
+      	FULL OUTER JOIN  (SELECT 
+                          F_BOARD_IDX,
+                          F_STORED_FILE_NAME
+                        FROM  FINDS_FILE ) B
+        ON A.F_IDX = B.F_BOARD_IDX 
 		WHERE
 			F_COLOR=#{color} AND F_DOG=#{dog} AND F_GENDER=#{gender} AND F_SIZE=#{size}
 		ORDER BY

@@ -156,14 +156,20 @@
 
 	<select id="matchDisappearance" parameterType="findsVO"	resultType="hashmap">
 		<![CDATA[
-		SELECT 
+  		  SELECT 
 			* 
 		FROM 
-			DISAPPEARANCE 
+			DISAPPEARANCE A
+      FULL OUTER JOIN  (SELECT 
+                     D_BOARD_IDX,
+                     D_STORED_FILE_NAME
+                    FROM
+                      DISAPPEARANCE_FILE ) B
+                ON A.D_IDX = B.D_BOARD_IDX
 		WHERE
 			D_COLOR=#{color} AND D_DOG=#{dog} AND D_GENDER=#{gender} AND D_SIZE=#{size}
 		ORDER BY 
-			TO_NUMBER(D_IDX) DESC	
+			TO_NUMBER(D_IDX) DESC		
 		]]>
 	</select>
 

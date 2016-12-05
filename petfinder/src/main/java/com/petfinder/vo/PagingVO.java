@@ -116,19 +116,24 @@ public class PagingVO {
 	}
 
 	private void makePaging() {
-		if (this.totalCount == 0)
+		if (this.totalCount == 0){
 			return; // 게시글 전체 수가 없는 경우
-		if (this.pageNo == 0)
+		}
+		if (this.pageNo == 0){
 			this.setPageNo(1); // 기본 값 설정
-		if (this.pageSize == 0)
+		}
+		if (this.pageSize == 0){
 			this.setPageSize(6); // 기본 값 설정
+		}
 
 		int finalPage = (totalCount + (pageSize - 1)) / pageSize; // 마지막 페이지
-		if (this.pageNo > finalPage)
+		if (this.pageNo > finalPage){
 			this.setPageNo(finalPage); // 기본 값 설정
+		}
 
-		if (this.pageNo < 0 || this.pageNo > finalPage)
+		if (this.pageNo < 0 || this.pageNo > finalPage){
 			this.pageNo = 1; // 현재 페이지 유효성 체크
+		}
 
 		boolean isNowFirst = pageNo == 1 ? true : false; // 시작 페이지 (전체)
 		boolean isNowFinal = pageNo == finalPage ? true : false; // 마지막 페이지 (전체)

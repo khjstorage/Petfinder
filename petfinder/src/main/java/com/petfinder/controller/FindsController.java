@@ -105,9 +105,9 @@ public class FindsController {
 	 * @throws Exception
 	 */
 	@RequestMapping("/contents.do")
-	public ModelAndView findsContents(HttpServletRequest request) throws Exception {
+	public ModelAndView findsContents(HttpServletRequest request, @RequestParam("idx") String idx) throws Exception {
 		ModelAndView mv = new ModelAndView();
-		Map<String, Object> map = findsService.selectBoardDetail(request.getParameter("idx"));
+		Map<String, Object> map = findsService.selectBoardDetail(idx);
 		mv.addObject("map", map.get("infoMap"));
 		mv.addObject("file", map.get("fileMap"));
 		mv.setViewName("/finds/contents");
