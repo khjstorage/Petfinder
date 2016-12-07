@@ -30,8 +30,8 @@ $(document).ready(function() {
 		<!-- 발견게시물 삭제 비밀번호 입력 -->
 		<input type="button" class="rightTopButtons" id="findsDeleteFormView" value="삭제" />
 		<div class="findsDeleteFormView hide">
-			<img src="../resources/img/findsUpdateForm.png"/>
-			<form action="/finds/delete_auth.do" method="post" enctype="multipart/form-data">
+			<img src="${pageContext.request.contextPath}/resources/img/findsUpdateForm.png"/>
+			<form action="<c:url value='/finds/delete_auth.do'/>" method="post" enctype="multipart/form-data">
 				<input name="idx" type="hidden" value ="${map.F_IDX}"/>                     
 				<input name="pwd" type="password" placeholder="게시물 비밀번호 입력" /><br />
 				<input type="submit" value="확인" id="deleteSubmit" onclick="return fnDeleteCheck();"/>
@@ -41,11 +41,11 @@ $(document).ready(function() {
 		<!-- 발견게시물 수정 비밀번호 입력 -->
 		<input type="button" class="rightTopButtons" id="findsUpdateFormView" value="수정" />
 		<div class="findsUpdateFormView hide">
-			<img src="../resources/img/findsUpdateForm.png"/>
-			<form action="/finds/update_auth.do" method="post" enctype="multipart/form-data">
+			<img src="${pageContext.request.contextPath}/resources/img/findsUpdateForm.png"/>
+			<form action="<c:url value='/finds/update_auth.do'/>" method="post" enctype="multipart/form-data">
 				<input name="idx" type="hidden" value ="${map.F_IDX}"/>                     
 				<input name="pwd" type="password" placeholder="게시물 비밀번호 입력" /><br />
-				<input type="submit" value="확인""/>
+				<input type="submit" value="확인"/>
 			</form>
 		</div>
 		

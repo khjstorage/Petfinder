@@ -13,14 +13,14 @@ $(document).ready(function() {
 </script>
 <body>
 	<div class="asideHeader mobileHide">
-		<a href="<c:url value='/main.do'/>"> <img src="../resources/img/title.png"> </a>
+		<a href="<c:url value='/main.do'/>"> <img src="${pageContext.request.contextPath}/resources/img/title.png"> </a>
 		<div class="headerNav">
 			<c:choose>
 				<c:when test="${!empty id}">
 					<p>${id}</p>
-					<img id="preferences" src="../resources/img/preferences.png"/>
+					<img id="preferences" src="${pageContext.request.contextPath}/resources/img/preferences.png"/>
 					<div class="preferences hide">
-						<img src="../resources/img/preDiv.png"/>
+						<img src="${pageContext.request.contextPath}/resources/img/preDiv.png"/>
 						<a href="<c:url value='/member/mypage.do'/>"><input type="button" value="마이페이지"></a>
 						<a href="<c:url value='/member/logout.do'/>"><input type="button" value="로그아웃"></a>
 					</div>

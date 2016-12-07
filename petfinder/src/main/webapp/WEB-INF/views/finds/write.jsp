@@ -30,7 +30,7 @@ $(document).ready(function() {
 	<div class="containor">
 		<div class="mainContents">
 			<h2 style="float:left;">발견게시판 글쓰기</h2>
-			<form id="" action="/finds/create.do" method="post" enctype="multipart/form-data">
+			<form id="" action="<c:url value='/finds/create.do'/>" method="post" enctype="multipart/form-data">
 				<input id="submitBtn" type="submit" class="rightTopButtons" value="글쓰기"/> 
 				<a href="<c:url value='/finds/list.do'/>"><input type="button" class="rightTopButtons" value="뒤로" /></a>
 				<div class="editorTool" style="float: left;">

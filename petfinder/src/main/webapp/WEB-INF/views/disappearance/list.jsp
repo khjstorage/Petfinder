@@ -43,10 +43,10 @@ $(document).ready(function() {
 								<div class="card">
 									<c:choose>
 										<c:when test="${empty dog.D_STORED_FILE_NAME}">
-											<img src="../resources/img/nofile.png" />
+											<img src="${pageContext.request.contextPath}/resources/img/nofile.png" />
 										</c:when>
 										<c:otherwise>
-											<img src="<c:url value='/image/disappearancefile/${dog.D_STORED_FILE_NAME}' />" />
+											<img src="${pageContext.request.contextPath}/image/disappearancefile/${dog.D_STORED_FILE_NAME}" />
 										</c:otherwise>
 									</c:choose>
 									<div class="card_info">
@@ -59,7 +59,7 @@ $(document).ready(function() {
 						</c:forEach>
 					</c:when>
 					<c:otherwise>
-						<img src="../resources/img/nodata.png" style="width:1000px;" />
+						<img src="${pageContext.request.contextPath}/resources/img/nodata.png" style="width:1000px;" />
 					</c:otherwise>
 				</c:choose>
 			</div>

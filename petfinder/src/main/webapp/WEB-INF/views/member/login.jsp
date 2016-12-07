@@ -11,8 +11,7 @@
 		<div class="mainContents">
 			<h2>로그인</h2>
 			<div class="login">
-				<form action="/member/loginProcess.do" method="post" enctype="multipart/form-data">
-					
+				<form action="<c:url value='/member/loginProcess.do'/>" method="post" enctype="multipart/form-data">
 					<c:choose>
 						<c:when test="${empty idfail}">
 							<p>아이디와 비밀번호를 입력하세요</p>
@@ -31,7 +30,8 @@
 					</c:choose>
 				
 				</form>
-				<a href="#">계정 찾기</a> / <a href="/member/register.do">회원가입</a>
+				<a href="#">계정 찾기</a> / <a href="<c:url value='/member/register.do'/>">회원가입</a>
+				
 			</div>
 		</div>
 	</div>

@@ -33,7 +33,7 @@ $(document).ready(function() {
    <div class="containor">
       <div class="mainContents">
          <h2 style="float:left;">발견게시판 수정</h2>
-         <form id="" action="/finds/update.do?idx=${map.infoMap.F_IDX}" method="post" enctype="multipart/form-data">
+         <form id="" action="<c:url value='/finds/update.do?idx=${map.infoMap.F_IDX}'/>" method="post" enctype="multipart/form-data">
            <a href="/finds/list.do"><input type="button" class="rightTopButtons" value="취소"></a>
            <input type="submit" id="submitBtn" class="rightTopButtons" value="수정" onclick="return fnUpdateCheck();"/>
             <div class="editorTool" style="float: left;">

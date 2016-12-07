@@ -24,11 +24,11 @@
 						</c:when>
 						<c:otherwise>
 							<c:forEach items="${dlist}" var="dog">
-								<a href="/disappearance/contents.do?idx=${dog.D_IDX}">
+								<a href="<c:url value='/disappearance/contents.do?idx=${dog.D_IDX}'/>">
 									<div class="card">
 									<c:choose>
 										<c:when test="${empty dog.D_STORED_FILE_NAME}">
-											<img src="../resources/img/nofile.png" />
+											<img src="<c:url value='../resources/img/nofile.png' />" />
 										</c:when>
 										<c:otherwise>
 											<img src="<c:url value='/image/disappearancefile/${dog.D_STORED_FILE_NAME}' />" />
@@ -55,7 +55,7 @@
 									<div class="card">
 									<c:choose>
 										<c:when test="${empty dog.F_STORED_FILE_NAME}">
-											<img src="../resources/img/nofile.png" />
+											<img src="<c:url value='../resources/img/nofile.png' />" />
 										</c:when>
 									<c:otherwise>
 										<img src="${pageContext.request.contextPath}/image/findsfile/${dog.F_STORED_FILE_NAME}" />

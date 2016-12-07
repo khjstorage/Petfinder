@@ -38,7 +38,7 @@ $(document).ready(function(){
 <div class="containor">
 	<div class="mainContents">
 	  <h2 style="float: left;">My Page</h2>
-	  <form action="/member/update.do" method="post" enctype="multipart/form-data">
+	  <form action= "<c:url value='/member/update.do'/>" method="post" enctype="multipart/form-data">
 	  	<a href="<c:url value='/member/delete.do'/>"><input class="rightTopButtons" type="button" value="탈퇴" onclick="return fnDeleteCheck();"/></a>
 	  	<input class="rightTopButtons" id="submitBtn" type="submit" value="수정" onclick="return fnUpdateCheck();"/>
 	  	<c:forEach items="${memberlist}" var="member">

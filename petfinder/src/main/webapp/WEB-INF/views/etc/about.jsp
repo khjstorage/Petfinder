@@ -10,7 +10,7 @@
 		<div class="mainContents">
 			<h2>ABOUT</h2>
 			<div class="about">
-			<img src="../resources/img/about.png" style="height:800px;" />
+			<img src="${pageContext.request.contextPath}/resources/img/about.png" style="height:800px;" />
 			</div>
 		</div>
 	</div>

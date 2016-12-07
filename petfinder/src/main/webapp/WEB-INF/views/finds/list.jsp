@@ -43,7 +43,7 @@ $(document).ready(function() {
 								<div class="card">
 									<c:choose>
 										<c:when test="${empty dog.F_STORED_FILE_NAME}">
-											<img src="../resources/img/nofile.png" />
+											<img src="${pageContext.request.contextPath}/resources/img/nofile.png" />
 										</c:when>
 										<c:otherwise>
 											<img src="<c:url value='/image/findsfile/${dog.F_STORED_FILE_NAME}' />" />
@@ -60,7 +60,7 @@ $(document).ready(function() {
 					</c:when>
 					<c:otherwise>
 						<div>
-							<img src="../resources/img/nodata.png" style="width:1000px;" />
+							<img src="${pageContext.request.contextPath}/resources/img/nodata.png" style="width:1000px;" />
 						</div>
 					</c:otherwise>
 				</c:choose>
