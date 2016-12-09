@@ -135,14 +135,13 @@ $(document).ready(function(){
 	                            <option value="경상도" <c:if test="${member.M_REGION1 eq '경상도'}">selected</c:if>>경상도</option>
 	                            <option value="경상도" <c:if test="${member.M_REGION1 eq '강원도'}">selected</c:if>>강원도</option>
 	                      	</select>
-	                      	<select name="region2" style="width: 45%; padding: 0 20px;">
-	                            <option value="">구</option>
+	                      	<select name="region2" style="width: 45%; padding: 0 20px;">                            
+	                            <option value="종로구" <c:if test="${member.M_REGION2 eq '종로구'}">selected</c:if>>종로구</option>
+	                            <option value="용산구" <c:if test="${member.M_REGION2 eq '용산구'}">selected</c:if>>용산구</option>
+	                            <option value="성동구" <c:if test="${member.M_REGION2 eq '성동구'}">selected</c:if>>성동구</option>
 	                            <option value="광진구" <c:if test="${member.M_REGION2 eq '광진구'}">selected</c:if>>광진구</option>
-	                            <option value="고양시" <c:if test="${member.M_REGION2 eq '고양시'}">selected</c:if>>고양시</option>
-	                            <option value="순천시" <c:if test="${member.M_REGION2 eq '순천시'}">selected</c:if>>순천시</option>
-	                            <option value="태안군" <c:if test="${member.M_REGION2 eq '태안군'}">selected</c:if>>태안군</option>
-	                            <option value="창원시" <c:if test="${member.M_REGION2 eq '창원시'}">selected</c:if>>창원시</option>
-	                            <option value="춘천시" <c:if test="${member.M_REGION2 eq '춘천시'}">selected</c:if>>춘천시</option>
+	                            <option value="중랑구" <c:if test="${member.M_REGION2 eq '중랑구'}">selected</c:if>>중랑구</option>
+	                            <option value="성북구" <c:if test="${member.M_REGION2 eq '성북구'}">selected</c:if>>성북구</option>
 	                      	</select></td>
 	                  </tr>
 	                  <tr>

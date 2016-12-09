@@ -57,11 +57,11 @@ $(document).ready(function() {
                      <td>
                         <select name="dog" required>
                            <option value="">견종</option>
-                           <option value="김대성" <c:if test="${map.infoMap.D_DOG eq '김대성'}">selected</c:if>>김대성</option>
-                           <option value="김현진" <c:if test="${map.infoMap.D_DOG eq '김현진'}">selected</c:if>>김현진</option>
-                           <option value="김지원" <c:if test="${map.infoMap.D_DOG eq '김지원'}">selected</c:if>>김지원</option>
-                           <option value="김현우" <c:if test="${map.infoMap.D_DOG eq '김현우'}">selected</c:if>>김현우</option>
-                           <option value="최주혁" <c:if test="${map.infoMap.D_DOG eq '최주혁'}">selected</c:if>>최주혁</option>
+                           <option value="코카스파니엘" <c:if test="${map.infoMap.D_DOG eq '코카스파니엘'}">selected</c:if>>코카스파니엘</option>
+                           <option value="요크셔테리어" <c:if test="${map.infoMap.D_DOG eq '요크셔테리어'}">selected</c:if>>요크셔테리어</option>
+                           <option value="허스키" <c:if test="${map.infoMap.D_DOG eq '허스키'}">selected</c:if>>허스키</option>
+                           <option value="웰시코기" <c:if test="${map.infoMap.D_DOG eq '웰시코기'}">selected</c:if>>웰시코기</option>
+                           <option value="말티즈" <c:if test="${map.infoMap.D_DOG eq '말티즈'}">selected</c:if>>말티즈</option>
                         </select>
                      </td>
                      <th>비상연락망</th>

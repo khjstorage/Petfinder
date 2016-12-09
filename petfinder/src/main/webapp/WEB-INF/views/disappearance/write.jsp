@@ -57,11 +57,11 @@ $(document).ready(function() {
                      <td>
                         <select name="dog" required>
                            <option value="" selected>견종</option>
-                           <option value="김대성">김대성</option>
-                           <option value="김현진">김현진</option>
-                           <option value="김지원">김지원</option>
-                           <option value="김현우">김현우</option>
-                           <option value="최주혁">최주혁</option>
+                           <option value="코카스파니엘">코카스파니엘</option>
+                           <option value="요크셔테리어">요크셔테리어</option>
+                           <option value="허스키">허스키</option>
+                           <option value="웰시코기">웰시코기</option>
+                           <option value="말티즈">말티즈</option>
                         </select>
                      </td>
                      <th>비상연락망</th>

@@ -31,8 +31,8 @@ $(document).ready(function() {
 				</c:otherwise>
 			</c:choose>
 					<ul>		
-						<li><a href="<c:url value='/disappearance/list.do'/>"><input type="button" id="pageFocusDisList" value="실종게시판"></a></li>
-						<li><a href="<c:url value='/finds/list.do'/>"><input type="button" id="pageFocusFindList" value="발견게시판"></a></li>
+						<li><a href="<c:url value='/disappearance/list.do?pageNo=1'/>"><input type="button" id="pageFocusDisList" value="실종게시판"></a></li>
+						<li><a href="<c:url value='/finds/list.do?pageNo=1'/>"><input type="button" id="pageFocusFindList" value="발견게시판"></a></li>
 						<li><a href="<c:url value='/etc/about.do'/>"><input type="button" id="pageFocusAbout" value="ABOUT"></a></li>
 					</ul>
 		</div>

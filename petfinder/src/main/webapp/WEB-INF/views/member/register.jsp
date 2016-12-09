@@ -103,13 +103,13 @@ $(document).ready(function(){
 	                  <option value="경상도">경상도</option>
 	                  <option value="경상도">강원도</option>
 	               </select> <select name="region2" required>
-	                  <option value="" selected>군</option>
+	                  <option value="" selected>구</option>
+	                  <option value="종로구">종로구</option>
+	                  <option value="용산구">용산구</option>
+	                  <option value="성동구">성동구</option>
 	                  <option value="광진구">광진구</option>
-	                  <option value="고양시">고양시</option>
-	                  <option value="순천시">순천시</option>
-	                  <option value="태안군">태안군</option>
-	                  <option value="창원시">창원시</option>
-	                  <option value="춘천시">춘천시</option>
+	                  <option value="중랑구">중랑구</option>
+	                  <option value="성북구">성북구</option>
 	               </select>
 	               <br /> 
 	               <input style="width: 428px; margin-left: 5px;" type="text" id="region3" name="region3" placeholder="나머지 주소" required>
