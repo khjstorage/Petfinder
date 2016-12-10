@@ -63,7 +63,6 @@
 		</jsp-property-group>
 	</jsp-config>
 
-
  			
 	<!-- Session Timeout 설정, 단위는 분 값을 0이나 음수로 설정하면 세션은 유효 시간을 갖지 않는다. session.invalidate() 
 		를 호출하지 않는 이상 session 객체가 사라지지 않는다. (분 단위) -->
@@ -109,8 +108,5 @@
 	  <error-code>500</error-code>
 	  <location>/WEB-INF/views/error/500code.html</location>
 	</error-page>
-
-
-
 
 </web-app>

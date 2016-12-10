@@ -15,6 +15,7 @@
 		<property name="location" value="classpath:property/jdbc.properties" />
 	</bean>
 
+	<!-- 논리적 뷰 이름과 동일한 ID를 갖는 <bean>으로 등록된 View의 구현체를 찾는다 -->
 	<bean class="org.springframework.web.servlet.view.BeanNameViewResolver">
 	    <property name="order" value="0"/>
 	</bean>

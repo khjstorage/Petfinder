@@ -15,15 +15,15 @@ import com.petfinder.vo.MemberVO;
 /**
  * �쉶�썝�젙蹂� CRUD �슂泥��쓣 泥섎━�븯�뒗 鍮꾩쫰�땲�뒪 �겢�옒�뒪
  * 
- * @author  1議�
+ * @author  김현진
  * @since 2016.11.14
  * @version 1.0
  * @see <pre>
- *  == 媛쒖젙�씠�젰(Modification Information) ==
+ *  == 개정이력(Modification Information) ==
  *   
- *          �닔�젙�씪          �닔�젙�옄           �닔�젙�궡�슜
+ *          수정일          수정자           수정내용
  *  ----------------    ------------    ---------------------------
- *   2016.11.14        1議�             理쒖큹 �깮�꽦
+ *   2016.11.14        김현진             최초 생성
  * 
  * </pre>
  */
@@ -36,14 +36,6 @@ public class MemberServiceImpl implements MemberService {
 	@Resource(name="memberDao")
 	private MemberDAO memberDao;
 
-	
-	/**
-	 * �븘�씠�뵒 �뙣�뒪�썙�뱶 �솗�씤 �슂泥��쓣 泥섎━�븯湲� �쐞�빐 �뜲�씠�꽣泥섎━瑜� �슂泥��븳�떎.
-	 * 
-	 * @param HashMap<String, String> map / id, pwd
-	 * @return String
-	 * @throws 
-	 */
 	@Override
 	public List<MemberVO> loginMember(HashMap<String, String> map){
 		return memberDao.loginMember(map);
@@ -62,7 +54,6 @@ public class MemberServiceImpl implements MemberService {
 			memberDao.insertFile(mapFile);
 		}
 	}
-
 
 	@Override
 	public void updateMember(MemberVO memberVO, HttpServletRequest request) throws Exception{
@@ -83,6 +74,5 @@ public class MemberServiceImpl implements MemberService {
 	public List<MemberVO> duplication(String duplicationId) {
 		return memberDao.duplication(duplicationId);
 	}
-
 
 }

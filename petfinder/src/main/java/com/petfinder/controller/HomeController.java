@@ -15,7 +15,7 @@ import com.petfinder.vo.FindsVO;
 /**
  * 메인페이지를 처리하는 Controller 클래스
  * 
- * @author  1조
+ * @author  김현진
  * @since 2016.11.14
  * @version 1.0
  * @see 
@@ -24,7 +24,7 @@ import com.petfinder.vo.FindsVO;
  *   
  *          수정일          수정자           수정내용
  *  ----------------    ------------    ---------------------------
- *   2016.11.14        1조             최초 생성
+ *   2016.11.14        김현진             최초 생성
  * 
  * </pre>
  */
@@ -36,13 +36,7 @@ public class HomeController {
 	
     @Resource(name="disappearanceService")
     private DisappearanceService disappearanceService;
-    
-	/** 
-	 * 메인페이지
-	 * @return 
-	 * @return
-	 * @throws 
-	 */
+
 	@RequestMapping("/main.do")
 	public ModelAndView main() {
 		ModelAndView mv = new ModelAndView();
@@ -57,16 +51,9 @@ public class HomeController {
 		return mv;
 	}
 	
-	/** 
-	 * 기타/어바웃페이지
-	 * @return 
-	 * @return
-	 * @throws 
-	 */
 	@RequestMapping("/etc/about.do")
 	public String about() {
 		return "/etc/about";
 	}
-
 
 }

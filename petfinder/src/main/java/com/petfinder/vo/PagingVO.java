@@ -1,5 +1,19 @@
 package com.petfinder.vo;
-
+/**
+ * 페이징처리를 저장하기 위한 VO클래스
+ * 
+ * @author  김현진
+ * @since 2016.11.14
+ * @version 1.0
+ * @see <pre>
+ *  == 개정이력(Modification Information) ==
+ *   
+ *          수정일          수정자           수정내용
+ *  ----------------    ------------    ---------------------------
+ *   2016.11.14        김현진             최초 생성
+ * 
+ * </pre>
+ */
 public class PagingVO {
 
 	private int pageSize; // 한 페이지에 보일 게시글 수

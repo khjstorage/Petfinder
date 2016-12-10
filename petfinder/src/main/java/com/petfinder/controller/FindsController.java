@@ -24,19 +24,19 @@ import com.petfinder.vo.DisappearanceVO;
 import com.petfinder.vo.FindsVO;
 import com.petfinder.vo.PagingVO;
 /**
- * 諛쒓껄�젙蹂� CRUD �슂泥��쓣 泥섎━�븯�뒗 Controller �겢�옒�뒪
+ * 실종게시판을 처리하는 Controller 클래스
  * 
- * @author  1議�
+ * @author  김현진
  * @since 2016.11.14
  * @version 1.0
  * @see 
  * <pre>
- *  == 媛쒖젙�씠�젰(Modification Information) ==
+ *  == 개정이력(Modification Information) ==
  *   
- *      �닔�젙�씪       		   	�닔�젙�옄     		      �닔�젙�궡�슜
+ *          수정일          수정자           수정내용
  *  ----------------    ------------    ---------------------------
- *   2016.11.14     		1議�             		理쒖큹 �깮�꽦
- *   2016.11.17				源��쁽吏�	  		requestmapping �닔�젙
+ *   2016.11.14        김현진             최초 생성
+ * 
  * </pre>
  */
 @Controller
@@ -46,12 +46,7 @@ public class FindsController {
 	@Resource(name = "findsService")
 	private FindsService findsService;
 
-	/** 
-	 * 諛쒓껄紐⑸줉�쓣 議고쉶 �븳�떎.
-	 * @return1 List<FindsVO> list
-	 * @return2 "Finds/findslist"
-	 * @throws 
-	 */
+
 	@RequestMapping("/list.do")
 	public ModelAndView findsList(@ModelAttribute("PagingVO") PagingVO pagingVO, 
 								  @RequestParam(value = "pageNo", required = false) String pageNo){
@@ -72,38 +67,19 @@ public class FindsController {
 	}
 
 
-	/**
-	 * 諛쒓껄寃뚯떆�뙋 湲��벐湲� �솕硫댁쑝濡� �씠�룞�븳�떎.
-	 * @param 
-	 * @return "finds/finds_form";
-	 * @throws 
-	 */
 	@RequestMapping("/write.do")
 	public String finds_form() {
 		return "/finds/write";
 	}
 
 
-	/**
-	 * 諛쒓껄�젙蹂� �벑濡앺븯怨� 紐⑸줉議고쉶 �솕硫댁쑝濡� �씠�룞�븳�떎.
-	 * @param1 @ModelAttribute("findsVO") FindsVO findsVO 諛쒓껄�젙蹂�
-	 * @param2 HttpServletRequest request �뙆�씪�젙蹂�
-	 * @return "redirect:findslist.do";
-	 * @throws Exception
-	 */
 	@RequestMapping("/create.do")
 	public String findsCreate(@ModelAttribute("findsVO") FindsVO findsVO, HttpServletRequest request) throws Exception {
 		findsService.insertFinds(findsVO, request);
 		return "redirect:/finds/list.do";
 	}
 
-	/**
-	 * 諛쒓껄�젙蹂� �긽�꽭�솕硫댁쑝濡� �씠�룞�븳�떎.
-	 * @param HttpServletRequest request
-	 * @return1 Map<String,Object> map 
-	 * @return2 "finds/finds_contents"
-	 * @throws Exception
-	 */
+
 	@RequestMapping("/contents.do")
 	public ModelAndView findsContents(HttpServletRequest request, @RequestParam("idx") String idx) throws Exception {
 		ModelAndView mv = new ModelAndView();
@@ -115,13 +91,6 @@ public class FindsController {
 	}
 
 
-	/**
-	 * 諛쒓껄湲��쓽 �뙣�뒪�썙�뱶 �솕硫댁뿉�꽌 �빐�떦 湲��뿉 �뙣�뒪�썙�뱶媛� �씪移섑븯硫� finds_delete_pro �씠�룞
-	 * @param @RequestParam("pwd") String pwd 
-	 * @param @RequestParam("idx") String idx
-	 * @return "redirect:finds_delete.do?idx="+idx
-	 * @return "redirect:finds_password.do?idx="+idx
-	 */
 	@RequestMapping("/delete_auth.do")
 	public String findsDeleteAuth(@RequestParam("pwd") String pwd, @RequestParam("idx") String idx){
 		HashMap<String, String> map = new HashMap<String, String>();
@@ -135,12 +104,7 @@ public class FindsController {
 		}
 	}
 
-	/**
-	 * 諛쒓껄�젙蹂� �궘�젣 �썑 紐⑸줉議고쉶 �솕硫댁쑝濡� �씠�룞�븳�떎.
-	 * @param @RequestParam("idx") String idx
-	 * @return "redirect:findslist.do"
-	 * @throws Exception
-	 */
+
 	@RequestMapping("/delete.do")
 	public String findsDelete(HttpServletRequest request, @RequestParam("idx") String idx){
 		String strReferer = request.getHeader("referer");
@@ -151,13 +115,6 @@ public class FindsController {
 	}
 
 
-	/**
-	 * 諛쒓껄湲��쓽 �뙣�뒪�썙�뱶 �솕硫댁뿉�꽌 �빐�떦 湲��뿉 �뙣�뒪�썙�뱶媛� �씪移섑븯硫� �닔�젙 �솕硫댁쑝濡� �씠�룞�븳�떎.
-	 * @param @RequestParam("pwd") String pwd 
-	 * @param @RequestParam("idx") String idx
-	 * @return "redirect:finds_update.do?idx="+idx
-	 * @return "redirect:finds_password.do?idx="+idx
-	 */
 	@RequestMapping("/update_auth.do")
 	public String findsUpdateAuth(HttpServletRequest request, @RequestParam("pwd") String pwd, @RequestParam("idx") String idx){
 		HashMap<String, String> map = new HashMap<String, String>();
@@ -172,13 +129,6 @@ public class FindsController {
 	}
 
 
-	/**
-	 * 諛쒓껄�젙蹂� �닔�젙 �솕硫댁쑝濡� �씠�룞�븳�떎.
-	 * @param HttpServletRequest request
-	 * @return1 Map<String,Object> map 
-	 * @return2 "finds/finds_update"
-	 * @throws Exception
-	 */
 	@RequestMapping("/edit.do")
 	public ModelAndView findsEdit(HttpServletRequest request,  @RequestParam("idx") String idx) throws Exception{
 		ModelAndView mv = new ModelAndView("/finds/edit");
@@ -191,13 +141,7 @@ public class FindsController {
 		return mv;
 	}
 
-	/** 
-	 * 遺꾩떎�젙蹂� �닔�젙�븯怨� 紐⑸줉議고쉶 �솕硫댁쑝濡� �씠�룞�븳�떎.
-	 * @param1 @ModelAttribute("findsVO")FindsVO findsVO
-	 * @param2 HttpServletRequest request
-	 * @return "redirect:findslist.do"
-	 * @throws Exception
-	 */
+
 	@RequestMapping("/update.do")
 	public String findsUpdate(@ModelAttribute("findsVO")FindsVO findsVO, HttpServletRequest request) throws Exception {
 		findsService.updateFinds(findsVO, request);
@@ -205,13 +149,6 @@ public class FindsController {
 	}
 
 
-
-	/** 
-	 * �뙆�씪 �떎�슫濡쒕뱶
-	 * @param1 @RequestParam("idx") String idx
-	 * @param2 HttpServletResponse response
-	 * @throws Exception
-	 */
 	@RequestMapping("/download.do")
 	public void findsDownload(@RequestParam("idx") String idx, HttpServletResponse response) throws Exception{
 		Map<String, Object> map = findsService.selectFileInfo(idx);
@@ -231,14 +168,6 @@ public class FindsController {
 	}
 
 
-	/** 
-	 * 諛쒓껄湲��쓽 留ㅼ묶踰꾪듉�쓣 �겢由��븯硫� �떎醫낃� �젙蹂댁� �씪移섑븳 寃뚯떆湲� �솕硫댁쑝濡� �씠�룞�븳�떎.
-	 * @param1 @ModelAttribute("findsVO")FindsVO findsVO
-	 * @param2 HttpServletRequest request
-	 * @return List<DisappearanceVO> list
-	 * @return "disappearance/disappearance_list"
-	 * @throws Exception
-	 */
 	@RequestMapping("/match.do")
 	public ModelAndView findsMatch(@ModelAttribute("findsVO")FindsVO findsVO) throws Exception{
 		ModelAndView mv = new ModelAndView();
@@ -249,14 +178,6 @@ public class FindsController {
 	}
 
 
-	/** 
-	 * 議고쉶湲곕뒫
-	 * @param @RequestParam("searchtext") String searchtext	
-	 * @param @RequestParam("searchoption") String searchoption
-	 * @return mv.addObject("disappearancelist", list)
-	 * @return mv.setViewName("disappearance/disappearance_list")
-	 * @throws Exception
-	 */
 	@RequestMapping(value="/search.do", method=RequestMethod.GET)
 	public ModelAndView findsSearch(@RequestParam("keyWord_search") String keyWord_search,	
 									@RequestParam("selection_search") String selection_search,
@@ -284,8 +205,5 @@ public class FindsController {
 		mv.setViewName("/finds/list");
 		return mv;
 	}
-
-
-
 
 }

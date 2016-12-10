@@ -17,18 +17,18 @@ import org.springframework.web.servlet.ModelAndView;
 import com.petfinder.service.MemberService;
 import com.petfinder.vo.MemberVO;
 /**
- * 硫ㅻ쾭�젙蹂� CRUD �슂泥��쓣 泥섎━�븯�뒗 Controller �겢�옒�뒪
+ * 회원관리를 처리하는 Controller 클래스
  * 
- * @author  1議�
+ * @author  김현진
  * @since 2016.11.14
  * @version 1.0
  * @see 
  * <pre>
- *  == 媛쒖젙�씠�젰(Modification Information) ==
+ *  == 개정이력(Modification Information) ==
  *   
- *          �닔�젙�씪          �닔�젙�옄           �닔�젙�궡�슜
+ *          수정일          수정자           수정내용
  *  ----------------    ------------    ---------------------------
- *   2016.11.14        1議�             理쒖큹 �깮�꽦
+ *   2016.11.14        김현진             최초 생성
  * 
  * </pre>
  */
@@ -39,46 +39,23 @@ public class MemberController {
 	@Resource(name="memberService")
 	private MemberService memberService;
 
-	
-	/** 
-	 * @param 
-	 * @return
-	 * @throws 
-	 */
+
 	@RequestMapping("/register.do")
 	public String register() {
 		return "/member/register";
 	}
-
 	
-	/** 
-	 * @param 
-	 * @return
-	 * @throws 
-	 */
 	@RequestMapping("/signup")
 	public String signup(@ModelAttribute("memberVO")MemberVO memberVO, HttpServletRequest request) throws Exception{
 		memberService.insertMember(memberVO, request);
 		return "redirect:/main.do";
 	}
 
-
-	/** 
-	 * @return 
-	 * @return
-	 * @throws 
-	 */
 	@RequestMapping("/login.do")
 	public String login() {
 		return "/member/login";
 	}
 
-	/** 
-	 * 로그인
-	 * @param 
-	 * @return
-	 * @throws 
-	 */
 	@RequestMapping("/loginProcess.do")
 	public ModelAndView loginProcess(@RequestParam("id") String id, @RequestParam("pwd") String pwd, HttpSession session) {
 		HashMap<String, String> map = new HashMap<String, String>();
@@ -93,11 +70,6 @@ public class MemberController {
 		}
 	}
 	
-	/** 
-	 * @return 
-	 * @return
-	 * @throws 
-	 */
 	@RequestMapping("/mypage.do")
 	public ModelAndView mypage(HttpSession session) throws Exception {
 		ModelAndView mv = new ModelAndView();
@@ -107,24 +79,13 @@ public class MemberController {
 		return mv;
 	}
 
-
-	/** 
-	 * @return 
-	 * @return
-	 * @throws 
-	 */
 	@RequestMapping("/logout.do")
 	public String logout(HttpSession session){
 		session.removeAttribute("id");
 		session.invalidate();
 		return "redirect:/main.do";
 	}
-	
-	/** 
-	 * @return 
-	 * @return
-	 * @throws 
-	 */
+
 	@RequestMapping("/delete.do")
 	public String delete(HttpSession session){
 		String id = (String) session.getAttribute("id");
@@ -134,23 +95,12 @@ public class MemberController {
 		return "redirect:/main.do";
 	}
 
-	/** 
-	 * @return 
-	 * @return
-	 * @throws 
-	 */
 	@RequestMapping("/update.do")
 	public String update(@ModelAttribute("memberVO")MemberVO memberVO, HttpServletRequest request) throws Exception{
 		memberService.updateMember(memberVO, request);
 		return "redirect:/main.do";
 	}
 	
-	/** 
-	 * 아이디중복확인
-	 * @param 
-	 * @return
-	 * @throws 
-	 */
 	@RequestMapping("/duplication.do")
 	@ResponseBody
 	public int duplication(HttpServletRequest request){
