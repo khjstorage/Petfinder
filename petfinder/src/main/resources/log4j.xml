@@ -15,6 +15,16 @@
         </layout>   
     </appender>
      
+    <appender name="filelog" class="org.apache.log4j.DailyRollingFileAppender">
+        <param name="file" value="C:\Users\김현진\git\springMVC-petfinder"/>
+        <param name="Append" value="true"/>
+        <param name="DataPattern" value="'.'yyy-MM-dd"/>
+        <layout class="org.apache.log4j.PatternLayout">
+            <param name="ConversionPattern" value="%d %5p %m%n" />
+        </layout>   
+    </appender>
+     
+     
     <!-- Application Loggers -->
     <logger name="first" additivity="false">
         <level value="warn" />
@@ -36,6 +46,7 @@
     <root>
         <level value="warn"/>
         <appender-ref ref="console" />
+        <appender-ref ref="filelog" />
     </root>
      
 </log4j:configuration>
